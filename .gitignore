@@ -25,3 +25,8 @@ dist-ssr
 
 # Bundle visualizer
 stats.html
+
+# Coverage report
+coverage
+
+*storybook.log

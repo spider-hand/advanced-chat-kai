@@ -4,7 +4,7 @@ import { customElement } from "lit/decorators.js";
 @customElement("advanced-chat-kai")
 export class AdvancedChatKai extends LitElement {
   render() {
-    return html` <h1>Hello, world</h1> `;
+    return html` <h1 data-testid="text">Hello, world</h1> `;
   }
 }
 
