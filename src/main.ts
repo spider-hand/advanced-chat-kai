@@ -5,20 +5,154 @@ import { globalStyles } from "./styles/global";
 import "./components/chat-container";
 import "./components/chat-sidebar";
 import { sidebarContext } from "./contexts/sidebar-context";
-import { deviceContext } from "./contexts/device-context";
+import { DeviceContext, deviceContext } from "./contexts/device-context";
+import {
+  AdvancedChatKaiProps,
+  ChatAction,
+  ChatActionType,
+  ChatMessage,
+  ChatMessageAttachment,
+  ChatMessageSuggestion,
+  ChatRoom,
+  ChatUser,
+} from "./types";
+import { currentUserContext } from "./contexts/current-user-context";
+import { RoomContext, roomContext } from "./contexts/room-context";
+import { messageContext, MessageContext } from "./contexts/message-context";
+import {
+  RoomActionContext,
+  roomActionContext,
+} from "./contexts/room-action-context";
+import {
+  MessageActionContext,
+  messageActionContext,
+} from "./contexts/message-action-context";
+import {
+  MessageAttachmentContext,
+  messageAttachmentContext,
+} from "./contexts/message-attachment-context";
 
 @customElement("advanced-chat-kai")
 export class Main extends LitElement {
+  @property({ type: Object })
+  currentUser: ChatUser;
+  @property({ type: Array }) rooms: ChatRoom[] = [];
+  @property({ type: Array }) messages: ChatMessage[] = [];
+  @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
+  @property({ type: Array }) suggestions: ChatMessageSuggestion[] = [];
+  @property({ type: String }) selectedRoomId: string | null = null;
+  @property({ type: Boolean }) isLoadingRoom = false;
+  @property({ type: Boolean }) isLoadingMessage = false;
+  @property({ type: Boolean }) isLoadingMoreRooms = false;
+  @property({ type: Boolean }) isLoadingMoreMessages = false;
+  @property({ type: Array }) roomActions: ChatAction<ChatActionType>[] = [];
+  @property({ type: Array }) messageActions: ChatAction<ChatActionType>[] = [];
+  @property({ type: Boolean }) isMobile = false;
+  @property({ type: Number }) height = 480;
+
+  @provide({ context: currentUserContext })
+  currentUserContext: ChatUser = {
+    id: "",
+    name: "",
+  };
+
+  @provide({ context: roomContext })
+  roomsContext: RoomContext = {
+    rooms: this.rooms,
+    selectedRoomId: this.selectedRoomId,
+    isLoadingRoom: this.isLoadingRoom,
+    isLoadingMoreRooms: this.isLoadingMoreRooms,
+  };
+
+  @provide({ context: messageContext })
+  messagesContext: MessageContext = {
+    messages: this.messages,
+    suggestions: this.suggestions,
+    isLoadingMessage: this.isLoadingMessage,
+    isLoadingMoreMessages: this.isLoadingMoreMessages,
+  };
+
+  @provide({ context: messageAttachmentContext })
+  messageAttachmentContext: MessageAttachmentContext = {
+    attachments: this.attachments,
+  };
+
+  @provide({ context: roomActionContext })
+  roomActionContext: RoomActionContext = {
+    actions: this.roomActions,
+  };
+
+  @provide({ context: messageActionContext })
+  messageActionContext: MessageActionContext = {
+    actions: this.messageActions,
+  };
+
+  @provide({ context: deviceContext })
+  deviceContext: DeviceContext = {
+    isMobile: this.isMobile,
+  };
+
   @provide({ context: sidebarContext })
   @property({ type: Boolean })
   showSidebar = true;
-  @provide({ context: deviceContext })
-  @property({ type: Boolean })
-  isMobile = false;
 
-  // TODO: Props
-  private get _height() {
-    return window.innerHeight;
+  protected updated(
+    changedProperties: Map<
+      keyof AdvancedChatKaiProps,
+      AdvancedChatKaiProps[keyof AdvancedChatKaiProps]
+    >,
+  ): void {
+    if (changedProperties.has("currentUser")) {
+      this.currentUserContext = this.currentUser;
+    }
+    if (
+      changedProperties.has("rooms") ||
+      changedProperties.has("selectedRoomId") ||
+      changedProperties.has("isLoadingRoom") ||
+      changedProperties.has("isLoadingMoreRooms")
+    ) {
+      this.roomsContext = {
+        rooms: this.rooms,
+        selectedRoomId: this.selectedRoomId,
+        isLoadingRoom: this.isLoadingRoom,
+        isLoadingMoreRooms: this.isLoadingMoreRooms,
+      };
+    }
+    if (
+      changedProperties.has("messages") ||
+      changedProperties.has("suggestions") ||
+      changedProperties.has("isLoadingMessage") ||
+      changedProperties.has("isLoadingMoreMessages")
+    ) {
+      this.messagesContext = {
+        messages: this.messages,
+        suggestions: this.suggestions,
+        isLoadingMessage: this.isLoadingMessage,
+        isLoadingMoreMessages: this.isLoadingMoreMessages,
+      };
+    }
+
+    if (changedProperties.has("attachments")) {
+      this.messageAttachmentContext = {
+        attachments: this.attachments,
+      };
+    }
+
+    if (changedProperties.has("roomActions")) {
+      this.roomActionContext = {
+        actions: this.roomActions,
+      };
+    }
+    if (changedProperties.has("messageActions")) {
+      this.messageActionContext = {
+        actions: this.messageActions,
+      };
+    }
+    if (changedProperties.has("isMobile")) {
+      this.deviceContext = {
+        isMobile: this.isMobile,
+      };
+    }
   }
 
   private _closeSidebar() {
@@ -47,7 +181,7 @@ export class Main extends LitElement {
   ];
 
   render() {
-    return html`<div class="main" style="height: ${this._height}px">
+    return html`<div class="main" style="height: ${this.height}px">
       <chat-sidebar
         .show="${this.showSidebar}"
         @close="${this._closeSidebar}"

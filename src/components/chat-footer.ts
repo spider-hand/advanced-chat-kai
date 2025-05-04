@@ -1,10 +1,67 @@
-import { LitElement, css, html } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { LitElement, css, html, nothing } from "lit";
+import { customElement, property, query, state } from "lit/decorators.js";
+import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
+import {
+  ChatUser,
+  ReplyToMessageDetail,
+  SelecteEmojiDetail,
+  SelectFileDetail,
+  SendMessageDetail,
+} from "../types";
+import { RoomContext, roomContext } from "../contexts/room-context";
+import { currentUserContext } from "../contexts/current-user-context";
+import "./chat-reply-to";
+import "./chat-message-file-list";
+import {
+  MessageAttachmentContext,
+  messageAttachmentContext,
+} from "../contexts/message-attachment-context";
 
 @customElement("chat-footer")
 export class ChatFooter extends LitElement {
+  @consume({ context: currentUserContext, subscribe: true })
+  @property({ type: Object })
+  currentUser!: ChatUser;
+
+  @consume({ context: roomContext, subscribe: true })
+  @property({ type: Object })
+  roomContext!: RoomContext;
+
+  @consume({ context: messageAttachmentContext, subscribe: true })
+  @property({ type: Object })
+  messageAttachmentContext!: MessageAttachmentContext;
+
+  @property({ type: Object }) replyTo: ReplyToMessageDetail | null = null;
+
   @state() private _showEmojiPicker = false;
+
+  @query("textarea") private _textarea!: HTMLTextAreaElement;
+  @query("input[type='file']") private _fileInput!: HTMLInputElement;
+
+  private _handleFileInput() {
+    this._fileInput.click();
+  }
+
+  private _handleFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (file) {
+      this.dispatchEvent(
+        new CustomEvent<SelectFileDetail>("select-file", {
+          detail: {
+            file,
+          },
+          composed: true,
+        }),
+      );
+    }
+  }
+
+  private _onSelectEmoji(event: CustomEvent<SelecteEmojiDetail>) {
+    this._textarea.value += event.detail.emoji;
+    this._showEmojiPicker = false;
+  }
 
   private _toggleEmojiPicker() {
     this._showEmojiPicker = !this._showEmojiPicker;
@@ -12,6 +69,24 @@ export class ChatFooter extends LitElement {
 
   private _closeEmojiPicker() {
     this._showEmojiPicker = false;
+  }
+
+  private _sendMessage() {
+    const message = this._textarea.value;
+    if (message) {
+      this.dispatchEvent(
+        new CustomEvent<SendMessageDetail>("send-message", {
+          detail: {
+            roomId: this.roomContext.selectedRoomId,
+            senderId: this.currentUser.id,
+            message,
+            replyTo: null,
+          },
+          composed: true,
+        }),
+      );
+      this._textarea.value = "";
+    }
   }
 
   static styles = [
@@ -68,6 +143,10 @@ export class ChatFooter extends LitElement {
         border-radius: 100px;
       }
 
+      .chat-footer__file {
+        display: none;
+      }
+
       .chat-footer__button:hover {
         background-color: var(--gray-100);
       }
@@ -88,12 +167,20 @@ export class ChatFooter extends LitElement {
 
   render() {
     return html`<footer class="chat-footer">
+      ${this.messageAttachmentContext.attachments.length > 0
+        ? html`<chat-message-file-list
+            .attachments=${this.messageAttachmentContext.attachments}
+          ></chat-message-file-list>`
+        : nothing}
+      ${this.replyTo
+        ? html`<chat-reply-to .replyTo="${this.replyTo}"></chat-reply-to>`
+        : nothing}
       <textarea
         class="chat-footer__textarea"
         placeholder="Write a message.."
       ></textarea>
       <div class="chat-footer__menu">
-        <button class="chat-footer__button">
+        <button class="chat-footer__button" @click="${this._handleFileInput}">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="2.4em"
@@ -106,6 +193,11 @@ export class ChatFooter extends LitElement {
             />
           </svg>
         </button>
+        <input
+          type="file"
+          class="chat-footer__file"
+          @change="${this._handleFileChange}"
+        />
         <button
           class="chat-footer__button chat-footer__button--emoji"
           @click="${this._toggleEmojiPicker}"
@@ -122,7 +214,10 @@ export class ChatFooter extends LitElement {
             />
           </svg>
         </button>
-        <button class="chat-footer__button chat-footer__button--send">
+        <button
+          class="chat-footer__button chat-footer__button--send"
+          @click="${this._sendMessage}"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="2.4em"
@@ -140,7 +235,7 @@ export class ChatFooter extends LitElement {
             ._showEmojiPicker
             ? "block"
             : "none"};"
-          @select-emoji="${this._closeEmojiPicker}"
+          @select-emoji="${this._onSelectEmoji}"
           @close="${this._closeEmojiPicker}"
         ></chat-emoji-picker>
       </div>

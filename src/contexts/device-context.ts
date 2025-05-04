@@ -1,3 +1,7 @@
 import { createContext } from "@lit/context";
 
-export const deviceContext = createContext<boolean>("is-mobile");
+export interface DeviceContext {
+  isMobile: boolean;
+}
+
+export const deviceContext = createContext<DeviceContext>("device");

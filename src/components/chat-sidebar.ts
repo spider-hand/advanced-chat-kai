@@ -5,17 +5,21 @@ import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import "./chat-room-list";
 import "./chat-search";
-import { deviceContext } from "../contexts/device-context";
+import { DeviceContext, deviceContext } from "../contexts/device-context";
 
 @customElement("chat-sidebar")
 export class ChatSidebar extends LitElement {
   @consume({ context: deviceContext, subscribe: true })
-  @property({ type: Boolean })
-  isMobile!: boolean;
+  @property({ type: Object })
+  deviceContext!: DeviceContext;
   @property({ type: Boolean }) show = false;
 
   private _closeSidebar() {
     this.dispatchEvent(new CustomEvent("close", { composed: true }));
+  }
+
+  private _addRoom() {
+    this.dispatchEvent(new CustomEvent("add-room", { composed: true }));
   }
 
   static styles = [
@@ -80,7 +84,7 @@ export class ChatSidebar extends LitElement {
       class="${classMap({
         "chat-sidebar": true,
         "chat-sidebar--hidden": !this.show,
-        "chat-sidebar--mobile": this.isMobile,
+        "chat-sidebar--mobile": this.deviceContext.isMobile,
       })}"
     >
       <div class="chat-sidebar__header">
@@ -98,7 +102,7 @@ export class ChatSidebar extends LitElement {
               />
             </svg>
           </button>
-          <button class="chat-sidebar__button">
+          <button class="chat-sidebar__button" @click="${this._addRoom}">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="2.4em"

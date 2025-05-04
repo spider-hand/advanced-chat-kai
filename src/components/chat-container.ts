@@ -1,25 +1,36 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
 import "./chat-header";
 import "./chat-message-list";
 import "./chat-footer";
-import { deviceContext } from "../contexts/device-context";
+import { DeviceContext, deviceContext } from "../contexts/device-context";
 import { sidebarContext } from "../contexts/sidebar-context";
+import { ReplyToMessageDetail } from "../types";
 
 @customElement("chat-container")
 export class ChatContainer extends LitElement {
   @consume({ context: deviceContext, subscribe: true })
-  @property({ type: Boolean })
-  isMobile!: boolean;
+  @property({ type: Object })
+  deviceContext!: DeviceContext;
   @consume({ context: sidebarContext, subscribe: true })
   @property({ type: Boolean })
   showSidebar!: boolean;
 
+  @state() private _replyTo: ReplyToMessageDetail | null = null;
+
   private get _show() {
-    return this.isMobile && this.showSidebar ? false : true;
+    return this.deviceContext.isMobile && this.showSidebar ? false : true;
+  }
+
+  private _onReplyToMessage(e: CustomEvent<ReplyToMessageDetail>) {
+    this._replyTo = e.detail;
+  }
+
+  private _onCancelReply() {
+    this._replyTo = null;
   }
 
   static styles = [
@@ -56,12 +67,19 @@ export class ChatContainer extends LitElement {
     return html`<div
       class="${classMap({
         "chat-container": true,
-        "chat-container--mobile": this.isMobile,
+        "chat-container--mobile": this.deviceContext.isMobile,
         "chat-container--hidden": !this._show,
       })}"
     >
-      <chat-header></chat-header><chat-message-list></chat-message-list
-      ><chat-footer></chat-footer>
+      <chat-header></chat-header
+      ><chat-message-list
+        .replyTo="${this._replyTo}"
+        @reply-to-message="${this._onReplyToMessage}"
+      ></chat-message-list
+      ><chat-footer
+        .replyTo="${this._replyTo}"
+        @cancel-reply="${this._onCancelReply}"
+      ></chat-footer>
     </div>`;
   }
 }

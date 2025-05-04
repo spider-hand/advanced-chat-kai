@@ -1,3 +1,2 @@
-export interface ChatAction {
-  label: string;
-}
+export * from "./event";
+export * from "./props";

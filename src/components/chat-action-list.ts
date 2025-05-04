@@ -1,11 +1,13 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
-import { ChatAction } from "../types";
+import { ChatAction, ChatActionType, SelectActionDetail } from "../types";
 
 @customElement("chat-action-list")
 export class ChatActionList extends LitElement {
-  @property({ type: Array }) actions: ChatAction[] = [];
+  @property({ type: String }) actionType: ChatActionType;
+  @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
+    [];
 
   @query(".chat-action-list") chatActionList!: HTMLDivElement;
 
@@ -76,10 +78,17 @@ export class ChatActionList extends LitElement {
             class="chat-action-list__item"
             @click="${() =>
               this.dispatchEvent(
-                new CustomEvent("select-action", {
-                  detail: action.label,
-                  composed: true,
-                }),
+                new CustomEvent<SelectActionDetail<string | number | boolean>>(
+                  "select-action",
+                  {
+                    detail: {
+                      actionType: this.actionType,
+                      label: action.label,
+                      value: action.value,
+                    },
+                    composed: true,
+                  },
+                ),
               )}"
           >
             ${action.label}

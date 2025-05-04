@@ -1,16 +1,53 @@
 import { LitElement, css, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
+import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
 import "./chat-avatar";
 import "./chat-action-list";
+import { ChatRoom, SelectRoomDetail } from "../types";
+import {
+  RoomActionContext,
+  roomActionContext,
+} from "../contexts/room-action-context";
 
 @customElement("chat-room-item")
 export class ChatRoomItem extends LitElement {
+  @consume({ context: roomActionContext, subscribe: true })
+  @property({ type: Object })
+  roomActionsContext!: RoomActionContext;
+
   @property({ type: Boolean }) active = false;
+  @property({ type: Object }) room!: ChatRoom;
 
   @state() private _hover = false;
-  @state() private _showMenu = false;
+  @state() private _showActionList = false;
+
+  private _selectRoom() {
+    this.dispatchEvent(
+      new CustomEvent<SelectRoomDetail>("select-room", {
+        detail: {
+          room: this.room,
+        },
+      }),
+    );
+  }
+
+  private _onMouseEnter() {
+    this._hover = true;
+  }
+
+  private _onMouseLeave() {
+    this._hover = false;
+  }
+
+  private _toggleActionList() {
+    this._showActionList = !this._showActionList;
+  }
+
+  private _closeActionList() {
+    this._showActionList = false;
+  }
 
   static styles = [
     globalStyles,
@@ -29,6 +66,7 @@ export class ChatRoomItem extends LitElement {
         width: 100%;
         height: 6.4em;
         padding: 0 1.2em;
+        cursor: pointer;
       }
 
       .chat-room-item::after {
@@ -72,7 +110,7 @@ export class ChatRoomItem extends LitElement {
         position: absolute;
         top: 1.2em;
         right: 1.2em;
-        font-size: 1.2em;
+        font-size: 1em;
       }
 
       .chat-room-item__button {
@@ -95,48 +133,25 @@ export class ChatRoomItem extends LitElement {
     `,
   ];
 
-  private _onMouseEnter() {
-    this._hover = true;
-  }
-
-  private _onMouseLeave() {
-    this._hover = false;
-  }
-
-  private _toggleMenu() {
-    this._showMenu = !this._showMenu;
-  }
-
-  private _closeMenu() {
-    this._showMenu = false;
-  }
-
   render() {
-    const actions = [
-      { label: "A" },
-      { label: "B" },
-      { label: "C" },
-    ];
-
     return html`<div
       class="${classMap({
         "chat-room-item": true,
-        "chat-room-item--active": this.active,
+        "chat-room-item--active": this.active || this._hover,
       })}"
       @mouseenter="${this._onMouseEnter}"
       @mouseleave="${this._onMouseLeave}"
+      @click="${this._selectRoom}"
     >
       <chat-avatar></chat-avatar>
       <div class="chat-room-item__text">
-        <span class="chat-room-item__title">Room Room Room Room Room</span>
-        <span class="chat-room-item__subtitle">
-          Hello, world Hello, world Hello, world Hello world</span
-        >
+        <span class="chat-room-item__title">${this.room.title}</span>
+        <span class="chat-room-item__subtitle"> ${this.room.subtitle}</span>
       </div>
       ${this._hover
         ? html`<button
             class="chat-room-item__button"
-            @click="${this._toggleMenu}"
+            @click="${this._toggleActionList}"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -150,13 +165,14 @@ export class ChatRoomItem extends LitElement {
               />
             </svg>
           </button>`
-        : html`<span class="chat-room-item__menu">Apr 28</span>`}
-      ${this._showMenu
+        : html`<span class="chat-room-item__menu">${this.room.meta}</span>`}
+      ${this._showActionList
         ? html`<chat-action-list
             style="position: absolute; top: 0; right: 1.2em; transform: translateY(-100%);"
-            .actions="${actions}"
-            @select-action="${this._closeMenu}"
-            @close="${this._closeMenu}"
+            .actionType="${"room"}"
+            .actions="${this.roomActionsContext.actions}"
+            @select-action="${this._closeActionList}"
+            @close="${this._closeActionList}"
           ></chat-action-list>`
         : nothing}
     </div>`;

@@ -1,12 +1,60 @@
-import { LitElement, css, html } from "lit";
-import { customElement, query } from "lit/decorators.js";
+import { LitElement, css, html, nothing } from "lit";
+import { customElement, property, query, state } from "lit/decorators.js";
+import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import "./chat-message-item";
 import "./chat-loader";
+import "./chat-suggestion-list";
+import { MessageContext, messageContext } from "../contexts/message-context";
+import { ReplyToMessageDetail } from "../types";
 
 @customElement("chat-message-list")
 export class ChatMessageList extends LitElement {
+  @consume({ context: messageContext, subscribe: true })
+  @property({ type: Object })
+  messageContext!: MessageContext;
+  @property({ type: Object }) replyTo: ReplyToMessageDetail | null = null;
+
+  @query(".chat-message-list__top") chatMessageListTop!: HTMLDivElement;
   @query(".chat-message-list__bottom") chatMessageListBottom!: HTMLDivElement;
+
+  @state() private _showScrollToBottomButton = false;
+
+  private _scrollToBottom(
+    _?: Event,
+    behavior: ScrollBehavior = "smooth",
+  ): void {
+    this.chatMessageListBottom.scrollIntoView({
+      behavior: behavior,
+    });
+  }
+
+  protected firstUpdated(): void {
+    setTimeout(() => {
+      this._scrollToBottom(null, "instant");
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target.classList.contains("chat-message-list__bottom")) {
+          if (entry.isIntersecting) {
+            this._showScrollToBottomButton = false;
+          } else {
+            this._showScrollToBottomButton = true;
+          }
+        }
+
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains("chat-message-list__top")) {
+            this.dispatchEvent(new CustomEvent("load-more-messages"));
+          }
+        }
+      }
+    });
+
+    observer.observe(this.chatMessageListTop);
+    observer.observe(this.chatMessageListBottom);
+  }
 
   static styles = [
     globalStyles,
@@ -26,11 +74,13 @@ export class ChatMessageList extends LitElement {
       }
 
       .chat-message-list__top {
-        margin-bottom: -1.6em;
+        height: 0.1em;
+        margin-bottom: -1.7em;
       }
 
       .chat-message-list__bottom {
-        margin-top: -1.6em;
+        height: 0.1em;
+        margin-top: -1.7em;
       }
 
       .chat-message-list__button {
@@ -55,37 +105,30 @@ export class ChatMessageList extends LitElement {
     `,
   ];
 
-  private _scrollToBottom(
-    _?: Event,
-    behavior: ScrollBehavior = "smooth",
-  ): void {
-    this.chatMessageListBottom.scrollIntoView({
-      behavior: behavior,
-    });
-  }
-
-  protected firstUpdated(): void {
-    setTimeout(() => {
-      this._scrollToBottom(null, "instant");
-    });
-  }
-
   render() {
-    const items = Array.from({ length: 20 }, (_, i) => i);
-
     return html`
       <div class="chat-message-list">
         <div class="chat-message-list__top"></div>
-        <chat-loader></chat-loader>
-        ${items.map(
-          (i) =>
+        ${this.messageContext.isLoadingMoreMessages
+          ? html`<chat-loader></chat-loader>`
+          : nothing}
+        ${this.messageContext.messages.map(
+          (item, i) =>
             html`<chat-message-item
-              .mine="${i % 2 === 0 ? true : false}"
+              .message="${item}"
+              .last="${i === this.messageContext.messages.length - 1}"
+              .selected=${this.replyTo?.messageId === item.id}
             ></chat-message-item>`,
         )}
+        ${this.messageContext.suggestions.length > 0
+          ? html`<chat-suggestion-list
+              .suggestions="${this.messageContext.suggestions}"
+            ></chat-suggestion-list>`
+          : nothing}
         <div class="chat-message-list__bottom"></div>
         <button
           class="chat-message-list__button"
+          style="display: ${this._showScrollToBottomButton ? "block" : "none"}"
           @click="${this._scrollToBottom}"
         >
           <svg

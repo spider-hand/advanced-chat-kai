@@ -4,6 +4,12 @@ import { customElement, property, state } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { sidebarContext } from "../contexts/sidebar-context";
 import "./chat-action-list";
+import { RoomContext, roomContext } from "../contexts/room-context";
+import { ChatRoom } from "../types";
+import {
+  RoomActionContext,
+  roomActionContext,
+} from "../contexts/room-action-context";
 
 @customElement("chat-header")
 export class ChatHeader extends LitElement {
@@ -11,18 +17,32 @@ export class ChatHeader extends LitElement {
   @property({ type: Boolean })
   showSidebar!: boolean;
 
-  @state() private _showMenu = false;
+  @consume({ context: roomContext, subscribe: true })
+  @property({ type: Object })
+  roomContext!: RoomContext;
+
+  @consume({ context: roomActionContext, subscribe: true })
+  @property({ type: Object })
+  roomActionsContext!: RoomActionContext;
+
+  @state() private _showActionList = false;
+
+  private get _selectedRoom(): ChatRoom | undefined {
+    return this.roomContext.rooms.find(
+      (room) => room.id === this.roomContext.selectedRoomId,
+    );
+  }
 
   private _openSidebar() {
     this.dispatchEvent(new CustomEvent("open-sidebar", { composed: true }));
   }
 
-  private _toggleMenu() {
-    this._showMenu = !this._showMenu;
+  private _toggleActionList() {
+    this._showActionList = !this._showActionList;
   }
 
-  private _closeMenu() {
-    this._showMenu = false;
+  private _closeActionList() {
+    this._showActionList = false;
   }
 
   static styles = [
@@ -40,6 +60,7 @@ export class ChatHeader extends LitElement {
         gap: 1.6em;
         align-items: center;
         min-height: 6.4em;
+        max-height: 6.4em;
         padding: 0 1.2em;
         border-bottom: 0.1em solid var(--border);
       }
@@ -84,12 +105,6 @@ export class ChatHeader extends LitElement {
   ];
 
   render() {
-    const actions = [
-      { label: "Action 1" },
-      { label: "Action 100" },
-      { label: "Action 1000" },
-    ];
-
     return html`<header class="chat-header">
       <button
         class="chat-header__button"
@@ -110,17 +125,16 @@ export class ChatHeader extends LitElement {
       </button>
       <div class="chat-header__body">
         <span class="chat-header__title"
-          >Title Title Title Title Title Title Title Title Title</span
+          >${this._selectedRoom?.title ?? ""}</span
         >
         <span class="chat-header__subtitle"
-          >Hello, world Hello, world Hello, world Hello world Hello, world
-          Hello, world Hello, world Hello world</span
+          >${this._selectedRoom?.subtitle ?? ""}</span
         >
       </div>
       <button
         class="chat-header__button"
         style="margin-left: auto;"
-        @click="${this._toggleMenu}"
+        @click="${this._toggleActionList}"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -134,12 +148,13 @@ export class ChatHeader extends LitElement {
           />
         </svg>
       </button>
-      ${this._showMenu
+      ${this._showActionList
         ? html`<chat-action-list
             style="position: absolute; top: 4em; right: 1.2em;"
-            .actions="${actions}"
-            @select-action="${this._closeMenu}"
-            @close="${this._closeMenu}"
+            .actionType="${"chat"}"
+            .actions="${this.roomActionsContext.actions}"
+            @select-action="${this._closeActionList}"
+            @close="${this._closeActionList}"
           ></chat-action-list>`
         : nothing}
     </header>`;
