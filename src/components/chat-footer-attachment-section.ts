@@ -3,8 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessageAttachment, RemoveAttachmentDetail } from "../types";
 
-@customElement("chat-message-file-list")
-export class ChatMessageFileList extends LitElement {
+@customElement("chat-footer-attachment-section")
+export class ChatFooterAttachmentSection extends LitElement {
   @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
 
   private _removeAttachment(attachment: ChatMessageAttachment) {
@@ -25,7 +25,7 @@ export class ChatMessageFileList extends LitElement {
         display: flex;
       }
 
-      .chat-message-file-list {
+      .chat-footer-attachment-section {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -35,7 +35,7 @@ export class ChatMessageFileList extends LitElement {
         overflow-x: scroll;
       }
 
-      .chat-message-file-list__item {
+      .chat-footer-attachment-section__item {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -46,7 +46,7 @@ export class ChatMessageFileList extends LitElement {
         border-radius: 0.8em;
       }
 
-      .chat-message-file-list__button {
+      .chat-footer-attachment-section__button {
         display: flex;
         align-items: center;
         align-self: flex-end;
@@ -57,11 +57,11 @@ export class ChatMessageFileList extends LitElement {
         border-radius: 10em;
       }
 
-      .chat-message-file-list__button:hover {
+      .chat-footer-attachment-section__button:hover {
         background-color: var(--gray-300);
       }
 
-      .chat-message-file-list__text {
+      .chat-footer-attachment-section__text {
         display: inline-block;
         align-self: flex-start;
         max-width: 10em;
@@ -71,19 +71,19 @@ export class ChatMessageFileList extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-message-file-list__text--highlight {
+      .chat-footer-attachment-section__text--highlight {
         font-weight: 600;
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-message-file-list">
+    return html`<div class="chat-footer-attachment-section">
       ${this.attachments.map(
         (attachment) =>
-          html`<div class="chat-message-file-list__item">
+          html`<div class="chat-footer-attachment-section__item">
             <button
-              class="chat-message-file-list__button"
+              class="chat-footer-attachment-section__button"
               @click="${() => this._removeAttachment(attachment)}"
             >
               <svg
@@ -99,10 +99,12 @@ export class ChatMessageFileList extends LitElement {
               </svg>
             </button>
             <span
-              class="chat-message-file-list__text chat-message-file-list__text--highlight"
+              class="chat-footer-attachment-section__text chat-footer-attachment-section__text--highlight"
               >${attachment.name}</span
             >
-            <span class="chat-message-file-list__text">${attachment.meta}</span>
+            <span class="chat-footer-attachment-section__text"
+              >${attachment.meta}</span
+            >
           </div>`,
       )}
     </div>`;
@@ -111,6 +113,6 @@ export class ChatMessageFileList extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "chat-message-file-list": ChatMessageFileList;
+    "chat-footer-attachment-section": ChatFooterAttachmentSection;
   }
 }

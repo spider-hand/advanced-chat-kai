@@ -12,7 +12,7 @@ import {
 import { RoomContext, roomContext } from "../contexts/room-context";
 import { currentUserContext } from "../contexts/current-user-context";
 import "./chat-reply-to";
-import "./chat-message-file-list";
+import "./chat-footer-attachment-section";
 import {
   MessageAttachmentContext,
   messageAttachmentContext,
@@ -168,9 +168,9 @@ export class ChatFooter extends LitElement {
   render() {
     return html`<footer class="chat-footer">
       ${this.messageAttachmentContext.attachments.length > 0
-        ? html`<chat-message-file-list
+        ? html`<chat-footer-attachment-section
             .attachments=${this.messageAttachmentContext.attachments}
-          ></chat-message-file-list>`
+          ></chat-footer-attachment-section>`
         : nothing}
       ${this.replyTo
         ? html`<chat-reply-to .replyTo="${this.replyTo}"></chat-reply-to>`

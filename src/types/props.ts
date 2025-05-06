@@ -20,12 +20,13 @@ export interface ChatMessage {
   content: string;
   timestamp: string;
   reactions: Map<string, Set<string>>;
+  attachments: ChatMessageAttachment[];
 }
 
 export interface ChatMessageAttachment {
+  id: string;
   name: string;
   meta: string;
-  value: string;
 }
 
 export interface ChatMessageSuggestion {

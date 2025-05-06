@@ -95,6 +95,23 @@ export const Primary: Story = {
         content: "Hello, how are you?",
         timestamp: "12:34 PM",
         reactions: new Map<string, Set<string>>(),
+        attachments: [
+          {
+            name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            meta: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            id: "file1.txt",
+          },
+          {
+            name: "file2.txt",
+            meta: "20 KB",
+            id: "file2.txt",
+          },
+          {
+            name: "file3.txt",
+            meta: "30 KB",
+            id: "file3.txt",
+          },
+        ],
       },
       {
         id: "2",
@@ -104,6 +121,23 @@ export const Primary: Story = {
         content: "I'm fine, thank you!",
         timestamp: "12:34 PM",
         reactions: new Map<string, Set<string>>(),
+        attachments: [
+          {
+            name: "file1.txt",
+            meta: "10 KB",
+            id: "file1.txt",
+          },
+          {
+            name: "file2.txt",
+            meta: "20 KB",
+            id: "file2.txt",
+          },
+          {
+            name: "file3.txt",
+            meta: "30 KB",
+            id: "file3.txt",
+          },
+        ],
       },
       {
         id: "3",
@@ -113,6 +147,7 @@ export const Primary: Story = {
         content: "What about you?",
         timestamp: "12:34 PM",
         reactions: new Map<string, Set<string>>(),
+        attachments: [],
       },
       {
         id: "4",
@@ -122,6 +157,7 @@ export const Primary: Story = {
         content: "I'm doing great!",
         timestamp: "12:34 PM",
         reactions: new Map<string, Set<string>>(),
+        attachments: [],
       },
       {
         id: "5",
@@ -136,6 +172,7 @@ export const Primary: Story = {
           ["👍", new Set(["3"])],
           ["🎉", new Set(["1", "4", "5"])],
         ]),
+        attachments: [],
       },
       {
         id: "6",
@@ -158,6 +195,7 @@ export const Primary: Story = {
           ["😎", new Set(["3", "8"])],
           ["🙌", new Set(["2", "6", "11"])],
         ]),
+        attachments: [],
       },
     ] as ChatMessage[],
     suggestions: [
@@ -186,52 +224,52 @@ export const Primary: Story = {
       {
         name: "file1.txt",
         meta: "10 KB",
-        value: "file1.txt",
+        id: "file1.txt",
       },
       {
         name: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         meta: "20 KB",
-        value: "lorem-ipsum",
+        id: "lorem-ipsum",
       },
       {
         name: "file3.txt",
         meta: "30 KB",
-        value: "file3.txt",
+        id: "file3.txt",
       },
       {
         name: "file4.txt",
         meta: "40 KB",
-        value: "file4.txt",
+        id: "file4.txt",
       },
       {
         name: "file5.txt",
         meta: "50 KB",
-        value: "file5.txt",
+        id: "file5.txt",
       },
       {
         name: "file6.txt",
         meta: "60 KB",
-        value: "file6.txt",
+        id: "file6.txt",
       },
       {
         name: "file7.txt",
         meta: "70 KB",
-        value: "file7.txt",
+        id: "file7.txt",
       },
       {
         name: "file8.txt",
         meta: "80 KB",
-        value: "file8.txt",
+        id: "file8.txt",
       },
       {
         name: "file9.txt",
         meta: "90 KB",
-        value: "file9.txt",
+        id: "file9.txt",
       },
       {
         name: "file10.txt",
         meta: "100 KB",
-        value: "file10.txt",
+        id: "file10.txt",
       },
     ],
     selectedRoomId: "1",

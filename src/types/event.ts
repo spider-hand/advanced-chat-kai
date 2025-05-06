@@ -56,3 +56,7 @@ export interface ClickReactionDetail {
 export interface RemoveAttachmentDetail {
   attachment: ChatMessageAttachment;
 }
+
+export interface DownloadAttachmentDetail {
+  attachment: ChatMessageAttachment;
+}

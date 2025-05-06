@@ -8,6 +8,7 @@ import "./chat-action-list";
 import "./chat-emoji-picker";
 import "./chat-message-menu";
 import "./chat-message-reaction-list";
+import "./chat-message-attachment-list";
 import { currentUserContext } from "../contexts/current-user-context";
 import { ChatMessage, ChatUser } from "../types";
 import {
@@ -165,6 +166,13 @@ export class ChatMessageItem extends LitElement {
           @mouseleave="${this._onMouseLeave}"
         >
           <span>${this.message.content}</span>
+          ${this.message.attachments.length > 0
+            ? html`<chat-message-attachment-list
+                style="margin-top: 0.8em;"
+                .attachments=${this.message.attachments}
+                .mine="${this.mine}"
+              ></chat-message-attachment-list>`
+            : nothing}
           ${this._hover
             ? html`<chat-message-menu
                 .mine="${this.mine}"
