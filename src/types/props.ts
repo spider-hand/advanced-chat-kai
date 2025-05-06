@@ -21,6 +21,8 @@ export interface ChatMessage {
   timestamp: string;
   reactions: Map<string, Set<string>>;
   attachments: ChatMessageAttachment[];
+  isDeleted: boolean;
+  replyTo: ChatMessage | null;
 }
 
 export interface ChatMessageAttachment {

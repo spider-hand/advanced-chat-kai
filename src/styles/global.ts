@@ -29,6 +29,7 @@ export const globalStyles = css`
     --gray-950: hsl(0deg 0% 16%);
     --border: var(--gray-200);
     --placeholder: var(--gray-500);
+    --deleted: rgb(0 0 0 / 10%);
     --base-font-size: 10px;
     font-size: var(--base-font-size);
   }

@@ -11,7 +11,7 @@ import {
 } from "../types";
 import { RoomContext, roomContext } from "../contexts/room-context";
 import { currentUserContext } from "../contexts/current-user-context";
-import "./chat-reply-to";
+import "./chat-footer-reply-to-section";
 import "./chat-footer-attachment-section";
 import {
   MessageAttachmentContext,
@@ -173,7 +173,9 @@ export class ChatFooter extends LitElement {
           ></chat-footer-attachment-section>`
         : nothing}
       ${this.replyTo
-        ? html`<chat-reply-to .replyTo="${this.replyTo}"></chat-reply-to>`
+        ? html`<chat-footer-reply-to-section
+            .replyTo="${this.replyTo}"
+          ></chat-footer-reply-to-section>`
         : nothing}
       <textarea
         class="chat-footer__textarea"

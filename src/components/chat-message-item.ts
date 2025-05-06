@@ -9,6 +9,8 @@ import "./chat-emoji-picker";
 import "./chat-message-menu";
 import "./chat-message-reaction-list";
 import "./chat-message-attachment-list";
+import "./chat-message-reply-to";
+import "./chat-deleted-message";
 import { currentUserContext } from "../contexts/current-user-context";
 import { ChatMessage, ChatUser } from "../types";
 import {
@@ -91,6 +93,7 @@ export class ChatMessageItem extends LitElement {
       }
 
       .chat-message-item__container {
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 0.8em;
@@ -121,6 +124,9 @@ export class ChatMessageItem extends LitElement {
 
       .chat-message-item__body {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8em;
         padding: 0.8em 1.2em;
         font-size: 1.4em;
         background-color: var(--gray-100);
@@ -129,6 +135,10 @@ export class ChatMessageItem extends LitElement {
 
       .chat-message-item__body--mine {
         background-color: var(--gray-200);
+      }
+
+      .chat-message-item__body--deleted {
+        background-color: var(--deleted);
       }
 
       .chat-message-item--selected .chat-message-item__body {
@@ -161,19 +171,29 @@ export class ChatMessageItem extends LitElement {
           class="${classMap({
             "chat-message-item__body": true,
             "chat-message-item__body--mine": this.mine,
+            "chat-message-item__body--deleted": this.message.isDeleted,
           })}"
           @mouseenter="${this._onMouseEnter}"
           @mouseleave="${this._onMouseLeave}"
         >
-          <span>${this.message.content}</span>
-          ${this.message.attachments.length > 0
+          ${this.message.replyTo
+            ? html`<chat-message-reply-to
+                .replyTo="${this.message.replyTo}"
+              ></chat-message-reply-to>`
+            : nothing}
+          ${this.message.isDeleted
+            ? html`<chat-deleted-message
+                .fontSize="${1.4}"
+              ></chat-deleted-message>`
+            : html`<span>${this.message.content}</span>`}
+          ${!this.message.isDeleted && this.message.attachments.length > 0
             ? html`<chat-message-attachment-list
                 style="margin-top: 0.8em;"
                 .attachments=${this.message.attachments}
                 .mine="${this.mine}"
               ></chat-message-attachment-list>`
             : nothing}
-          ${this._hover
+          ${!this.message.isDeleted && this._hover
             ? html`<chat-message-menu
                 .mine="${this.mine}"
                 .message="${this.message}"
@@ -181,7 +201,7 @@ export class ChatMessageItem extends LitElement {
                 @click-action-button="${this._openActionList}"
               ></chat-message-menu>`
             : nothing}
-          ${this._showActionList
+          ${!this.message.isDeleted && this._showActionList
             ? html`<chat-action-list
                 style="position: absolute; bottom: 4em; ${this.mine
                   ? "right: calc(100% + 0.4em);"
@@ -194,7 +214,7 @@ export class ChatMessageItem extends LitElement {
                 @close="${this._closeActionList}"
               ></chat-action-list>`
             : nothing}
-          ${this._showEmojiPicker
+          ${!this.message.isDeleted && this._showEmojiPicker
             ? html`<chat-emoji-picker
                 style="position: absolute; bottom: 4em; ${this.mine
                   ? "right: 50%;"
@@ -205,16 +225,13 @@ export class ChatMessageItem extends LitElement {
                 @close="${this._closeEmojiPicker}"
               ></chat-emoji-picker>`
             : nothing}
-          ${this.message.reactions.size > 0
-            ? html`<chat-message-reaction-list
-                style="position: absolute; top: calc(100% + 0.4em); ${this.mine
-                  ? "right: 0;"
-                  : "left: 0;"} width: 100%;"
-                .mine="${this.mine}"
-                .reactions="${this.message.reactions}"
-              ></chat-message-reaction-list>`
-            : nothing}
         </div>
+        ${!this.message.isDeleted && this.message.reactions.size > 0
+          ? html`<chat-message-reaction-list
+              .mine="${this.mine}"
+              .reactions="${this.message.reactions}"
+            ></chat-message-reaction-list>`
+          : nothing}
       </div>
     </div>`;
   }

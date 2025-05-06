@@ -3,8 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ReplyToMessageDetail } from "../types";
 
-@customElement("chat-reply-to")
-export class ChatReplyTo extends LitElement {
+@customElement("chat-footer-reply-to-section")
+export class ChatFooterReplyToSection extends LitElement {
   @property({ type: Object }) replyTo!: ReplyToMessageDetail;
 
   private _cancelReply() {
@@ -18,7 +18,7 @@ export class ChatReplyTo extends LitElement {
         display: flex;
       }
 
-      .chat-reply-to {
+      .chat-footer-reply-to-section {
         display: flex;
         flex-direction: row;
         gap: 0.2em;
@@ -26,7 +26,7 @@ export class ChatReplyTo extends LitElement {
         font-size: 1em;
       }
 
-      .chat-reply-to__name {
+      .chat-footer-reply-to-section__name {
         display: inline-block;
         max-width: 100px;
         overflow: hidden;
@@ -35,7 +35,7 @@ export class ChatReplyTo extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-reply-to__button {
+      .chat-footer-reply-to-section__button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -46,15 +46,18 @@ export class ChatReplyTo extends LitElement {
         border-radius: 100px;
       }
 
-      .chat-reply-to__button:hover {
+      .chat-footer-reply-to-section__button:hover {
         background-color: var(--gray-200);
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-reply-to">
-      <button class="chat-reply-to__button" @click="${this._cancelReply}">
+    return html`<div class="chat-footer-reply-to-section">
+      <button
+        class="chat-footer-reply-to-section__button"
+        @click="${this._cancelReply}"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="1.6em"
@@ -68,13 +71,15 @@ export class ChatReplyTo extends LitElement {
         </svg>
       </button>
       Reply to
-      <span class="chat-reply-to__name">${this.replyTo.senderName}</span>
+      <span class="chat-footer-reply-to-section__name"
+        >${this.replyTo.senderName}</span
+      >
     </div>`;
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "chat-reply-to": ChatReplyTo;
+    "chat-footer-reply-to-section": ChatFooterReplyToSection;
   }
 }

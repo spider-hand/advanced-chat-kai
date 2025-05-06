@@ -1,9 +1,11 @@
 import { LitElement, css, html } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 
 @customElement("chat-avatar")
 export class ChatAvatar extends LitElement {
+  @property({ type: Number }) size = 4;
+
   static styles = [
     globalStyles,
     css`
@@ -15,8 +17,6 @@ export class ChatAvatar extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 4em;
-        height: 4em;
         background-color: var(--gray-500);
         border-radius: 50%;
       }
@@ -24,7 +24,10 @@ export class ChatAvatar extends LitElement {
   ];
 
   render() {
-    return html`<div class="chat-avatar"></div>`;
+    return html`<div
+      class="chat-avatar"
+      style="width: ${this.size}em; height: ${this.size}em;"
+    ></div>`;
   }
 }
 
