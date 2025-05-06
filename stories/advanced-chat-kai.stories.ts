@@ -245,7 +245,7 @@ export const Primary: Story = {
         value: "delete-room",
       },
     ] as ChatAction<string>[],
-    messageActions: [
+    myMessageActions: [
       {
         label: "Edit",
         value: "edit-message",
@@ -254,7 +254,13 @@ export const Primary: Story = {
         label: "Delete",
         value: "delete-message",
       },
-    ] as ChatAction<string>[],
+    ],
+    theirMessageActions: [
+      {
+        label: "Delete",
+        value: "delete-message",
+      },
+    ],
     isMobile: false,
     height: 480,
   } as AdvancedChatKaiProps,

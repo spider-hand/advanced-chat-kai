@@ -50,7 +50,8 @@ export interface AdvancedChatKaiProps {
   isLoadingMoreRooms: boolean;
   isLoadingMoreMessages: boolean;
   roomActions: ChatAction<string | number | boolean>[];
-  messageActions: ChatAction<string | number | boolean>[];
+  myMessageActions: ChatAction<string | number | boolean>[];
+  theirMessageActions: ChatAction<string | number | boolean>[];
   isMobile: boolean;
   height: number;
 }

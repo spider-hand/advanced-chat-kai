@@ -46,7 +46,10 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isLoadingMoreRooms = false;
   @property({ type: Boolean }) isLoadingMoreMessages = false;
   @property({ type: Array }) roomActions: ChatAction<ChatActionType>[] = [];
-  @property({ type: Array }) messageActions: ChatAction<ChatActionType>[] = [];
+  @property({ type: Array }) myMessageActions: ChatAction<ChatActionType>[] =
+    [];
+  @property({ type: Array }) theirMessageActions: ChatAction<ChatActionType>[] =
+    [];
   @property({ type: Boolean }) isMobile = false;
   @property({ type: Number }) height = 480;
 
@@ -84,7 +87,8 @@ export class Main extends LitElement {
 
   @provide({ context: messageActionContext })
   messageActionContext: MessageActionContext = {
-    actions: this.messageActions,
+    myMessageActions: this.myMessageActions,
+    theirMessageActions: this.theirMessageActions,
   };
 
   @provide({ context: deviceContext })
@@ -143,9 +147,13 @@ export class Main extends LitElement {
         actions: this.roomActions,
       };
     }
-    if (changedProperties.has("messageActions")) {
+    if (
+      changedProperties.has("myMessageActions") ||
+      changedProperties.has("theirMessageActions")
+    ) {
       this.messageActionContext = {
-        actions: this.messageActions,
+        myMessageActions: this.myMessageActions,
+        theirMessageActions: this.theirMessageActions,
       };
     }
     if (changedProperties.has("isMobile")) {

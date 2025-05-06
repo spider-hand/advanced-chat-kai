@@ -179,7 +179,9 @@ export class ChatMessageItem extends LitElement {
                   ? "right: calc(100% + 0.4em);"
                   : "left: calc(100% + 0.4em);"} z-index: 1;"
                 .actionType="${"message"}"
-                .actions="${this.messageActionContext.actions}"
+                .actions="${this.mine
+                  ? this.messageActionContext.myMessageActions
+                  : this.messageActionContext.theirMessageActions}"
                 @select-action="${this._closeActionList}"
                 @close="${this._closeActionList}"
               ></chat-action-list>`
