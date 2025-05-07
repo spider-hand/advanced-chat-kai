@@ -40,6 +40,21 @@ export class ChatMessageItem extends LitElement {
     return this.message.senderId === this.currentUser.id;
   }
 
+  private get isMessageActionAvailable() {
+    return (
+      (this.mine && this.messageActionContext.myMessageActions.length > 0) ||
+      (!this.mine && this.messageActionContext.theirMessageActions.length > 0)
+    );
+  }
+
+  private get isMessageMenuAvailable() {
+    return (
+      this.messageActionContext.isEmojiReactionAvailable ||
+      this.messageActionContext.isReplyAvailable ||
+      this.isMessageActionAvailable
+    );
+  }
+
   private _onMouseEnter() {
     clearTimeout(this._timer);
     this._hover = true;
@@ -193,10 +208,17 @@ export class ChatMessageItem extends LitElement {
                 .mine="${this.mine}"
               ></chat-message-attachment-list>`
             : nothing}
-          ${!this.message.isDeleted && this._hover
+          ${!this.message.isDeleted &&
+          this._hover &&
+          this.isMessageMenuAvailable
             ? html`<chat-message-menu
                 .mine="${this.mine}"
                 .message="${this.message}"
+                .isEmojiReactionAvailable="${this.messageActionContext
+                  .isEmojiReactionAvailable}"
+                .isReplyAvailable="${this.messageActionContext
+                  .isReplyAvailable}"
+                .isMessageActionAvailable="${this.isMessageActionAvailable}"
                 @click-emoji-button="${this._toggleEmojiPicker}"
                 @click-action-button="${this._openActionList}"
               ></chat-message-menu>`

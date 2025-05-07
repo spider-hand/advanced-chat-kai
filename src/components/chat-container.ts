@@ -6,23 +6,22 @@ import { globalStyles } from "../styles/global";
 import "./chat-header";
 import "./chat-message-list";
 import "./chat-footer";
-import { DeviceContext, deviceContext } from "../contexts/device-context";
 import { sidebarContext } from "../contexts/sidebar-context";
 import { ReplyToMessageDetail } from "../types";
 
 @customElement("chat-container")
 export class ChatContainer extends LitElement {
-  @consume({ context: deviceContext, subscribe: true })
-  @property({ type: Object })
-  deviceContext!: DeviceContext;
   @consume({ context: sidebarContext, subscribe: true })
   @property({ type: Boolean })
   showSidebar!: boolean;
 
+  @property({ type: Boolean }) isMobile = false;
+  @property({ type: Boolean }) isSingleRoom = false;
+
   @state() private _replyTo: ReplyToMessageDetail | null = null;
 
   private get _show() {
-    return this.deviceContext.isMobile && this.showSidebar ? false : true;
+    return this.isSingleRoom || !(this.isMobile && this.showSidebar);
   }
 
   private _onReplyToMessage(e: CustomEvent<ReplyToMessageDetail>) {
@@ -67,7 +66,7 @@ export class ChatContainer extends LitElement {
     return html`<div
       class="${classMap({
         "chat-container": true,
-        "chat-container--mobile": this.deviceContext.isMobile,
+        "chat-container--mobile": this.isMobile,
         "chat-container--hidden": !this._show,
       })}"
     >

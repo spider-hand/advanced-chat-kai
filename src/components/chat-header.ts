@@ -131,23 +131,25 @@ export class ChatHeader extends LitElement {
           >${this._selectedRoom?.subtitle ?? ""}</span
         >
       </div>
-      <button
-        class="chat-header__button"
-        style="margin-left: auto;"
-        @click="${this._toggleActionList}"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="2.4em"
-          viewBox="0 -960 960 960"
-          width="2.4em"
-          fill="var(--gray-700)"
-        >
-          <path
-            d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"
-          />
-        </svg>
-      </button>
+      ${this.roomActionsContext.actions.length > 0
+        ? html`<button
+            class="chat-header__button"
+            style="margin-left: auto;"
+            @click="${this._toggleActionList}"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="2.4em"
+              viewBox="0 -960 960 960"
+              width="2.4em"
+              fill="var(--gray-700)"
+            >
+              <path
+                d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"
+              />
+            </svg>
+          </button>`
+        : nothing}
       ${this._showActionList
         ? html`<chat-action-list
             style="position: absolute; top: 4em; right: 1.2em;"

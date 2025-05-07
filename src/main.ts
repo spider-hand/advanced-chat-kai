@@ -1,11 +1,10 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { provide } from "@lit/context";
 import { globalStyles } from "./styles/global";
 import "./components/chat-container";
 import "./components/chat-sidebar";
 import { sidebarContext } from "./contexts/sidebar-context";
-import { DeviceContext, deviceContext } from "./contexts/device-context";
 import {
   AdvancedChatKaiProps,
   ChatAction,
@@ -31,6 +30,7 @@ import {
   MessageAttachmentContext,
   messageAttachmentContext,
 } from "./contexts/message-attachment-context";
+import { FooterContext, footerContext } from "./contexts/footer-context";
 
 @customElement("advanced-chat-kai")
 export class Main extends LitElement {
@@ -51,12 +51,16 @@ export class Main extends LitElement {
   @property({ type: Array }) theirMessageActions: ChatAction<ChatActionType>[] =
     [];
   @property({ type: Boolean }) isMobile = false;
+  @property({ type: Boolean }) isSingleRoom = false;
+  @property({ type: Boolean }) isEmojiPickerAvailable = false;
+  @property({ type: Boolean }) isEmojiReactionAvailable = false;
+  @property({ type: Boolean }) isReplyAvailable = false;
+  @property({ type: Boolean }) isMessageAttachmentAvailable = false;
   @property({ type: Number }) height = 480;
 
   @provide({ context: currentUserContext })
   currentUserContext: ChatUser = {
     id: "",
-    name: "",
   };
 
   @provide({ context: roomContext })
@@ -89,11 +93,14 @@ export class Main extends LitElement {
   messageActionContext: MessageActionContext = {
     myMessageActions: this.myMessageActions,
     theirMessageActions: this.theirMessageActions,
+    isEmojiReactionAvailable: this.isEmojiReactionAvailable,
+    isReplyAvailable: this.isReplyAvailable,
   };
 
-  @provide({ context: deviceContext })
-  deviceContext: DeviceContext = {
-    isMobile: this.isMobile,
+  @provide({ context: footerContext })
+  footerContext: FooterContext = {
+    isEmojiPickerAvailable: this.isEmojiPickerAvailable,
+    isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
   };
 
   @provide({ context: sidebarContext })
@@ -149,16 +156,25 @@ export class Main extends LitElement {
     }
     if (
       changedProperties.has("myMessageActions") ||
-      changedProperties.has("theirMessageActions")
+      changedProperties.has("theirMessageActions") ||
+      changedProperties.has("isEmojiReactionAvailable") ||
+      changedProperties.has("isReplyAvailable")
     ) {
       this.messageActionContext = {
         myMessageActions: this.myMessageActions,
         theirMessageActions: this.theirMessageActions,
+        isEmojiReactionAvailable: this.isEmojiReactionAvailable,
+        isReplyAvailable: this.isReplyAvailable,
       };
     }
-    if (changedProperties.has("isMobile")) {
-      this.deviceContext = {
-        isMobile: this.isMobile,
+
+    if (
+      changedProperties.has("isEmojiPickerAvailable") ||
+      changedProperties.has("isMessageAttachmentAvailable")
+    ) {
+      this.footerContext = {
+        isEmojiPickerAvailable: this.isEmojiPickerAvailable,
+        isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
       };
     }
   }
@@ -190,11 +206,18 @@ export class Main extends LitElement {
 
   render() {
     return html`<div class="main" style="height: ${this.height}px">
-      <chat-sidebar
-        .show="${this.showSidebar}"
-        @close="${this._closeSidebar}"
-      ></chat-sidebar>
-      <chat-container @open-sidebar="${this._openSidebar}"></chat-container>
+      ${!this.isSingleRoom
+        ? html`<chat-sidebar
+            .show="${this.showSidebar}"
+            .isMobile="${this.isMobile}"
+            @close="${this._closeSidebar}"
+          ></chat-sidebar>`
+        : nothing}
+      <chat-container
+        .isMobile="${this.isMobile}"
+        .isSingleRoom="${this.isSingleRoom}"
+        @open-sidebar="${this._openSidebar}"
+      ></chat-container>
     </div>`;
   }
 }

@@ -4,6 +4,8 @@ import { ChatAction } from "../types";
 export interface MessageActionContext {
   myMessageActions: ChatAction<string | number | boolean>[];
   theirMessageActions: ChatAction<string | number | boolean>[];
+  isEmojiReactionAvailable: boolean;
+  isReplyAvailable: boolean;
 }
 
 export const messageActionContext = createContext<MessageActionContext>("message-action");

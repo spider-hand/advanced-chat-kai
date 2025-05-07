@@ -1,18 +1,15 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import "./chat-room-list";
 import "./chat-search";
-import { DeviceContext, deviceContext } from "../contexts/device-context";
+
 
 @customElement("chat-sidebar")
 export class ChatSidebar extends LitElement {
-  @consume({ context: deviceContext, subscribe: true })
-  @property({ type: Object })
-  deviceContext!: DeviceContext;
   @property({ type: Boolean }) show = false;
+  @property({ type: Boolean }) isMobile = false;
 
   private _closeSidebar() {
     this.dispatchEvent(new CustomEvent("close", { composed: true }));
@@ -84,7 +81,7 @@ export class ChatSidebar extends LitElement {
       class="${classMap({
         "chat-sidebar": true,
         "chat-sidebar--hidden": !this.show,
-        "chat-sidebar--mobile": this.deviceContext.isMobile,
+        "chat-sidebar--mobile": this.isMobile,
       })}"
     >
       <div class="chat-sidebar__header">

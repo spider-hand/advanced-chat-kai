@@ -38,7 +38,6 @@ export interface ChatMessageSuggestion {
 
 export interface ChatUser {
   id: string;
-  name: string;
 }
 
 export interface AdvancedChatKaiProps {
@@ -56,5 +55,10 @@ export interface AdvancedChatKaiProps {
   myMessageActions: ChatAction<string | number | boolean>[];
   theirMessageActions: ChatAction<string | number | boolean>[];
   isMobile: boolean;
+  isSingleRoom: boolean;
+  isEmojiPickerAvailable: boolean;
+  isEmojiReactionAvailable: boolean;
+  isMessageAttachmentAvailable: boolean;
+  isReplyAvailable: boolean;
   height: number;
 }

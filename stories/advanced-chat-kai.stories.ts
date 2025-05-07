@@ -364,6 +364,11 @@ export const Primary: Story = {
       },
     ],
     isMobile: false,
+    isSingleRoom: false,
+    isEmojiPickerAvailable: true,
+    isEmojiReactionAvailable: true,
+    isMessageAttachmentAvailable: true,
+    isReplyAvailable: true,
     height: 480,
   } as AdvancedChatKaiProps,
 };

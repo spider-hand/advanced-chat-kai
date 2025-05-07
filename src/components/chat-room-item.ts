@@ -148,7 +148,7 @@ export class ChatRoomItem extends LitElement {
         <span class="chat-room-item__title">${this.room.title}</span>
         <span class="chat-room-item__subtitle"> ${this.room.subtitle}</span>
       </div>
-      ${this._hover
+      ${this._hover && this.roomActionsContext.actions.length > 0
         ? html`<button
             class="chat-room-item__button"
             @click="${this._toggleActionList}"
