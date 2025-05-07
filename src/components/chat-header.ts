@@ -153,7 +153,7 @@ export class ChatHeader extends LitElement {
       ${this._showActionList
         ? html`<chat-action-list
             style="position: absolute; top: 4em; right: 1.2em;"
-            .actionType="${"chat"}"
+            .actionType="${"room"}"
             .actions="${this.roomActionsContext.actions}"
             @select-action="${this._closeActionList}"
             @close="${this._closeActionList}"

@@ -1,4 +1,4 @@
-export type ChatActionType = "room" | "chat" | "message";
+export type ChatActionType = "room" | "message";
 
 export interface ChatAction<T extends string | number | boolean> {
   label: string;
