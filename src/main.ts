@@ -18,18 +18,6 @@ import {
 import { currentUserContext } from "./contexts/current-user-context";
 import { RoomContext, roomContext } from "./contexts/room-context";
 import { messageContext, MessageContext } from "./contexts/message-context";
-import {
-  RoomActionContext,
-  roomActionContext,
-} from "./contexts/room-action-context";
-import {
-  MessageActionContext,
-  messageActionContext,
-} from "./contexts/message-action-context";
-import {
-  MessageAttachmentContext,
-  messageAttachmentContext,
-} from "./contexts/message-attachment-context";
 import { FooterContext, footerContext } from "./contexts/footer-context";
 
 @customElement("advanced-chat-kai")
@@ -56,7 +44,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isEmojiReactionAvailable = false;
   @property({ type: Boolean }) isReplyAvailable = false;
   @property({ type: Boolean }) isMessageAttachmentAvailable = false;
-  @property({ type: Boolean}) isMarkdownAvailable = false;
+  @property({ type: Boolean }) isMarkdownAvailable = false;
   @property({ type: Number }) height = 480;
 
   @provide({ context: currentUserContext })
@@ -70,6 +58,7 @@ export class Main extends LitElement {
     selectedRoomId: this.selectedRoomId,
     isLoadingRoom: this.isLoadingRoom,
     isLoadingMoreRooms: this.isLoadingMoreRooms,
+    actions: this.roomActions,
   };
 
   @provide({ context: messageContext })
@@ -79,20 +68,6 @@ export class Main extends LitElement {
     isLoadingMessage: this.isLoadingMessage,
     isLoadingMoreMessages: this.isLoadingMoreMessages,
     isMarkdownAvailable: this.isMarkdownAvailable,
-  };
-
-  @provide({ context: messageAttachmentContext })
-  messageAttachmentContext: MessageAttachmentContext = {
-    attachments: this.attachments,
-  };
-
-  @provide({ context: roomActionContext })
-  roomActionContext: RoomActionContext = {
-    actions: this.roomActions,
-  };
-
-  @provide({ context: messageActionContext })
-  messageActionContext: MessageActionContext = {
     myMessageActions: this.myMessageActions,
     theirMessageActions: this.theirMessageActions,
     isEmojiReactionAvailable: this.isEmojiReactionAvailable,
@@ -103,6 +78,7 @@ export class Main extends LitElement {
   footerContext: FooterContext = {
     isEmojiPickerAvailable: this.isEmojiPickerAvailable,
     isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
+    attachments: this.attachments,
   };
 
   @provide({ context: sidebarContext })
@@ -122,13 +98,15 @@ export class Main extends LitElement {
       changedProperties.has("rooms") ||
       changedProperties.has("selectedRoomId") ||
       changedProperties.has("isLoadingRoom") ||
-      changedProperties.has("isLoadingMoreRooms")
+      changedProperties.has("isLoadingMoreRooms") ||
+      changedProperties.has("roomActions")
     ) {
       this.roomsContext = {
         rooms: this.rooms,
         selectedRoomId: this.selectedRoomId,
         isLoadingRoom: this.isLoadingRoom,
         isLoadingMoreRooms: this.isLoadingMoreRooms,
+        actions: this.roomActions,
       };
     }
     if (
@@ -136,7 +114,11 @@ export class Main extends LitElement {
       changedProperties.has("suggestions") ||
       changedProperties.has("isLoadingMessage") ||
       changedProperties.has("isLoadingMoreMessages") ||
-      changedProperties.has("isMarkdownAvailable")
+      changedProperties.has("isMarkdownAvailable") ||
+      changedProperties.has("myMessageActions") ||
+      changedProperties.has("theirMessageActions") ||
+      changedProperties.has("isEmojiReactionAvailable") ||
+      changedProperties.has("isReplyAvailable")
     ) {
       this.messagesContext = {
         messages: this.messages,
@@ -144,27 +126,6 @@ export class Main extends LitElement {
         isLoadingMessage: this.isLoadingMessage,
         isLoadingMoreMessages: this.isLoadingMoreMessages,
         isMarkdownAvailable: this.isMarkdownAvailable,
-      };
-    }
-
-    if (changedProperties.has("attachments")) {
-      this.messageAttachmentContext = {
-        attachments: this.attachments,
-      };
-    }
-
-    if (changedProperties.has("roomActions")) {
-      this.roomActionContext = {
-        actions: this.roomActions,
-      };
-    }
-    if (
-      changedProperties.has("myMessageActions") ||
-      changedProperties.has("theirMessageActions") ||
-      changedProperties.has("isEmojiReactionAvailable") ||
-      changedProperties.has("isReplyAvailable")
-    ) {
-      this.messageActionContext = {
         myMessageActions: this.myMessageActions,
         theirMessageActions: this.theirMessageActions,
         isEmojiReactionAvailable: this.isEmojiReactionAvailable,
@@ -174,11 +135,13 @@ export class Main extends LitElement {
 
     if (
       changedProperties.has("isEmojiPickerAvailable") ||
-      changedProperties.has("isMessageAttachmentAvailable")
+      changedProperties.has("isMessageAttachmentAvailable") ||
+      changedProperties.has("attachments")
     ) {
       this.footerContext = {
         isEmojiPickerAvailable: this.isEmojiPickerAvailable,
         isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
+        attachments: this.attachments,
       };
     }
   }

@@ -13,11 +13,7 @@ import "./chat-message-attachment-list";
 import "./chat-message-reply-to";
 import "./chat-deleted-message";
 import { currentUserContext } from "../contexts/current-user-context";
-import { ChatMessage, ChatUser } from "../types";
-import {
-  MessageActionContext,
-  messageActionContext,
-} from "../contexts/message-action-context";
+import { ChatAction, ChatMessage, ChatUser } from "../types";
 
 @customElement("chat-message-item")
 export class ChatMessageItem extends LitElement {
@@ -25,14 +21,19 @@ export class ChatMessageItem extends LitElement {
   @property({ type: Object })
   currentUser!: ChatUser;
 
-  @consume({ context: messageActionContext, subscribe: true })
-  @property({ type: Object })
-  messageActionContext!: MessageActionContext;
-
   @property({ type: Object }) message!: ChatMessage;
   @property({ type: Boolean }) last = false;
   @property({ type: Boolean }) selected = false;
   @property({ type: Boolean }) isMarkdownAvailable = false;
+  @property({ type: Array }) myMessageActions: ChatAction<
+    string | number | boolean
+  >[] = [];
+  @property({ type: Array }) theirMessageActions: ChatAction<
+    string | number | boolean
+  >[] = [];
+  @property({ type: Boolean }) isEmojiReactionAvailable = false;
+  @property({ type: Boolean }) isReplyAvailable = false;
+
   @state() private _timer: number | null = null;
   @state() private _hover = false;
   @state() private _showActionList = false;
@@ -59,15 +60,15 @@ export class ChatMessageItem extends LitElement {
 
   private get isMessageActionAvailable() {
     return (
-      (this.mine && this.messageActionContext.myMessageActions.length > 0) ||
-      (!this.mine && this.messageActionContext.theirMessageActions.length > 0)
+      (this.mine && this.myMessageActions.length > 0) ||
+      (!this.mine && this.theirMessageActions.length > 0)
     );
   }
 
   private get isMessageMenuAvailable() {
     return (
-      this.messageActionContext.isEmojiReactionAvailable ||
-      this.messageActionContext.isReplyAvailable ||
+      this.isEmojiReactionAvailable ||
+      this.isReplyAvailable ||
       this.isMessageActionAvailable
     );
   }
@@ -235,10 +236,8 @@ export class ChatMessageItem extends LitElement {
             ? html`<chat-message-menu
                 .mine="${this.mine}"
                 .message="${this.message}"
-                .isEmojiReactionAvailable="${this.messageActionContext
-                  .isEmojiReactionAvailable}"
-                .isReplyAvailable="${this.messageActionContext
-                  .isReplyAvailable}"
+                .isEmojiReactionAvailable="${this.isEmojiReactionAvailable}"
+                .isReplyAvailable="${this.isReplyAvailable}"
                 .isMessageActionAvailable="${this.isMessageActionAvailable}"
                 @click-emoji-button="${this._toggleEmojiPicker}"
                 @click-action-button="${this._openActionList}"
@@ -251,8 +250,8 @@ export class ChatMessageItem extends LitElement {
                   : "left: calc(100% + 0.4em);"} z-index: 1;"
                 .actionType="${"message"}"
                 .actions="${this.mine
-                  ? this.messageActionContext.myMessageActions
-                  : this.messageActionContext.theirMessageActions}"
+                  ? this.myMessageActions
+                  : this.theirMessageActions}"
                 @select-action="${this._closeActionList}"
                 @close="${this._closeActionList}"
               ></chat-action-list>`

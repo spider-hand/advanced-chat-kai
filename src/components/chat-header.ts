@@ -6,10 +6,6 @@ import { sidebarContext } from "../contexts/sidebar-context";
 import "./chat-action-list";
 import { RoomContext, roomContext } from "../contexts/room-context";
 import { ChatRoom } from "../types";
-import {
-  RoomActionContext,
-  roomActionContext,
-} from "../contexts/room-action-context";
 
 @customElement("chat-header")
 export class ChatHeader extends LitElement {
@@ -20,10 +16,6 @@ export class ChatHeader extends LitElement {
   @consume({ context: roomContext, subscribe: true })
   @property({ type: Object })
   roomContext!: RoomContext;
-
-  @consume({ context: roomActionContext, subscribe: true })
-  @property({ type: Object })
-  roomActionsContext!: RoomActionContext;
 
   @state() private _showActionList = false;
 
@@ -131,7 +123,7 @@ export class ChatHeader extends LitElement {
           >${this._selectedRoom?.subtitle ?? ""}</span
         >
       </div>
-      ${this.roomActionsContext.actions.length > 0
+      ${this.roomContext.actions.length > 0
         ? html`<button
             class="chat-header__button"
             style="margin-left: auto;"
@@ -154,7 +146,7 @@ export class ChatHeader extends LitElement {
         ? html`<chat-action-list
             style="position: absolute; top: 4em; right: 1.2em;"
             .actionType="${"room"}"
-            .actions="${this.roomActionsContext.actions}"
+            .actions="${this.roomContext.actions}"
             @select-action="${this._closeActionList}"
             @close="${this._closeActionList}"
           ></chat-action-list>`

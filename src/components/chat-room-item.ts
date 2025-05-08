@@ -1,27 +1,20 @@
 import { LitElement, css, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
 import "./chat-avatar";
 import "./chat-action-list";
-import { ChatRoom, SelectRoomDetail } from "../types";
-import {
-  RoomActionContext,
-  roomActionContext,
-} from "../contexts/room-action-context";
+import { ChatAction, ChatRoom, SelectRoomDetail } from "../types";
 
 @customElement("chat-room-item")
 export class ChatRoomItem extends LitElement {
-  @consume({ context: roomActionContext, subscribe: true })
-  @property({ type: Object })
-  roomActionsContext!: RoomActionContext;
-
   @property({ type: Boolean }) active = false;
   @property({ type: Object }) room!: ChatRoom;
 
   @state() private _hover = false;
   @state() private _showActionList = false;
+  @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
+    [];
 
   private _selectRoom() {
     this.dispatchEvent(
@@ -148,7 +141,7 @@ export class ChatRoomItem extends LitElement {
         <span class="chat-room-item__title">${this.room.title}</span>
         <span class="chat-room-item__subtitle"> ${this.room.subtitle}</span>
       </div>
-      ${this._hover && this.roomActionsContext.actions.length > 0
+      ${this._hover && this.actions.length > 0
         ? html`<button
             class="chat-room-item__button"
             @click="${this._toggleActionList}"
@@ -170,7 +163,7 @@ export class ChatRoomItem extends LitElement {
         ? html`<chat-action-list
             style="position: absolute; top: 0; right: 1.2em; transform: translateY(-100%);"
             .actionType="${"room"}"
-            .actions="${this.roomActionsContext.actions}"
+            .actions="${this.actions}"
             @select-action="${this._closeActionList}"
             @close="${this._closeActionList}"
           ></chat-action-list>`

@@ -1,5 +1,5 @@
 import { createContext } from "@lit/context";
-import { ChatMessage, ChatMessageSuggestion } from "../types";
+import { ChatAction, ChatMessage, ChatMessageSuggestion } from "../types";
 
 export interface MessageContext {
   messages: ChatMessage[];
@@ -7,6 +7,10 @@ export interface MessageContext {
   isLoadingMessage: boolean;
   isLoadingMoreMessages: boolean;
   isMarkdownAvailable: boolean;
+  myMessageActions: ChatAction<string | number | boolean>[];
+  theirMessageActions: ChatAction<string | number | boolean>[];
+  isEmojiReactionAvailable: boolean;
+  isReplyAvailable: boolean;
 }
 
 export const messageContext = createContext<MessageContext>("message");

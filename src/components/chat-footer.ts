@@ -13,10 +13,6 @@ import { RoomContext, roomContext } from "../contexts/room-context";
 import { currentUserContext } from "../contexts/current-user-context";
 import "./chat-footer-reply-to-section";
 import "./chat-footer-attachment-section";
-import {
-  MessageAttachmentContext,
-  messageAttachmentContext,
-} from "../contexts/message-attachment-context";
 import { FooterContext, footerContext } from "../contexts/footer-context";
 
 @customElement("chat-footer")
@@ -28,10 +24,6 @@ export class ChatFooter extends LitElement {
   @consume({ context: roomContext, subscribe: true })
   @property({ type: Object })
   roomContext!: RoomContext;
-
-  @consume({ context: messageAttachmentContext, subscribe: true })
-  @property({ type: Object })
-  messageAttachmentContext!: MessageAttachmentContext;
 
   @consume({ context: footerContext, subscribe: true })
   @property({ type: Object })
@@ -173,9 +165,9 @@ export class ChatFooter extends LitElement {
 
   render() {
     return html`<footer class="chat-footer">
-      ${this.messageAttachmentContext.attachments.length > 0
+      ${this.footerContext.attachments.length > 0
         ? html`<chat-footer-attachment-section
-            .attachments=${this.messageAttachmentContext.attachments}
+            .attachments=${this.footerContext.attachments}
           ></chat-footer-attachment-section>`
         : nothing}
       ${this.replyTo

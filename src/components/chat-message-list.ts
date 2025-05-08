@@ -119,6 +119,11 @@ export class ChatMessageList extends LitElement {
               .last="${i === this.messageContext.messages.length - 1}"
               .selected=${this.replyTo?.messageId === item.id}
               .isMarkdownAvailable="${this.messageContext.isMarkdownAvailable}"
+              .myMessageActions="${this.messageContext.myMessageActions}"
+              .theirMessageActions="${this.messageContext.theirMessageActions}"
+              .isEmojiReactionAvailable="${this.messageContext
+                .isEmojiReactionAvailable}"
+              .isReplyAvailable="${this.messageContext.isReplyAvailable}"
             ></chat-message-item>`,
         )}
         ${this.messageContext.suggestions.length > 0
