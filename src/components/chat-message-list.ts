@@ -134,7 +134,7 @@ export class ChatMessageList extends LitElement {
         <div class="chat-message-list__bottom"></div>
         <button
           class="chat-message-list__button"
-          style="display: ${this._showScrollToBottomButton ? "block" : "none"}"
+          style="display: ${this._showScrollToBottomButton ? "flex" : "none"}"
           @click="${this._scrollToBottom}"
         >
           <svg
