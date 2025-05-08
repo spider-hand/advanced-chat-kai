@@ -234,6 +234,11 @@ export class ChatMessageItem extends LitElement {
           this._hover &&
           this.isMessageMenuAvailable
             ? html`<chat-message-menu
+                style="position: absolute; bottom: 0; left: ${this.mine
+                  ? "auto"
+                  : "calc(100% + 0.4em)"}; right: ${this.mine
+                  ? "calc(100% + 0.4em)"
+                  : "auto"};"
                 .mine="${this.mine}"
                 .message="${this.message}"
                 .isEmojiReactionAvailable="${this.isEmojiReactionAvailable}"

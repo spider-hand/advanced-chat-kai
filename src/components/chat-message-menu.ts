@@ -41,9 +41,6 @@ export class ChatMessageMenu extends LitElement {
       }
 
       .chat-message-menu {
-        position: absolute;
-        bottom: 0;
-        left: calc(100% + 0.4em);
         z-index: 1;
         display: flex;
         flex-direction: row;
@@ -56,8 +53,6 @@ export class ChatMessageMenu extends LitElement {
       }
 
       .chat-message-menu--mine {
-        right: calc(100% + 0.4em);
-        left: auto;
         background-color: var(--gray-200);
       }
 
