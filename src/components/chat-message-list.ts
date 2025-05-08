@@ -118,6 +118,7 @@ export class ChatMessageList extends LitElement {
               .message="${item}"
               .last="${i === this.messageContext.messages.length - 1}"
               .selected=${this.replyTo?.messageId === item.id}
+              .isMarkdownAvailable="${this.messageContext.isMarkdownAvailable}"
             ></chat-message-item>`,
         )}
         ${this.messageContext.suggestions.length > 0

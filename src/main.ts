@@ -56,6 +56,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isEmojiReactionAvailable = false;
   @property({ type: Boolean }) isReplyAvailable = false;
   @property({ type: Boolean }) isMessageAttachmentAvailable = false;
+  @property({ type: Boolean}) isMarkdownAvailable = false;
   @property({ type: Number }) height = 480;
 
   @provide({ context: currentUserContext })
@@ -77,6 +78,7 @@ export class Main extends LitElement {
     suggestions: this.suggestions,
     isLoadingMessage: this.isLoadingMessage,
     isLoadingMoreMessages: this.isLoadingMoreMessages,
+    isMarkdownAvailable: this.isMarkdownAvailable,
   };
 
   @provide({ context: messageAttachmentContext })
@@ -133,13 +135,15 @@ export class Main extends LitElement {
       changedProperties.has("messages") ||
       changedProperties.has("suggestions") ||
       changedProperties.has("isLoadingMessage") ||
-      changedProperties.has("isLoadingMoreMessages")
+      changedProperties.has("isLoadingMoreMessages") ||
+      changedProperties.has("isMarkdownAvailable")
     ) {
       this.messagesContext = {
         messages: this.messages,
         suggestions: this.suggestions,
         isLoadingMessage: this.isLoadingMessage,
         isLoadingMoreMessages: this.isLoadingMoreMessages,
+        isMarkdownAvailable: this.isMarkdownAvailable,
       };
     }
 

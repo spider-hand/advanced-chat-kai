@@ -42,6 +42,7 @@
     "jsdom": "^26.1.0",
     "lint-staged": "^15.5.1",
     "lit": "^3.3.0",
+    "micromark": "^4.0.2",
     "playwright": "^1.52.0",
     "postcss-lit": "^1.2.0",
     "prettier": "^3.5.3",

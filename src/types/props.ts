@@ -60,5 +60,6 @@ export interface AdvancedChatKaiProps {
   isEmojiReactionAvailable: boolean;
   isMessageAttachmentAvailable: boolean;
   isReplyAvailable: boolean;
+  isMarkdownAvailable: boolean;
   height: number;
 }

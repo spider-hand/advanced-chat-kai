@@ -6,6 +6,7 @@ export interface MessageContext {
   suggestions: ChatMessageSuggestion[];
   isLoadingMessage: boolean;
   isLoadingMoreMessages: boolean;
+  isMarkdownAvailable: boolean;
 }
 
 export const messageContext = createContext<MessageContext>("message");

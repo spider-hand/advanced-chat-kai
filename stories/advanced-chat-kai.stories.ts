@@ -261,6 +261,18 @@ export const Primary: Story = {
           replyTo: null,
         },
       },
+      {
+        id: "9",
+        roomId: "1",
+        senderId: "1",
+        senderName: "User 1",
+        content: "***Test markdown***\n\n",
+        timestamp: "12:34 PM",
+        reactions: new Map<string, Set<string>>(),
+        attachments: [],
+        isDeleted: false,
+        replyTo: null,
+      },
     ] as ChatMessage[],
     suggestions: [
       {
@@ -369,6 +381,7 @@ export const Primary: Story = {
     isEmojiReactionAvailable: true,
     isMessageAttachmentAvailable: true,
     isReplyAvailable: true,
+    isMarkdownAvailable: true,
     height: 480,
   } as AdvancedChatKaiProps,
 };

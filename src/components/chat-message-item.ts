@@ -1,5 +1,6 @@
-import { LitElement, css, html, nothing } from "lit";
+import { LitElement, PropertyValues, css, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
@@ -31,10 +32,26 @@ export class ChatMessageItem extends LitElement {
   @property({ type: Object }) message!: ChatMessage;
   @property({ type: Boolean }) last = false;
   @property({ type: Boolean }) selected = false;
+  @property({ type: Boolean }) isMarkdownAvailable = false;
   @state() private _timer: number | null = null;
   @state() private _hover = false;
   @state() private _showActionList = false;
   @state() private _showEmojiPicker = false;
+  @state() private _content: string = "";
+
+  protected async updated(_changedProperties: PropertyValues): Promise<void> {
+    if (
+      _changedProperties.has("message") ||
+      _changedProperties.has("isMarkdownAvailable")
+    ) {
+      if (this.isMarkdownAvailable) {
+        const { micromark } = await import("micromark");
+        this._content = micromark(this.message.content);
+      } else {
+        this._content = this.message.content;
+      }
+    }
+  }
 
   private get mine() {
     return this.message.senderId === this.currentUser.id;
@@ -200,7 +217,11 @@ export class ChatMessageItem extends LitElement {
             ? html`<chat-deleted-message
                 .fontSize="${1.4}"
               ></chat-deleted-message>`
-            : html`<span>${this.message.content}</span>`}
+            : html`<span
+                >${this.isMarkdownAvailable
+                  ? unsafeHTML(this._content)
+                  : this._content}</span
+              >`}
           ${!this.message.isDeleted && this.message.attachments.length > 0
             ? html`<chat-message-attachment-list
                 style="margin-top: 0.8em;"
