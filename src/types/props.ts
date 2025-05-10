@@ -1,3 +1,5 @@
+import { defaultI18n } from "../consts";
+
 export type ChatActionType = "room" | "message";
 
 export interface ChatAction<T extends string | number | boolean> {
@@ -40,6 +42,9 @@ export interface ChatUser {
   id: string;
 }
 
+export type I18nType = typeof defaultI18n;
+export type PartialI18nType = Partial<I18nType>;
+
 export interface AdvancedChatKaiProps {
   currentUser: ChatUser;
   rooms: ChatRoom[];
@@ -62,4 +67,5 @@ export interface AdvancedChatKaiProps {
   isReplyAvailable: boolean;
   isMarkdownAvailable: boolean;
   height: number;
+  i18n?: PartialI18nType;
 }

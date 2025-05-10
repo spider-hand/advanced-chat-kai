@@ -14,6 +14,7 @@ import { currentUserContext } from "../contexts/current-user-context";
 import "./chat-footer-reply-to-section";
 import "./chat-footer-attachment-section";
 import { FooterContext, footerContext } from "../contexts/footer-context";
+import { I18nContext, i18nContext } from "../contexts/i18n-context";
 
 export class ChatFooter extends LitElement {
   @consume({ context: currentUserContext, subscribe: true })
@@ -27,6 +28,10 @@ export class ChatFooter extends LitElement {
   @consume({ context: footerContext, subscribe: true })
   @property({ type: Object })
   footerContext!: FooterContext;
+
+  @consume({ context: i18nContext, subscribe: true })
+  @property({ type: Object })
+  i18nContext!: I18nContext;
 
   @property({ type: Object }) replyTo: ReplyToMessageDetail | null = null;
 
@@ -176,7 +181,7 @@ export class ChatFooter extends LitElement {
         : nothing}
       <textarea
         class="chat-footer__textarea"
-        placeholder="Write a message.."
+        .placeholder="${this.i18nContext.i18n.chatFooterTextareaPlaceholder}"
       ></textarea>
       <div class="chat-footer__menu">
         ${this.footerContext.isMessageAttachmentAvailable

@@ -19,7 +19,8 @@ import { currentUserContext } from "./contexts/current-user-context";
 import { RoomContext, roomContext } from "./contexts/room-context";
 import { messageContext, MessageContext } from "./contexts/message-context";
 import { FooterContext, footerContext } from "./contexts/footer-context";
-
+import { I18nContext, i18nContext } from "./contexts/i18n-context";
+import { defaultI18n, PartialI18nType } from "./consts";
 
 export class Main extends LitElement {
   @property({ type: Object })
@@ -46,6 +47,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isMessageAttachmentAvailable = false;
   @property({ type: Boolean }) isMarkdownAvailable = false;
   @property({ type: Number }) height = 480;
+  @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
 
   @provide({ context: currentUserContext })
   currentUserContext: ChatUser = {
@@ -84,6 +86,12 @@ export class Main extends LitElement {
   @provide({ context: sidebarContext })
   @property({ type: Boolean })
   showSidebar = true;
+
+  @provide({ context: i18nContext })
+  @property({ type: Object })
+  i18nContext: I18nContext = {
+    i18n: defaultI18n,
+  };
 
   protected updated(
     changedProperties: Map<
@@ -142,6 +150,12 @@ export class Main extends LitElement {
         isEmojiPickerAvailable: this.isEmojiPickerAvailable,
         isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
         attachments: this.attachments,
+      };
+    }
+
+    if (changedProperties.has("i18n")) {
+      this.i18nContext = {
+        i18n: { ...defaultI18n, ...this.i18n },
       };
     }
   }

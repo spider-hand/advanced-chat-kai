@@ -1,9 +1,15 @@
 import { LitElement, css, html } from "lit";
+import { property } from "lit/decorators.js";
+import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import { SearchRoomDetail } from "../types";
-
+import { I18nContext, i18nContext } from "../contexts/i18n-context";
 
 export class ChatSearch extends LitElement {
+  @consume({ context: i18nContext, subscribe: true })
+  @property({ type: Object })
+  i18nContext!: I18nContext;
+
   private _onChangeInput(event: Event) {
     const value = (event.target as HTMLInputElement).value;
 
@@ -69,7 +75,7 @@ export class ChatSearch extends LitElement {
       </svg>
       <input
         class="chat-search__body"
-        placeholder="Search room"
+        .placeholder="${this.i18nContext.i18n.chatSearchPlaceholder}"
         @input="${this._onChangeInput}"
       />
     </div>`;

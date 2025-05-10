@@ -365,4 +365,9 @@ export const defaultProps: AdvancedChatKaiProps = {
   isReplyAvailable: true,
   isMarkdownAvailable: true,
   height: 480,
+  i18n: {
+    deletedMessage: "このメッセージは削除されました。",
+    chatFooterTextareaPlaceholder: "メッセージを入力してください",
+    chatSearchPlaceholder: "ルームを検索",
+  },
 };
