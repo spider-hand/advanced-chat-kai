@@ -1,8 +1,8 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 
-@customElement("chat-deleted-message")
+
 export class ChatDeletedMessage extends LitElement {
   @property({ type: Number }) fontSize = 1;
 
@@ -43,6 +43,10 @@ export class ChatDeletedMessage extends LitElement {
       >This message has been deleted.</span
     >`;
   }
+}
+
+if (!customElements.get("chat-deleted-message")) {
+  customElements.define("chat-deleted-message", ChatDeletedMessage);
 }
 
 declare global {

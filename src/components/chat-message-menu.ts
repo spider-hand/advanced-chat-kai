@@ -1,10 +1,10 @@
 import { LitElement, css, html, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessage, ReplyToMessageDetail } from "../types";
 
-@customElement("chat-message-menu")
+
 export class ChatMessageMenu extends LitElement {
   @property({ type: Boolean }) mine = false;
   @property({ type: Object }) message!: ChatMessage;
@@ -140,6 +140,10 @@ export class ChatMessageMenu extends LitElement {
         : nothing}
     </div>`;
   }
+}
+
+if (!customElements.get("chat-message-menu")) {
+  customElements.define("chat-message-menu", ChatMessageMenu);
 }
 
 declare global {

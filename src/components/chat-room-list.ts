@@ -1,12 +1,12 @@
 import { LitElement, css, html, nothing } from "lit";
-import { customElement, property, query } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import "./chat-room-item";
 import "./chat-loader";
 import { RoomContext, roomContext } from "../contexts/room-context";
 
-@customElement("chat-room-list")
+
 export class ChatRoomList extends LitElement {
   @consume({ context: roomContext, subscribe: true })
   @property({ type: Object })
@@ -69,6 +69,10 @@ export class ChatRoomList extends LitElement {
           ></chat-loader>`
         : nothing} `;
   }
+}
+
+if (!customElements.get("chat-room-list")) {
+  customElements.define("chat-room-list", ChatRoomList);
 }
 
 declare global {

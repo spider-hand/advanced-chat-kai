@@ -1,12 +1,10 @@
-import { LitElement, css, html } from "lit";
-import { customElement, property, query } from "lit/decorators.js";
+import { LitElement, css, html, nothing } from "lit";
+import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
-import "emoji-picker-element";
 import { ChatUser, SelecteEmojiDetail } from "../types";
 import { currentUserContext } from "../contexts/current-user-context";
 
-@customElement("chat-emoji-picker")
 export class ChatEmojiPicker extends LitElement {
   @consume({ context: currentUserContext, subscribe: true })
   @property({ type: Object })
@@ -15,6 +13,8 @@ export class ChatEmojiPicker extends LitElement {
   @property({ type: String }) messageId: string | null = null;
   @property({ type: Number }) width = 300;
   @property({ type: Number }) height = 300;
+
+  @state() private _hasEmojiPickerLoaded = false;
 
   @query("emoji-picker") emojiPicker!: HTMLDivElement;
 
@@ -42,8 +42,13 @@ export class ChatEmojiPicker extends LitElement {
     );
   };
 
-  connectedCallback(): void {
+  async connectedCallback(): Promise<void> {
     super.connectedCallback();
+
+    if (!this._hasEmojiPickerLoaded) {
+      await import("emoji-picker-element");
+      this._hasEmojiPickerLoaded = true;
+    }
 
     window.addEventListener("mousedown", this._onClickOutside);
   }
@@ -85,11 +90,17 @@ export class ChatEmojiPicker extends LitElement {
   ];
 
   render() {
-    return html`<emoji-picker
-      style="width: ${this.width}px; height: ${this.height}px"
-      @emoji-click="${this._onClickEmoji}"
-    ></emoji-picker>`;
+    return html`${this._hasEmojiPickerLoaded
+      ? html`<emoji-picker
+          style="width: ${this.width}px; height: ${this.height}px"
+          @emoji-click="${this._onClickEmoji}"
+        ></emoji-picker>`
+      : nothing}`;
   }
+}
+
+if (!customElements.get("chat-emoji-picker")) {
+  customElements.define("chat-emoji-picker", ChatEmojiPicker);
 }
 
 declare global {

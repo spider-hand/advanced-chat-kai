@@ -1,12 +1,12 @@
 import { LitElement, css, html, nothing } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
 import "./chat-avatar";
 import "./chat-action-list";
 import { ChatAction, ChatRoom, SelectRoomDetail } from "../types";
 
-@customElement("chat-room-item")
+
 export class ChatRoomItem extends LitElement {
   @property({ type: Boolean }) active = false;
   @property({ type: Object }) room!: ChatRoom;
@@ -170,6 +170,10 @@ export class ChatRoomItem extends LitElement {
         : nothing}
     </div>`;
   }
+}
+
+if (!customElements.get("chat-room-item")) {
+  customElements.define("chat-room-item", ChatRoomItem);
 }
 
 declare global {

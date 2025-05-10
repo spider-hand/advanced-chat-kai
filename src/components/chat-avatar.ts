@@ -1,8 +1,8 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 
-@customElement("chat-avatar")
+
 export class ChatAvatar extends LitElement {
   @property({ type: Number }) size = 4;
 
@@ -29,6 +29,10 @@ export class ChatAvatar extends LitElement {
       style="width: ${this.size}em; height: ${this.size}em;"
     ></div>`;
   }
+}
+
+if (!customElements.get("chat-avatar")) {
+  customElements.define("chat-avatar", ChatAvatar);
 }
 
 declare global {

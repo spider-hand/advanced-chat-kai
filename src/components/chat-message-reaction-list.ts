@@ -1,12 +1,12 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import { ChatUser, ClickReactionDetail } from "../types";
 import { currentUserContext } from "../contexts/current-user-context";
 
-@customElement("chat-message-reaction-list")
+
 export class ChatAvatar extends LitElement {
   @consume({ context: currentUserContext, subscribe: true })
   @property({ type: Object })
@@ -109,6 +109,10 @@ export class ChatAvatar extends LitElement {
       })}
     </div>`;
   }
+}
+
+if (!customElements.get("chat-message-reaction-list")) {
+  customElements.define("chat-message-reaction-list", ChatAvatar);
 }
 
 declare global {

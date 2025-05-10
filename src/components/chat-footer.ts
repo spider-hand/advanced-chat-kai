@@ -1,5 +1,5 @@
 import { LitElement, css, html, nothing } from "lit";
-import { customElement, property, query, state } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import {
@@ -15,7 +15,6 @@ import "./chat-footer-reply-to-section";
 import "./chat-footer-attachment-section";
 import { FooterContext, footerContext } from "../contexts/footer-context";
 
-@customElement("chat-footer")
 export class ChatFooter extends LitElement {
   @consume({ context: currentUserContext, subscribe: true })
   @property({ type: Object })
@@ -237,17 +236,23 @@ export class ChatFooter extends LitElement {
             />
           </svg>
         </button>
-        <chat-emoji-picker
-          style="position: absolute; bottom: calc(100% + 0.8em); left: 0; display: ${this
-            ._showEmojiPicker
-            ? "block"
-            : "none"};"
-          @select-emoji="${this._onSelectEmoji}"
-          @close="${this._closeEmojiPicker}"
-        ></chat-emoji-picker>
+        ${this.footerContext.isEmojiPickerAvailable
+          ? html`<chat-emoji-picker
+              style="position: absolute; bottom: calc(100% + 0.8em); left: 0; display: ${this
+                ._showEmojiPicker
+                ? "block"
+                : "none"};"
+              @select-emoji="${this._onSelectEmoji}"
+              @close="${this._closeEmojiPicker}"
+            ></chat-emoji-picker>`
+          : nothing}
       </div>
     </footer>`;
   }
+}
+
+if (!customElements.get("chat-footer")) {
+  customElements.define("chat-footer", ChatFooter);
 }
 
 declare global {

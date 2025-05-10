@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
@@ -9,7 +9,7 @@ import "./chat-footer";
 import { sidebarContext } from "../contexts/sidebar-context";
 import { ReplyToMessageDetail } from "../types";
 
-@customElement("chat-container")
+
 export class ChatContainer extends LitElement {
   @consume({ context: sidebarContext, subscribe: true })
   @property({ type: Boolean })
@@ -81,6 +81,10 @@ export class ChatContainer extends LitElement {
       ></chat-footer>
     </div>`;
   }
+}
+
+if (!customElements.get("chat-container")) {
+  customElements.define("chat-container", ChatContainer);
 }
 
 declare global {

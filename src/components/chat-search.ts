@@ -1,9 +1,8 @@
 import { LitElement, css, html } from "lit";
-import { customElement } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { SearchRoomDetail } from "../types";
 
-@customElement("chat-search")
+
 export class ChatSearch extends LitElement {
   private _onChangeInput(event: Event) {
     const value = (event.target as HTMLInputElement).value;
@@ -75,6 +74,10 @@ export class ChatSearch extends LitElement {
       />
     </div>`;
   }
+}
+
+if (!customElements.get("chat-search")) {
+  customElements.define("chat-search", ChatSearch);
 }
 
 declare global {

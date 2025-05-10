@@ -1,5 +1,5 @@
 import { LitElement, PropertyValues, css, html, nothing } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
@@ -15,7 +15,6 @@ import "./chat-deleted-message";
 import { currentUserContext } from "../contexts/current-user-context";
 import { ChatAction, ChatMessage, ChatUser } from "../types";
 
-@customElement("chat-message-item")
 export class ChatMessageItem extends LitElement {
   @consume({ context: currentUserContext, subscribe: true })
   @property({ type: Object })
@@ -261,7 +260,9 @@ export class ChatMessageItem extends LitElement {
                 @close="${this._closeActionList}"
               ></chat-action-list>`
             : nothing}
-          ${!this.message.isDeleted && this._showEmojiPicker
+          ${!this.message.isDeleted &&
+          this.isEmojiReactionAvailable &&
+          this._showEmojiPicker
             ? html`<chat-emoji-picker
                 style="position: absolute; bottom: 4em; ${this.mine
                   ? "right: 50%;"
@@ -282,6 +283,10 @@ export class ChatMessageItem extends LitElement {
       </div>
     </div>`;
   }
+}
+
+if (!customElements.get("chat-message-item")) {
+  customElements.define("chat-message-item", ChatMessageItem);
 }
 
 declare global {

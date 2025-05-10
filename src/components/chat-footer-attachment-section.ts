@@ -1,9 +1,9 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessageAttachment, RemoveAttachmentDetail } from "../types";
 
-@customElement("chat-footer-attachment-section")
+
 export class ChatFooterAttachmentSection extends LitElement {
   @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
 
@@ -109,6 +109,10 @@ export class ChatFooterAttachmentSection extends LitElement {
       )}
     </div>`;
   }
+}
+
+if (!customElements.get("chat-footer-attachment-section")) {
+  customElements.define("chat-footer-attachment-section", ChatFooterAttachmentSection);
 }
 
 declare global {

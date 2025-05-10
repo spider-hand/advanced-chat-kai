@@ -1,9 +1,9 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ReplyToMessageDetail } from "../types";
 
-@customElement("chat-footer-reply-to-section")
+
 export class ChatFooterReplyToSection extends LitElement {
   @property({ type: Object }) replyTo!: ReplyToMessageDetail;
 
@@ -76,6 +76,10 @@ export class ChatFooterReplyToSection extends LitElement {
       >
     </div>`;
   }
+}
+
+if (!customElements.get("chat-footer-reply-to-section")) {
+  customElements.define("chat-footer-reply-to-section", ChatFooterReplyToSection);
 }
 
 declare global {

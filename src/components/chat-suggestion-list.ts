@@ -1,9 +1,9 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessageSuggestion, SelectSuggestionDetail } from "../types";
 
-@customElement("chat-suggestion-list")
+
 export class ChatSuggestionList extends LitElement {
   @property({ type: Array }) suggestions: ChatMessageSuggestion[] = [];
 
@@ -63,6 +63,10 @@ export class ChatSuggestionList extends LitElement {
       )}
     </div>`;
   }
+}
+
+if (!customElements.get("chat-suggestion-list")) {
+  customElements.define("chat-suggestion-list", ChatSuggestionList);
 }
 
 declare global {

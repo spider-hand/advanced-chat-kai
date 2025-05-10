@@ -1,10 +1,10 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessageAttachment, DownloadAttachmentDetail } from "../types";
 
-@customElement("chat-message-attachment-list")
+
 export class ChatMessageAttachmentList extends LitElement {
   @property({ type: Array }) attachments: Array<ChatMessageAttachment> = [];
   @property({ type: Boolean }) mine = false;
@@ -107,6 +107,10 @@ export class ChatMessageAttachmentList extends LitElement {
       )}
     </div>`;
   }
+}
+
+if (!customElements.get("chat-message-attachment-list")) {
+  customElements.define("chat-message-attachment-list", ChatMessageAttachmentList);
 }
 
 declare global {

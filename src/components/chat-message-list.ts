@@ -1,5 +1,5 @@
 import { LitElement, css, html, nothing } from "lit";
-import { customElement, property, query, state } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import "./chat-message-item";
@@ -8,7 +8,7 @@ import "./chat-suggestion-list";
 import { MessageContext, messageContext } from "../contexts/message-context";
 import { ReplyToMessageDetail } from "../types";
 
-@customElement("chat-message-list")
+
 export class ChatMessageList extends LitElement {
   @consume({ context: messageContext, subscribe: true })
   @property({ type: Object })
@@ -152,6 +152,10 @@ export class ChatMessageList extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get("chat-message-list")) {
+  customElements.define("chat-message-list", ChatMessageList);
 }
 
 declare global {

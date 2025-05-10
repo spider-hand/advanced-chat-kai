@@ -1,9 +1,8 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property, query } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatAction, ChatActionType, SelectActionDetail } from "../types";
 
-@customElement("chat-action-list")
 export class ChatActionList extends LitElement {
   @property({ type: String }) actionType: ChatActionType;
   @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
@@ -97,6 +96,10 @@ export class ChatActionList extends LitElement {
       )}
     </div>`;
   }
+}
+
+if (!customElements.get("chat-action-list")) {
+  customElements.define("chat-action-list", ChatActionList);
 }
 
 declare global {

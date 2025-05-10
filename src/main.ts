@@ -1,5 +1,5 @@
 import { LitElement, css, html, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { provide } from "@lit/context";
 import { globalStyles } from "./styles/global";
 import "./components/chat-container";
@@ -20,7 +20,7 @@ import { RoomContext, roomContext } from "./contexts/room-context";
 import { messageContext, MessageContext } from "./contexts/message-context";
 import { FooterContext, footerContext } from "./contexts/footer-context";
 
-@customElement("advanced-chat-kai")
+
 export class Main extends LitElement {
   @property({ type: Object })
   currentUser: ChatUser;
@@ -187,6 +187,10 @@ export class Main extends LitElement {
       ></chat-container>
     </div>`;
   }
+}
+
+if (!customElements.get("advanced-chat-kai")) {
+  customElements.define("advanced-chat-kai", Main);
 }
 
 declare global {

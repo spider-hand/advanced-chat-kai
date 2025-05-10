@@ -1,12 +1,11 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
 import "./chat-room-list";
 import "./chat-search";
 
 
-@customElement("chat-sidebar")
 export class ChatSidebar extends LitElement {
   @property({ type: Boolean }) show = false;
   @property({ type: Boolean }) isMobile = false;
@@ -118,6 +117,10 @@ export class ChatSidebar extends LitElement {
       <chat-room-list></chat-room-list>
     </div>`;
   }
+}
+
+if (!customElements.get("chat-sidebar")) {
+  customElements.define("chat-sidebar", ChatSidebar);
 }
 
 declare global {

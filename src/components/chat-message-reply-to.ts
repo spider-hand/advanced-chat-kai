@@ -1,10 +1,10 @@
 import { LitElement, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessage } from "../types";
 import "./chat-avatar";
 
-@customElement("chat-message-reply-to")
+
 export class ChatMessageReplyTo extends LitElement {
   @property({ type: Object }) replyTo!: ChatMessage;
 
@@ -62,6 +62,10 @@ export class ChatMessageReplyTo extends LitElement {
       </div>
     </div>`;
   }
+}
+
+if (!customElements.get("chat-message-reply-to")) {
+  customElements.define("chat-message-reply-to", ChatMessageReplyTo);
 }
 
 declare global {

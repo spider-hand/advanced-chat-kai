@@ -1,13 +1,13 @@
 import { LitElement, css, html, nothing } from "lit";
 import { consume } from "@lit/context";
-import { customElement, property, state } from "lit/decorators.js";
+import { property, state } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { sidebarContext } from "../contexts/sidebar-context";
 import "./chat-action-list";
 import { RoomContext, roomContext } from "../contexts/room-context";
 import { ChatRoom } from "../types";
 
-@customElement("chat-header")
+
 export class ChatHeader extends LitElement {
   @consume({ context: sidebarContext, subscribe: true })
   @property({ type: Boolean })
@@ -153,6 +153,10 @@ export class ChatHeader extends LitElement {
         : nothing}
     </header>`;
   }
+}
+
+if (!customElements.get("chat-header")) {
+  customElements.define("chat-header", ChatHeader);
 }
 
 declare global {
