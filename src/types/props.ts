@@ -45,6 +45,8 @@ export interface ChatUser {
 export type I18nType = typeof defaultI18n;
 export type PartialI18nType = Partial<I18nType>;
 
+export type ThemeType = "light" | "dark";
+
 export interface AdvancedChatKaiProps {
   currentUser: ChatUser;
   rooms: ChatRoom[];
@@ -68,4 +70,5 @@ export interface AdvancedChatKaiProps {
   isMarkdownAvailable: boolean;
   height: number;
   i18n?: PartialI18nType;
+  theme?: ThemeType;
 }

@@ -39,13 +39,13 @@ export class ChatSuggestionList extends LitElement {
         margin-left: auto;
         font-size: 1.4em;
         text-align: left;
-        background-color: var(--gray-200);
+        background-color: var(--surface-200);
         border: none;
         border-radius: 8px;
       }
 
       .chat-suggestion-list__item:hover {
-        background-color: var(--gray-300);
+        background-color: var(--surface-300);
       }
     `,
   ];

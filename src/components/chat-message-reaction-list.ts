@@ -43,14 +43,14 @@ export class ChatAvatar extends LitElement {
         align-items: center;
         max-width: 80%;
         padding: 0.4em;
-        background-color: var(--gray-100);
+        background-color: var(--surface-100);
         border-radius: 0.4em;
         box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
       }
 
       .chat-message-reaction-list--mine {
         margin-left: auto;
-        background-color: var(--gray-200);
+        background-color: var(--surface-200);
       }
 
       .chat-message-reaction-list__button {
@@ -67,21 +67,21 @@ export class ChatAvatar extends LitElement {
       }
 
       .chat-message-reaction-list__button--reacted {
-        background-color: var(--gray-200);
+        background-color: var(--surface-200);
       }
 
       .chat-message-reaction-list--mine
         .chat-message-reaction-list__button--reacted {
-        background-color: var(--gray-300);
+        background-color: var(--surface-300);
       }
 
       .chat-message-reaction-list__button:hover {
-        background-color: var(--gray-200);
+        background-color: var(--surface-200);
       }
 
       .chat-message-reaction-list--mine
         .chat-message-reaction-list__button:hover {
-        background-color: var(--gray-300);
+        background-color: var(--surface-300);
       }
     `,
   ];

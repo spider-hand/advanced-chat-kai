@@ -42,7 +42,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         min-width: 12em;
         min-height: 6.4em;
         padding: 0.4em;
-        background-color: var(--gray-200);
+        background-color: var(--surface-200);
         border-radius: 0.8em;
       }
 
@@ -58,7 +58,7 @@ export class ChatFooterAttachmentSection extends LitElement {
       }
 
       .chat-footer-attachment-section__button:hover {
-        background-color: var(--gray-300);
+        background-color: var(--surface-300);
       }
 
       .chat-footer-attachment-section__text {
@@ -91,7 +91,7 @@ export class ChatFooterAttachmentSection extends LitElement {
                 height="1.6em"
                 viewBox="0 -960 960 960"
                 width="1.6em"
-                fill="var(--gray-700)"
+                fill="var(--surface-700)"
               >
                 <path
                   d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"

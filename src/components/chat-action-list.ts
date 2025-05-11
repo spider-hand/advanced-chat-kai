@@ -46,7 +46,7 @@ export class ChatActionList extends LitElement {
         flex-direction: column;
         align-items: center;
         overflow: hidden;
-        background-color: var(--gray-50);
+        background-color: var(--surface-50);
         border-radius: 0.8em;
         box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
       }
@@ -64,7 +64,7 @@ export class ChatActionList extends LitElement {
       }
 
       .chat-action-list__item:hover {
-        background-color: var(--gray-100);
+        background-color: var(--surface-100);
       }
     `,
   ];

@@ -151,7 +151,7 @@ export class ChatMessageItem extends LitElement {
       .chat-message-item__date {
         font-size: 0.8em;
         font-weight: 600;
-        color: var(--gray-700);
+        color: var(--surface-700);
       }
 
       .chat-message-item__body {
@@ -161,12 +161,12 @@ export class ChatMessageItem extends LitElement {
         gap: 0.8em;
         padding: 0.8em 1.2em;
         font-size: 1.4em;
-        background-color: var(--gray-100);
+        background-color: var(--surface-100);
         border-radius: 0.8em;
       }
 
       .chat-message-item__body--mine {
-        background-color: var(--gray-200);
+        background-color: var(--surface-200);
       }
 
       .chat-message-item__body--deleted {
@@ -174,7 +174,7 @@ export class ChatMessageItem extends LitElement {
       }
 
       .chat-message-item--selected .chat-message-item__body {
-        background-color: var(--gray-300);
+        background-color: var(--surface-300);
       }
     `,
   ];

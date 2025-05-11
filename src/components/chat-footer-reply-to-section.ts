@@ -47,7 +47,7 @@ export class ChatFooterReplyToSection extends LitElement {
       }
 
       .chat-footer-reply-to-section__button:hover {
-        background-color: var(--gray-200);
+        background-color: var(--surface-200);
       }
     `,
   ];
@@ -63,7 +63,7 @@ export class ChatFooterReplyToSection extends LitElement {
           height="1.6em"
           viewBox="0 -960 960 960"
           width="1.6em"
-          fill="var(--gray-700)"
+          fill="var(--surface-700)"
         >
           <path
             d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"

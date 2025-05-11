@@ -14,13 +14,15 @@ import {
   ChatMessageSuggestion,
   ChatRoom,
   ChatUser,
+  PartialI18nType,
+  ThemeType,
 } from "./types";
 import { currentUserContext } from "./contexts/current-user-context";
 import { RoomContext, roomContext } from "./contexts/room-context";
 import { messageContext, MessageContext } from "./contexts/message-context";
 import { FooterContext, footerContext } from "./contexts/footer-context";
 import { I18nContext, i18nContext } from "./contexts/i18n-context";
-import { defaultI18n, PartialI18nType } from "./consts";
+import { defaultI18n } from "./consts";
 
 export class Main extends LitElement {
   @property({ type: Object })
@@ -48,6 +50,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isMarkdownAvailable = false;
   @property({ type: Number }) height = 480;
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
+  @property({ type: String, reflect: true }) theme: ThemeType = "light";
 
   @provide({ context: currentUserContext })
   currentUserContext: ChatUser = {
@@ -177,7 +180,6 @@ export class Main extends LitElement {
         flex-direction: row;
         width: 100%;
         overflow: hidden;
-        background-color: var(--white);
         border: 0.1em solid var(--border);
         border-radius: 1.6em;
         box-shadow: rgb(0 0 0 / 15%) 0 0.3em 0.3em 0;

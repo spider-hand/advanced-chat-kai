@@ -370,4 +370,5 @@ export const defaultProps: AdvancedChatKaiProps = {
     chatFooterTextareaPlaceholder: "メッセージを入力してください",
     chatSearchPlaceholder: "ルームを検索",
   },
+  theme: "light",
 };

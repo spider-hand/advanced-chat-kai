@@ -17,7 +17,7 @@ export class ChatAvatar extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--gray-500);
+        background-color: var(--surface-500);
         border-radius: 50%;
       }
     `,
