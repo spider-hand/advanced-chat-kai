@@ -19,6 +19,8 @@ export class ChatMessageList extends LitElement {
   @query(".chat-message-list__bottom") chatMessageListBottom!: HTMLDivElement;
 
   @state() private _showScrollToBottomButton = false;
+  @state() private _rectTop = 0;
+  @state() private _rectBottom = 0;
 
   private _scrollToBottom(
     _?: Event,
@@ -30,6 +32,10 @@ export class ChatMessageList extends LitElement {
   }
 
   protected firstUpdated(): void {
+    const rect = this.getBoundingClientRect();
+    this._rectTop = rect.top;
+    this._rectBottom = rect.bottom;
+
     setTimeout(() => {
       this._scrollToBottom(null, "instant");
     });
@@ -124,6 +130,8 @@ export class ChatMessageList extends LitElement {
               .isEmojiReactionAvailable="${this.messageContext
                 .isEmojiReactionAvailable}"
               .isReplyAvailable="${this.messageContext.isReplyAvailable}"
+              .containerTop="${this._rectTop}"
+              .containerBottom="${this._rectBottom}"
             ></chat-message-item>`,
         )}
         ${this.messageContext.suggestions.length > 0

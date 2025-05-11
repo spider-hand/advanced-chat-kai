@@ -364,7 +364,7 @@ export const defaultProps: AdvancedChatKaiProps = {
   isMessageAttachmentAvailable: true,
   isReplyAvailable: true,
   isMarkdownAvailable: true,
-  height: 480,
+  height: 600,
   i18n: {
     deletedMessage: "このメッセージは削除されました。",
     chatFooterTextareaPlaceholder: "メッセージを入力してください",

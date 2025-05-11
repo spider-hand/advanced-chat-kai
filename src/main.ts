@@ -48,7 +48,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isReplyAvailable = false;
   @property({ type: Boolean }) isMessageAttachmentAvailable = false;
   @property({ type: Boolean }) isMarkdownAvailable = false;
-  @property({ type: Number }) height = 480;
+  @property({ type: Number }) height = 600;
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
 

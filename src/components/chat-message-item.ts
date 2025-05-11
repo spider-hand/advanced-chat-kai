@@ -1,5 +1,5 @@
 import { LitElement, PropertyValues, css, html, nothing } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
@@ -32,12 +32,17 @@ export class ChatMessageItem extends LitElement {
   >[] = [];
   @property({ type: Boolean }) isEmojiReactionAvailable = false;
   @property({ type: Boolean }) isReplyAvailable = false;
+  @property({ type: Number }) containerTop = 0;
+  @property({ type: Number }) containerBottom = 0;
+
+  @query('chat-message-menu') chatMessageMenu!: HTMLDivElement;
 
   @state() private _timer: number | null = null;
   @state() private _hover = false;
   @state() private _showActionList = false;
   @state() private _showEmojiPicker = false;
   @state() private _content: string = "";
+  @state() private _showPopupAbove = true;
 
   protected async updated(_changedProperties: PropertyValues): Promise<void> {
     if (
@@ -85,6 +90,11 @@ export class ChatMessageItem extends LitElement {
   }
 
   private _toggleEmojiPicker() {
+    const rect = this.chatMessageMenu.getBoundingClientRect();
+    const spaceBelow = this.containerBottom - rect.bottom;
+    const spaceAbove = rect.top - this.containerTop;
+    
+    this._showPopupAbove = spaceAbove >= spaceBelow;
     this._showEmojiPicker = !this._showEmojiPicker;
   }
 
@@ -93,6 +103,11 @@ export class ChatMessageItem extends LitElement {
   }
 
   private _openActionList() {
+    const rect = this.chatMessageMenu.getBoundingClientRect();
+    const spaceBelow = this.containerBottom - rect.bottom;
+    const spaceAbove = rect.top - this.containerTop;
+    
+    this._showPopupAbove = spaceAbove >= spaceBelow;
     this._showActionList = true;
   }
 
@@ -249,7 +264,11 @@ export class ChatMessageItem extends LitElement {
             : nothing}
           ${!this.message.isDeleted && this._showActionList
             ? html`<chat-action-list
-                style="position: absolute; bottom: 4em; ${this.mine
+                style="position: absolute; top: ${this._showPopupAbove
+                  ? "auto"
+                  : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
+                  ? "4em"
+                  : "auto"}; ${this.mine
                   ? "right: calc(100% + 0.4em);"
                   : "left: calc(100% + 0.4em);"} z-index: 1;"
                 .actionType="${"message"}"
@@ -264,11 +283,15 @@ export class ChatMessageItem extends LitElement {
           this.isEmojiReactionAvailable &&
           this._showEmojiPicker
             ? html`<chat-emoji-picker
-                style="position: absolute; bottom: 4em; ${this.mine
+                style="position: absolute; top: ${this._showPopupAbove
+                  ? "auto"
+                  : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
+                  ? "4em"
+                  : "auto"}; ${this.mine
                   ? "right: 50%;"
                   : "left: 50%;"} z-index: 1;"
                 .width="${300}"
-                .height="${300}"
+                .height="${180}"
                 @select-emoji="${this._closeEmojiPicker}"
                 @close="${this._closeEmojiPicker}"
               ></chat-emoji-picker>`

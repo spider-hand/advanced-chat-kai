@@ -6,15 +6,17 @@ import "./chat-avatar";
 import "./chat-action-list";
 import { ChatAction, ChatRoom, SelectRoomDetail } from "../types";
 
-
 export class ChatRoomItem extends LitElement {
   @property({ type: Boolean }) active = false;
   @property({ type: Object }) room!: ChatRoom;
+  @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
+    [];
+  @property({ type: Number }) containerTop = 0;
+  @property({ type: Number }) containerBottom = 0;
 
   @state() private _hover = false;
   @state() private _showActionList = false;
-  @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
-    [];
+  @state() private _showActionListAbove = true;
 
   private _selectRoom() {
     this.dispatchEvent(
@@ -35,6 +37,11 @@ export class ChatRoomItem extends LitElement {
   }
 
   private _toggleActionList() {
+    const rect = this.getBoundingClientRect();
+    const spaceBelow = this.containerBottom - rect.bottom;
+    const spaceAbove = rect.top - this.containerTop;
+
+    this._showActionListAbove = spaceAbove >= spaceBelow;
     this._showActionList = !this._showActionList;
   }
 
@@ -161,7 +168,12 @@ export class ChatRoomItem extends LitElement {
         : html`<span class="chat-room-item__menu">${this.room.meta}</span>`}
       ${this._showActionList
         ? html`<chat-action-list
-            style="position: absolute; top: 0; right: 1.2em; transform: translateY(-100%);"
+            style="position: absolute; top: ${this._showActionListAbove
+              ? "1.2em"
+              : "auto"}; right: 1.2em; transform: translateY(-100%); bottom: ${this
+              ._showActionListAbove
+              ? "auto"
+              : "calc(-100% - 1.2em)"}; z-index: 1;"
             .actionType="${"room"}"
             .actions="${this.actions}"
             @select-action="${this._closeActionList}"

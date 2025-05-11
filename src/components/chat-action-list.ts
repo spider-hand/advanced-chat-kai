@@ -41,7 +41,6 @@ export class ChatActionList extends LitElement {
       }
 
       .chat-action-list {
-        z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;

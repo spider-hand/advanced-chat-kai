@@ -1,5 +1,5 @@
 import { LitElement, css, html, nothing } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import "./chat-room-item";
@@ -13,8 +13,15 @@ export class ChatRoomList extends LitElement {
   roomContext!: RoomContext;
 
   @query(".chat-room-list__bottom") chatRoomListBottom!: HTMLDivElement;
+  
+  @state() private _rectTop = 0;
+  @state() private _rectBottom = 0;
 
   protected firstUpdated(): void {
+    const rect = this.getBoundingClientRect();
+    this._rectTop = rect.top;
+    this._rectBottom = rect.bottom;
+
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
@@ -58,6 +65,8 @@ export class ChatRoomList extends LitElement {
               .active="${this.roomContext.selectedRoomId === item.id}"
               .room="${item}"
               .actions="${this.roomContext.actions}"
+              .containerTop="${this._rectTop}"
+              .containerBottom="${this._rectBottom}"
             ></chat-room-item>`,
         )}
       </div>
