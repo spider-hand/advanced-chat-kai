@@ -7,11 +7,17 @@ export interface ChatAction<T extends string | number | boolean> {
   value: T;
 }
 
+export type BadgeType = "success" | "danger" | "warning" | "info";
+
 export interface ChatRoom {
   id: string;
   title: string;
   subtitle: string;
   meta: string;
+  badge?: {
+    type: BadgeType;
+    label: string;
+  };
 }
 
 export interface ChatMessage {

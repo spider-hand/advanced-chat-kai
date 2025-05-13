@@ -10,6 +10,10 @@ export const defaultProps: AdvancedChatKaiProps = {
       title: "Room 1",
       subtitle: "Subtitle 1",
       meta: "May 1",
+      badge: {
+        type: "success",
+        label: "Success",
+      },
     },
     {
       id: "2",
@@ -18,42 +22,70 @@ export const defaultProps: AdvancedChatKaiProps = {
       subtitle:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       meta: "May 1",
+      badge: {
+        type: "danger",
+        label: "Danger",
+      },
     },
     {
       id: "3",
       title: "Room 3",
       subtitle: "Subtitle 3",
       meta: "May 1",
+      badge: {
+        type: "warning",
+        label: "Warning",
+      },
     },
     {
       id: "4",
       title: "Room 4",
       subtitle: "Subtitle 4",
       meta: "May 1",
+      badge: {
+        type: "info",
+        label: "Info",
+      },
     },
     {
       id: "5",
       title: "Room 5",
       subtitle: "Subtitle 5",
       meta: "May 1",
+      badge: {
+        type: "success",
+        label: "",
+      },
     },
     {
       id: "6",
       title: "Room 6",
       subtitle: "Subtitle 6",
       meta: "May 1",
+      badge: {
+        type: "danger",
+        label: "",
+      },
     },
     {
       id: "7",
       title: "Room 7",
       subtitle: "Subtitle 7",
       meta: "May 1",
+      badge: {
+        type: "warning",
+        label: "",
+      },
     },
     {
       id: "8",
       title: "Room 8",
       subtitle: "Subtitle 8",
       meta: "May 1",
+      badge: {
+        type: "info",
+        label: "",
+      },
     },
     {
       id: "9",

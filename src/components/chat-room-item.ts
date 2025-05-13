@@ -110,7 +110,46 @@ export class ChatRoomItem extends LitElement {
         position: absolute;
         top: 1.2em;
         right: 1.2em;
-        font-size: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8em;
+        align-items: flex-end;
+        text-align: right;
+      }
+
+      .chat-room-item__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.2em 0.8em;
+        border-radius: 0.4em;
+      }
+
+      .chat-room-item__badge--rounded {
+        width: 1em;
+        height: 1em;
+        padding: 0;
+        border-radius: 100px;
+      }
+
+      .chat-room-item__badge--success {
+        color: var(--surface-50);
+        background-color: var(--success);
+      }
+
+      .chat-room-item__badge--danger {
+        color: var(--white);
+        background-color: var(--danger);
+      }
+
+      .chat-room-item__badge--warning {
+        color: var(--black);
+        background-color: var(--warning);
+      }
+
+      .chat-room-item__badge--info {
+        color: var(--surface-50);
+        background-color: var(--info);
       }
 
       .chat-room-item__button {
@@ -165,7 +204,27 @@ export class ChatRoomItem extends LitElement {
               />
             </svg>
           </button>`
-        : html`<span class="chat-room-item__menu">${this.room.meta}</span>`}
+        : html`<div class="chat-room-item__menu">
+            <span>${this.room.meta}</span>
+            ${this.room.badge
+              ? html`<span
+                  class="${classMap({
+                    "chat-room-item__badge": true,
+                    "chat-room-item__badge--rounded":
+                      this.room.badge.label === "",
+                    "chat-room-item__badge--success":
+                      this.room.badge.type === "success",
+                    "chat-room-item__badge--danger":
+                      this.room.badge.type === "danger",
+                    "chat-room-item__badge--warning":
+                      this.room.badge.type === "warning",
+                    "chat-room-item__badge--info":
+                      this.room.badge.type === "info",
+                  })}"
+                  >${this.room.badge.label}</span
+                >`
+              : nothing}
+          </div>`}
       ${this._showActionList
         ? html`<chat-action-list
             style="position: absolute; top: ${this._showActionListAbove

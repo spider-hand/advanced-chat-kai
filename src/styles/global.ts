@@ -21,6 +21,10 @@ export const globalStyles = css`
   :host([theme="light"]) {
     --white: hsl(0deg 0% 100%);
     --black: hsl(0deg 0% 0%);
+    --success: hsl(153deg 71% 39%);
+    --danger: hsl(354deg 70% 53%);
+    --warning: hsl(45deg 100% 51%);
+    --info: hsl(211deg 100% 49%);
     --surface-50: hsl(0deg 20% 99%);
     --surface-100: hsl(0deg 23% 97%);
     --surface-200: hsl(0deg 17% 93%);
@@ -41,6 +45,10 @@ export const globalStyles = css`
   :host([theme="dark"]) {
     --white: hsl(0deg 0% 100%);
     --black: hsl(0deg 0% 0%);
+    --success: hsl(135deg 69% 69%);
+    --danger: hsl(354deg 70% 53%);
+    --warning: hsl(46deg 100% 79%);
+    --info: hsl(213deg 100% 78%);
     --surface-50: hsl(0deg 0% 16%);
     --surface-100: hsl(0deg 0% 18%);
     --surface-200: hsl(0deg 0% 23%);
