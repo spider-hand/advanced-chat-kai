@@ -74,6 +74,7 @@ export interface AdvancedChatKaiProps {
   isMessageAttachmentAvailable: boolean;
   isReplyAvailable: boolean;
   isMarkdownAvailable: boolean;
+  isTyping: boolean;
   height: number;
   i18n?: PartialI18nType;
   theme?: ThemeType;

@@ -11,6 +11,7 @@ export interface MessageContext {
   theirMessageActions: ChatAction<string | number | boolean>[];
   isEmojiReactionAvailable: boolean;
   isReplyAvailable: boolean;
+  isTyping: boolean;
 }
 
 export const messageContext = createContext<MessageContext>("message");

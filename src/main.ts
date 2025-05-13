@@ -48,6 +48,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isReplyAvailable = false;
   @property({ type: Boolean }) isMessageAttachmentAvailable = false;
   @property({ type: Boolean }) isMarkdownAvailable = false;
+  @property({ type: Boolean }) isTyping = false;
   @property({ type: Number }) height = 600;
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
@@ -77,6 +78,7 @@ export class Main extends LitElement {
     theirMessageActions: this.theirMessageActions,
     isEmojiReactionAvailable: this.isEmojiReactionAvailable,
     isReplyAvailable: this.isReplyAvailable,
+    isTyping: this.isTyping,
   };
 
   @provide({ context: footerContext })
@@ -129,7 +131,8 @@ export class Main extends LitElement {
       changedProperties.has("myMessageActions") ||
       changedProperties.has("theirMessageActions") ||
       changedProperties.has("isEmojiReactionAvailable") ||
-      changedProperties.has("isReplyAvailable")
+      changedProperties.has("isReplyAvailable") ||
+      changedProperties.has("isTyping")
     ) {
       this.messagesContext = {
         messages: this.messages,
@@ -141,6 +144,7 @@ export class Main extends LitElement {
         theirMessageActions: this.theirMessageActions,
         isEmojiReactionAvailable: this.isEmojiReactionAvailable,
         isReplyAvailable: this.isReplyAvailable,
+        isTyping: this.isTyping,
       };
     }
 

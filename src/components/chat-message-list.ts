@@ -5,9 +5,9 @@ import { globalStyles } from "../styles/global";
 import "./chat-message-item";
 import "./chat-loader";
 import "./chat-suggestion-list";
+import "./chat-message-typing";
 import { MessageContext, messageContext } from "../contexts/message-context";
 import { ReplyToMessageDetail } from "../types";
-
 
 export class ChatMessageList extends LitElement {
   @consume({ context: messageContext, subscribe: true })
@@ -134,6 +134,9 @@ export class ChatMessageList extends LitElement {
               .containerBottom="${this._rectBottom}"
             ></chat-message-item>`,
         )}
+        ${this.messageContext.isTyping
+          ? html`<chat-message-typing></chat-message-typing>`
+          : nothing}
         ${this.messageContext.suggestions.length > 0
           ? html`<chat-suggestion-list
               .suggestions="${this.messageContext.suggestions}"
