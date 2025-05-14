@@ -42,7 +42,6 @@ export class ChatHeader extends LitElement {
     css`
       :host {
         display: flex;
-        flex-grow: 1;
       }
 
       .chat-header {

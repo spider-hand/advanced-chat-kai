@@ -95,7 +95,6 @@ export class ChatFooter extends LitElement {
     css`
       :host {
         display: flex;
-        flex-grow: 1;
       }
 
       .chat-footer {

@@ -6,14 +6,13 @@ import "./chat-room-item";
 import "./chat-loader";
 import { RoomContext, roomContext } from "../contexts/room-context";
 
-
 export class ChatRoomList extends LitElement {
   @consume({ context: roomContext, subscribe: true })
   @property({ type: Object })
   roomContext!: RoomContext;
 
   @query(".chat-room-list__bottom") chatRoomListBottom!: HTMLDivElement;
-  
+
   @state() private _rectTop = 0;
   @state() private _rectBottom = 0;
 
@@ -47,7 +46,9 @@ export class ChatRoomList extends LitElement {
       }
 
       .chat-room-list {
+        position: relative;
         display: flex;
+        flex-grow: 1;
         flex-direction: column;
       }
 
@@ -59,19 +60,23 @@ export class ChatRoomList extends LitElement {
 
   render() {
     return html`<div class="chat-room-list">
-        ${this.roomContext.rooms.map(
-          (item) =>
-            html`<chat-room-item
-              .active="${this.roomContext.selectedRoomId === item.id}"
-              .room="${item}"
-              .actions="${this.roomContext.actions}"
-              .containerTop="${this._rectTop}"
-              .containerBottom="${this._rectBottom}"
-            ></chat-room-item>`,
-        )}
+        ${this.roomContext.isLoadingRoom
+          ? html`<chat-loader
+              style="position: absolute; top: 50%; transform: translateY(-50%);"
+            ></chat-loader>`
+          : this.roomContext.rooms.map(
+              (item) =>
+                html`<chat-room-item
+                  .active="${this.roomContext.selectedRoomId === item.id}"
+                  .room="${item}"
+                  .actions="${this.roomContext.actions}"
+                  .containerTop="${this._rectTop}"
+                  .containerBottom="${this._rectBottom}"
+                ></chat-room-item>`,
+            )}
       </div>
       <div class="chat-room-list__bottom"></div>
-      ${this.roomContext.isLoadingMoreRooms
+      ${!this.roomContext.isLoadingRoom && this.roomContext.isLoadingMoreRooms
         ? html`<chat-loader
             style="padding: 1.6em 0;"
             .size="${2.4}"
