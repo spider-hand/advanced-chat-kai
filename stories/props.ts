@@ -367,6 +367,7 @@ export const defaultProps: AdvancedChatKaiProps = {
   isLoadingMessage: false,
   isLoadingMoreRooms: false,
   isLoadingMoreMessages: false,
+  inputMessage: "",
   roomActions: [
     {
       label: "Delete",

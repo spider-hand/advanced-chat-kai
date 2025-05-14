@@ -4,6 +4,7 @@ import { ChatMessageAttachment } from "../types";
 export interface FooterContext {
   isEmojiPickerAvailable: boolean;
   isMessageAttachmentAvailable: boolean;
+  inputMessage: string;
   attachments: ChatMessageAttachment[];
 }
 

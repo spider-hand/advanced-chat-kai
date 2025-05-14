@@ -1,4 +1,4 @@
-import { LitElement, css, html, nothing } from "lit";
+import { LitElement, PropertyValues, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
@@ -39,6 +39,15 @@ export class ChatFooter extends LitElement {
 
   @query("textarea") private _textarea!: HTMLTextAreaElement;
   @query("input[type='file']") private _fileInput!: HTMLInputElement;
+
+  protected updated(_changedProperties: PropertyValues): void {
+    if (
+      _changedProperties.has("footerContext") &&
+      this.footerContext.inputMessage !== ""
+    ) {
+      this._textarea.value = this.footerContext.inputMessage;
+    }
+  }
 
   private _handleFileInput() {
     this._fileInput.click();

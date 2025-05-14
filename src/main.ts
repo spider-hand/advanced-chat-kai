@@ -36,6 +36,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isLoadingMessage = false;
   @property({ type: Boolean }) isLoadingMoreRooms = false;
   @property({ type: Boolean }) isLoadingMoreMessages = false;
+  @property({ type: String }) inputMessage = "";
   @property({ type: Array }) roomActions: ChatAction<ChatActionType>[] = [];
   @property({ type: Array }) myMessageActions: ChatAction<ChatActionType>[] =
     [];
@@ -85,6 +86,7 @@ export class Main extends LitElement {
   footerContext: FooterContext = {
     isEmojiPickerAvailable: this.isEmojiPickerAvailable,
     isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
+    inputMessage: this.inputMessage,
     attachments: this.attachments,
   };
 
@@ -151,11 +153,13 @@ export class Main extends LitElement {
     if (
       changedProperties.has("isEmojiPickerAvailable") ||
       changedProperties.has("isMessageAttachmentAvailable") ||
+      changedProperties.has("inputMessage") ||
       changedProperties.has("attachments")
     ) {
       this.footerContext = {
         isEmojiPickerAvailable: this.isEmojiPickerAvailable,
         isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
+        inputMessage: this.inputMessage,
         attachments: this.attachments,
       };
     }
