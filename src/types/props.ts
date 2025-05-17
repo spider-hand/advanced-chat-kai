@@ -22,8 +22,11 @@ export interface ChatRoom {
   hasEnded: boolean;
 }
 
+export type ChatItemType = ChatMessage | ChatDivider;
+
 export interface ChatMessage {
   id: string;
+  type: "message";
   roomId: string;
   senderId: string;
   senderName: string;
@@ -35,6 +38,12 @@ export interface ChatMessage {
   isDeleted: boolean;
   isSelected: boolean;
   replyTo: ChatMessage | null;
+}
+
+export interface ChatDivider {
+  id: string;
+  type: "divider";
+  content: string;
 }
 
 export interface ChatMessageAttachment {
@@ -58,7 +67,7 @@ export interface Dialog {
   leftButton: {
     text: string;
     variant?: VariantType;
-  },
+  };
   rightButton: {
     text: string;
     variant?: VariantType;
@@ -73,7 +82,7 @@ export type ThemeType = "light" | "dark";
 export interface AdvancedChatKaiProps {
   currentUser: ChatUser;
   rooms: ChatRoom[];
-  messages: ChatMessage[];
+  messages: ChatItemType[];
   attachments: ChatMessageAttachment[];
   suggestions: ChatMessageSuggestion[];
   selectedRoomId: string | null;

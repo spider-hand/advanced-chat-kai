@@ -6,6 +6,7 @@ import "./chat-message-item";
 import "./chat-loader";
 import "./chat-suggestion-list";
 import "./chat-message-typing";
+import "./chat-message-divider";
 import { MessageContext, messageContext } from "../contexts/message-context";
 import { ReplyToMessageDetail } from "../types";
 
@@ -124,24 +125,31 @@ export class ChatMessageList extends LitElement {
               this.messageContext.isLoadingMoreMessages
                 ? html`<chat-loader></chat-loader>`
                 : nothing}
-              ${this.messageContext.messages.map(
-                (item, i) =>
-                  html`<chat-message-item
-                    .message="${item}"
-                    .last="${i === this.messageContext.messages.length - 1}"
-                    .isReplying=${this.replyTo?.messageId === item.id}
-                    .isMarkdownAvailable="${this.messageContext
-                      .isMarkdownAvailable}"
-                    .myMessageActions="${this.messageContext.myMessageActions}"
-                    .theirMessageActions="${this.messageContext
-                      .theirMessageActions}"
-                    .isEmojiReactionAvailable="${this.messageContext
-                      .isEmojiReactionAvailable}"
-                    .isReplyAvailable="${this.messageContext.isReplyAvailable}"
-                    .showTheirAvatar="${this.messageContext.showTheirAvatar}"
-                    .containerTop="${this._rectTop}"
-                    .containerBottom="${this._rectBottom}"
-                  ></chat-message-item>`,
+              ${this.messageContext.messages.map((item, i) =>
+                item.type === "message"
+                  ? html`<chat-message-item
+                      .message="${item}"
+                      .last="${i === this.messageContext.messages.length - 1}"
+                      .isReplying=${this.replyTo?.messageId === item.id}
+                      .isMarkdownAvailable="${this.messageContext
+                        .isMarkdownAvailable}"
+                      .myMessageActions="${this.messageContext
+                        .myMessageActions}"
+                      .theirMessageActions="${this.messageContext
+                        .theirMessageActions}"
+                      .isEmojiReactionAvailable="${this.messageContext
+                        .isEmojiReactionAvailable}"
+                      .isReplyAvailable="${this.messageContext
+                        .isReplyAvailable}"
+                      .showTheirAvatar="${this.messageContext.showTheirAvatar}"
+                      .containerTop="${this._rectTop}"
+                      .containerBottom="${this._rectBottom}"
+                    ></chat-message-item>`
+                  : item.type === "divider"
+                    ? html`<chat-message-divider
+                        .message="${item}"
+                      ></chat-message-divider>`
+                    : nothing,
               )}
               ${this.messageContext.isTyping
                 ? html`<chat-message-typing></chat-message-typing>`

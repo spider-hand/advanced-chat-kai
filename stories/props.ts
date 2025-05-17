@@ -122,7 +122,13 @@ export const defaultProps: AdvancedChatKaiProps = {
   ],
   messages: [
     {
+      id: "0",
+      type: "divider",
+      content: "May 1",
+    },
+    {
       id: "1",
+      type: "message",
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
@@ -153,6 +159,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "2",
+      type: "message",
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
@@ -183,6 +190,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "3",
+      type: "message",
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
@@ -197,6 +205,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "4",
+      type: "message",
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
@@ -211,6 +220,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "5",
+      type: "message",
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
@@ -230,6 +240,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "6",
+      type: "message",
       roomId: "1",
       senderId: "2",
       senderName:
@@ -257,6 +268,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "7",
+      type: "message",
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
@@ -271,6 +283,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "8",
+      type: "message",
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
@@ -284,6 +297,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       isSelected: false,
       replyTo: {
         id: "1",
+        type: "message",
         roomId: "1",
         senderId: "1",
         senderName: "User 1",
@@ -315,6 +329,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "9",
+      type: "message",
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
@@ -329,6 +344,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "10",
+      type: "message",
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
@@ -343,6 +359,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "11",
+      type: "message",
       roomId: "1",
       senderId: "2",
       senderName: "User 2",

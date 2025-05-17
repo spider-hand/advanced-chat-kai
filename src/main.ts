@@ -9,7 +9,7 @@ import {
   AdvancedChatKaiProps,
   ChatAction,
   ChatActionType,
-  ChatMessage,
+  ChatItemType,
   ChatMessageAttachment,
   ChatMessageSuggestion,
   ChatRoom,
@@ -29,7 +29,7 @@ export class Main extends LitElement {
   @property({ type: Object })
   currentUser: ChatUser;
   @property({ type: Array }) rooms: ChatRoom[] = [];
-  @property({ type: Array }) messages: ChatMessage[] = [];
+  @property({ type: Array }) messages: ChatItemType[] = [];
   @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
   @property({ type: Array }) suggestions: ChatMessageSuggestion[] = [];
   @property({ type: String }) selectedRoomId: string | null = null;
