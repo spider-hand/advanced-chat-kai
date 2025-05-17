@@ -12,6 +12,7 @@ export interface MessageContext {
   isEmojiReactionAvailable: boolean;
   isReplyAvailable: boolean;
   isTyping: boolean;
+  showTheirAvatar: boolean;
 }
 
 export const messageContext = createContext<MessageContext>("message");

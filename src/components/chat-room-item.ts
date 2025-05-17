@@ -9,6 +9,7 @@ import { ChatAction, ChatRoom, SelectRoomDetail } from "../types";
 export class ChatRoomItem extends LitElement {
   @property({ type: Boolean }) active = false;
   @property({ type: Object }) room!: ChatRoom;
+  @property({ type: Boolean }) showAvatar = false;
   @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
     [];
   @property({ type: Number }) containerTop = 0;
@@ -182,7 +183,11 @@ export class ChatRoomItem extends LitElement {
       @mouseleave="${this._onMouseLeave}"
       @click="${this._selectRoom}"
     >
-      <chat-avatar></chat-avatar>
+      ${this.showAvatar
+        ? html`<chat-avatar
+            .src="${this.room.avatar}"
+          ></chat-avatar>`
+        : nothing}
       <div class="chat-room-item__text">
         <span class="chat-room-item__title">${this.room.title}</span>
         <span class="chat-room-item__subtitle"> ${this.room.subtitle}</span>

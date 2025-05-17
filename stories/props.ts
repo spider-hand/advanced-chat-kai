@@ -9,6 +9,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "1",
       title: "Room 1",
       subtitle: "Subtitle 1",
+      avatar: `/lit.svg`,
       meta: "May 1",
       badge: {
         type: "success",
@@ -22,6 +23,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       subtitle:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      avatar: "/lit.svg",
       meta: "May 1",
       badge: {
         type: "danger",
@@ -33,6 +35,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "3",
       title: "Room 3",
       subtitle: "Subtitle 3",
+      avatar: "/lit.svg",
       meta: "May 1",
       badge: {
         type: "warning",
@@ -44,6 +47,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "4",
       title: "Room 4",
       subtitle: "Subtitle 4",
+      avatar: "/lit.svg",
       meta: "May 1",
       badge: {
         type: "info",
@@ -55,6 +59,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "5",
       title: "Room 5",
       subtitle: "Subtitle 5",
+      avatar: "/lit.svg",
       meta: "May 1",
       badge: {
         type: "success",
@@ -66,6 +71,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "6",
       title: "Room 6",
       subtitle: "Subtitle 6",
+      avatar: "/lit.svg",
       meta: "May 1",
       badge: {
         type: "danger",
@@ -77,6 +83,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "7",
       title: "Room 7",
       subtitle: "Subtitle 7",
+      avatar: "/lit.svg",
       meta: "May 1",
       badge: {
         type: "warning",
@@ -88,6 +95,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "8",
       title: "Room 8",
       subtitle: "Subtitle 8",
+      avatar: "/lit.svg",
       meta: "May 1",
       badge: {
         type: "info",
@@ -99,6 +107,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "9",
       title: "Room 9",
       subtitle: "Subtitle 9",
+      avatar: "/lit.svg",
       meta: "May 1",
       hasEnded: false,
     },
@@ -106,6 +115,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       id: "10",
       title: "Room 10",
       subtitle: "Subtitle 10",
+      avatar: "/lit.svg",
       meta: "May 1",
       hasEnded: false,
     },
@@ -116,6 +126,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
+      senderAvatar: "/lit.svg",
       content: "Hello, how are you?",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -145,6 +156,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
+      senderAvatar: "/lit.svg",
       content: "I'm fine, thank you!",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -174,6 +186,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
+      senderAvatar: "/lit.svg",
       content: "What about you?",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -187,6 +200,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
+      senderAvatar: "/lit.svg",
       content: "I'm doing great!",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -200,6 +214,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
+      senderAvatar: "/lit.svg",
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       timestamp: "12:34 PM",
@@ -219,6 +234,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       senderId: "2",
       senderName:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      senderAvatar: "/lit.svg",
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       timestamp: "12:34 PM",
@@ -244,6 +260,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
+      senderAvatar: "/lit.svg",
       content: "I'm doing great!",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -257,6 +274,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
+      senderAvatar: "/lit.svg",
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       timestamp: "12:34 PM",
@@ -269,6 +287,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         roomId: "1",
         senderId: "1",
         senderName: "User 1",
+        senderAvatar: "/lit.svg",
         content: "Hello, how are you?",
         timestamp: "12:34 PM",
         reactions: new Map<string, Set<string>>(),
@@ -299,6 +318,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
+      senderAvatar: "/lit.svg",
       content: "***Test markdown***\n\n",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -312,6 +332,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "1",
       senderName: "User 1",
+      senderAvatar: "/lit.svg",
       content: "This message is selected",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -325,6 +346,7 @@ export const defaultProps: AdvancedChatKaiProps = {
       roomId: "1",
       senderId: "2",
       senderName: "User 2",
+      senderAvatar: "/lit.svg",
       content: "This message is selected as well",
       timestamp: "12:34 PM",
       reactions: new Map<string, Set<string>>(),
@@ -444,6 +466,8 @@ export const defaultProps: AdvancedChatKaiProps = {
   isReplyAvailable: true,
   isMarkdownAvailable: true,
   isTyping: true,
+  showRoomAvatar: false,
+  showTheirAvatar: false,
   height: 600,
   i18n: {
     deletedMessage: "このメッセージは削除されました。",

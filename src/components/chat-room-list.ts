@@ -69,6 +69,7 @@ export class ChatRoomList extends LitElement {
                 html`<chat-room-item
                   .active="${this.roomContext.selectedRoomId === item.id}"
                   .room="${item}"
+                  .showAvatar="${this.roomContext.showRoomAvatar}"
                   .actions="${this.roomContext.actions}"
                   .containerTop="${this._rectTop}"
                   .containerBottom="${this._rectBottom}"

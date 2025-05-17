@@ -6,6 +6,7 @@ export interface RoomContext {
   selectedRoomId: string | null;
   isLoadingRoom: boolean;
   isLoadingMoreRooms: boolean;
+  showRoomAvatar: boolean;
   actions: ChatAction<string | number | boolean>[];
 }
 

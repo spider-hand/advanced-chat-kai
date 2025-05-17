@@ -2,9 +2,9 @@ import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 
-
 export class ChatAvatar extends LitElement {
-  @property({ type: Number }) size = 4;
+  @property({ type: Number }) size = 3.2;
+  @property({ type: String }) src = "";
 
   static styles = [
     globalStyles,
@@ -17,17 +17,18 @@ export class ChatAvatar extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--surface-500);
         border-radius: 50%;
       }
     `,
   ];
 
   render() {
-    return html`<div
+    return html`<img
       class="chat-avatar"
       style="width: ${this.size}em; height: ${this.size}em;"
-    ></div>`;
+      src="${this.src}"
+      alt="Avatar"
+    ></img>`;
   }
 }
 

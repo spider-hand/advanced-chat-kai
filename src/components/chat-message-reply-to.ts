@@ -1,9 +1,8 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessage } from "../types";
 import "./chat-avatar";
-
 
 export class ChatMessageReplyTo extends LitElement {
   @property({ type: Object }) replyTo!: ChatMessage;
@@ -45,7 +44,12 @@ export class ChatMessageReplyTo extends LitElement {
 
   render() {
     return html`<div class="chat-message-reply-to">
-      <chat-avatar .size="${2.4}"></chat-avatar>
+      ${this.replyTo.senderAvatar
+        ? html`<chat-avatar
+            .size="${2.4}"
+            .src="${this.replyTo.senderAvatar}"
+          ></chat-avatar>`
+        : nothing}
       <div class="chat-message-reply-to__container">
         <span
           class="chat-message-reply-to__text chat-message-reply-to__text--highlight"

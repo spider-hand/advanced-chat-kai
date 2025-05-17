@@ -32,6 +32,7 @@ export class ChatMessageItem extends LitElement {
   >[] = [];
   @property({ type: Boolean }) isEmojiReactionAvailable = false;
   @property({ type: Boolean }) isReplyAvailable = false;
+  @property({ type: Boolean }) showTheirAvatar = false;
   @property({ type: Number }) containerTop = 0;
   @property({ type: Number }) containerBottom = 0;
 
@@ -204,7 +205,9 @@ export class ChatMessageItem extends LitElement {
           this.isReplying || this.message.isSelected,
       })}"
     >
-      ${!this.mine ? html`<chat-avatar></chat-avatar>` : nothing}
+      ${!this.mine && this.showTheirAvatar
+        ? html`<chat-avatar .src="${this.message.senderAvatar}"></chat-avatar>`
+        : nothing}
       <div class="chat-message-item__container">
         ${!this.mine
           ? html`<div class="chat-message-item__meta">

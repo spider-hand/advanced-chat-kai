@@ -50,6 +50,8 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isMessageAttachmentAvailable = false;
   @property({ type: Boolean }) isMarkdownAvailable = false;
   @property({ type: Boolean }) isTyping = false;
+  @property({ type: Boolean }) showRoomAvatar = false;
+  @property({ type: Boolean }) showTheirAvatar = false;
   @property({ type: Number }) height = 600;
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
@@ -65,6 +67,7 @@ export class Main extends LitElement {
     selectedRoomId: this.selectedRoomId,
     isLoadingRoom: this.isLoadingRoom,
     isLoadingMoreRooms: this.isLoadingMoreRooms,
+    showRoomAvatar: this.showRoomAvatar,
     actions: this.roomActions,
   };
 
@@ -80,6 +83,7 @@ export class Main extends LitElement {
     isEmojiReactionAvailable: this.isEmojiReactionAvailable,
     isReplyAvailable: this.isReplyAvailable,
     isTyping: this.isTyping,
+    showTheirAvatar: this.showTheirAvatar,
   };
 
   @provide({ context: footerContext })
@@ -121,6 +125,7 @@ export class Main extends LitElement {
         selectedRoomId: this.selectedRoomId,
         isLoadingRoom: this.isLoadingRoom,
         isLoadingMoreRooms: this.isLoadingMoreRooms,
+        showRoomAvatar: this.showRoomAvatar,
         actions: this.roomActions,
       };
     }
@@ -147,6 +152,7 @@ export class Main extends LitElement {
         isEmojiReactionAvailable: this.isEmojiReactionAvailable,
         isReplyAvailable: this.isReplyAvailable,
         isTyping: this.isTyping,
+        showTheirAvatar: this.showTheirAvatar,
       };
     }
 

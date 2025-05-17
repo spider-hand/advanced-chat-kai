@@ -13,6 +13,7 @@ export interface ChatRoom {
   id: string;
   title: string;
   subtitle: string;
+  avatar?: string;
   meta: string;
   badge?: {
     type: BadgeType;
@@ -26,6 +27,7 @@ export interface ChatMessage {
   roomId: string;
   senderId: string;
   senderName: string;
+  senderAvatar?: string;
   content: string;
   timestamp: string;
   reactions: Map<string, Set<string>>;
@@ -78,6 +80,8 @@ export interface AdvancedChatKaiProps {
   isReplyAvailable: boolean;
   isMarkdownAvailable: boolean;
   isTyping: boolean;
+  showRoomAvatar: boolean;
+  showTheirAvatar: boolean;
   height: number;
   i18n?: PartialI18nType;
   theme?: ThemeType;

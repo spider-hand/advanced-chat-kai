@@ -138,6 +138,7 @@ export class ChatMessageList extends LitElement {
                     .isEmojiReactionAvailable="${this.messageContext
                       .isEmojiReactionAvailable}"
                     .isReplyAvailable="${this.messageContext.isReplyAvailable}"
+                    .showTheirAvatar="${this.messageContext.showTheirAvatar}"
                     .containerTop="${this._rectTop}"
                     .containerBottom="${this._rectBottom}"
                   ></chat-message-item>`,
