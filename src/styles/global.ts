@@ -39,7 +39,8 @@ export const globalStyles = css`
     --text: var(--surface-900);
     --border: var(--surface-200);
     --placeholder: var(--surface-500);
-    --deleted: rgb(0 0 0 / 10%);
+    --deleted: hsl(0deg 0% 0% / 10%);
+    --overlay: hsl(0deg 0% 0% / 15%);
   }
 
   :host([theme="dark"]) {
@@ -63,6 +64,7 @@ export const globalStyles = css`
     --text: var(--surface-800);
     --border: var(--surface-200);
     --placeholder: var(--surface-500);
-    --deleted: rgb(0 0 0 / 10%);
+    --deleted: hsl(0deg 0% 100% / 10%);
+    --overlay: hsl(1deg 100% 100% / 15%);
   }
 `;

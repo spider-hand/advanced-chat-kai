@@ -7,7 +7,7 @@ export interface ChatAction<T extends string | number | boolean> {
   value: T;
 }
 
-export type BadgeType = "success" | "danger" | "warning" | "info";
+export type VariantType = "success" | "danger" | "warning" | "info";
 
 export interface ChatRoom {
   id: string;
@@ -16,7 +16,7 @@ export interface ChatRoom {
   avatar?: string;
   meta: string;
   badge?: {
-    type: BadgeType;
+    type: VariantType;
     label: string;
   };
   hasEnded: boolean;
@@ -52,6 +52,19 @@ export interface ChatUser {
   id: string;
 }
 
+export interface Dialog {
+  event: string;
+  body: string;
+  leftButton: {
+    text: string;
+    variant?: VariantType;
+  },
+  rightButton: {
+    text: string;
+    variant?: VariantType;
+  };
+}
+
 export type I18nType = typeof defaultI18n;
 export type PartialI18nType = Partial<I18nType>;
 
@@ -82,6 +95,7 @@ export interface AdvancedChatKaiProps {
   isTyping: boolean;
   showRoomAvatar: boolean;
   showTheirAvatar: boolean;
+  dialog: Dialog | null;
   height: number;
   i18n?: PartialI18nType;
   theme?: ThemeType;

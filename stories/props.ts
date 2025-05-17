@@ -468,6 +468,17 @@ export const defaultProps: AdvancedChatKaiProps = {
   isTyping: true,
   showRoomAvatar: false,
   showTheirAvatar: false,
+  dialog: {
+    event: "test",
+    body: "This is a test dialog",
+    leftButton: {
+      text: "Cancel",
+    },
+    rightButton: {
+      text: "OK",
+      variant: "success",
+    },
+  },
   height: 600,
   i18n: {
     deletedMessage: "このメッセージは削除されました。",

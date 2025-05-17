@@ -14,6 +14,7 @@ import {
   ChatMessageSuggestion,
   ChatRoom,
   ChatUser,
+  Dialog,
   PartialI18nType,
   ThemeType,
 } from "./types";
@@ -52,6 +53,7 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isTyping = false;
   @property({ type: Boolean }) showRoomAvatar = false;
   @property({ type: Boolean }) showTheirAvatar = false;
+  @property({ type: Object}) dialog: Dialog = null;
   @property({ type: Number }) height = 600;
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
@@ -213,6 +215,7 @@ export class Main extends LitElement {
       <chat-container
         .isMobile="${this.isMobile}"
         .isSingleRoom="${this.isSingleRoom}"
+        .dialog="${this.dialog}"
         @open-sidebar="${this._openSidebar}"
       ></chat-container>
     </div>`;

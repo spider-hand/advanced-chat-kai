@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
@@ -6,9 +6,9 @@ import { globalStyles } from "../styles/global";
 import "./chat-header";
 import "./chat-message-list";
 import "./chat-footer";
+import "./chat-dialog";
 import { sidebarContext } from "../contexts/sidebar-context";
-import { ReplyToMessageDetail } from "../types";
-
+import { Dialog, ReplyToMessageDetail } from "../types";
 
 export class ChatContainer extends LitElement {
   @consume({ context: sidebarContext, subscribe: true })
@@ -17,6 +17,7 @@ export class ChatContainer extends LitElement {
 
   @property({ type: Boolean }) isMobile = false;
   @property({ type: Boolean }) isSingleRoom = false;
+  @property({ type: Object }) dialog: Dialog = null;
 
   @state() private _replyTo: ReplyToMessageDetail | null = null;
 
@@ -41,6 +42,7 @@ export class ChatContainer extends LitElement {
       }
 
       .chat-container {
+        position: relative;
         display: flex;
         flex-grow: 1;
         flex-direction: column;
@@ -79,6 +81,9 @@ export class ChatContainer extends LitElement {
         .replyTo="${this._replyTo}"
         @cancel-reply="${this._onCancelReply}"
       ></chat-footer>
+      ${this.dialog
+        ? html`<chat-dialog .dialog="${this.dialog}"></chat-dialog>`
+        : nothing}
     </div>`;
   }
 }

@@ -60,3 +60,8 @@ export interface RemoveAttachmentDetail {
 export interface DownloadAttachmentDetail {
   attachment: ChatMessageAttachment;
 }
+
+export interface ClickDialogButtonDetail {
+  event: string;
+  side: "left" | "right";
+}
