@@ -18,6 +18,7 @@ export interface ChatRoom {
     type: BadgeType;
     label: string;
   };
+  hasEnded: boolean;
 }
 
 export interface ChatMessage {

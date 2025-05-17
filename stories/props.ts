@@ -14,6 +14,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "success",
         label: "Success",
       },
+      hasEnded: false,
     },
     {
       id: "2",
@@ -26,6 +27,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "danger",
         label: "Danger",
       },
+      hasEnded: false,
     },
     {
       id: "3",
@@ -36,6 +38,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "warning",
         label: "Warning",
       },
+      hasEnded: false,
     },
     {
       id: "4",
@@ -46,6 +49,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "info",
         label: "Info",
       },
+      hasEnded: false,
     },
     {
       id: "5",
@@ -56,6 +60,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "success",
         label: "",
       },
+      hasEnded: false,
     },
     {
       id: "6",
@@ -66,6 +71,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "danger",
         label: "",
       },
+      hasEnded: false,
     },
     {
       id: "7",
@@ -76,6 +82,7 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "warning",
         label: "",
       },
+      hasEnded: false,
     },
     {
       id: "8",
@@ -86,18 +93,21 @@ export const defaultProps: AdvancedChatKaiProps = {
         type: "info",
         label: "",
       },
+      hasEnded: false,
     },
     {
       id: "9",
       title: "Room 9",
       subtitle: "Subtitle 9",
       meta: "May 1",
+      hasEnded: false,
     },
     {
       id: "10",
       title: "Room 10",
       subtitle: "Subtitle 10",
       meta: "May 1",
+      hasEnded: false,
     },
   ],
   messages: [
@@ -439,6 +449,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     deletedMessage: "このメッセージは削除されました。",
     chatFooterTextareaPlaceholder: "メッセージを入力してください",
     chatSearchPlaceholder: "ルームを検索",
+    closedRoomMessage: "このチャットは終了しました",
   },
   theme: "light",
 };
