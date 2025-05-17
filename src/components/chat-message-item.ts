@@ -22,7 +22,7 @@ export class ChatMessageItem extends LitElement {
 
   @property({ type: Object }) message!: ChatMessage;
   @property({ type: Boolean }) last = false;
-  @property({ type: Boolean }) selected = false;
+  @property({ type: Boolean }) isReplying = false;
   @property({ type: Boolean }) isMarkdownAvailable = false;
   @property({ type: Array }) myMessageActions: ChatAction<
     string | number | boolean
@@ -35,7 +35,7 @@ export class ChatMessageItem extends LitElement {
   @property({ type: Number }) containerTop = 0;
   @property({ type: Number }) containerBottom = 0;
 
-  @query('chat-message-menu') chatMessageMenu!: HTMLDivElement;
+  @query("chat-message-menu") chatMessageMenu!: HTMLDivElement;
 
   @state() private _timer: number | null = null;
   @state() private _hover = false;
@@ -93,7 +93,7 @@ export class ChatMessageItem extends LitElement {
     const rect = this.chatMessageMenu.getBoundingClientRect();
     const spaceBelow = this.containerBottom - rect.bottom;
     const spaceAbove = rect.top - this.containerTop;
-    
+
     this._showPopupAbove = spaceAbove >= spaceBelow;
     this._showEmojiPicker = !this._showEmojiPicker;
   }
@@ -106,7 +106,7 @@ export class ChatMessageItem extends LitElement {
     const rect = this.chatMessageMenu.getBoundingClientRect();
     const spaceBelow = this.containerBottom - rect.bottom;
     const spaceAbove = rect.top - this.containerTop;
-    
+
     this._showPopupAbove = spaceAbove >= spaceBelow;
     this._showActionList = true;
   }
@@ -200,7 +200,8 @@ export class ChatMessageItem extends LitElement {
         "chat-message-item": true,
         "chat-message-item--mine": this.mine,
         "chat-message-item--last": this.last,
-        "chat-message-item--selected": this.selected,
+        "chat-message-item--selected":
+          this.isReplying || this.message.isSelected,
       })}"
     >
       ${!this.mine ? html`<chat-avatar></chat-avatar>` : nothing}

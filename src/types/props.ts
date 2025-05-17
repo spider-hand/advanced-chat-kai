@@ -30,6 +30,7 @@ export interface ChatMessage {
   reactions: Map<string, Set<string>>;
   attachments: ChatMessageAttachment[];
   isDeleted: boolean;
+  isSelected: boolean;
   replyTo: ChatMessage | null;
 }
 
