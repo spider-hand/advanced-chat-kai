@@ -47,8 +47,9 @@ export class ChatActionList extends LitElement {
         align-items: center;
         overflow: hidden;
         background-color: var(--surface-50);
+        border: var(--floating-item-border);
         border-radius: 0.8em;
-        box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
+        box-shadow: var(--floating-item-box-shadow);
       }
 
       .chat-action-list__item {

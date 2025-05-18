@@ -64,6 +64,9 @@ export class ChatEmojiPicker extends LitElement {
     css`
       :host {
         display: flex;
+        overflow: hidden;
+        border-radius: 0.8em;
+        box-shadow: var(--floating-item-box-shadow);
       }
 
       emoji-picker {

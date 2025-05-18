@@ -36,7 +36,6 @@ export class ChatAvatar extends LitElement {
       }
 
       .chat-message-reaction-list {
-        z-index: 1;
         display: flex;
         flex-flow: row wrap;
         gap: 0.4em;
@@ -44,8 +43,9 @@ export class ChatAvatar extends LitElement {
         max-width: 80%;
         padding: 0.4em;
         background-color: var(--surface-100);
+        border: var(--floating-item-border);
         border-radius: 0.4em;
-        box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
+        box-shadow: var(--floating-item-box-shadow);
       }
 
       .chat-message-reaction-list--mine {

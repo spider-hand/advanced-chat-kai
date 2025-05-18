@@ -102,9 +102,9 @@ export class ChatMessageList extends LitElement {
         justify-content: center;
         padding: 0.8em;
         background-color: var(--surface-50);
-        border: none;
+        border: var(--floating-item-border);
         border-radius: 100%;
-        box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
+        box-shadow: var(--floating-item-box-shadow);
       }
 
       .chat-message-list__button:hover {

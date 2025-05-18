@@ -48,8 +48,9 @@ export class ChatMessageMenu extends LitElement {
         align-items: center;
         padding: 0.4em;
         background-color: var(--surface-100);
+        border: var(--floating-item-border);
         border-radius: 0.8em;
-        box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
+        box-shadow: var(--floating-item-box-shadow);
       }
 
       .chat-message-menu--mine {

@@ -38,6 +38,8 @@ export const globalStyles = css`
     --surface-950: hsl(0deg 0% 16%);
     --text: var(--surface-900);
     --border: var(--surface-200);
+    --floating-item-border: none;
+    --floating-item-box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
     --placeholder: var(--surface-500);
     --deleted: hsl(0deg 0% 0% / 10%);
     --overlay: hsl(0deg 0% 0% / 15%);
@@ -63,6 +65,8 @@ export const globalStyles = css`
     --surface-950: hsl(0deg 20% 99%);
     --text: var(--surface-800);
     --border: var(--surface-200);
+    --floating-item-border: solid 0.1em var(--border);
+    --floating-item-box-shadow: none;
     --placeholder: var(--surface-500);
     --deleted: hsl(0deg 0% 100% / 10%);
     --overlay: hsl(1deg 100% 100% / 15%);
