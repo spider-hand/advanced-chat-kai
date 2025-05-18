@@ -25,6 +25,7 @@ export class ChatRoomItem extends LitElement {
         detail: {
           room: this.room,
         },
+        composed: true,
       }),
     );
   }
@@ -184,9 +185,7 @@ export class ChatRoomItem extends LitElement {
       @click="${this._selectRoom}"
     >
       ${this.showAvatar
-        ? html`<chat-avatar
-            .src="${this.room.avatar}"
-          ></chat-avatar>`
+        ? html`<chat-avatar .src="${this.room.avatar}"></chat-avatar>`
         : nothing}
       <div class="chat-room-item__text">
         <span class="chat-room-item__title">${this.room.title}</span>
