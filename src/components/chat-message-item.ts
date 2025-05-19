@@ -12,13 +12,13 @@ import "./chat-message-reaction-list";
 import "./chat-message-attachment-list";
 import "./chat-message-reply-to";
 import "./chat-deleted-message";
-import { currentUserContext } from "../contexts/current-user-context";
-import { ChatAction, ChatMessage, ChatUser } from "../types";
+import { currentUserIdContext } from "../contexts/current-user-id-context";
+import { ChatAction, ChatMessage } from "../types";
 
 export class ChatMessageItem extends LitElement {
-  @consume({ context: currentUserContext, subscribe: true })
-  @property({ type: Object })
-  currentUser!: ChatUser;
+  @consume({ context: currentUserIdContext, subscribe: true })
+  @property({ type: String })
+  currentUserId: string | null = null;
 
   @property({ type: Object }) message!: ChatMessage;
   @property({ type: Boolean }) last = false;
@@ -60,7 +60,7 @@ export class ChatMessageItem extends LitElement {
   }
 
   private get mine() {
-    return this.message.senderId === this.currentUser.id;
+    return this.message.senderId === this.currentUserId;
   }
 
   private get isMessageActionAvailable() {

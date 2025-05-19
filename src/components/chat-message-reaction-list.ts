@@ -3,14 +3,13 @@ import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
-import { ChatUser, ClickReactionDetail } from "../types";
-import { currentUserContext } from "../contexts/current-user-context";
-
+import { ClickReactionDetail } from "../types";
+import { currentUserIdContext } from "../contexts/current-user-id-context";
 
 export class ChatAvatar extends LitElement {
-  @consume({ context: currentUserContext, subscribe: true })
-  @property({ type: Object })
-  currentUser!: ChatUser;
+  @consume({ context: currentUserIdContext, subscribe: true })
+  @property({ type: String })
+  currentUserId: string | null = null;
   @property({ type: Boolean }) mine = false;
   @property({ type: Object }) reactions!: Map<string, Set<string>>;
 
@@ -97,9 +96,8 @@ export class ChatAvatar extends LitElement {
         return html`<button
           class="${classMap({
             "chat-message-reaction-list__button": true,
-            "chat-message-reaction-list__button--reacted": users.has(
-              this.currentUser.id,
-            ),
+            "chat-message-reaction-list__button--reacted":
+              this.currentUserId !== null && users.has(this.currentUserId),
           })}"
           @click="${() => this._clickReaction(emoji, users)}"
         >

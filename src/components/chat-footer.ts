@@ -4,23 +4,22 @@ import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import {
   ChatRoom,
-  ChatUser,
   ReplyToMessageDetail,
   SelecteEmojiDetail,
   SelectFileDetail,
   SendMessageDetail,
 } from "../types";
 import { RoomContext, roomContext } from "../contexts/room-context";
-import { currentUserContext } from "../contexts/current-user-context";
+import { currentUserIdContext } from "../contexts/current-user-id-context";
 import "./chat-footer-reply-to-section";
 import "./chat-footer-attachment-section";
 import { FooterContext, footerContext } from "../contexts/footer-context";
 import { I18nContext, i18nContext } from "../contexts/i18n-context";
 
 export class ChatFooter extends LitElement {
-  @consume({ context: currentUserContext, subscribe: true })
-  @property({ type: Object })
-  currentUser!: ChatUser;
+  @consume({ context: currentUserIdContext, subscribe: true })
+  @property({ type: String })
+  currentUserId: string | null = null;
 
   @consume({ context: roomContext, subscribe: true })
   @property({ type: Object })
@@ -95,7 +94,7 @@ export class ChatFooter extends LitElement {
         new CustomEvent<SendMessageDetail>("send-message", {
           detail: {
             roomId: this.roomContext.selectedRoomId,
-            senderId: this.currentUser.id,
+            senderId: this.currentUserId,
             message,
             replyTo: null,
           },

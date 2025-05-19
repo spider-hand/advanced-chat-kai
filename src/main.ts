@@ -13,21 +13,21 @@ import {
   ChatMessageAttachment,
   ChatMessageSuggestion,
   ChatRoom,
-  ChatUser,
   Dialog,
   PartialI18nType,
   ThemeType,
 } from "./types";
-import { currentUserContext } from "./contexts/current-user-context";
+import { currentUserIdContext } from "./contexts/current-user-id-context";
 import { RoomContext, roomContext } from "./contexts/room-context";
 import { messageContext, MessageContext } from "./contexts/message-context";
 import { FooterContext, footerContext } from "./contexts/footer-context";
 import { I18nContext, i18nContext } from "./contexts/i18n-context";
 import { defaultI18n } from "./consts";
 
+
 export class Main extends LitElement {
-  @property({ type: Object })
-  currentUser: ChatUser;
+  @property({ type: String })
+  currentUserId: string | null = null;
   @property({ type: Array }) rooms: ChatRoom[] = [];
   @property({ type: Array }) messages: ChatItemType[] = [];
   @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
@@ -58,10 +58,8 @@ export class Main extends LitElement {
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
 
-  @provide({ context: currentUserContext })
-  currentUserContext: ChatUser = {
-    id: "",
-  };
+  @provide({ context: currentUserIdContext })
+  currentUserIdContext = this.currentUserId;
 
   @provide({ context: roomContext })
   roomsContext: RoomContext = {
@@ -112,8 +110,8 @@ export class Main extends LitElement {
       AdvancedChatKaiProps[keyof AdvancedChatKaiProps]
     >,
   ): void {
-    if (changedProperties.has("currentUser")) {
-      this.currentUserContext = this.currentUser;
+    if (changedProperties.has("currentUserId")) {
+      this.currentUserIdContext = this.currentUserId;
     }
     if (
       changedProperties.has("rooms") ||

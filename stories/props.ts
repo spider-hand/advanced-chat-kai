@@ -1,9 +1,7 @@
 import type { AdvancedChatKaiProps } from "../src/types";
 
 export const defaultProps: AdvancedChatKaiProps = {
-  currentUser: {
-    id: "1",
-  },
+  currentUserId: "1",
   rooms: [
     {
       id: "1",

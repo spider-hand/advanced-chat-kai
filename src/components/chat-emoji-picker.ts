@@ -2,13 +2,13 @@ import { LitElement, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
-import { ChatUser, SelecteEmojiDetail } from "../types";
-import { currentUserContext } from "../contexts/current-user-context";
+import { SelecteEmojiDetail } from "../types";
+import { currentUserIdContext } from "../contexts/current-user-id-context";
 
 export class ChatEmojiPicker extends LitElement {
-  @consume({ context: currentUserContext, subscribe: true })
-  @property({ type: Object })
-  currentUser!: ChatUser;
+  @consume({ context: currentUserIdContext, subscribe: true })
+  @property({ type: String })
+  currentUserId: string | null = null;
 
   @property({ type: String }) messageId: string | null = null;
   @property({ type: Number }) width = 300;
@@ -34,7 +34,7 @@ export class ChatEmojiPicker extends LitElement {
       new CustomEvent<SelecteEmojiDetail>("select-emoji", {
         detail: {
           messageId: this.messageId,
-          currentUserId: this.currentUser.id,
+          currentUserId: this.currentUserId,
           emoji: event.detail.unicode,
         },
         composed: true,

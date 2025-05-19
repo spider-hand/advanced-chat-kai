@@ -57,10 +57,6 @@ export interface ChatMessageSuggestion {
   value: string;
 }
 
-export interface ChatUser {
-  id: string;
-}
-
 export interface Dialog {
   event: string;
   body: string;
@@ -80,7 +76,7 @@ export type PartialI18nType = Partial<I18nType>;
 export type ThemeType = "light" | "dark";
 
 export interface AdvancedChatKaiProps {
-  currentUser: ChatUser;
+  currentUserId: string | null;
   rooms: ChatRoom[];
   messages: ChatItemType[];
   attachments: ChatMessageAttachment[];

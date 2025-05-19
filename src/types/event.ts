@@ -17,13 +17,13 @@ export interface SearchRoomDetail {
 
 export interface SelecteEmojiDetail {
   messageId: string;
-  currentUserId: string;
+  currentUserId: string | null;
   emoji: string;
 }
 
 export interface SendMessageDetail {
   roomId: string;
-  senderId: string;
+  senderId: string | null;
   message: string;
   replyTo: string | null;
 }
