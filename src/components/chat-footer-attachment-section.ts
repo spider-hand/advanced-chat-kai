@@ -3,7 +3,6 @@ import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessageAttachment, RemoveAttachmentDetail } from "../types";
 
-
 export class ChatFooterAttachmentSection extends LitElement {
   @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
 
@@ -74,45 +73,95 @@ export class ChatFooterAttachmentSection extends LitElement {
       .chat-footer-attachment-section__text--highlight {
         font-weight: 600;
       }
+
+      .chat-footer-attachment-section__image-wrapper {
+        position: relative;
+        height: 6.4em;
+      }
+
+      .chat-footer-attachment-section__image {
+        width: 12em;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.8em;
+      }
+
+      .chat-footer-attachment-section__image-button {
+        position: absolute;
+        top: 0.4em;
+        right: 0.4em;
+        background-color: var(--surface-50);
+        border-radius: 10em;
+      }
+
+      .chat-footer-attachment-section__image-button:hover {
+        background-color: var(--surface-100);
+      }
     `,
   ];
 
   render() {
     return html`<div class="chat-footer-attachment-section">
-      ${this.attachments.map(
-        (attachment) =>
-          html`<div class="chat-footer-attachment-section__item">
-            <button
-              class="chat-footer-attachment-section__button"
-              @click="${() => this._removeAttachment(attachment)}"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="1.6em"
-                viewBox="0 -960 960 960"
-                width="1.6em"
-                fill="var(--surface-700)"
+      ${this.attachments.map((attachment) =>
+        !attachment.imageUrl
+          ? html`<div class="chat-footer-attachment-section__item">
+              <button
+                class="chat-footer-attachment-section__button"
+                @click="${() => this._removeAttachment(attachment)}"
               >
-                <path
-                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-                />
-              </svg>
-            </button>
-            <span
-              class="chat-footer-attachment-section__text chat-footer-attachment-section__text--highlight"
-              >${attachment.name}</span
-            >
-            <span class="chat-footer-attachment-section__text"
-              >${attachment.meta}</span
-            >
-          </div>`,
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1.6em"
+                  viewBox="0 -960 960 960"
+                  width="1.6em"
+                  fill="var(--surface-700)"
+                >
+                  <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                  />
+                </svg>
+              </button>
+              <span
+                class="chat-footer-attachment-section__text chat-footer-attachment-section__text--highlight"
+                >${attachment.name}</span
+              >
+              <span class="chat-footer-attachment-section__text"
+                >${attachment.meta}</span
+              >
+            </div>`
+          : html`<div class="chat-footer-attachment-section__image-wrapper">
+              <img
+                class="chat-footer-attachment-section__image"
+                src="${attachment.imageUrl}"
+                height="100%"
+                width="120"
+              /><button
+                class="chat-footer-attachment-section__button chat-footer-attachment-section__image-button"
+                @click="${() => this._removeAttachment(attachment)}"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1.6em"
+                  viewBox="0 -960 960 960"
+                  width="1.6em"
+                  fill="var(--surface-700)"
+                >
+                  <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                  />
+                </svg>
+              </button>
+            </div>`,
       )}
     </div>`;
   }
 }
 
 if (!customElements.get("chat-footer-attachment-section")) {
-  customElements.define("chat-footer-attachment-section", ChatFooterAttachmentSection);
+  customElements.define(
+    "chat-footer-attachment-section",
+    ChatFooterAttachmentSection,
+  );
 }
 
 declare global {

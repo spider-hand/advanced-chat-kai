@@ -52,6 +52,7 @@ export interface ChatMessageAttachment {
   id: string;
   name: string;
   meta: string;
+  imageUrl?: string;
 }
 
 export interface ChatMessageSuggestion {
