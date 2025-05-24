@@ -5,8 +5,10 @@ export const defaultProps: AdvancedChatKaiProps = {
   rooms: [
     {
       id: "1",
-      title: "Room 1",
-      subtitle: "Subtitle 1",
+      headerTitle: "Room 1",
+      headerSubtitle: "Subtitle 1",
+      sidebarTitle: "Room 1",
+      sidebarSubtitle: "Subtitle 1",
       avatar: `/lit.svg`,
       meta: "May 1",
       badge: {
@@ -17,9 +19,13 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "2",
-      title:
+      headerTitle:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      subtitle:
+      headerSubtitle:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      sidebarTitle:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      sidebarSubtitle:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       avatar: "/lit.svg",
       meta: "May 1",
@@ -31,8 +37,10 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "3",
-      title: "Room 3",
-      subtitle: "Subtitle 3",
+      headerTitle: "Room 3",
+      headerSubtitle: "Subtitle 3",
+      sidebarTitle: "Room 3",
+      sidebarSubtitle: "Subtitle 3",
       avatar: "/lit.svg",
       meta: "May 1",
       badge: {
@@ -43,8 +51,10 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "4",
-      title: "Room 4",
-      subtitle: "Subtitle 4",
+      headerTitle: "Room 4",
+      headerSubtitle: "Subtitle 4",
+      sidebarTitle: "Room 4",
+      sidebarSubtitle: "Subtitle 4",
       avatar: "/lit.svg",
       meta: "May 1",
       badge: {
@@ -55,8 +65,10 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "5",
-      title: "Room 5",
-      subtitle: "Subtitle 5",
+      headerTitle: "Room 5",
+      headerSubtitle: "Subtitle 5",
+      sidebarTitle: "Subtitle 5",
+      sidebarSubtitle: "Subtitle 5",
       avatar: "/lit.svg",
       meta: "May 1",
       badge: {
@@ -67,8 +79,10 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "6",
-      title: "Room 6",
-      subtitle: "Subtitle 6",
+      headerTitle: "Room 6",
+      headerSubtitle: "Subtitle 6",
+      sidebarTitle: "Room 6",
+      sidebarSubtitle: "Subtitle 6",
       avatar: "/lit.svg",
       meta: "May 1",
       badge: {
@@ -79,8 +93,10 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "7",
-      title: "Room 7",
-      subtitle: "Subtitle 7",
+      headerTitle: "Room 7",
+      headerSubtitle: "Subtitle 7",
+      sidebarTitle: "Room 7",
+      sidebarSubtitle: "Subtitle 7",
       avatar: "/lit.svg",
       meta: "May 1",
       badge: {
@@ -91,8 +107,10 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "8",
-      title: "Room 8",
-      subtitle: "Subtitle 8",
+      headerTitle: "Room 8",
+      headerSubtitle: "Subtitle 8",
+      sidebarTitle: "Room 8",
+      sidebarSubtitle: "Subtitle 8",
       avatar: "/lit.svg",
       meta: "May 1",
       badge: {
@@ -103,16 +121,20 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
     {
       id: "9",
-      title: "Room 9",
-      subtitle: "Subtitle 9",
+      headerTitle: "Room 9",
+      headerSubtitle: "Subtitle 9",
+      sidebarTitle: "Room 9",
+      sidebarSubtitle: "Subtitle 9",
       avatar: "/lit.svg",
       meta: "May 1",
       hasEnded: false,
     },
     {
       id: "10",
-      title: "Room 10",
-      subtitle: "Subtitle 10",
+      headerTitle: "Room 10",
+      headerSubtitle: "Subtitle 10",
+      sidebarTitle: "Room 10",
+      sidebarSubtitle: "Subtitle 10",
       avatar: "/lit.svg",
       meta: "May 1",
       hasEnded: false,

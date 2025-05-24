@@ -74,8 +74,10 @@ Example:
 rooms = [
   {
     id: "1",
-    title: "title",
-    subtitle: "subtitle",
+    headerTitle: "title",
+    headerSubtitle: "subtitle",
+    sidebarTitle: "title",
+    siderbarSubtitle: "subtitle",
     avatar: "/avatar.png",
     meta: "May 1",
     badge: {

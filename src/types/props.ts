@@ -11,8 +11,10 @@ export type VariantType = "success" | "danger" | "warning" | "info";
 
 export interface ChatRoom {
   id: string;
-  title: string;
-  subtitle: string;
+  headerTitle: string;
+  headerSubtitle: string;
+  sidebarTitle: string;
+  sidebarSubtitle: string;
   avatar?: string;
   meta: string;
   badge?: {

@@ -14,6 +14,7 @@ export class ChatMessageTyping extends LitElement {
         flex-direction: row;
         gap: 0.8em;
         margin-right: 40%;
+        margin-bottom: 1.6em;
       }
 
       .chat-message-typing__avatar {

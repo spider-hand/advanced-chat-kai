@@ -61,7 +61,7 @@ export class ChatHeader extends LitElement {
         flex-direction: column;
         gap: 0.4em;
         justify-content: center;
-        width: 10em;
+        width: 24em;
       }
 
       .chat-header__title {
@@ -116,10 +116,10 @@ export class ChatHeader extends LitElement {
       </button>
       <div class="chat-header__body">
         <span class="chat-header__title"
-          >${this._selectedRoom?.title ?? ""}</span
+          >${this._selectedRoom?.headerTitle ?? ""}</span
         >
         <span class="chat-header__subtitle"
-          >${this._selectedRoom?.subtitle ?? ""}</span
+          >${this._selectedRoom?.headerSubtitle ?? ""}</span
         >
       </div>
       ${this.roomContext.actions.length > 0

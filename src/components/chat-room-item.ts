@@ -188,8 +188,8 @@ export class ChatRoomItem extends LitElement {
         ? html`<chat-avatar .src="${this.room.avatar}"></chat-avatar>`
         : nothing}
       <div class="chat-room-item__text">
-        <span class="chat-room-item__title">${this.room.title}</span>
-        <span class="chat-room-item__subtitle"> ${this.room.subtitle}</span>
+        <span class="chat-room-item__title">${this.room.sidebarTitle}</span>
+        <span class="chat-room-item__subtitle"> ${this.room.sidebarSubtitle}</span>
       </div>
       ${this._hover && this.actions.length > 0
         ? html`<button
