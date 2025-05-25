@@ -59,6 +59,7 @@ npm install advanced-chat-kai
 | `showTheirAvatar`              | boolean                                           | false    | `true`                 | Whether the other user's avatar on the message should be rendered or not          |
 | `dialog`                       | [Dialog](#dialog) \| null                         | false    | `null`                 | The dialog to be rendered                                                         |
 | `height`                       | number                                            | false    | `600`                  | The height of the chat component                                                  |
+| `width`                        | number                                            | false    | `800`                  | The width of the chat component                                                   |
 | `i18n`                         | [PartialI18nType](#i18ntype)                      | false    | [See below](#i18ntype) | The i18n object to be used for translations                                       |
 | `theme`                        | ThemeType                                         | false    | `"light"`              | The theme to be used for the chat component. It must be either `light` or `dark`. |
 

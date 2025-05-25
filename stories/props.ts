@@ -522,6 +522,7 @@ export const defaultProps: AdvancedChatKaiProps = {
     },
   },
   height: 600,
+  width: 800,
   i18n: {
     deletedMessage: "このメッセージは削除されました。",
     chatFooterTextareaPlaceholder: "メッセージを入力してください",

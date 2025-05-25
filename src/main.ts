@@ -26,9 +26,9 @@ import { defaultI18n } from "./consts";
 
 /**
  * @tag advanded-chat-kai
- * 
+ *
  * @summary The main component of the chat application
- * 
+ *
  * @prop {ChatUser} currentUser - The current user using the chat
  * @prop {ChatRoom[]} rooms - The list of chat rooms showing in the sidebar
  * @prop {ChatItemType[]} messages - The list of messages in the room currently selected
@@ -55,9 +55,10 @@ import { defaultI18n } from "./consts";
  * @prop {boolean} showTheirAvatar - Whether the other user's avatar on the message should be rendered or not
  * @prop {Dialog} dialog - The dialog to be rendered
  * @prop {number} height - The height of the chat component
+ * @prop {number} width - The width of the chat component
  * @prop {PartialI18nType} i18n - The i18n object to be used for translations
  * @prop {ThemeType} theme - The theme to be used for the chat component
- * 
+ *
  * @fires add-room - The event fired when the add button is clicked
  * @fires search-room - The event fired when the search input is changed
  * @fires select-action - The event fired when an action is selected
@@ -74,7 +75,7 @@ import { defaultI18n } from "./consts";
  * @fires select-file - The event fired when a file is selected
  * @fires send-message - The event fired when a message is sent
  * @fires click-dialog-button - The event fired when a dialog button is clicked
- * 
+ *
  * @cssprop --white
  * @cssprop --black
  * @cssprop --success
@@ -129,8 +130,9 @@ export class Main extends LitElement {
   @property({ type: Boolean }) isTyping = false;
   @property({ type: Boolean }) showRoomAvatar = true;
   @property({ type: Boolean }) showTheirAvatar = true;
-  @property({ type: Object}) dialog: Dialog = null;
+  @property({ type: Object }) dialog: Dialog = null;
   @property({ type: Number }) height = 600;
+  @property({ type: Number }) width = 800;
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
 
@@ -264,11 +266,16 @@ export class Main extends LitElement {
   static styles = [
     globalStyles,
     css`
+      :host {
+        display: block;
+        width: fit-content;
+        height: fit-content;
+      }
+
       .main {
         position: relative;
         display: flex;
         flex-direction: row;
-        width: 100%;
         overflow: hidden;
         border: 0.1em solid var(--border);
         border-radius: 1.6em;
@@ -278,7 +285,10 @@ export class Main extends LitElement {
   ];
 
   render() {
-    return html`<div class="main" style="height: ${this.height}px">
+    return html`<div
+      class="main"
+      style="height: ${this.height}px; width: ${this.width}px;"
+    >
       ${!this.isSingleRoom
         ? html`<chat-sidebar
             .show="${this.showSidebar}"

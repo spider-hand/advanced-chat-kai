@@ -105,6 +105,7 @@ export interface AdvancedChatKaiProps {
   showTheirAvatar: boolean;
   dialog: Dialog | null;
   height: number;
+  width: number;
   i18n?: PartialI18nType;
   theme?: ThemeType;
 }
