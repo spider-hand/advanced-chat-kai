@@ -90,12 +90,16 @@ export class ChatMessageItem extends LitElement {
     }, 200);
   }
 
-  private _toggleEmojiPicker() {
+  private _calculatePopupPosition() {
     const rect = this.chatMessageMenu.getBoundingClientRect();
     const spaceBelow = this.containerBottom - rect.bottom;
     const spaceAbove = rect.top - this.containerTop;
 
     this._showPopupAbove = spaceAbove >= spaceBelow;
+  }
+
+  private _toggleEmojiPicker() {
+    this._calculatePopupPosition();
     this._showEmojiPicker = !this._showEmojiPicker;
   }
 
@@ -104,11 +108,7 @@ export class ChatMessageItem extends LitElement {
   }
 
   private _openActionList() {
-    const rect = this.chatMessageMenu.getBoundingClientRect();
-    const spaceBelow = this.containerBottom - rect.bottom;
-    const spaceAbove = rect.top - this.containerTop;
-
-    this._showPopupAbove = spaceAbove >= spaceBelow;
+    this._calculatePopupPosition();
     this._showActionList = true;
   }
 

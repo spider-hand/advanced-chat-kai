@@ -13,15 +13,18 @@ export class ChatRoomList extends LitElement {
 
   @query(".chat-room-list__bottom") chatRoomListBottom!: HTMLDivElement;
 
+  @state() private _observer: IntersectionObserver | null = null;
   @state() private _rectTop = 0;
   @state() private _rectBottom = 0;
 
   protected firstUpdated(): void {
-    const rect = this.getBoundingClientRect();
-    this._rectTop = rect.top;
-    this._rectBottom = rect.bottom;
+    setTimeout(() => {
+      const rect = this.getBoundingClientRect();
+      this._rectTop = rect.top;
+      this._rectBottom = rect.bottom;
+    });
 
-    const observer = new IntersectionObserver((entries) => {
+    this._observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
           if (entry.target.classList.contains("chat-room-list__bottom")) {
@@ -31,7 +34,15 @@ export class ChatRoomList extends LitElement {
       }
     });
 
-    observer.observe(this.chatRoomListBottom);
+    this._observer.observe(this.chatRoomListBottom);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this._observer) {
+      this._observer.disconnect();
+      this._observer = null;
+    }
   }
 
   static styles = [

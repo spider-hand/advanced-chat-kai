@@ -19,6 +19,7 @@ export class ChatMessageList extends LitElement {
   @query(".chat-message-list__top") chatMessageListTop!: HTMLDivElement;
   @query(".chat-message-list__bottom") chatMessageListBottom!: HTMLDivElement;
 
+  @state() private _observer: IntersectionObserver | null = null;
   @state() private _showScrollToBottomButton = false;
   @state() private _rectTop = 0;
   @state() private _rectBottom = 0;
@@ -33,15 +34,15 @@ export class ChatMessageList extends LitElement {
   }
 
   protected firstUpdated(): void {
-    const rect = this.getBoundingClientRect();
-    this._rectTop = rect.top;
-    this._rectBottom = rect.bottom;
-
     setTimeout(() => {
       this._scrollToBottom(null, "instant");
+
+      const rect = this.getBoundingClientRect();
+      this._rectTop = rect.top;
+      this._rectBottom = rect.bottom;
     });
 
-    const observer = new IntersectionObserver((entries) => {
+    this._observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.target.classList.contains("chat-message-list__bottom")) {
           if (entry.isIntersecting) {
@@ -59,8 +60,16 @@ export class ChatMessageList extends LitElement {
       }
     });
 
-    observer.observe(this.chatMessageListTop);
-    observer.observe(this.chatMessageListBottom);
+    this._observer.observe(this.chatMessageListTop);
+    this._observer.observe(this.chatMessageListBottom);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this._observer) {
+      this._observer.disconnect();
+      this._observer = null;
+    }
   }
 
   static styles = [
