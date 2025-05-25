@@ -1,10 +1,16 @@
 import { LitElement, css, html } from "lit";
 import { property, query } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
-import { ChatAction, ChatActionType, SelectActionDetail } from "../types";
+import {
+  ChatAction,
+  SelectRoomActionDetail,
+  SelectMessageActionDetail,
+} from "../types";
 
 export class ChatActionList extends LitElement {
-  @property({ type: String }) actionType: ChatActionType;
+  @property({ type: String }) actionType: "room" | "message" = "room";
+  @property({ type: String }) roomId: string | null = null;
+  @property({ type: String }) messageId: string | null = null;
   @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
     [];
 
@@ -77,19 +83,31 @@ export class ChatActionList extends LitElement {
           <div
             class="chat-action-list__item"
             @click="${() =>
-              this.dispatchEvent(
-                new CustomEvent<SelectActionDetail<string | number | boolean>>(
-                  "select-action",
-                  {
-                    detail: {
-                      actionType: this.actionType,
-                      label: action.label,
-                      value: action.value,
-                    },
-                    composed: true,
-                  },
-                ),
-              )}"
+              this.actionType === "room"
+                ? this.dispatchEvent(
+                    new CustomEvent<
+                      SelectRoomActionDetail<string | number | boolean>
+                    >("select-room-action", {
+                      detail: {
+                        label: action.label,
+                        value: action.value,
+                        roomId: this.roomId,
+                      },
+                      composed: true,
+                    }),
+                  )
+                : this.dispatchEvent(
+                    new CustomEvent<
+                      SelectMessageActionDetail<string | number | boolean>
+                    >("select-message-action", {
+                      detail: {
+                        label: action.label,
+                        value: action.value,
+                        messageId: this.messageId,
+                      },
+                      composed: true,
+                    }),
+                  )}"
           >
             ${action.label}
           </div>
@@ -97,10 +115,6 @@ export class ChatActionList extends LitElement {
       )}
     </div>`;
   }
-}
-
-if (!customElements.get("chat-action-list")) {
-  customElements.define("chat-action-list", ChatActionList);
 }
 
 declare global {

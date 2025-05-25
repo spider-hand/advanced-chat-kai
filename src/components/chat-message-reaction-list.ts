@@ -6,10 +6,11 @@ import { globalStyles } from "../styles/global";
 import { ClickReactionDetail } from "../types";
 import { currentUserIdContext } from "../contexts/current-user-id-context";
 
-export class ChatAvatar extends LitElement {
+export class ChatMessageReactionList extends LitElement {
   @consume({ context: currentUserIdContext, subscribe: true })
   @property({ type: String })
   currentUserId: string | null = null;
+  @property({ type: String }) messageId!: string;
   @property({ type: Boolean }) mine = false;
   @property({ type: Object }) reactions!: Map<string, Set<string>>;
 
@@ -17,6 +18,7 @@ export class ChatAvatar extends LitElement {
     this.dispatchEvent(
       new CustomEvent<ClickReactionDetail>("click-reaction", {
         detail: {
+          messageId: this.messageId,
           reaction: {
             emoji,
             users: users,
@@ -109,12 +111,8 @@ export class ChatAvatar extends LitElement {
   }
 }
 
-if (!customElements.get("chat-message-reaction-list")) {
-  customElements.define("chat-message-reaction-list", ChatAvatar);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
-    "chat-message-reaction-list": ChatAvatar;
+    "chat-message-reaction-list": ChatMessageReactionList;
   }
 }

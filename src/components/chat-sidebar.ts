@@ -5,7 +5,6 @@ import { globalStyles } from "../styles/global";
 import "./chat-room-list";
 import "./chat-search";
 
-
 export class ChatSidebar extends LitElement {
   @property({ type: Boolean }) show = false;
   @property({ type: Boolean }) isMobile = false;
@@ -16,6 +15,12 @@ export class ChatSidebar extends LitElement {
 
   private _addRoom() {
     this.dispatchEvent(new CustomEvent("add-room", { composed: true }));
+  }
+
+  private _onSelectRoom() {
+    if (this.isMobile) {
+      this._closeSidebar();
+    }
   }
 
   static styles = [
@@ -114,13 +119,9 @@ export class ChatSidebar extends LitElement {
         </div>
         <chat-search></chat-search>
       </div>
-      <chat-room-list></chat-room-list>
+      <chat-room-list @select-room="${this._onSelectRoom}"></chat-room-list>
     </div>`;
   }
-}
-
-if (!customElements.get("chat-sidebar")) {
-  customElements.define("chat-sidebar", ChatSidebar);
 }
 
 declare global {

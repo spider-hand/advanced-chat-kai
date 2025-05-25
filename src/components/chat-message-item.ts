@@ -227,7 +227,7 @@ export class ChatMessageItem extends LitElement {
           @mouseenter="${this._onMouseEnter}"
           @mouseleave="${this._onMouseLeave}"
         >
-          ${this.message.replyTo
+          ${this.message.replyTo && !this.message.isDeleted
             ? html`<chat-message-reply-to
                 .replyTo="${this.message.replyTo}"
               ></chat-message-reply-to>`
@@ -236,11 +236,13 @@ export class ChatMessageItem extends LitElement {
             ? html`<chat-deleted-message
                 .fontSize="${1.4}"
               ></chat-deleted-message>`
-            : html`<span
-                >${this.isMarkdownAvailable
-                  ? unsafeHTML(this._content)
-                  : this._content}</span
-              >`}
+            : this.message.content !== ""
+              ? html`<span
+                  >${this.isMarkdownAvailable
+                    ? unsafeHTML(this._content)
+                    : this._content}</span
+                >`
+              : nothing}
           ${!this.message.isDeleted && this.message.attachments.length > 0
             ? html`<chat-message-attachment-list
                 style="margin-top: 0.8em;"
@@ -276,6 +278,7 @@ export class ChatMessageItem extends LitElement {
                   ? "right: calc(100% + 0.4em);"
                   : "left: calc(100% + 0.4em);"} z-index: 1;"
                 .actionType="${"message"}"
+                .messageId="${this.message.id}"
                 .actions="${this.mine
                   ? this.myMessageActions
                   : this.theirMessageActions}"
@@ -296,6 +299,7 @@ export class ChatMessageItem extends LitElement {
                   : "left: 50%;"} z-index: 1;"
                 .width="${300}"
                 .height="${180}"
+                .messageId="${this.message.id}"
                 @select-emoji="${this._closeEmojiPicker}"
                 @close="${this._closeEmojiPicker}"
               ></chat-emoji-picker>`
@@ -303,6 +307,7 @@ export class ChatMessageItem extends LitElement {
         </div>
         ${!this.message.isDeleted && this.message.reactions.size > 0
           ? html`<chat-message-reaction-list
+              .messageId="${this.message.id}"
               .mine="${this.mine}"
               .reactions="${this.message.reactions}"
             ></chat-message-reaction-list>`
@@ -310,10 +315,6 @@ export class ChatMessageItem extends LitElement {
       </div>
     </div>`;
   }
-}
-
-if (!customElements.get("chat-message-item")) {
-  customElements.define("chat-message-item", ChatMessageItem);
 }
 
 declare global {

@@ -1,14 +1,22 @@
 import {
-  ChatActionType,
   ChatMessageAttachment,
+  ChatMessageReply,
   ChatMessageSuggestion,
   ChatRoom,
 } from "./props";
 
-export interface SelectActionDetail<T extends string | number | boolean> {
-  actionType: ChatActionType;
+export interface SelectRoomActionDetail<T extends string | number | boolean> {
   label: string;
   value: T;
+  roomId: string;
+}
+
+export interface SelectMessageActionDetail<
+  T extends string | number | boolean,
+> {
+  label: string;
+  value: T;
+  messageId: string;
 }
 
 export interface SearchRoomDetail {
@@ -24,8 +32,7 @@ export interface SelecteEmojiDetail {
 export interface SendMessageDetail {
   roomId: string;
   senderId: string | null;
-  message: string;
-  replyTo: string | null;
+  content: string;
 }
 
 export interface SelectFileDetail {
@@ -33,9 +40,7 @@ export interface SelectFileDetail {
 }
 
 export interface ReplyToMessageDetail {
-  messageId: string;
-  senderId: string;
-  senderName: string;
+  replyTo: ChatMessageReply;
 }
 
 export interface SelectRoomDetail {
@@ -47,6 +52,7 @@ export interface SelectSuggestionDetail {
 }
 
 export interface ClickReactionDetail {
+  messageId: string;
   reaction: {
     emoji: string;
     users: Set<string>;

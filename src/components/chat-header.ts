@@ -145,6 +145,7 @@ export class ChatHeader extends LitElement {
         ? html`<chat-action-list
             style="position: absolute; top: 4em; right: 1.2em;"
             .actionType="${"room"}"
+            .roomId="${this.roomContext.selectedRoomId}"
             .actions="${this.roomContext.actions}"
             @select-action="${this._closeActionList}"
             @close="${this._closeActionList}"
@@ -152,10 +153,6 @@ export class ChatHeader extends LitElement {
         : nothing}
     </header>`;
   }
-}
-
-if (!customElements.get("chat-header")) {
-  customElements.define("chat-header", ChatHeader);
 }
 
 declare global {

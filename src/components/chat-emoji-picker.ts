@@ -102,10 +102,6 @@ export class ChatEmojiPicker extends LitElement {
   }
 }
 
-if (!customElements.get("chat-emoji-picker")) {
-  customElements.define("chat-emoji-picker", ChatEmojiPicker);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-emoji-picker": ChatEmojiPicker;

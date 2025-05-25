@@ -87,10 +87,6 @@ export class ChatMessageTyping extends LitElement {
   }
 }
 
-if (!customElements.get("chat-message-typing")) {
-  customElements.define("chat-message-typing", ChatMessageTyping);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-message-typing": ChatMessageTyping;

@@ -32,10 +32,6 @@ export class ChatAvatar extends LitElement {
   }
 }
 
-if (!customElements.get("chat-avatar")) {
-  customElements.define("chat-avatar", ChatAvatar);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-avatar": ChatAvatar;

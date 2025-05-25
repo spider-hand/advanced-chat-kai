@@ -1,28 +1,28 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { provide } from "@lit/context";
-import { globalStyles } from "./styles/global";
-import "./components/chat-container";
-import "./components/chat-sidebar";
-import { sidebarContext } from "./contexts/sidebar-context";
+import { globalStyles } from "../styles/global";
+import "./chat-container";
+import "./chat-sidebar";
+import { sidebarContext } from "../contexts/sidebar-context";
 import {
   AdvancedChatKaiProps,
   ChatAction,
-  ChatActionType,
   ChatItemType,
   ChatMessageAttachment,
+  ChatMessageReply,
   ChatMessageSuggestion,
   ChatRoom,
   Dialog,
   PartialI18nType,
   ThemeType,
-} from "./types";
-import { currentUserIdContext } from "./contexts/current-user-id-context";
-import { RoomContext, roomContext } from "./contexts/room-context";
-import { messageContext, MessageContext } from "./contexts/message-context";
-import { FooterContext, footerContext } from "./contexts/footer-context";
-import { I18nContext, i18nContext } from "./contexts/i18n-context";
-import { defaultI18n } from "./consts";
+} from "../types";
+import { currentUserIdContext } from "../contexts/current-user-id-context";
+import { RoomContext, roomContext } from "../contexts/room-context";
+import { messageContext, MessageContext } from "../contexts/message-context";
+import { FooterContext, footerContext } from "../contexts/footer-context";
+import { I18nContext, i18nContext } from "../contexts/i18n-context";
+import { defaultI18n } from "../consts";
 
 /**
  * @tag advanded-chat-kai
@@ -34,6 +34,7 @@ import { defaultI18n } from "./consts";
  * @prop {ChatItemType[]} messages - The list of messages in the room currently selected
  * @prop {ChatMessageAttachment[]} attachments - The list of attachments in the message
  * @prop {ChatMessageSuggestion[]} suggestions - The list of message suggestions
+ * @prop {ChatMessageReply | null} replyTo - The message being replied to, if any
  * @prop {string | null} selectedRoomId - The id of the room currently selected
  * @prop {boolean} isLoadingRoom - Whether the room is loading or not
  * @prop {boolean} isLoadingMessage - Whether the message is loading or not
@@ -54,17 +55,18 @@ import { defaultI18n } from "./consts";
  * @prop {boolean} showRoomAvatar - Whether the room avatar on the list of rooms should be rendered or not
  * @prop {boolean} showTheirAvatar - Whether the other user's avatar on the message should be rendered or not
  * @prop {Dialog} dialog - The dialog to be rendered
- * @prop {number} height - The height of the chat component
- * @prop {number} width - The width of the chat component
+ * @prop {string} height - The height of the chat component
+ * @prop {string} width - The width of the chat component
  * @prop {PartialI18nType} i18n - The i18n object to be used for translations
  * @prop {ThemeType} theme - The theme to be used for the chat component
  *
  * @fires add-room - The event fired when the add button is clicked
  * @fires search-room - The event fired when the search input is changed
- * @fires select-action - The event fired when an action is selected
  * @fires load-more-rooms - The event fired when reaching the bottom of the room list
  * @fires select-room - The event fired when a room on the list is clicked
+ * @fires select-room-action - The event fired when an action on the room is clicked
  * @fires load-more-messages - The event fired when reaching the top of the message list
+ * @fires select-message-action - The event fired when an action on the message is clicked
  * @fires select-suggestion - The event fired when a suggestion is selected
  * @fires select-emoji - The event fired when an emoji is selected
  * @fires reply-to-message - The event fired when the reply button on the message is clicked
@@ -76,6 +78,7 @@ import { defaultI18n } from "./consts";
  * @fires send-message - The event fired when a message is sent
  * @fires click-dialog-button - The event fired when a dialog button is clicked
  *
+ * @cssprop --base-font-size - The base font size of the chat component
  * @cssprop --white
  * @cssprop --black
  * @cssprop --success
@@ -100,26 +103,32 @@ import { defaultI18n } from "./consts";
  * @cssprop --placeholder - The default placeholder color
  * @cssprop --deleted - The color used for deleted messages
  * @cssprop --overlay - The color used for overlays
- * @cssprop --base-font-size - The base font size of the chat component
+ * @cssprop --chat-notification-badge-background - The background color of the chat notification badge
+ * @cssprop --chat-notification-badge-text - The text color of the chat notification badge
  */
-export class Main extends LitElement {
+export class AdvancedChatKai extends LitElement {
   @property({ type: String })
   currentUserId: string | null = null;
   @property({ type: Array }) rooms: ChatRoom[] = [];
   @property({ type: Array }) messages: ChatItemType[] = [];
   @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
   @property({ type: Array }) suggestions: ChatMessageSuggestion[] = [];
+  @property({ type: Object}) replyTo: ChatMessageReply | null = null;
   @property({ type: String }) selectedRoomId: string | null = null;
   @property({ type: Boolean }) isLoadingRoom = false;
   @property({ type: Boolean }) isLoadingMessage = false;
   @property({ type: Boolean }) isLoadingMoreRooms = false;
   @property({ type: Boolean }) isLoadingMoreMessages = false;
   @property({ type: String }) inputMessage = "";
-  @property({ type: Array }) roomActions: ChatAction<ChatActionType>[] = [];
-  @property({ type: Array }) myMessageActions: ChatAction<ChatActionType>[] =
-    [];
-  @property({ type: Array }) theirMessageActions: ChatAction<ChatActionType>[] =
-    [];
+  @property({ type: Array }) roomActions: ChatAction<
+    string | number | boolean
+  >[] = [];
+  @property({ type: Array }) myMessageActions: ChatAction<
+    string | number | boolean
+  >[] = [];
+  @property({ type: Array }) theirMessageActions: ChatAction<
+    string | number | boolean
+  >[] = [];
   @property({ type: Boolean }) isMobile = false;
   @property({ type: Boolean }) isSingleRoom = false;
   @property({ type: Boolean }) isEmojiPickerAvailable = true;
@@ -131,8 +140,8 @@ export class Main extends LitElement {
   @property({ type: Boolean }) showRoomAvatar = true;
   @property({ type: Boolean }) showTheirAvatar = true;
   @property({ type: Object }) dialog: Dialog = null;
-  @property({ type: Number }) height = 600;
-  @property({ type: Number }) width = 800;
+  @property({ type: String }) height = "60em";
+  @property({ type: String }) width = "80em";
   @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
 
@@ -153,6 +162,7 @@ export class Main extends LitElement {
   messagesContext: MessageContext = {
     messages: this.messages,
     suggestions: this.suggestions,
+    replyTo: this.replyTo,
     isLoadingMessage: this.isLoadingMessage,
     isLoadingMoreMessages: this.isLoadingMoreMessages,
     isMarkdownAvailable: this.isMarkdownAvailable,
@@ -210,6 +220,7 @@ export class Main extends LitElement {
     if (
       changedProperties.has("messages") ||
       changedProperties.has("suggestions") ||
+      changedProperties.has("replyTo") ||
       changedProperties.has("isLoadingMessage") ||
       changedProperties.has("isLoadingMoreMessages") ||
       changedProperties.has("isMarkdownAvailable") ||
@@ -222,6 +233,7 @@ export class Main extends LitElement {
       this.messagesContext = {
         messages: this.messages,
         suggestions: this.suggestions,
+        replyTo: this.replyTo,
         isLoadingMessage: this.isLoadingMessage,
         isLoadingMoreMessages: this.isLoadingMoreMessages,
         isMarkdownAvailable: this.isMarkdownAvailable,
@@ -253,6 +265,10 @@ export class Main extends LitElement {
         i18n: { ...defaultI18n, ...this.i18n },
       };
     }
+  }
+
+  private get _isFullscreen() {
+    return this.height === "100vh" && this.width === "100vw";
   }
 
   private _closeSidebar() {
@@ -287,7 +303,9 @@ export class Main extends LitElement {
   render() {
     return html`<div
       class="main"
-      style="height: ${this.height}px; width: ${this.width}px;"
+      style="height: ${this.height}; width: ${this.width}; ${this._isFullscreen
+        ? "border-radius: 0;"
+        : ""}"
     >
       ${!this.isSingleRoom
         ? html`<chat-sidebar
@@ -306,12 +324,8 @@ export class Main extends LitElement {
   }
 }
 
-if (!customElements.get("advanced-chat-kai")) {
-  customElements.define("advanced-chat-kai", Main);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
-    "advanced-chat-kai": Main;
+    "advanced-chat-kai": AdvancedChatKai;
   }
 }

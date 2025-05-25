@@ -135,10 +135,6 @@ export class ChatDialog extends LitElement {
   }
 }
 
-if (!customElements.get("chat-dialog")) {
-  customElements.define("chat-dialog", ChatDialog);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-dialog": ChatDialog;

@@ -1,9 +1,15 @@
 import { createContext } from "@lit/context";
-import { ChatAction, ChatItemType, ChatMessageSuggestion } from "../types";
+import {
+  ChatAction,
+  ChatItemType,
+  ChatMessageReply,
+  ChatMessageSuggestion,
+} from "../types";
 
 export interface MessageContext {
   messages: ChatItemType[];
   suggestions: ChatMessageSuggestion[];
+  replyTo: ChatMessageReply | null;
   isLoadingMessage: boolean;
   isLoadingMoreMessages: boolean;
   isMarkdownAvailable: boolean;

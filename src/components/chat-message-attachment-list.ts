@@ -157,13 +157,6 @@ export class ChatMessageAttachmentList extends LitElement {
   }
 }
 
-if (!customElements.get("chat-message-attachment-list")) {
-  customElements.define(
-    "chat-message-attachment-list",
-    ChatMessageAttachmentList,
-  );
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-message-attachment-list": ChatMessageAttachmentList;

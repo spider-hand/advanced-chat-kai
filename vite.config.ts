@@ -7,7 +7,7 @@ export default defineConfig({
     target: "es2022",
     minify: "esbuild",
     lib: {
-      entry: "src/main.ts",
+      entry: "src/define/index.ts",
       name: "advanced-chat-kai",
       formats: ["es"],
       fileName: (format) => `advanced-chat-kai.${format}.js`,

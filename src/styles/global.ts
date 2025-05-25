@@ -43,6 +43,8 @@ export const globalStyles = css`
     --placeholder: var(--surface-500);
     --deleted: hsl(0deg 0% 0% / 10%);
     --overlay: hsl(0deg 0% 0% / 15%);
+    --chat-notification-badge-background: var(--info);
+    --chat-notification-badge-text: var(--white);
   }
 
   :host([theme="dark"]) {
@@ -51,7 +53,7 @@ export const globalStyles = css`
     --success: hsl(135deg 69% 69%);
     --danger: hsl(354deg 70% 53%);
     --warning: hsl(46deg 100% 79%);
-    --info: hsl(213deg 100% 78%);
+    --info: hsl(211deg 100% 53%);
     --surface-50: hsl(0deg 0% 16%);
     --surface-100: hsl(0deg 0% 18%);
     --surface-200: hsl(0deg 0% 23%);
@@ -70,5 +72,7 @@ export const globalStyles = css`
     --placeholder: var(--surface-500);
     --deleted: hsl(0deg 0% 100% / 10%);
     --overlay: hsl(1deg 100% 100% / 15%);
+    --chat-notification-badge-background: var(--info);
+    --chat-notification-badge-text: var(--white);
   }
 `;

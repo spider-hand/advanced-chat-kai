@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import "../src/main.ts";
+import "../src/define/index.ts";
+import "../src/components/advanced-chat-kai.ts";
 import { defaultProps } from "./props.ts";
 
 const meta: Meta = {

@@ -1,10 +1,10 @@
 import { LitElement, PropertyValues, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import {
   ChatRoom,
-  ReplyToMessageDetail,
   SelecteEmojiDetail,
   SelectFileDetail,
   SendMessageDetail,
@@ -15,6 +15,7 @@ import "./chat-footer-reply-to-section";
 import "./chat-footer-attachment-section";
 import { FooterContext, footerContext } from "../contexts/footer-context";
 import { I18nContext, i18nContext } from "../contexts/i18n-context";
+import { MessageContext, messageContext } from "../contexts/message-context";
 
 export class ChatFooter extends LitElement {
   @consume({ context: currentUserIdContext, subscribe: true })
@@ -25,6 +26,10 @@ export class ChatFooter extends LitElement {
   @property({ type: Object })
   roomContext!: RoomContext;
 
+  @consume({ context: messageContext, subscribe: true })
+  @property({ type: Object })
+  messageContext!: MessageContext;
+
   @consume({ context: footerContext, subscribe: true })
   @property({ type: Object })
   footerContext!: FooterContext;
@@ -33,12 +38,21 @@ export class ChatFooter extends LitElement {
   @property({ type: Object })
   i18nContext!: I18nContext;
 
-  @property({ type: Object }) replyTo: ReplyToMessageDetail | null = null;
-
+  @state() private _textareaValue = "";
   @state() private _showEmojiPicker = false;
 
   @query("textarea") private _textarea!: HTMLTextAreaElement;
   @query("input[type='file']") private _fileInput!: HTMLInputElement;
+
+  protected updated(_changedProperties: PropertyValues): void {
+    if (
+      _changedProperties.has("footerContext") &&
+      _changedProperties.get("footerContext")?.inputMessage !==
+        this.footerContext.inputMessage
+    ) {
+      this._textareaValue = this.footerContext.inputMessage;
+    }
+  }
 
   private get _selectedRoom(): ChatRoom | undefined {
     return this.roomContext.rooms.find(
@@ -46,13 +60,16 @@ export class ChatFooter extends LitElement {
     );
   }
 
-  protected updated(_changedProperties: PropertyValues): void {
-    if (
-      _changedProperties.has("footerContext") &&
-      this.footerContext.inputMessage !== ""
-    ) {
-      this._textarea.value = this.footerContext.inputMessage;
-    }
+  private get _isSendButtonEnabled(): boolean {
+    return (
+      this._textareaValue.trim() !== "" ||
+      this.footerContext.attachments.length > 0
+    );
+  }
+
+  private _handleTextareaInput(event: Event) {
+    const target = event.target as HTMLTextAreaElement;
+    this._textareaValue = target.value;
   }
 
   private _handleFileInput() {
@@ -88,21 +105,18 @@ export class ChatFooter extends LitElement {
   }
 
   private _sendMessage() {
-    const message = this._textarea.value;
-    if (message) {
-      this.dispatchEvent(
-        new CustomEvent<SendMessageDetail>("send-message", {
-          detail: {
-            roomId: this.roomContext.selectedRoomId,
-            senderId: this.currentUserId,
-            message,
-            replyTo: null,
-          },
-          composed: true,
-        }),
-      );
-      this._textarea.value = "";
-    }
+    if (!this._isSendButtonEnabled) return;
+    this.dispatchEvent(
+      new CustomEvent<SendMessageDetail>("send-message", {
+        detail: {
+          roomId: this.roomContext.selectedRoomId,
+          senderId: this.currentUserId,
+          content: this._textareaValue.trim(),
+        },
+        composed: true,
+      }),
+    );
+    this._textareaValue = "";
   }
 
   static styles = [
@@ -181,6 +195,11 @@ export class ChatFooter extends LitElement {
       .chat-footer__button--send:hover {
         background-color: var(--surface-800);
       }
+
+      .chat-footer__button--disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
     `,
   ];
 
@@ -195,15 +214,17 @@ export class ChatFooter extends LitElement {
                   .attachments=${this.footerContext.attachments}
                 ></chat-footer-attachment-section>`
               : nothing}
-            ${this.replyTo
+            ${this.messageContext.replyTo
               ? html`<chat-footer-reply-to-section
-                  .replyTo="${this.replyTo}"
+                  .replyTo="${this.messageContext.replyTo}"
                 ></chat-footer-reply-to-section>`
               : nothing}
             <textarea
               class="chat-footer__textarea"
               .placeholder="${this.i18nContext.i18n
                 .chatFooterTextareaPlaceholder}"
+              .value="${this._textareaValue}"
+              @input="${this._handleTextareaInput}"
             ></textarea>
             <div class="chat-footer__menu">
               ${this.footerContext.isMessageAttachmentAvailable
@@ -248,7 +269,12 @@ export class ChatFooter extends LitElement {
                   </button>`
                 : nothing}
               <button
-                class="chat-footer__button chat-footer__button--send"
+                class="${classMap({
+                  "chat-footer__button": true,
+                  "chat-footer__button--send": true,
+                  "chat-footer__button--disabled": !this._isSendButtonEnabled,
+                })}"
+                .disabled="${!this._isSendButtonEnabled}"
                 @click="${this._sendMessage}"
               >
                 <svg
@@ -276,10 +302,6 @@ export class ChatFooter extends LitElement {
             </div>`}
     </footer>`;
   }
-}
-
-if (!customElements.get("chat-footer")) {
-  customElements.define("chat-footer", ChatFooter);
 }
 
 declare global {

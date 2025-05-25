@@ -157,13 +157,6 @@ export class ChatFooterAttachmentSection extends LitElement {
   }
 }
 
-if (!customElements.get("chat-footer-attachment-section")) {
-  customElements.define(
-    "chat-footer-attachment-section",
-    ChatFooterAttachmentSection,
-  );
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-footer-attachment-section": ChatFooterAttachmentSection;

@@ -65,10 +65,6 @@ export class ChatSuggestionList extends LitElement {
   }
 }
 
-if (!customElements.get("chat-suggestion-list")) {
-  customElements.define("chat-suggestion-list", ChatSuggestionList);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-suggestion-list": ChatSuggestionList;

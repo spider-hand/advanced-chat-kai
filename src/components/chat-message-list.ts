@@ -1,4 +1,4 @@
-import { LitElement, css, html, nothing } from "lit";
+import { LitElement, PropertyValues, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles/global";
@@ -7,22 +7,29 @@ import "./chat-loader";
 import "./chat-suggestion-list";
 import "./chat-message-typing";
 import "./chat-message-divider";
+import "./chat-notification-badge";
 import { MessageContext, messageContext } from "../contexts/message-context";
-import { ReplyToMessageDetail } from "../types";
+import { ChatItemType } from "../types";
 
 export class ChatMessageList extends LitElement {
   @consume({ context: messageContext, subscribe: true })
   @property({ type: Object })
   messageContext!: MessageContext;
-  @property({ type: Object }) replyTo: ReplyToMessageDetail | null = null;
 
   @query(".chat-message-list__top") chatMessageListTop!: HTMLDivElement;
   @query(".chat-message-list__bottom") chatMessageListBottom!: HTMLDivElement;
 
-  @state() private _observer: IntersectionObserver | null = null;
   @state() private _showScrollToBottomButton = false;
+  @state() private _showNotificationBadge = false;
   @state() private _rectTop = 0;
   @state() private _rectBottom = 0;
+
+  private get _isWithinClientHeight(): boolean {
+    return (
+      this.scrollHeight - this.scrollTop - this.clientHeight <=
+      this.clientHeight
+    );
+  }
 
   private _scrollToBottom(
     _?: Event,
@@ -35,18 +42,19 @@ export class ChatMessageList extends LitElement {
 
   protected firstUpdated(): void {
     setTimeout(() => {
-      this._scrollToBottom(null, "instant");
-
       const rect = this.getBoundingClientRect();
       this._rectTop = rect.top;
       this._rectBottom = rect.bottom;
     });
 
-    this._observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
+      if (this.messageContext.isLoadingMessage) return;
+
       for (const entry of entries) {
         if (entry.target.classList.contains("chat-message-list__bottom")) {
           if (entry.isIntersecting) {
             this._showScrollToBottomButton = false;
+            this._showNotificationBadge = false;
           } else {
             this._showScrollToBottomButton = true;
           }
@@ -54,21 +62,61 @@ export class ChatMessageList extends LitElement {
 
         if (entry.isIntersecting) {
           if (entry.target.classList.contains("chat-message-list__top")) {
-            this.dispatchEvent(new CustomEvent("load-more-messages"));
+            this.dispatchEvent(
+              new CustomEvent("load-more-messages", { composed: true }),
+            );
           }
         }
       }
     });
 
-    this._observer.observe(this.chatMessageListTop);
-    this._observer.observe(this.chatMessageListBottom);
+    observer.observe(this.chatMessageListTop);
+    observer.observe(this.chatMessageListBottom);
   }
 
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
-    if (this._observer) {
-      this._observer.disconnect();
-      this._observer = null;
+  protected updated(_changedProperties: PropertyValues): void {
+    if (_changedProperties.has("messageContext")) {
+      const { id: previousFirstMessageId, roomId: previousFirstMessageRoomId } =
+        (_changedProperties.get("messageContext")
+          ?.messages[0] as ChatItemType) ?? {};
+
+      const previousMessagesLength =
+        _changedProperties.get("messageContext")?.messages.length ?? 0;
+      const previousScrollHeight = this.scrollHeight;
+      const previousScrollTop = this.scrollTop;
+
+      const { id: currentFirstMessageId, roomId: currentFirstMessageRoomId } =
+        (this.messageContext.messages[0] as ChatItemType) ?? {};
+      const currentMessagesLength = this.messageContext.messages.length;
+
+      // Scroll to the bottom if the selected room has changed
+      if (previousFirstMessageRoomId !== currentFirstMessageRoomId) {
+        setTimeout(() => {
+          this._scrollToBottom(null, "instant");
+        });
+        return;
+      }
+
+      // Check if a new message has been loaded
+      if (currentMessagesLength > previousMessagesLength) {
+        // Check if an older message has been loaded and inserted at the top
+        if (previousFirstMessageId !== currentFirstMessageId) {
+          // Keep the view at the same position after loading older messages
+          setTimeout(() => {
+            const newScrollHeight = this.scrollHeight;
+            this.scrollTop =
+              previousScrollTop + (newScrollHeight - previousScrollHeight);
+          });
+        } else if (this._isWithinClientHeight) {
+          // Scroll to the bottom if the scroll position is within the client height
+          setTimeout(() => {
+            this._scrollToBottom(null, "smooth");
+          });
+        } else {
+          // Show notification badge if there is a new message and the user is not at the bottom
+          this._showNotificationBadge = true;
+        }
+      }
     }
   }
 
@@ -139,7 +187,7 @@ export class ChatMessageList extends LitElement {
                   ? html`<chat-message-item
                       .message="${item}"
                       .last="${i === this.messageContext.messages.length - 1}"
-                      .isReplying=${this.replyTo?.messageId === item.id}
+                      .isReplying=${this.messageContext.replyTo?.id === item.id}
                       .isMarkdownAvailable="${this.messageContext
                         .isMarkdownAvailable}"
                       .myMessageActions="${this.messageContext
@@ -188,13 +236,14 @@ export class ChatMessageList extends LitElement {
                 </svg>
               </button>`}
         <div class="chat-message-list__bottom"></div>
+        ${this._showNotificationBadge
+          ? html`<chat-notification-badge
+              @click-notification-badge="${this._scrollToBottom}"
+            ></chat-notification-badge>`
+          : nothing}
       </div>
     `;
   }
-}
-
-if (!customElements.get("chat-message-list")) {
-  customElements.define("chat-message-list", ChatMessageList);
 }
 
 declare global {

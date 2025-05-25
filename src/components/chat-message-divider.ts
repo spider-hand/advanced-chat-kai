@@ -49,10 +49,6 @@ export class ChatMessageDivider extends LitElement {
   }
 }
 
-if (!customElements.get("chat-message-divider")) {
-  customElements.define("chat-message-divider", ChatMessageDivider);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-message-divider": ChatMessageDivider;

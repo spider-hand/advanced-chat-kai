@@ -1,5 +1,5 @@
 import { LitElement, css, html, nothing } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
@@ -8,7 +8,7 @@ import "./chat-message-list";
 import "./chat-footer";
 import "./chat-dialog";
 import { sidebarContext } from "../contexts/sidebar-context";
-import { Dialog, ReplyToMessageDetail } from "../types";
+import { Dialog } from "../types";
 
 export class ChatContainer extends LitElement {
   @consume({ context: sidebarContext, subscribe: true })
@@ -19,18 +19,8 @@ export class ChatContainer extends LitElement {
   @property({ type: Boolean }) isSingleRoom = false;
   @property({ type: Object }) dialog: Dialog = null;
 
-  @state() private _replyTo: ReplyToMessageDetail | null = null;
-
   private get _show() {
     return this.isSingleRoom || !(this.isMobile && this.showSidebar);
-  }
-
-  private _onReplyToMessage(e: CustomEvent<ReplyToMessageDetail>) {
-    this._replyTo = e.detail;
-  }
-
-  private _onCancelReply() {
-    this._replyTo = null;
   }
 
   static styles = [
@@ -72,24 +62,13 @@ export class ChatContainer extends LitElement {
         "chat-container--hidden": !this._show,
       })}"
     >
-      <chat-header></chat-header
-      ><chat-message-list
-        .replyTo="${this._replyTo}"
-        @reply-to-message="${this._onReplyToMessage}"
-      ></chat-message-list
-      ><chat-footer
-        .replyTo="${this._replyTo}"
-        @cancel-reply="${this._onCancelReply}"
-      ></chat-footer>
+      <chat-header></chat-header><chat-message-list></chat-message-list
+      ><chat-footer></chat-footer>
       ${this.dialog
         ? html`<chat-dialog .dialog="${this.dialog}"></chat-dialog>`
         : nothing}
     </div>`;
   }
-}
-
-if (!customElements.get("chat-container")) {
-  customElements.define("chat-container", ChatContainer);
 }
 
 declare global {

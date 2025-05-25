@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import "../src/main.ts";
+import "../src/components/advanced-chat-kai";
 
 describe("main", () => {
   beforeEach(() => {

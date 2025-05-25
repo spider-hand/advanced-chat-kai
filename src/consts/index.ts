@@ -3,4 +3,5 @@ export const defaultI18n = {
   chatFooterTextareaPlaceholder: "Write a message..",
   chatSearchPlaceholder: "Search room",
   closedRoomMessage: "This chat has been ended.",
+  newMeessageNotification: "New messages",
 };

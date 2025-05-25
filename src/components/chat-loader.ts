@@ -40,10 +40,6 @@ export class ChatLoader extends LitElement {
   }
 }
 
-if (!customElements.get("chat-loader")) {
-  customElements.define("chat-loader", ChatLoader);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-loader": ChatLoader;

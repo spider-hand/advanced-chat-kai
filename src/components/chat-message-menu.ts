@@ -2,8 +2,7 @@ import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../styles/global";
-import { ChatMessage, ReplyToMessageDetail } from "../types";
-
+import { ChatMessage, ChatMessageReply, ReplyToMessageDetail } from "../types";
 
 export class ChatMessageMenu extends LitElement {
   @property({ type: Boolean }) mine = false;
@@ -17,12 +16,14 @@ export class ChatMessageMenu extends LitElement {
   }
 
   private _replyToMesssage() {
+    const message = { ...this.message };
+    delete message.replyTo;
+    const replyTo: ChatMessageReply = message;
+
     this.dispatchEvent(
       new CustomEvent<ReplyToMessageDetail>("reply-to-message", {
         detail: {
-          messageId: this.message.id,
-          senderId: this.message.senderId,
-          senderName: this.message.senderName,
+          replyTo: replyTo,
         },
         composed: true,
       }),
@@ -141,10 +142,6 @@ export class ChatMessageMenu extends LitElement {
         : nothing}
     </div>`;
   }
-}
-
-if (!customElements.get("chat-message-menu")) {
-  customElements.define("chat-message-menu", ChatMessageMenu);
 }
 
 declare global {

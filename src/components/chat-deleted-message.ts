@@ -50,10 +50,6 @@ export class ChatDeletedMessage extends LitElement {
   }
 }
 
-if (!customElements.get("chat-deleted-message")) {
-  customElements.define("chat-deleted-message", ChatDeletedMessage);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-deleted-message": ChatDeletedMessage;

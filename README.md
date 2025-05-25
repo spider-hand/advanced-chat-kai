@@ -4,6 +4,8 @@
 
 ![dark](https://github.com/user-attachments/assets/eae2c3c3-be4d-4eae-bd11-5c553ac0c0bf)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
 A highly customizable Web Component for building chat interfaces
 
 > "Kai" (改) means "improved" in Japanese - this is a modern, lightweight, and framework-agnostic chat component built for flexibility and ease of integration.
@@ -38,6 +40,7 @@ npm install advanced-chat-kai
 | `messages`                     | [ChatItemType](#chatitemtype)[]                   | false    | `[]`                   | The list of messages in the room currently selected                               |
 | `attachments`                  | [ChatMessageAttachment](#chatmessageattachment)[] | false    | `[]`                   | The list of attachments in the message                                            |
 | `suggestions`                  | [ChatMessageSuggestion](#chatmessagesuggestion)[] | false    | `[]`                   | The list of message suggestions                                                   |
+| `replyTo`                      | [ChatMessageReply](#chatmessagereply) \| null     | false    | `null`                 | The message being replied to, if any                                              |
 | `selectedRoomId`               | string \| null                                    | false    | `null`                 | The id of the room currently selected                                             |
 | `isLoadingRoom`                | boolean                                           | false    | `false`                | Whether the list of the initial rooms are loading or not                          |
 | `isLoadingMessage`             | boolean                                           | false    | `false`                | Whether the list of the initial messages are loading or not                       |
@@ -58,8 +61,8 @@ npm install advanced-chat-kai
 | `showRoomAvatar`               | boolean                                           | false    | `true`                 | Whether the room avatar on the list of rooms should be rendered or not            |
 | `showTheirAvatar`              | boolean                                           | false    | `true`                 | Whether the other user's avatar on the message should be rendered or not          |
 | `dialog`                       | [Dialog](#dialog) \| null                         | false    | `null`                 | The dialog to be rendered                                                         |
-| `height`                       | number                                            | false    | `600`                  | The height of the chat component                                                  |
-| `width`                        | number                                            | false    | `800`                  | The width of the chat component                                                   |
+| `height`                       | string                                            | false    | `"60em"`               | The height of the chat component                                                  |
+| `width`                        | string                                            | false    | `"80em"`               | The width of the chat component                                                   |
 | `i18n`                         | [PartialI18nType](#i18ntype)                      | false    | [See below](#i18ntype) | The i18n object to be used for translations                                       |
 | `theme`                        | ThemeType                                         | false    | `"light"`              | The theme to be used for the chat component. It must be either `light` or `dark`. |
 
@@ -107,6 +110,7 @@ messages = [
   {
     id: "0",
     type: "divider",
+    roomId: "1",
     content: "May 1",
   },
   {
@@ -169,6 +173,36 @@ suggestions = [
 ];
 ```
 
+##### ChatMessageReply
+
+Example:
+
+```js
+chatMessageReply = {
+  id: "1",
+  type: "message",
+  roomId: "1",
+  senderId: "1",
+  senderName: "User 1",
+  senderAvatar: "/avatar.png",
+  content: "Hello, world",
+  timestamp: "12:34 PM",
+  reactions: new Map<string, Set<string>>([
+    ["👍", new Set(["2", "3"])],
+    ["🎉", new Set(["1", "4", "5"])],
+  ]),
+  attachments: [
+    {
+      name: "file1.txt",
+      meta: "20 KB",
+      id: "0",
+    }
+  ],
+  isDeleted: false,
+  isSelected: false,
+}
+```
+
 ##### ChatAction
 
 Example:
@@ -214,60 +248,81 @@ i18n = {
   chatFooterTextareaPlaceholder: "Write a message..",
   chatSearchPlaceholder: "Search room",
   closedRoomMessage: "This chat has been ended.",
+  newMeessageNotification: "New messages",
 };
+```
+
+### ⚠️　Note on updating arrays and objects
+
+Lit uses shallow comparison to detect changes to reactive properties. When working with arrays or objects, you must assign a new reference to trigger updates. Mutating the existing object or array in place (e.g. using `push()` or modifying a property directly) will not cause the component to update.
+
+✅ Correct:
+
+```ts
+this.messages = [...this.messages, newMessage];
+```
+
+❌ Won’t work:
+
+```ts
+this.messages.push(newMessage);
 ```
 
 ## Events
 
-| Name                  | Detail / Payload                         | Fires when a user                                  |
-| --------------------- | ---------------------------------------- | -------------------------------------------------- |
-| `add-room`            | -                                        | Clicked the add button on the sidebar              |
-| `search-room`         | `{ value }`                              | Changed the input on the searchbox                 |
-| `select-action`       | `{ actionType, label, value }`           | Selected an action                                 |
-| `load-more-rooms`     | -                                        | Reached the bottom of the room list                |
-| `select-room`         | `{ room }`                               | Selected a room in the list                        |
-| `load-more-messages`  | -                                        | Reached the top of the message list                |
-| `select-suggestion`   | `{ suggestion }`                         | Selected a suggestion in the list                  |
-| `select-emoji`        | `{ messageId, currentUserId, emoji }`    | Selected an emoji reaction in picker for a message |
-| `reply-to-message`    | `{ messageId, senderId, senderName }`    | Clicked the reply button on a message              |
-| `click-reaction`      | `{ reaction }`                           | Clicked an existing emoji reaction on a message    |
-| `download-attachment` | `{ attachment }`                         | Clicked the download button on an attachment       |
-| `remove-attachment`   | `{ attachment }`                         | Clicked the close button on an attachment          |
-| `cancel-reply`        | -                                        | Clicked the close button on the reply message      |
-| `select-file`         | `{ file }`                               | Selected a file                                    |
-| `send-message`        | `{ roomId, senderId, message, replyTo }` | Clicked the send button on the footer              |
-| `click-dialog-button` | `{ event, side }`                        | Clicked a button on a dialog                       |
+| Name                    | Detail / Payload                      | Fires when a user                                  |
+| ----------------------- | ------------------------------------- | -------------------------------------------------- |
+| `add-room`              | -                                     | Clicked the add button on the sidebar              |
+| `search-room`           | `{ value }`                           | Changed the input on the searchbox                 |
+| `select-room-action`    | `{ label, value, roomId }`            | Selected an action on the room                     |
+| `load-more-rooms`       | -                                     | Reached the bottom of the room list                |
+| `select-room`           | `{ room }`                            | Selected a room in the list                        |
+| `load-more-messages`    | -                                     | Reached the top of the message list                |
+| `select-message-action` | `{ label, value, messageId }`         | Selected an action on the message                  |
+| `select-suggestion`     | `{ suggestion }`                      | Selected a suggestion in the list                  |
+| `select-emoji`          | `{ messageId, currentUserId, emoji }` | Selected an emoji reaction in picker for a message |
+| `reply-to-message`      | `{ replyTo }`                         | Clicked the reply button on a message              |
+| `click-reaction`        | `{ messageId, reaction }`             | Clicked an existing emoji reaction on a message    |
+| `download-attachment`   | `{ attachment }`                      | Clicked the download button on an attachment       |
+| `remove-attachment`     | `{ attachment }`                      | Clicked the close button on an attachment          |
+| `cancel-reply`          | -                                     | Clicked the close button on the reply message      |
+| `select-file`           | `{ file }`                            | Selected a file                                    |
+| `send-message`          | `{ roomId, senderId, content }`       | Clicked the send button on the footer              |
+| `click-dialog-button`   | `{ event, side }`                     | Clicked a button on a dialog                       |
 
 ## Styling
 
 The `--surface-50` to `--surface-950` variables define the primary surface color scale, used across light and dark themes for backgrounds and component surfaces.
 
-| Variable                     | Description                                       |
-| ---------------------------- | ------------------------------------------------- |
-| `--white`                    |                                                   |
-| `--black`                    |                                                   |
-| `--success`                  |                                                   |
-| `--danger`                   |                                                   |
-| `--warning`                  |                                                   |
-| `--info`                     |                                                   |
-| `--surface-50`               |                                                   |
-| `--surface-100`              |                                                   |
-| `--surface-200`              |                                                   |
-| `--surface-300`              |                                                   |
-| `--surface-400`              |                                                   |
-| `--surface-500`              |                                                   |
-| `--surface-600`              |                                                   |
-| `--surface-700`              |                                                   |
-| `--surface-800`              |                                                   |
-| `--surface-900`              |                                                   |
-| `--surface-950`              |                                                   |
-| `--text`                     | The default text color                            |
-| `--border`                   | The default border color                          |
-| `--floating-item-border`     | The default border color for floating items       |
-| `--floating-item-box-shadow` | The default box shadow for floating items         |
-| `--placeholder`              | The default placeholder color                     |
-| `--deleted`                  | The default background color for deleted messages |
-| `--overlay`                  | The default background color for overlay          |
+| Variable                               | Description                                         |
+| -------------------------------------- | --------------------------------------------------- |
+| `--base-font-size`                     | The base font size of the chat component            |
+| `--white`                              |                                                     |
+| `--black`                              |                                                     |
+| `--success`                            |                                                     |
+| `--danger`                             |                                                     |
+| `--warning`                            |                                                     |
+| `--info`                               |                                                     |
+| `--surface-50`                         |                                                     |
+| `--surface-100`                        |                                                     |
+| `--surface-200`                        |                                                     |
+| `--surface-300`                        |                                                     |
+| `--surface-400`                        |                                                     |
+| `--surface-500`                        |                                                     |
+| `--surface-600`                        |                                                     |
+| `--surface-700`                        |                                                     |
+| `--surface-800`                        |                                                     |
+| `--surface-900`                        |                                                     |
+| `--surface-950`                        |                                                     |
+| `--text`                               | The default text color                              |
+| `--border`                             | The default border color                            |
+| `--floating-item-border`               | The default border color for floating items         |
+| `--floating-item-box-shadow`           | The default box shadow for floating items           |
+| `--placeholder`                        | The default placeholder color                       |
+| `--deleted`                            | The default background color for deleted messages   |
+| `--overlay`                            | The default background color for overlay            |
+| `--chat-notification-badge-background` | The default background color for notification badge |
+| `--chat-notification-badge-text`       | The default text color for notification badge       |
 
 You can override the component's style using CSS custom properties (variables). These are applied directly to `advanced-chat-kai` element:
 

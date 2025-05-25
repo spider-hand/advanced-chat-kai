@@ -13,7 +13,6 @@ export class ChatRoomList extends LitElement {
 
   @query(".chat-room-list__bottom") chatRoomListBottom!: HTMLDivElement;
 
-  @state() private _observer: IntersectionObserver | null = null;
   @state() private _rectTop = 0;
   @state() private _rectBottom = 0;
 
@@ -24,25 +23,21 @@ export class ChatRoomList extends LitElement {
       this._rectBottom = rect.bottom;
     });
 
-    this._observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
+      if (this.roomContext.isLoadingRoom) return;
+
       for (const entry of entries) {
         if (entry.isIntersecting) {
           if (entry.target.classList.contains("chat-room-list__bottom")) {
-            this.dispatchEvent(new CustomEvent("load-more-rooms"));
+            this.dispatchEvent(
+              new CustomEvent("load-more-rooms", { composed: true }),
+            );
           }
         }
       }
     });
 
-    this._observer.observe(this.chatRoomListBottom);
-  }
-
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
-    if (this._observer) {
-      this._observer.disconnect();
-      this._observer = null;
-    }
+    observer.observe(this.chatRoomListBottom);
   }
 
   static styles = [
@@ -95,10 +90,6 @@ export class ChatRoomList extends LitElement {
           ></chat-loader>`
         : nothing} `;
   }
-}
-
-if (!customElements.get("chat-room-list")) {
-  customElements.define("chat-room-list", ChatRoomList);
 }
 
 declare global {

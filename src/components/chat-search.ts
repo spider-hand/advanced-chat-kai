@@ -82,10 +82,6 @@ export class ChatSearch extends LitElement {
   }
 }
 
-if (!customElements.get("chat-search")) {
-  customElements.define("chat-search", ChatSearch);
-}
-
 declare global {
   interface HTMLElementTagNameMap {
     "chat-search": ChatSearch;

@@ -150,7 +150,7 @@ export class ChatRoomItem extends LitElement {
       }
 
       .chat-room-item__badge--info {
-        color: var(--surface-50);
+        color: var(--white);
         background-color: var(--info);
       }
 
@@ -238,6 +238,7 @@ export class ChatRoomItem extends LitElement {
               ? "auto"
               : "calc(-100% - 1.2em)"}; z-index: 1;"
             .actionType="${"room"}"
+            .roomId="${this.room.id}"
             .actions="${this.actions}"
             @select-action="${this._closeActionList}"
             @close="${this._closeActionList}"
@@ -245,10 +246,6 @@ export class ChatRoomItem extends LitElement {
         : nothing}
     </div>`;
   }
-}
-
-if (!customElements.get("chat-room-item")) {
-  customElements.define("chat-room-item", ChatRoomItem);
 }
 
 declare global {
