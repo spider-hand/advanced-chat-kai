@@ -183,18 +183,22 @@ export class ChatRoomItem extends LitElement {
       @mouseenter="${this._onMouseEnter}"
       @mouseleave="${this._onMouseLeave}"
       @click="${this._selectRoom}"
+      data-testid="chat-room-item"
     >
       ${this.showAvatar
         ? html`<chat-avatar .src="${this.room.avatar}"></chat-avatar>`
         : nothing}
       <div class="chat-room-item__text">
         <span class="chat-room-item__title">${this.room.sidebarTitle}</span>
-        <span class="chat-room-item__subtitle"> ${this.room.sidebarSubtitle}</span>
+        <span class="chat-room-item__subtitle">
+          ${this.room.sidebarSubtitle}</span
+        >
       </div>
       ${this._hover && this.actions.length > 0
         ? html`<button
             class="chat-room-item__button"
             @click="${this._toggleActionList}"
+            aria-label="Open room actions"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

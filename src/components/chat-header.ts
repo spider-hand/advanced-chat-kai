@@ -101,6 +101,7 @@ export class ChatHeader extends LitElement {
         class="chat-header__button"
         style="display: ${!this.showSidebar ? "block" : "none"}"
         @click="${this._openSidebar}"
+        aria-label="Open sidebar"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -127,6 +128,7 @@ export class ChatHeader extends LitElement {
             class="chat-header__button"
             style="margin-left: auto;"
             @click="${this._toggleActionList}"
+            aria-label="Show actions"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

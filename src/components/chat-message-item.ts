@@ -38,7 +38,7 @@ export class ChatMessageItem extends LitElement {
 
   @query("chat-message-menu") chatMessageMenu!: HTMLDivElement;
 
-  @state() private _timer: number | null = null;
+  @state() private _timer: NodeJS.Timeout | null = null;
   @state() private _hover = false;
   @state() private _showActionList = false;
   @state() private _showEmojiPicker = false;
@@ -59,22 +59,22 @@ export class ChatMessageItem extends LitElement {
     }
   }
 
-  private get mine() {
+  private get _mine() {
     return this.message.senderId === this.currentUserId;
   }
 
-  private get isMessageActionAvailable() {
+  private get _isMessageActionAvailable() {
     return (
-      (this.mine && this.myMessageActions.length > 0) ||
-      (!this.mine && this.theirMessageActions.length > 0)
+      (this._mine && this.myMessageActions.length > 0) ||
+      (!this._mine && this.theirMessageActions.length > 0)
     );
   }
 
-  private get isMessageMenuAvailable() {
+  private get _isMessageMenuAvailable() {
     return (
       this.isEmojiReactionAvailable ||
       this.isReplyAvailable ||
-      this.isMessageActionAvailable
+      this._isMessageActionAvailable
     );
   }
 
@@ -199,17 +199,17 @@ export class ChatMessageItem extends LitElement {
     return html`<div
       class="${classMap({
         "chat-message-item": true,
-        "chat-message-item--mine": this.mine,
+        "chat-message-item--mine": this._mine,
         "chat-message-item--last": this.last,
         "chat-message-item--selected":
           this.isReplying || this.message.isSelected,
       })}"
     >
-      ${!this.mine && this.showTheirAvatar
+      ${!this._mine && this.showTheirAvatar
         ? html`<chat-avatar .src="${this.message.senderAvatar}"></chat-avatar>`
         : nothing}
       <div class="chat-message-item__container">
-        ${!this.mine
+        ${!this._mine
           ? html`<div class="chat-message-item__meta">
               <span class="chat-message-item__name"
                 >${this.message.senderName}</span
@@ -221,7 +221,7 @@ export class ChatMessageItem extends LitElement {
         <div
           class="${classMap({
             "chat-message-item__body": true,
-            "chat-message-item__body--mine": this.mine,
+            "chat-message-item__body--mine": this._mine,
             "chat-message-item__body--deleted": this.message.isDeleted,
           })}"
           @mouseenter="${this._onMouseEnter}"
@@ -247,23 +247,23 @@ export class ChatMessageItem extends LitElement {
             ? html`<chat-message-attachment-list
                 style="margin-top: 0.8em;"
                 .attachments=${this.message.attachments}
-                .mine="${this.mine}"
+                .mine="${this._mine}"
               ></chat-message-attachment-list>`
             : nothing}
           ${!this.message.isDeleted &&
           this._hover &&
-          this.isMessageMenuAvailable
+          this._isMessageMenuAvailable
             ? html`<chat-message-menu
-                style="position: absolute; bottom: 0; left: ${this.mine
+                style="position: absolute; bottom: 0; left: ${this._mine
                   ? "auto"
-                  : "calc(100% + 0.4em)"}; right: ${this.mine
+                  : "calc(100% + 0.4em)"}; right: ${this._mine
                   ? "calc(100% + 0.4em)"
                   : "auto"};"
-                .mine="${this.mine}"
+                .mine="${this._mine}"
                 .message="${this.message}"
                 .isEmojiReactionAvailable="${this.isEmojiReactionAvailable}"
                 .isReplyAvailable="${this.isReplyAvailable}"
-                .isMessageActionAvailable="${this.isMessageActionAvailable}"
+                .isMessageActionAvailable="${this._isMessageActionAvailable}"
                 @click-emoji-button="${this._toggleEmojiPicker}"
                 @click-action-button="${this._openActionList}"
               ></chat-message-menu>`
@@ -274,12 +274,12 @@ export class ChatMessageItem extends LitElement {
                   ? "auto"
                   : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
                   ? "4em"
-                  : "auto"}; ${this.mine
+                  : "auto"}; ${this._mine
                   ? "right: calc(100% + 0.4em);"
                   : "left: calc(100% + 0.4em);"} z-index: 1;"
                 .actionType="${"message"}"
                 .messageId="${this.message.id}"
-                .actions="${this.mine
+                .actions="${this._mine
                   ? this.myMessageActions
                   : this.theirMessageActions}"
                 @select-action="${this._closeActionList}"
@@ -294,7 +294,7 @@ export class ChatMessageItem extends LitElement {
                   ? "auto"
                   : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
                   ? "4em"
-                  : "auto"}; ${this.mine
+                  : "auto"}; ${this._mine
                   ? "right: 50%;"
                   : "left: 50%;"} z-index: 1;"
                 .width="${300}"
@@ -308,7 +308,7 @@ export class ChatMessageItem extends LitElement {
         ${!this.message.isDeleted && this.message.reactions.size > 0
           ? html`<chat-message-reaction-list
               .messageId="${this.message.id}"
-              .mine="${this.mine}"
+              .mine="${this._mine}"
               .reactions="${this.message.reactions}"
             ></chat-message-reaction-list>`
           : nothing}

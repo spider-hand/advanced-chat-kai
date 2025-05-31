@@ -1,0 +1,38 @@
+name: Run tests and report coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run unit tests with coverage
+        run: npm run test:coverage
+      
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}

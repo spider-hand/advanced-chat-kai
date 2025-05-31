@@ -4,7 +4,7 @@
 
 ![dark](https://github.com/user-attachments/assets/eae2c3c3-be4d-4eae-bd11-5c553ac0c0bf)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai)
 
 A highly customizable Web Component for building chat interfaces
 

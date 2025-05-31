@@ -90,7 +90,11 @@ export class ChatSidebar extends LitElement {
     >
       <div class="chat-sidebar__header">
         <div class="chat-sidebar__button-group">
-          <button class="chat-sidebar__button" @click="${this._closeSidebar}">
+          <button
+            class="chat-sidebar__button"
+            @click="${this._closeSidebar}"
+            aria-label="Close Sidebar"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="2.4em"
@@ -103,7 +107,11 @@ export class ChatSidebar extends LitElement {
               />
             </svg>
           </button>
-          <button class="chat-sidebar__button" @click="${this._addRoom}">
+          <button
+            class="chat-sidebar__button"
+            @click="${this._addRoom}"
+            aria-label="Add Room"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="2.4em"

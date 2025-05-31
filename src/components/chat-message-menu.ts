@@ -90,6 +90,7 @@ export class ChatMessageMenu extends LitElement {
         ? html`<button
             class="chat-message-menu__button"
             @click="${this._clickEmojiButton}"
+            aria-label="Add emoji reaction"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -108,6 +109,7 @@ export class ChatMessageMenu extends LitElement {
         ? html`<button
             class="chat-message-menu__button"
             @click="${this._replyToMesssage}"
+            aria-label="Reply to message"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -126,6 +128,7 @@ export class ChatMessageMenu extends LitElement {
         ? html`<button
             class="chat-message-menu__button"
             @click="${this._clickActionButton}"
+            aria-label="Message actions"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

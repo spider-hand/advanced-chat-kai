@@ -1,4 +1,4 @@
-name: Compressed Size
+name: Check bundle size
 
 on: [pull_request]
 

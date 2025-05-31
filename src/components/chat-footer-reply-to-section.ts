@@ -56,6 +56,7 @@ export class ChatFooterReplyToSection extends LitElement {
       <button
         class="chat-footer-reply-to-section__button"
         @click="${this._cancelReply}"
+        aria-label="Cancel reply"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

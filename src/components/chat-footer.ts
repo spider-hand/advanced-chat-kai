@@ -231,6 +231,7 @@ export class ChatFooter extends LitElement {
                 ? html`<button
                       class="chat-footer__button"
                       @click="${this._handleFileInput}"
+                      aria-label="Select file"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -254,6 +255,7 @@ export class ChatFooter extends LitElement {
                 ? html`<button
                     class="chat-footer__button chat-footer__button--emoji"
                     @click="${this._toggleEmojiPicker}"
+                    aria-label="Toggle emoji picker"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -276,6 +278,7 @@ export class ChatFooter extends LitElement {
                 })}"
                 .disabled="${!this._isSendButtonEnabled}"
                 @click="${this._sendMessage}"
+                aria-label="Send message"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

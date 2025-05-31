@@ -1,5 +1,6 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 import { provide } from "@lit/context";
 import { globalStyles } from "../styles/global";
 import "./chat-container";
@@ -113,7 +114,7 @@ export class AdvancedChatKai extends LitElement {
   @property({ type: Array }) messages: ChatItemType[] = [];
   @property({ type: Array }) attachments: ChatMessageAttachment[] = [];
   @property({ type: Array }) suggestions: ChatMessageSuggestion[] = [];
-  @property({ type: Object}) replyTo: ChatMessageReply | null = null;
+  @property({ type: Object }) replyTo: ChatMessageReply | null = null;
   @property({ type: String }) selectedRoomId: string | null = null;
   @property({ type: Boolean }) isLoadingRoom = false;
   @property({ type: Boolean }) isLoadingMessage = false;
@@ -297,15 +298,20 @@ export class AdvancedChatKai extends LitElement {
         border-radius: 1.6em;
         box-shadow: rgb(0 0 0 / 15%) 0 0.3em 0.3em 0;
       }
+
+      .main--fullscreen {
+        border-radius: 0;
+      }
     `,
   ];
 
   render() {
     return html`<div
-      class="main"
-      style="height: ${this.height}; width: ${this.width}; ${this._isFullscreen
-        ? "border-radius: 0;"
-        : ""}"
+      class=${classMap({
+        main: true,
+        "main--fullscreen": this._isFullscreen,
+      })}
+      style="height: ${this.height}; width: ${this.width}"
     >
       ${!this.isSingleRoom
         ? html`<chat-sidebar
