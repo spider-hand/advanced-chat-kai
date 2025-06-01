@@ -11,9 +11,10 @@
     "declarationMap": true,
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
   },
   "include": [
-    "src/**/*",
-    "vite.config.ts",
+    "src/define/index.ts",
   ]
 }

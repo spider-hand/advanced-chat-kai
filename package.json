@@ -1,8 +1,23 @@
 {
   "name": "advanced-chat-kai",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A highly customizable chat web component",
+  "main": "dist/advanced-chat-kai.cjs.js",
+  "module": "dist/advanced-chat-kai.es.js",
   "type": "module",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/advanced-chat-kai.es.js",
+      "require": "./dist/advanced-chat-kai.cjs.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,6 +32,23 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/spider-hand/advanced-chat-kai.git"
+  },
+  "keywords": [
+    "chat",
+    "chatbot",
+    "web-component",
+    "webcomponent",
+    "lit"
+  ],
+  "author": "Akinori Hoshina <creative.spider.hand@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spider-hand/advanced-chat-kai/issues"
+  },
+  "homepage": "https://github.com/spider-hand/advanced-chat-kai#readme",
   "devDependencies": {
     "@blockquote/rollup-plugin-externalize-source-dependencies": "^1.0.0",
     "@chromatic-com/storybook": "^3.2.6",
