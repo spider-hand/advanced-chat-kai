@@ -22,8 +22,8 @@ import type {
   ReplyToMessageDetail,
   ChatMessageReply,
   DownloadAttachmentDetail,
-} from "../../src/types";
-import "../../dist/advanced-chat-kai.es.js";
+} from "advanced-chat-kai";
+import "advanced-chat-kai";
 import { createRoom, fetchRooms } from "./services/mockRoomService";
 import { createMessage, fetchMessages } from "./services/mockMessageService";
 import { myMessageActions, roomActions, theirMessageActions } from "./consts";
