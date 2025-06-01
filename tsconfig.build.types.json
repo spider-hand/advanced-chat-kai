@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": [
+      "ES2023",
+      "dom"
+    ],
+    "declaration": true,
+    "declarationMap": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+  },
+  "include": [
+    "src/types/index.ts",
+  ]
+}
