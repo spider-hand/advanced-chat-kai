@@ -314,6 +314,8 @@ describe("chat-message-list", () => {
       ></chat-message-list>`,
     );
 
+    vi.runAllTimers();
+
     const spyScrollToBottom = vi.spyOn(
       el as unknown as { _scrollToBottom: () => void },
       "_scrollToBottom",
@@ -344,6 +346,257 @@ describe("chat-message-list", () => {
     vi.runAllTimers();
 
     expect(spyScrollToBottom).toHaveBeenCalledWith(null, "instant");
+
+    vi.useRealTimers();
+  });
+
+  it("scrolls to the bottom when there is a new message and the user is around the bottom", async () => {
+    vi.useFakeTimers();
+
+    el = await fixture<ChatMessageList>(
+      html`<chat-message-list
+        .messageContext=${{
+          ...messageContext,
+          messages: [
+            {
+              id: "1",
+              type: "message",
+              roomId: "room2",
+              senderId: "user1",
+              senderName: "User One",
+              content: "Hello, world!",
+              timestamp: "12:34 PM",
+              reactions: new Map(),
+              attachments: [],
+              isDeleted: false,
+              isSelected: false,
+              replyTo: null,
+            },
+          ] as ChatItemType[],
+        }}
+      ></chat-message-list>`,
+    );
+
+    vi.runAllTimers();
+
+    Object.defineProperty(el, "_isWithinClientHeight", {
+      get: () => true,
+    });
+
+    const spyScrollToBottom = vi.spyOn(
+      el as unknown as { _scrollToBottom: () => void },
+      "_scrollToBottom",
+    );
+
+    el.messageContext = {
+      ...messageContext,
+      messages: [
+        {
+          id: "1",
+          type: "message",
+          roomId: "room2",
+          senderId: "user1",
+          senderName: "User One",
+          content: "Hello, world!",
+          timestamp: "12:34 PM",
+          reactions: new Map(),
+          attachments: [],
+          isDeleted: false,
+          isSelected: false,
+          replyTo: null,
+        },
+        {
+          id: "2",
+          type: "message",
+          roomId: "room2",
+          senderId: "user2",
+          senderName: "User Two",
+          content: "Hi there!",
+          timestamp: "12:35 PM",
+          reactions: new Map(),
+          attachments: [],
+          isDeleted: false,
+          isSelected: false,
+          replyTo: null,
+        },
+      ],
+    };
+
+    await el.updateComplete;
+
+    vi.runAllTimers();
+
+    expect(spyScrollToBottom).toHaveBeenCalledWith(null, "smooth");
+
+    vi.useRealTimers();
+  });
+
+  it("scrolls to the bottom when the user just sent a new messagge", async () => {
+    const currentUserId = "current-user-id";
+
+    vi.useFakeTimers();
+
+    el = await fixture<ChatMessageList>(
+      html`<chat-message-list
+        .currentUserId=${currentUserId}
+        .messageContext=${{
+          ...messageContext,
+          messages: [
+            {
+              id: "1",
+              type: "message",
+              roomId: "room2",
+              senderId: "user1",
+              senderName: "User One",
+              content: "Hello, world!",
+              timestamp: "12:34 PM",
+              reactions: new Map(),
+              attachments: [],
+              isDeleted: false,
+              isSelected: false,
+              replyTo: null,
+            },
+          ] as ChatItemType[],
+        }}
+      ></chat-message-list>`,
+    );
+
+    vi.runAllTimers();
+
+    Object.defineProperty(el, "_isWithinClientHeight", {
+      get: () => false,
+    });
+
+    const spyScrollToBottom = vi.spyOn(
+      el as unknown as { _scrollToBottom: () => void },
+      "_scrollToBottom",
+    );
+
+    el.messageContext = {
+      ...messageContext,
+      messages: [
+        {
+          id: "1",
+          type: "message",
+          roomId: "room2",
+          senderId: "user1",
+          senderName: "User One",
+          content: "Hello, world!",
+          timestamp: "12:34 PM",
+          reactions: new Map(),
+          attachments: [],
+          isDeleted: false,
+          isSelected: false,
+          replyTo: null,
+        },
+        {
+          id: "2",
+          type: "message",
+          roomId: "room2",
+          senderId: currentUserId,
+          senderName: "Current User",
+          content: "Just sent this message!",
+          timestamp: "12:36 PM",
+          reactions: new Map(),
+          attachments: [],
+          isDeleted: false,
+          isSelected: false,
+          replyTo: null,
+        },
+      ],
+    };
+
+    await el.updateComplete;
+
+    vi.runAllTimers();
+
+    expect(spyScrollToBottom).toHaveBeenCalledWith(null, "smooth");
+
+    vi.useRealTimers();
+  })
+
+  it("shows notification badge when there are new messages and the user is not around the bottom", async () => {
+    vi.useFakeTimers();
+
+    el = await fixture<ChatMessageList>(
+      html`<chat-message-list
+        .messageContext=${{
+          ...messageContext,
+          messages: [
+            {
+              id: "1",
+              type: "message",
+              roomId: "room2",
+              senderId: "user1",
+              senderName: "User One",
+              content: "Hello, world!",
+              timestamp: "12:34 PM",
+              reactions: new Map(),
+              attachments: [],
+              isDeleted: false,
+              isSelected: false,
+              replyTo: null,
+            },
+          ] as ChatItemType[],
+        }}
+      ></chat-message-list>`,
+    );
+
+    vi.runAllTimers();
+
+    Object.defineProperty(el, "_isWithinClientHeight", {
+      get: () => false,
+    });
+
+    const chatNotificationBadge = el.shadowRoot?.querySelector(
+      "chat-notification-badge",
+    );
+    expect(chatNotificationBadge).toBeFalsy();
+
+    el.messageContext = {
+      ...messageContext,
+      messages: [
+        {
+          id: "1",
+          type: "message",
+          roomId: "room2",
+          senderId: "user1",
+          senderName: "User One",
+          content: "Hello, world!",
+          timestamp: "12:34 PM",
+          reactions: new Map(),
+          attachments: [],
+          isDeleted: false,
+          isSelected: false,
+          replyTo: null,
+        },
+        {
+          id: "2",
+          type: "message",
+          roomId: "room2",
+          senderId: "user2",
+          senderName: "User Two",
+          content: "Hi there!",
+          timestamp: "12:35 PM",
+          reactions: new Map(),
+          attachments: [],
+          isDeleted: false,
+          isSelected: false,
+          replyTo: null,
+        },
+      ],
+    };
+
+    // _showNotificationBadge is set to true in updated method if there is a new message and the user is not around the bottom
+    await el.updateComplete;
+
+    // render chat-notification-badge
+    await el.updateComplete;
+
+    const chatNotificationBadgeAfter = el.shadowRoot?.querySelector(
+      "chat-notification-badge",
+    );
+    expect(chatNotificationBadgeAfter).toBeTruthy();
 
     vi.useRealTimers();
   });

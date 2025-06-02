@@ -9,9 +9,14 @@ import "./chat-message-typing";
 import "./chat-message-divider";
 import "./chat-notification-badge";
 import { MessageContext, messageContext } from "../contexts/message-context";
-import { ChatItemType } from "../types";
+import { ChatItemType, ChatMessage } from "../types";
+import { currentUserIdContext } from "../contexts/current-user-id-context";
 
 export class ChatMessageList extends LitElement {
+  @consume({ context: currentUserIdContext, subscribe: true })
+  @property({ type: String })
+  currentUserId: string | null = null;
+
   @consume({ context: messageContext, subscribe: true })
   @property({ type: Object })
   messageContext!: MessageContext;
@@ -107,8 +112,16 @@ export class ChatMessageList extends LitElement {
             this.scrollTop =
               previousScrollTop + (newScrollHeight - previousScrollHeight);
           });
-        } else if (this._isWithinClientHeight) {
+        } else if (
+          this._isWithinClientHeight ||
+          (
+            this.messageContext.messages[
+              this.messageContext.messages.length - 1
+            ] as ChatMessage
+          ).senderId === this.currentUserId
+        ) {
           // Scroll to the bottom if the scroll position is within the client height
+          // or the user just sent a message
           setTimeout(() => {
             this._scrollToBottom(null, "smooth");
           });
