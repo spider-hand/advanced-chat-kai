@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: "src/define/index.ts",
       name: "advanced-chat-kai",
-      formats: ["es", "cjs"],
+      formats: ["es"],
       fileName: (format) => `advanced-chat-kai.${format}.js`,
     },
   },

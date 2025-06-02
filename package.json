@@ -2,15 +2,14 @@
   "name": "advanced-chat-kai",
   "version": "0.1.0",
   "description": "A highly customizable chat web component",
-  "main": "dist/advanced-chat-kai.cjs.js",
+  "main": "dist/advanced-chat-kai.es.js",
   "module": "dist/advanced-chat-kai.es.js",
   "type": "module",
   "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/advanced-chat-kai.es.js",
-      "require": "./dist/advanced-chat-kai.cjs.js"
+      "import": "./dist/advanced-chat-kai.es.js"
     }
   },
   "files": [
@@ -35,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "directory": "https://github.com/spider-hand/advanced-chat-kai.git"
+    "url": "https://github.com/spider-hand/advanced-chat-kai.git"
   },
   "keywords": [
     "chat",
