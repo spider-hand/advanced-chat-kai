@@ -5,7 +5,7 @@ import { getElementLocatorSelectors } from "@vitest/browser/utils";
 import { assert as a11y, fixture, fixtureCleanup } from "@open-wc/testing";
 import { ChatFooter } from "../../../src/components/chat-footer";
 import { ChatRoom } from "../../../src/types";
-import { defaultI18n } from "../../../src/consts";
+import { DEFAULT_I18N } from "../../../src/consts";
 
 class MockChatFooterAttachmentSection extends HTMLElement {}
 class MockChatFooterReplyToSection extends HTMLElement {}
@@ -59,7 +59,7 @@ describe("chat-footer", () => {
     attachments: [],
   };
 
-  const i18nContext = { ...defaultI18n };
+  const i18nContext = { ...DEFAULT_I18N };
 
   afterEach(() => {
     fixtureCleanup();
@@ -76,10 +76,10 @@ describe("chat-footer", () => {
       ></chat-footer>`,
     );
 
-    const closedRoomMessage = el.shadowRoot?.querySelector(
+    const CLOSED_ROOM_MESSAGE = el.shadowRoot?.querySelector(
       "chat-footer__message",
     );
-    expect(closedRoomMessage).toBeFalsy();
+    expect(CLOSED_ROOM_MESSAGE).toBeFalsy();
 
     const attachmentSection = el.shadowRoot?.querySelector(
       "chat-footer-attachment-section",
@@ -94,7 +94,7 @@ describe("chat-footer", () => {
     const textarea = el.shadowRoot?.querySelector("textarea");
     expect(textarea).toBeTruthy();
     expect(textarea?.getAttribute("placeholder")).toBe(
-      i18nContext.chatFooterTextareaPlaceholder,
+      i18nContext.CHAT_FOOTER_TEXTAREA_PLACEHOLDER,
     );
     expect(textarea?.value).toBe("");
 
@@ -148,17 +148,17 @@ describe("chat-footer", () => {
       ></chat-footer>`,
     );
 
-    const closedRoomMessage = el.shadowRoot?.querySelector(
+    const CLOSED_ROOM_MESSAGE = el.shadowRoot?.querySelector(
       ".chat-footer__message",
     );
-    expect(closedRoomMessage).toBeTruthy();
-    expect(closedRoomMessage?.textContent?.trim()).toBe(
-      i18nContext.closedRoomMessage,
+    expect(CLOSED_ROOM_MESSAGE).toBeTruthy();
+    expect(CLOSED_ROOM_MESSAGE?.textContent?.trim()).toBe(
+      i18nContext.CLOSED_ROOM_MESSAGE,
     );
   });
 
   it("renders with custom closed room message", async () => {
-    const customClosedRoomMessage = "custom message";
+    const customCLOSED_ROOM_MESSAGE = "custom message";
     const closedRoom: ChatRoom = {
       id: "room1",
       headerTitle: "Room 1",
@@ -179,17 +179,17 @@ describe("chat-footer", () => {
         .footerContext="${footerContext}"
         .currentUserId="${currentUserId}"
         .i18nContext="${{
-          i18n: { ...i18nContext, closedRoomMessage: customClosedRoomMessage },
+          i18n: { ...i18nContext, CLOSED_ROOM_MESSAGE: customCLOSED_ROOM_MESSAGE },
         }}"
       ></chat-footer>`,
     );
 
-    const closedRoomMessage = el.shadowRoot?.querySelector(
+    const CLOSED_ROOM_MESSAGE = el.shadowRoot?.querySelector(
       ".chat-footer__message",
     );
-    expect(closedRoomMessage).toBeTruthy();
-    expect(closedRoomMessage?.textContent?.trim()).toBe(
-      customClosedRoomMessage,
+    expect(CLOSED_ROOM_MESSAGE).toBeTruthy();
+    expect(CLOSED_ROOM_MESSAGE?.textContent?.trim()).toBe(
+      customCLOSED_ROOM_MESSAGE,
     );
   });
 
@@ -262,7 +262,7 @@ describe("chat-footer", () => {
         .i18nContext="${{
           i18n: {
             ...i18nContext,
-            chatFooterTextareaPlaceholder: customPlaceholder,
+            CHAT_FOOTER_TEXTAREA_PLACEHOLDER: customPlaceholder,
           },
         }}"
       ></chat-footer>`,
@@ -314,7 +314,7 @@ describe("chat-footer", () => {
 
     elLocator = getElementLocatorSelectors(el);
     const textarea = elLocator.getByPlaceholder(
-      i18nContext.chatFooterTextareaPlaceholder,
+      i18nContext.CHAT_FOOTER_TEXTAREA_PLACEHOLDER,
     );
     const textareaQuery = el.shadowRoot?.querySelector("textarea");
     expect(textareaQuery?.value).toBe("");
@@ -556,7 +556,7 @@ describe("chat-footer", () => {
 
     const elLocator = getElementLocatorSelectors(el);
     const textarea = elLocator.getByPlaceholder(
-      i18nContext.chatFooterTextareaPlaceholder,
+      i18nContext.CHAT_FOOTER_TEXTAREA_PLACEHOLDER,
     );
     await textarea.fill("Hello, world!");
 

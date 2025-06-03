@@ -23,7 +23,7 @@ import { RoomContext, roomContext } from "../contexts/room-context";
 import { messageContext, MessageContext } from "../contexts/message-context";
 import { FooterContext, footerContext } from "../contexts/footer-context";
 import { I18nContext, i18nContext } from "../contexts/i18n-context";
-import { defaultI18n } from "../consts";
+import { DEFAULT_I18N } from "../consts";
 
 /**
  * @tag advanded-chat-kai
@@ -143,7 +143,7 @@ export class AdvancedChatKai extends LitElement {
   @property({ type: Object }) dialog: Dialog = null;
   @property({ type: String }) height = "60em";
   @property({ type: String }) width = "80em";
-  @property({ type: Object }) i18n: PartialI18nType = defaultI18n;
+  @property({ type: Object }) i18n: PartialI18nType = DEFAULT_I18N;
   @property({ type: String, reflect: true }) theme: ThemeType = "light";
 
   @provide({ context: currentUserIdContext })
@@ -190,7 +190,7 @@ export class AdvancedChatKai extends LitElement {
   @provide({ context: i18nContext })
   @property({ type: Object })
   i18nContext: I18nContext = {
-    i18n: defaultI18n,
+    i18n: DEFAULT_I18N,
   };
 
   protected updated(
@@ -263,7 +263,7 @@ export class AdvancedChatKai extends LitElement {
 
     if (changedProperties.has("i18n")) {
       this.i18nContext = {
-        i18n: { ...defaultI18n, ...this.i18n },
+        i18n: { ...DEFAULT_I18N, ...this.i18n },
       };
     }
   }

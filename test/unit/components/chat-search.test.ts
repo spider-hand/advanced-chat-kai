@@ -5,7 +5,7 @@ import { getElementLocatorSelectors } from "@vitest/browser/utils";
 import { assert as a11y, fixture, fixtureCleanup } from "@open-wc/testing";
 import "../../../src/define";
 import { ChatSearch } from "../../../src/components/chat-search";
-import { defaultI18n } from "../../../src/consts";
+import { DEFAULT_I18N } from "../../../src/consts";
 
 describe("chat-search", () => {
   let el: ChatSearch;
@@ -17,11 +17,11 @@ describe("chat-search", () => {
 
   it("renders with default props", async () => {
     el = await fixture(
-      html`<chat-search .i18nContext=${{ i18n: defaultI18n }}></chat-search>`,
+      html`<chat-search .i18nContext=${{ i18n: DEFAULT_I18N }}></chat-search>`,
     );
 
     const input = el.shadowRoot?.querySelector("input");
-    expect(input?.placeholder).toBe(defaultI18n.chatSearchPlaceholder);
+    expect(input?.placeholder).toBe(DEFAULT_I18N.CHAT_SEARCH_PLACEHOLDER);
   });
 
   it("renders with custom placeholder", async () => {
@@ -29,7 +29,7 @@ describe("chat-search", () => {
     el = await fixture(
       html`<chat-search
         .i18nContext=${{
-          i18n: { ...defaultI18n, chatSearchPlaceholder: customPlaceholder },
+          i18n: { ...DEFAULT_I18N, CHAT_SEARCH_PLACEHOLDER: customPlaceholder },
         }}
       ></chat-search>`,
     );
@@ -40,12 +40,12 @@ describe("chat-search", () => {
 
   it("dispatches search event on input", async () => {
     el = await fixture(
-      html`<chat-search .i18nContext=${{ i18n: defaultI18n }}></chat-search>`,
+      html`<chat-search .i18nContext=${{ i18n: DEFAULT_I18N }}></chat-search>`,
     );
     elLocator = getElementLocatorSelectors(el);
 
     const spyEvent = vi.spyOn(el, "dispatchEvent");
-    const input = elLocator.getByPlaceholder(defaultI18n.chatSearchPlaceholder);
+    const input = elLocator.getByPlaceholder(DEFAULT_I18N.CHAT_SEARCH_PLACEHOLDER);
     await input.fill("test");
 
     expect(spyEvent.mock.calls.length).toBe(1);
@@ -56,7 +56,7 @@ describe("chat-search", () => {
   });
 
   it("is accessible", async () => {
-    el = await fixture(html`<chat-search .i18nContext=${{ i18n: defaultI18n }}></chat-search>`);
+    el = await fixture(html`<chat-search .i18nContext=${{ i18n: DEFAULT_I18N }}></chat-search>`);
     await a11y.isAccessible(el);
   });
 });

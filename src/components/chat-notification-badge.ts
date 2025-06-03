@@ -39,7 +39,7 @@ export class ChatNotificationBadge extends LitElement {
       class="chat-notification-badge"
       @click="${this._onClickNotificationBadge}"
     >
-      ${this.i18nContext.i18n.newMeessageNotification}
+      ${this.i18nContext.i18n.NEW_MESSAGE_NOTIFICATION}
     </button>`;
   }
 }

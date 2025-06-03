@@ -1,4 +1,4 @@
-import { defaultI18n } from "../consts";
+import { DEFAULT_I18N } from "../consts";
 
 export interface ChatAction<T extends string | number | boolean> {
   label: string;
@@ -74,7 +74,7 @@ export interface Dialog {
   };
 }
 
-export type I18nType = typeof defaultI18n;
+export type I18nType = { [key in keyof typeof DEFAULT_I18N]: string };
 export type PartialI18nType = Partial<I18nType>;
 
 export type ThemeType = "light" | "dark";

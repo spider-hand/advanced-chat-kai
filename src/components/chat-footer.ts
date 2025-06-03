@@ -207,7 +207,7 @@ export class ChatFooter extends LitElement {
     return html`<footer class="chat-footer">
       ${this._selectedRoom?.hasEnded
         ? html`<span class="chat-footer__message"
-            >${this.i18nContext.i18n.closedRoomMessage}</span
+            >${this.i18nContext.i18n.CLOSED_ROOM_MESSAGE}</span
           >`
         : html` ${this.footerContext.attachments.length > 0
               ? html`<chat-footer-attachment-section
@@ -222,7 +222,7 @@ export class ChatFooter extends LitElement {
             <textarea
               class="chat-footer__textarea"
               .placeholder="${this.i18nContext.i18n
-                .chatFooterTextareaPlaceholder}"
+                .CHAT_FOOTER_TEXTAREA_PLACEHOLDER}"
               .value="${this._textareaValue}"
               @input="${this._handleTextareaInput}"
             ></textarea>

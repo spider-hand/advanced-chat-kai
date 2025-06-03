@@ -6,7 +6,6 @@
 
 ![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai)
 
-
 A highly customizable Web Component for building chat interfaces
 
 > "Kai" (改) means "improved" in Japanese - this is a modern, lightweight, and framework-agnostic chat component built for flexibility and ease of integration.
@@ -244,12 +243,12 @@ dialog = {
 The default value is shown below. You can override only the fields you want to customize.
 
 ```js
-i18n = {
-  deletedMessage: "This message has been deleted.",
-  chatFooterTextareaPlaceholder: "Write a message..",
-  chatSearchPlaceholder: "Search room",
-  closedRoomMessage: "This chat has been ended.",
-  newMeessageNotification: "New messages",
+const DEFAULT_I18N = {
+  DELETED_MESSAGE: "This message has been deleted.",
+  CHAT_FOOTER_TEXTAREA_PLACEHOLDER: "Write a message..",
+  CHAT_SEARCH_PLACEHOLDER: "Search room",
+  CLOSED_ROOM_MESSAGE: "This chat has been ended.",
+  NEW_MESSAGE_NOTIFICATION: "New messages",
 };
 ```
 

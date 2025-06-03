@@ -1,8 +1,8 @@
 import { createContext } from "@lit/context";
-import { defaultI18n } from "../consts/index";
+import { I18nType } from "../types";
 
 export interface I18nContext {
-  i18n: typeof defaultI18n;
+  i18n: I18nType;
 }
 
 export const i18nContext = createContext<I18nContext>("i18n");

@@ -75,7 +75,7 @@ export class ChatSearch extends LitElement {
       </svg>
       <input
         class="chat-search__body"
-        .placeholder="${this.i18nContext.i18n.chatSearchPlaceholder}"
+        .placeholder="${this.i18nContext.i18n.CHAT_SEARCH_PLACEHOLDER}"
         @input="${this._onChangeInput}"
       />
     </div>`;
