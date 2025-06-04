@@ -28,3 +28,6 @@ stats.html
 
 # Coverage report
 coverage
+
+*storybook.log
+storybook-static
