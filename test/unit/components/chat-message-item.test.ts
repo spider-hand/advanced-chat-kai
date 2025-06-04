@@ -134,6 +134,18 @@ describe("chat-message-item", () => {
     const item = el.shadowRoot?.querySelector(".chat-message-item");
     expect(item?.classList.contains("chat-message-item--mine")).toBe(true);
 
+    const avatar = el.shadowRoot?.querySelector("chat-avatar");
+    expect(avatar).toBeFalsy();
+
+    const meta = el.shadowRoot?.querySelector(".chat-message-item__meta");
+    expect(meta?.classList.contains("chat-message-item__meta--mine")).toBe(true);
+
+    const sender = meta?.querySelector(".chat-message-item__name");
+    expect(sender).toBeFalsy();
+
+    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    expect(date?.textContent).toContain("12:34 PM");
+
     const body = el.shadowRoot?.querySelector(".chat-message-item__body");
     expect(body?.classList.contains("chat-message-item__body--mine")).toBe(
       true,

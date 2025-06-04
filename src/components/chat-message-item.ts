@@ -154,6 +154,10 @@ export class ChatMessageItem extends LitElement {
         align-items: baseline;
       }
 
+      .chat-message-item__meta--mine {
+        justify-content: flex-end;
+      }
+
       .chat-message-item__name {
         display: inline-block;
         max-width: 100px;
@@ -209,15 +213,20 @@ export class ChatMessageItem extends LitElement {
         ? html`<chat-avatar .src="${this.message.senderAvatar}"></chat-avatar>`
         : nothing}
       <div class="chat-message-item__container">
-        ${!this._mine
-          ? html`<div class="chat-message-item__meta">
-              <span class="chat-message-item__name"
+        <div
+          class=${classMap({
+            "chat-message-item__meta": true,
+            "chat-message-item__meta--mine": this._mine,
+          })}
+        >
+          ${!this._mine
+            ? html`<span class="chat-message-item__name"
                 >${this.message.senderName}</span
-              ><span class="chat-message-item__date"
-                >${this.message.timestamp}</span
-              >
-            </div>`
-          : nothing}
+              >`
+            : nothing}<span class="chat-message-item__date"
+            >${this.message.timestamp}</span
+          >
+        </div>
         <div
           class="${classMap({
             "chat-message-item__body": true,
