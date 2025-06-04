@@ -105,6 +105,7 @@ export interface AdvancedChatKaiProps {
   isTyping?: boolean;
   showRoomAvatar?: boolean;
   showTheirAvatar?: boolean;
+  alignMyMessagesLeft?: boolean;
   dialog?: Dialog | null;
   height?: string;
   width?: string;

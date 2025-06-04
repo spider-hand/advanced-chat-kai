@@ -33,6 +33,7 @@ export class ChatMessageItem extends LitElement {
   @property({ type: Boolean }) isEmojiReactionAvailable = false;
   @property({ type: Boolean }) isReplyAvailable = false;
   @property({ type: Boolean }) showTheirAvatar = false;
+  @property({ type: Boolean }) alignMyMessagesLeft = false;
   @property({ type: Number }) containerTop = 0;
   @property({ type: Number }) containerBottom = 0;
 
@@ -61,6 +62,10 @@ export class ChatMessageItem extends LitElement {
 
   private get _mine() {
     return this.message.senderId === this.currentUserId;
+  }
+
+  private get _isAlignedLeft() {
+    return !this._mine || this.alignMyMessagesLeft;
   }
 
   private get _isMessageActionAvailable() {
@@ -134,7 +139,7 @@ export class ChatMessageItem extends LitElement {
         margin-bottom: 1.6em;
       }
 
-      .chat-message-item--mine {
+      .chat-message-item--right-aligned {
         max-width: 60%;
         margin-right: 0;
         margin-left: auto;
@@ -154,7 +159,7 @@ export class ChatMessageItem extends LitElement {
         align-items: baseline;
       }
 
-      .chat-message-item__meta--mine {
+      .chat-message-item__meta--right-aligned {
         justify-content: flex-end;
       }
 
@@ -203,23 +208,23 @@ export class ChatMessageItem extends LitElement {
     return html`<div
       class="${classMap({
         "chat-message-item": true,
-        "chat-message-item--mine": this._mine,
+        "chat-message-item--right-aligned": !this._isAlignedLeft,
         "chat-message-item--last": this.last,
         "chat-message-item--selected":
           this.isReplying || this.message.isSelected,
       })}"
     >
-      ${!this._mine && this.showTheirAvatar
+      ${this._isAlignedLeft && this.showTheirAvatar
         ? html`<chat-avatar .src="${this.message.senderAvatar}"></chat-avatar>`
         : nothing}
       <div class="chat-message-item__container">
         <div
           class=${classMap({
             "chat-message-item__meta": true,
-            "chat-message-item__meta--mine": this._mine,
+            "chat-message-item__meta--right-aligned": !this._isAlignedLeft,
           })}
         >
-          ${!this._mine
+          ${this._isAlignedLeft
             ? html`<span class="chat-message-item__name"
                 >${this.message.senderName}</span
               >`
@@ -263,9 +268,10 @@ export class ChatMessageItem extends LitElement {
           this._hover &&
           this._isMessageMenuAvailable
             ? html`<chat-message-menu
-                style="position: absolute; bottom: 0; left: ${this._mine
+                style="position: absolute; bottom: 0; left: ${!this
+                  ._isAlignedLeft
                   ? "auto"
-                  : "calc(100% + 0.4em)"}; right: ${this._mine
+                  : "calc(100% + 0.4em)"}; right: ${!this._isAlignedLeft
                   ? "calc(100% + 0.4em)"
                   : "auto"};"
                 .mine="${this._mine}"
@@ -283,7 +289,7 @@ export class ChatMessageItem extends LitElement {
                   ? "auto"
                   : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
                   ? "4em"
-                  : "auto"}; ${this._mine
+                  : "auto"}; ${!this._isAlignedLeft
                   ? "right: calc(100% + 0.4em);"
                   : "left: calc(100% + 0.4em);"} z-index: 1;"
                 .actionType="${"message"}"
@@ -303,7 +309,7 @@ export class ChatMessageItem extends LitElement {
                   ? "auto"
                   : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
                   ? "4em"
-                  : "auto"}; ${this._mine
+                  : "auto"}; ${!this._isAlignedLeft
                   ? "right: 50%;"
                   : "left: 50%;"} z-index: 1;"
                 .width="${300}"
@@ -318,6 +324,7 @@ export class ChatMessageItem extends LitElement {
           ? html`<chat-message-reaction-list
               .messageId="${this.message.id}"
               .mine="${this._mine}"
+              .alignMyMessagesLeft="${this.alignMyMessagesLeft}"
               .reactions="${this.message.reactions}"
             ></chat-message-reaction-list>`
           : nothing}

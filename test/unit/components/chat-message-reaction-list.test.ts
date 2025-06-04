@@ -31,18 +31,24 @@ describe("chat-message-reaction-list", () => {
     expect(
       reactionList?.classList.contains("chat-message-reaction-list--mine"),
     ).toBe(false);
+    expect(
+      reactionList?.classList.contains(
+        "chat-message-reaction-list--right-aligned",
+      ),
+    ).toBe(false);
 
     const buttons = el.shadowRoot?.querySelectorAll("button");
     expect(buttons).toHaveLength(0);
   });
 
-  it("renders with mine prop", async () => {
+  it("renders reaction list on my message", async () => {
     const messageId = "test-message-id";
     const reactions = new Map<string, Set<string>>();
     el = await fixture(
       html`<chat-message-reaction-list
         .messageId=${messageId}
         .reactions=${reactions}
+        .alignMyMessagesLeft=${false}
         mine
       ></chat-message-reaction-list>`,
     );
@@ -54,6 +60,37 @@ describe("chat-message-reaction-list", () => {
     expect(
       reactionList?.classList.contains("chat-message-reaction-list--mine"),
     ).toBe(true);
+    expect(
+      reactionList?.classList.contains(
+        "chat-message-reaction-list--right-aligned",
+      ),
+    ).toBe(true);
+  });
+
+  it("alignes reaction list left on my message", async () => {
+    const messageId = "test-message-id";
+    const reactions = new Map<string, Set<string>>();
+    el = await fixture(
+      html`<chat-message-reaction-list
+        .messageId=${messageId}
+        .reactions=${reactions}
+        .alignMyMessagesLeft=${true}
+        mine
+      ></chat-message-reaction-list>`,
+    );
+
+    const reactionList = el.shadowRoot?.querySelector(
+      ".chat-message-reaction-list",
+    );
+
+    expect(
+      reactionList?.classList.contains("chat-message-reaction-list--mine"),
+    ).toBe(true);
+    expect(
+      reactionList?.classList.contains(
+        "chat-message-reaction-list--right-aligned",
+      ),
+    ).toBe(false);
   });
 
   it("renders reactions", async () => {

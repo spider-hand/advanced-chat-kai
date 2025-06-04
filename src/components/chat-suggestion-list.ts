@@ -3,9 +3,9 @@ import { property } from "lit/decorators.js";
 import { globalStyles } from "../styles/global";
 import { ChatMessageSuggestion, SelectSuggestionDetail } from "../types";
 
-
 export class ChatSuggestionList extends LitElement {
   @property({ type: Array }) suggestions: ChatMessageSuggestion[] = [];
+  @property({ type: Boolean }) alignMyMessagesLeft = false;
 
   private _selectSuggestion(suggestion: ChatMessageSuggestion): void {
     this.dispatchEvent(
@@ -21,7 +21,6 @@ export class ChatSuggestionList extends LitElement {
     css`
       :host {
         display: flex;
-        align-self: flex-end;
       }
 
       .chat-suggestion-list {
@@ -36,16 +35,18 @@ export class ChatSuggestionList extends LitElement {
         max-width: 45%;
         padding: 0.8em 1.2em;
         margin-right: 0;
-        margin-left: auto;
-        font-size: 1.4em;
         text-align: left;
         background-color: var(--surface-200);
         border: none;
-        border-radius: 8px;
+        border-radius: 0.8em;
       }
 
       .chat-suggestion-list__item:hover {
         background-color: var(--surface-300);
+      }
+
+      .chat-suggestion-list__text {
+        font-size: 1.4em;
       }
     `,
   ];
@@ -56,9 +57,10 @@ export class ChatSuggestionList extends LitElement {
         (suggestion) =>
           html`<button
             class="chat-suggestion-list__item"
+            style="margin-left: ${this.alignMyMessagesLeft ? "4em" : "auto"};"
             @click="${() => this._selectSuggestion(suggestion)}"
           >
-            ${suggestion.text}
+            <span class="chat-suggestion-list__text">${suggestion.text}</span>
           </button>`,
       )}
     </div>`;

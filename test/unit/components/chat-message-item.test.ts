@@ -132,16 +132,55 @@ describe("chat-message-item", () => {
     );
 
     const item = el.shadowRoot?.querySelector(".chat-message-item");
-    expect(item?.classList.contains("chat-message-item--mine")).toBe(true);
+    expect(item?.classList.contains("chat-message-item--right-aligned")).toBe(
+      true,
+    );
 
     const avatar = el.shadowRoot?.querySelector("chat-avatar");
     expect(avatar).toBeFalsy();
 
     const meta = el.shadowRoot?.querySelector(".chat-message-item__meta");
-    expect(meta?.classList.contains("chat-message-item__meta--mine")).toBe(true);
+    expect(
+      meta?.classList.contains("chat-message-item__meta--right-aligned"),
+    ).toBe(true);
 
     const sender = meta?.querySelector(".chat-message-item__name");
     expect(sender).toBeFalsy();
+
+    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    expect(date?.textContent).toContain("12:34 PM");
+
+    const body = el.shadowRoot?.querySelector(".chat-message-item__body");
+    expect(body?.classList.contains("chat-message-item__body--mine")).toBe(
+      true,
+    );
+  });
+
+  it("renders my messages on the left side", async () => {
+    el = await fixture(
+      html`<chat-message-item
+        .message=${{ ...message, senderId: "test-user-id" }}
+        .currentUserId=${"test-user-id"}
+        .alignMyMessagesLeft=${true}
+      ></chat-message-item>`,
+    );
+
+    const item = el.shadowRoot?.querySelector(".chat-message-item");
+    expect(item?.classList.contains("chat-message-item--right-aligned")).toBe(
+      false,
+    );
+
+    const avatar = el.shadowRoot?.querySelector("chat-avatar");
+    expect(avatar).toBeFalsy();
+
+    const meta = el.shadowRoot?.querySelector(".chat-message-item__meta");
+    expect(
+      meta?.classList.contains("chat-message-item__meta--right-aligned"),
+    ).toBe(false);
+
+    // Show sender name for my messages on the left side
+    const sender = meta?.querySelector(".chat-message-item__name");
+    expect(sender).toBeTruthy();
 
     const date = el.shadowRoot?.querySelector(".chat-message-item__date");
     expect(date?.textContent).toContain("12:34 PM");
@@ -190,18 +229,31 @@ describe("chat-message-item", () => {
     expect(item?.classList.contains("chat-message-item--selected")).toBe(true);
   });
 
-  it("renders avatar for other users", async () => {
-    el = await fixture(
-      html`<chat-message-item
-        .message=${{ ...message, senderId: "other-user-id" }}
-        .currentUserId=${currentUserId}
-        .showTheirAvatar=${true}
-      ></chat-message-item>`,
-    );
+  it.each([
+    {
+      senderId: "current-user-id",
+      alignMyMessagesLeft: true,
+    },
+    {
+      senderId: "other-user-id",
+      alignMyMessagesLeft: false,
+    },
+  ])(
+    "renders avatar for the left aligned messages",
+    async ({ senderId, alignMyMessagesLeft }) => {
+      el = await fixture(
+        html`<chat-message-item
+          .message=${{ ...message, senderId: senderId }}
+          .currentUserId=${"current-user-id"}
+          .showTheirAvatar=${true}
+          .alignMyMessagesLeft=${alignMyMessagesLeft}
+        ></chat-message-item>`,
+      );
 
-    const avatar = el.shadowRoot?.querySelector("chat-avatar");
-    expect(avatar).toBeTruthy();
-  });
+      const avatar = el.shadowRoot?.querySelector("chat-avatar");
+      expect(avatar).toBeTruthy();
+    },
+  );
 
   it("renders reply to message", async () => {
     const replyToMessage: ChatMessage = {

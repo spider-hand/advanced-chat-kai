@@ -39,6 +39,14 @@ export const WithFullProps: Story = {
   },
 };
 
+export const WithLeftAlignedMessages: Story = {
+  args: {
+    ...testProps,
+    theme: "dark",
+    alignMyMessagesLeft: true,
+  },
+};
+
 export const WithReplyAndAttachment: Story = {
   args: {
     ...testProps,
@@ -94,14 +102,14 @@ export const WithClosedRoom: Story = {
   args: {
     ...testProps,
     theme: "dark",
-    rooms: testProps.rooms?.map(room => {
+    rooms: testProps.rooms?.map((room) => {
       return {
         ...room,
         hasEnded: true,
       };
     }),
   },
-}
+};
 
 export const WithLocalization: Story = {
   args: {

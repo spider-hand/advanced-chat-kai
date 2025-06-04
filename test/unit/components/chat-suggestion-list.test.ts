@@ -47,6 +47,29 @@ describe("chat-suggestion-list", () => {
     expect(items).toHaveLength(2);
     expect(items![0].textContent?.trim()).toBe("Suggestion 1");
     expect(items![1].textContent?.trim()).toBe("Suggestion 2");
+    expect(items![0].getAttribute('style')).toContain("margin-left: auto");
+  });
+
+  it("renders left aligned suggestions", async () => {
+    const suggestions: ChatMessageSuggestion[] = [
+      {
+        text: "Suggestion 1",
+        value: "suggestion1",
+      },
+    ];
+    el = await fixture(
+      html`<chat-suggestion-list
+        .suggestions=${suggestions}
+        alignMyMessagesLeft
+      ></chat-suggestion-list>`,
+    );
+
+    const items = el.shadowRoot?.querySelectorAll(
+      ".chat-suggestion-list__item",
+    );
+    expect(items).toHaveLength(1);
+    expect(items![0].textContent?.trim()).toBe("Suggestion 1");
+    expect(items![0].getAttribute('style')).toContain("margin-left: 4em");
   });
 
   it("dispatches select-suggestion event on item click", async () => {

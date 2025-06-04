@@ -212,6 +212,8 @@ export class ChatMessageList extends LitElement {
                       .isReplyAvailable="${this.messageContext
                         .isReplyAvailable}"
                       .showTheirAvatar="${this.messageContext.showTheirAvatar}"
+                      .alignMyMessagesLeft="${this.messageContext
+                        .alignMyMessagesLeft}"
                       .containerTop="${this._rectTop}"
                       .containerBottom="${this._rectBottom}"
                     ></chat-message-item>`
@@ -226,7 +228,11 @@ export class ChatMessageList extends LitElement {
                 : nothing}
               ${this.messageContext.suggestions.length > 0
                 ? html`<chat-suggestion-list
+                    style="align-self: ${this.messageContext.alignMyMessagesLeft
+                      ? "flex-start"
+                      : "flex-end"};"
                     .suggestions="${this.messageContext.suggestions}"
+                    .alignMyMessagesLeft="${this.messageContext.alignMyMessagesLeft}"
                   ></chat-suggestion-list>`
                 : nothing}
               <button

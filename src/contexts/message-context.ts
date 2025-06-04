@@ -19,6 +19,7 @@ export interface MessageContext {
   isReplyAvailable: boolean;
   isTyping: boolean;
   showTheirAvatar: boolean;
+  alignMyMessagesLeft: boolean;
 }
 
 export const messageContext = createContext<MessageContext>("message");

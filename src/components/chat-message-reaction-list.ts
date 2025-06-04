@@ -12,6 +12,7 @@ export class ChatMessageReactionList extends LitElement {
   currentUserId: string | null = null;
   @property({ type: String }) messageId!: string;
   @property({ type: Boolean }) mine = false;
+  @property({ type: Boolean }) alignMyMessagesLeft = false;
   @property({ type: Object }) reactions!: Map<string, Set<string>>;
 
   private _clickReaction(emoji: string, users: Set<string>) {
@@ -50,8 +51,11 @@ export class ChatMessageReactionList extends LitElement {
       }
 
       .chat-message-reaction-list--mine {
-        margin-left: auto;
         background-color: var(--surface-200);
+      }
+
+      .chat-message-reaction-list--right-aligned {
+        margin-left: auto;
       }
 
       .chat-message-reaction-list__button {
@@ -92,6 +96,8 @@ export class ChatMessageReactionList extends LitElement {
       class="${classMap({
         "chat-message-reaction-list": true,
         "chat-message-reaction-list--mine": this.mine,
+        "chat-message-reaction-list--right-aligned":
+          this.mine && !this.alignMyMessagesLeft,
       })}"
     >
       ${Array.from(this.reactions.entries()).map(([emoji, users]) => {

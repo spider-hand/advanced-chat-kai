@@ -47,6 +47,7 @@ describe("chat-message-list", () => {
     isReplyAvailable: false,
     isTyping: false,
     showTheirAvatar: false,
+    alignMyMessagesLeft: false,
   };
 
   afterEach(() => {
@@ -215,6 +216,27 @@ describe("chat-message-list", () => {
       "chat-suggestion-list",
     );
     expect(chatSuggestionList).toBeTruthy();
+    expect(chatSuggestionList?.getAttribute("style")).toContain("align-self: flex-end");
+  });
+
+  it("renders left aligned suggestions", async () => {
+    const suggestions = [{ text: "Suggestion 1", value: "value1" }];
+
+    el = await fixture(
+      html`<chat-message-list
+        .messageContext=${{
+          ...messageContext,
+          suggestions,
+          alignMyMessagesLeft: true,
+        }}
+      ></chat-message-list>`,
+    );
+
+    const chatSuggestionList = el.shadowRoot?.querySelector(
+      "chat-suggestion-list",
+    );
+    expect(chatSuggestionList).toBeTruthy();
+    expect(chatSuggestionList?.getAttribute("style")).toContain("align-self: flex-start");
   });
 
   it("toggles the floating button when scrolling around the bottom", async () => {

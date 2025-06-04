@@ -55,6 +55,7 @@ import { DEFAULT_I18N } from "../consts";
  * @prop {boolean} isTyping - Whether the typing indicator should be rendered or not
  * @prop {boolean} showRoomAvatar - Whether the room avatar on the list of rooms should be rendered or not
  * @prop {boolean} showTheirAvatar - Whether the other user's avatar on the message should be rendered or not
+ * @prop {boolean} alignMyMessagesLeft - Whether my messages should be aligned to the left or not
  * @prop {Dialog} dialog - The dialog to be rendered
  * @prop {string} height - The height of the chat component
  * @prop {string} width - The width of the chat component
@@ -140,6 +141,7 @@ export class AdvancedChatKai extends LitElement {
   @property({ type: Boolean }) isTyping = false;
   @property({ type: Boolean }) showRoomAvatar = true;
   @property({ type: Boolean }) showTheirAvatar = true;
+  @property({ type: Boolean }) alignMyMessagesLeft = false;
   @property({ type: Object }) dialog: Dialog = null;
   @property({ type: String }) height = "60em";
   @property({ type: String }) width = "80em";
@@ -173,6 +175,7 @@ export class AdvancedChatKai extends LitElement {
     isReplyAvailable: this.isReplyAvailable,
     isTyping: this.isTyping,
     showTheirAvatar: this.showTheirAvatar,
+    alignMyMessagesLeft: this.alignMyMessagesLeft,
   };
 
   @provide({ context: footerContext })
@@ -229,7 +232,9 @@ export class AdvancedChatKai extends LitElement {
       changedProperties.has("theirMessageActions") ||
       changedProperties.has("isEmojiReactionAvailable") ||
       changedProperties.has("isReplyAvailable") ||
-      changedProperties.has("isTyping")
+      changedProperties.has("isTyping") ||
+      changedProperties.has("showTheirAvatar") ||
+      changedProperties.has("alignMyMessagesLeft")
     ) {
       this.messagesContext = {
         messages: this.messages,
@@ -244,6 +249,7 @@ export class AdvancedChatKai extends LitElement {
         isReplyAvailable: this.isReplyAvailable,
         isTyping: this.isTyping,
         showTheirAvatar: this.showTheirAvatar,
+        alignMyMessagesLeft: this.alignMyMessagesLeft,
       };
     }
 
