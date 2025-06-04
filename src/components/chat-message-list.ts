@@ -140,7 +140,7 @@ export class ChatMessageList extends LitElement {
         display: flex;
         flex-grow: 1;
         padding: 1.6em 1.2em;
-        overflow-y: scroll;
+        overflow: hidden scroll;
       }
 
       .chat-message-list {

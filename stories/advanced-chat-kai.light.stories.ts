@@ -66,6 +66,16 @@ export const WithMobile: Story = {
   },
 };
 
+export const WithFullScreen: Story = {
+  args: {
+    ...testProps,
+    width: "100vw",
+    height: "100vh",
+    isMobile: true,
+    theme: "light",
+  },
+}
+
 export const WithSingleRoom: Story = {
   args: {
     ...testProps,

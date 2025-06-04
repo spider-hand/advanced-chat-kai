@@ -6,6 +6,7 @@ export const globalStyles = css`
     margin: 0;
     font-family: inherit;
     color: var(--text);
+    -webkit-tap-highlight-color: transparent;
   }
 
   button {

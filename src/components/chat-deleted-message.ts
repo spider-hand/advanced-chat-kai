@@ -18,14 +18,10 @@ export class ChatDeletedMessage extends LitElement {
         display: flex;
       }
 
-      .chat-deleted-message {
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-      }
-
       .chat-deleted-message__icon {
         margin-right: 0.2em;
+        margin-bottom: 0.2em;
+        vertical-align: middle;
       }
     `,
   ];
