@@ -69,6 +69,7 @@ export class ChatHeader extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.6em;
         font-weight: 600;
+        color: var(--text);
         white-space: nowrap;
       }
 
@@ -76,6 +77,7 @@ export class ChatHeader extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.2em;
+        color: var(--subtext);
         white-space: nowrap;
       }
 

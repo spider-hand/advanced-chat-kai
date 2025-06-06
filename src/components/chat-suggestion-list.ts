@@ -35,6 +35,7 @@ export class ChatSuggestionList extends LitElement {
         max-width: 45%;
         padding: 0.8em 1.2em;
         margin-right: 0;
+        color: var(--text);
         text-align: left;
         background-color: var(--surface-200);
         border: none;

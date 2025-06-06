@@ -316,6 +316,7 @@ The `--surface-50` to `--surface-950` variables define the primary surface color
 | `--surface-900`                        |                                                     |
 | `--surface-950`                        |                                                     |
 | `--text`                               | The default text color                              |
+| `--subtext`                            | The default subtext color                           |
 | `--border`                             | The default border color                            |
 | `--floating-item-border`               | The default border color for floating items         |
 | `--floating-item-box-shadow`           | The default box shadow for floating items           |

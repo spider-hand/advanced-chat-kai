@@ -50,6 +50,7 @@ export class ChatMessageAttachmentList extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.2em;
+        color: var(--text);
         white-space: nowrap;
       }
 

@@ -70,6 +70,7 @@ export class ChatDialog extends LitElement {
 
       .chat-dialog__button {
         font-size: 1.4em;
+        color: var(--text);
         background-color: transparent;
         border: none;
       }

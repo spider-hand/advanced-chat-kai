@@ -5,7 +5,6 @@ export const globalStyles = css`
     box-sizing: border-box;
     margin: 0;
     font-family: inherit;
-    color: var(--text);
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -38,6 +37,7 @@ export const globalStyles = css`
     --surface-900: hsl(0deg 0% 18%);
     --surface-950: hsl(0deg 0% 16%);
     --text: var(--surface-900);
+    --subtext: var(--surface-700);
     --border: var(--surface-200);
     --floating-item-border: none;
     --floating-item-box-shadow: rgb(0 0 0 / 15%) 0 0.1em 0.1em 0;
@@ -67,6 +67,7 @@ export const globalStyles = css`
     --surface-900: hsl(0deg 23% 97%);
     --surface-950: hsl(0deg 20% 99%);
     --text: var(--surface-800);
+    --subtext: var(--surface-600);
     --border: var(--surface-200);
     --floating-item-border: solid 0.1em var(--border);
     --floating-item-box-shadow: none;

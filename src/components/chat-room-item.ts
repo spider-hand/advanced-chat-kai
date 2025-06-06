@@ -98,6 +98,7 @@ export class ChatRoomItem extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.4em;
         font-weight: 600;
+        color: var(--text);
         white-space: nowrap;
       }
 
@@ -105,7 +106,12 @@ export class ChatRoomItem extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.2em;
+        color: var(--subtext);
         white-space: nowrap;
+      }
+
+      .chat-room-item__meta {
+        color: var(--subtext);
       }
 
       .chat-room-item__menu {
@@ -215,7 +221,7 @@ export class ChatRoomItem extends LitElement {
             </svg>
           </button>`
         : html`<div class="chat-room-item__menu">
-            <span>${this.room.meta}</span>
+            <span class="chat-room-item__meta">${this.room.meta}</span>
             ${this.room.badge
               ? html`<span
                   class="${classMap({

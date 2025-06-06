@@ -23,6 +23,7 @@ export class ChatFooterReplyToSection extends LitElement {
         gap: 0.2em;
         align-items: center;
         font-size: 1em;
+        color: var(--subtext);
       }
 
       .chat-footer-reply-to-section__name {
@@ -31,6 +32,7 @@ export class ChatFooterReplyToSection extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-weight: 600;
+        color: var(--text);
         white-space: nowrap;
       }
 

@@ -18,6 +18,10 @@ export class ChatDeletedMessage extends LitElement {
         display: flex;
       }
 
+      .chat-deleted-message {
+        color: var(--surface-700);
+      }
+
       .chat-deleted-message__icon {
         margin-right: 0.2em;
         margin-bottom: 0.2em;

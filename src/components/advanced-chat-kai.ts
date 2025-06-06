@@ -100,6 +100,7 @@ import { DEFAULT_I18N } from "../consts";
  * @cssprop --surface-900
  * @cssprop --surface-950
  * @cssprop --text - The default text color
+ * @cssprosp --subtext - The default subtext color
  * @cssprop --border - The default border color
  * @cssprop --floating-item-border - The default border color for floating items
  * @cssprop --floating-item-box-shadow - The default box shadow for floating items

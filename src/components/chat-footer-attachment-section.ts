@@ -67,6 +67,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1em;
+        color: var(--text);
         white-space: nowrap;
       }
 

@@ -174,13 +174,14 @@ export class ChatMessageItem extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.2em;
         font-weight: 600;
+        color: var(--text);
         white-space: nowrap;
       }
 
       .chat-message-item__date {
         font-size: 0.8em;
         font-weight: 600;
-        color: var(--surface-700);
+        color: var(--subtext);
       }
 
       .chat-message-item__body {
@@ -190,6 +191,7 @@ export class ChatMessageItem extends LitElement {
         gap: 0.8em;
         padding: 0.8em 1.2em;
         font-size: 1.4em;
+        color: var(--text);
         background-color: var(--surface-100);
         border-radius: 0.8em;
       }

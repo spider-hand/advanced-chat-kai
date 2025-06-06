@@ -66,6 +66,7 @@ export class ChatMessageReactionList extends LitElement {
         padding: 0 0.4em;
         margin: 0;
         font-size: 1.4em;
+        color: var(--text);
         background-color: transparent;
         border: none;
         border-radius: 0.4em;

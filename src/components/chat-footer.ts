@@ -144,6 +144,7 @@ export class ChatFooter extends LitElement {
 
       .chat-footer__message {
         font-size: 1.2em;
+        color: var(--text);
       }
 
       .chat-footer__textarea {
@@ -151,6 +152,7 @@ export class ChatFooter extends LitElement {
         flex-grow: 1;
         padding: 0.8em;
         font-size: 1.4em;
+        color: var(--text);
         outline: none;
         background-color: var(--surface-50);
         border: 0.1em solid var(--border);

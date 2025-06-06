@@ -49,6 +49,7 @@ export class ChatSearch extends LitElement {
         width: 100%;
         padding: 0;
         font-size: 1.4em;
+        color: var(--text);
         outline: none;
         background-color: transparent;
         border: none;

@@ -67,6 +67,7 @@ export class ChatActionList extends LitElement {
         height: 3.2em;
         padding: 0 0.8em;
         font-size: 1.4em;
+        color: var(--text);
         cursor: pointer;
       }
 
