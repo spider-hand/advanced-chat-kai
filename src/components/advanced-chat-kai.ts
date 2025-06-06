@@ -56,6 +56,7 @@ import { DEFAULT_I18N } from "../consts";
  * @prop {boolean} showRoomAvatar - Whether the room avatar on the list of rooms should be rendered or not
  * @prop {boolean} showTheirAvatar - Whether the other user's avatar on the message should be rendered or not
  * @prop {boolean} alignMyMessagesLeft - Whether my messages should be aligned to the left or not
+ * @prop {boolean} enterToSend - Whether the enter key should send the message or not
  * @prop {Dialog} dialog - The dialog to be rendered
  * @prop {string} height - The height of the chat component
  * @prop {string} width - The width of the chat component
@@ -142,6 +143,7 @@ export class AdvancedChatKai extends LitElement {
   @property({ type: Boolean }) showRoomAvatar = true;
   @property({ type: Boolean }) showTheirAvatar = true;
   @property({ type: Boolean }) alignMyMessagesLeft = false;
+  @property({ type: Boolean }) enterToSend = false;
   @property({ type: Object }) dialog: Dialog = null;
   @property({ type: String }) height = "60em";
   @property({ type: String }) width = "80em";
@@ -184,6 +186,7 @@ export class AdvancedChatKai extends LitElement {
     isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
     inputMessage: this.inputMessage,
     attachments: this.attachments,
+    enterToSend: this.enterToSend,
   };
 
   @provide({ context: sidebarContext })
@@ -257,13 +260,15 @@ export class AdvancedChatKai extends LitElement {
       changedProperties.has("isEmojiPickerAvailable") ||
       changedProperties.has("isMessageAttachmentAvailable") ||
       changedProperties.has("inputMessage") ||
-      changedProperties.has("attachments")
+      changedProperties.has("attachments") ||
+      changedProperties.has("enterToSend")
     ) {
       this.footerContext = {
         isEmojiPickerAvailable: this.isEmojiPickerAvailable,
         isMessageAttachmentAvailable: this.isMessageAttachmentAvailable,
         inputMessage: this.inputMessage,
         attachments: this.attachments,
+        enterToSend: this.enterToSend,
       };
     }
 

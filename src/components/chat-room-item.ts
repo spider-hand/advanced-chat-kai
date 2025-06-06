@@ -184,6 +184,8 @@ export class ChatRoomItem extends LitElement {
       @mouseleave="${this._onMouseLeave}"
       @click="${this._selectRoom}"
       data-testid="chat-room-item"
+      role="button"
+      tabindex="0"
     >
       ${this.showAvatar
         ? html`<chat-avatar .src="${this.room.avatar}"></chat-avatar>`

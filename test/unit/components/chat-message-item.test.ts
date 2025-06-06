@@ -390,7 +390,7 @@ describe("chat-message-item", () => {
       currentUserId: "my-user-id",
     },
   ])(
-    "renders menu on hover and one of the action is available",
+    "renders menu on hover and one of the actions is available",
     async ({
       isEmojiReactionAvailable,
       isReplyAvailable,
@@ -518,6 +518,101 @@ describe("chat-message-item", () => {
       expect(chatMessageMenuAfterLeave).toBeFalsy();
 
       vi.useRealTimers();
+    },
+  );
+
+  it.each([
+    {
+      isEmojiReactionAvailable: true,
+      isReplyAvailable: false,
+      myMessageActions: [],
+      theirMessageActions: [],
+      senderId: "my-user-id",
+      currentUserId: null,
+    },
+    {
+      isEmojiReactionAvailable: false,
+      isReplyAvailable: true,
+      myMessageActions: [],
+      theirMessageActions: [],
+      senderId: "my-user-id",
+      currentUserId: null,
+    },
+    {
+      isEmojiReactionAvailable: false,
+      isReplyAvailable: false,
+      myMessageActions: [
+        {
+          label: "Action 1",
+          value: "action1",
+        },
+      ],
+      theirMessageActions: [],
+      senderId: "my-user-id",
+      currentUserId: "my-user-id",
+    },
+    {
+      isEmojiReactionAvailable: false,
+      isReplyAvailable: false,
+      myMessageActions: [],
+      theirMessageActions: [
+        {
+          label: "Action 1",
+          value: "action1",
+        },
+      ],
+      senderId: "their-user-id",
+      currentUserId: "my-user-id",
+    },
+  ])(
+    "renders menu on focus and one of the actions is available",
+    async ({
+      isEmojiReactionAvailable,
+      isReplyAvailable,
+      myMessageActions,
+      theirMessageActions,
+      senderId,
+      currentUserId,
+    }) => {
+      el = await fixture(
+        html`<chat-message-item
+          .message=${{ ...message, senderId: senderId }}
+          .currentUserId=${currentUserId}
+          .isEmojiReactionAvailable=${isEmojiReactionAvailable}
+          .isReplyAvailable=${isReplyAvailable}
+          .myMessageActions=${myMessageActions}
+          .theirMessageActions=${theirMessageActions}
+        ></chat-message-item>`,
+      );
+
+      const chatMessageMenu = el.shadowRoot?.querySelector("chat-message-menu");
+      expect(chatMessageMenu).toBeFalsy();
+
+      const body = el.shadowRoot?.querySelector(".chat-message-item__body");
+      body?.dispatchEvent(new Event("focus"));
+
+      await el.updateComplete;
+
+      const chatMessageMenuAfterHover =
+        el.shadowRoot?.querySelector("chat-message-menu");
+      expect(chatMessageMenuAfterHover).toBeTruthy();
+
+      body?.dispatchEvent(new Event("blur"));
+      chatMessageMenuAfterHover?.dispatchEvent(new Event("focus"));
+
+      await el.updateComplete;
+
+      const chatMessageMenuAfterLeave =
+        el.shadowRoot?.querySelector("chat-message-menu");
+      expect(chatMessageMenuAfterLeave).toBeTruthy();
+
+      chatMessageMenuAfterLeave?.dispatchEvent(new Event("blur"));
+
+      await el.updateComplete;
+
+      const chatMessageMenuAfterBlur =
+        el.shadowRoot?.querySelector("chat-message-menu");
+      expect(chatMessageMenuAfterBlur).toBeFalsy();
     },
   );
 

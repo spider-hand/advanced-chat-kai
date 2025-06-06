@@ -50,6 +50,7 @@ describe("chat-footer", () => {
     isReplyAvailable: false,
     isTyping: false,
     showTheirAvatar: false,
+    alignMyMessagesLeft: false,
   };
 
   const footerContext = {
@@ -57,6 +58,7 @@ describe("chat-footer", () => {
     isMessageAttachmentAvailable: false,
     inputMessage: "",
     attachments: [],
+    enterToSend: false,
   };
 
   const i18nContext = { ...DEFAULT_I18N };
@@ -179,7 +181,10 @@ describe("chat-footer", () => {
         .footerContext="${footerContext}"
         .currentUserId="${currentUserId}"
         .i18nContext="${{
-          i18n: { ...i18nContext, CLOSED_ROOM_MESSAGE: customCLOSED_ROOM_MESSAGE },
+          i18n: {
+            ...i18nContext,
+            CLOSED_ROOM_MESSAGE: customCLOSED_ROOM_MESSAGE,
+          },
         }}"
       ></chat-footer>`,
     );
@@ -294,7 +299,7 @@ describe("chat-footer", () => {
       ...footerContext,
       inputMessage: "Updated message",
     };
-   
+
     await el.updateComplete;
 
     const updatedTextarea = elLocator.getByText("Updated message");
@@ -628,6 +633,106 @@ describe("chat-footer", () => {
 
     const textareaAfterSend = el.shadowRoot?.querySelector("textarea");
     expect(textareaAfterSend?.value).toBe("");
+  });
+
+  it("dispatches send-message event on enter key press if enterToSend is true", async () => {
+    const currentUserId = "test-user-id";
+    const selectedRoomId = "test-room-id";
+    const textareaValue = "Hello, world!";
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: selectedRoomId }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          inputMessage: textareaValue,
+          enterToSend: true,
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    elLocator = getElementLocatorSelectors(el);
+    const textarea = el.shadowRoot?.querySelector("textarea");
+    expect(textarea?.value).toBe(textareaValue);
+
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+
+    textarea?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+
+    await el.updateComplete;
+
+    expect(spyEvent.mock.calls.length).toBe(1);
+    expect(spyEvent.mock.calls[0][0].type).toBe("send-message");
+    expect((spyEvent.mock.calls[0][0] as CustomEvent).detail).toEqual({
+      roomId: selectedRoomId,
+      senderId: currentUserId,
+      content: textareaValue,
+    });
+
+    const textareaAfterSend = el.shadowRoot?.querySelector("textarea");
+    expect(textareaAfterSend?.value).toBe("");
+  });
+
+  it("does not dispatch send-message event on shift+enter key press if enterToSend is true", async () => {
+    const currentUserId = "test-user-id";
+    const selectedRoomId = "test-room-id";
+    const textareaValue = "Hello, world!";
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: selectedRoomId }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          inputMessage: textareaValue,
+          enterToSend: true,
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    elLocator = getElementLocatorSelectors(el);
+    const textarea = el.shadowRoot?.querySelector("textarea");
+    expect(textarea?.value).toBe(textareaValue);
+
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+
+    textarea?.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Enter", shiftKey: true }),
+    );
+
+    expect(spyEvent.mock.calls.length).toBe(0);
+  });
+
+  it("does not dispatch send-message event on enter key press if enterToSend is false", async () => {
+    const currentUserId = "test-user-id";
+    const selectedRoomId = "test-room-id";
+    const textareaValue = "Hello, world!";
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: selectedRoomId }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          inputMessage: textareaValue,
+          enterToSend: false,
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    elLocator = getElementLocatorSelectors(el);
+    const textarea = el.shadowRoot?.querySelector("textarea");
+    expect(textarea?.value).toBe(textareaValue);
+
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+
+    textarea?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+
+    expect(spyEvent.mock.calls.length).toBe(0);
   });
 
   it("is accessible", async () => {

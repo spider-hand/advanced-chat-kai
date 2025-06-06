@@ -342,6 +342,7 @@ export const testProps: AdvancedChatKaiProps = {
   showRoomAvatar: true,
   showTheirAvatar: true,
   alignMyMessagesLeft: false,
+  enterToSend: false,
   dialog: null,
   height: "60em",
   width: "80em",

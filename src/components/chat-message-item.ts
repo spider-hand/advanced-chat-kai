@@ -95,6 +95,10 @@ export class ChatMessageItem extends LitElement {
     }, 200);
   }
 
+  private _onBlurMenu() {
+    this._hover = false;
+  }
+
   private _calculatePopupPosition() {
     const rect = this.chatMessageMenu.getBoundingClientRect();
     const spaceBelow = this.containerBottom - rect.bottom;
@@ -240,6 +244,8 @@ export class ChatMessageItem extends LitElement {
           })}"
           @mouseenter="${this._onMouseEnter}"
           @mouseleave="${this._onMouseLeave}"
+          @focus="${this._onMouseEnter}"
+          tabindex="0"
         >
           ${this.message.replyTo && !this.message.isDeleted
             ? html`<chat-message-reply-to
@@ -281,6 +287,7 @@ export class ChatMessageItem extends LitElement {
                 .isMessageActionAvailable="${this._isMessageActionAvailable}"
                 @click-emoji-button="${this._toggleEmojiPicker}"
                 @click-action-button="${this._openActionList}"
+                @blur="${this._onBlurMenu}"
               ></chat-message-menu>`
             : nothing}
           ${!this.message.isDeleted && this._showActionList

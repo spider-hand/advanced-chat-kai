@@ -60,6 +60,7 @@ npm install advanced-chat-kai
 | `showRoomAvatar`               | boolean                                           | false    | `true`                 | Whether the room avatar on the list of rooms should be rendered or not            |
 | `showTheirAvatar`              | boolean                                           | false    | `true`                 | Whether the other user's avatar on the message should be rendered or not          |
 | `alignMyMessagesLeft`          | boolean                                           | false    | `false`                | Whether my messages should be aligned to the left or not                          |
+| `enterToSend`                  | boolean                                           | false    | `false`                | Whether the enter key should send the message or not                              |
 | `dialog`                       | [Dialog](#dialog) \| null                         | false    | `null`                 | The dialog to be rendered                                                         |
 | `height`                       | string                                            | false    | `"60em"`               | The height of the chat component                                                  |
 | `width`                        | string                                            | false    | `"80em"`               | The width of the chat component                                                   |

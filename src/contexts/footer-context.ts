@@ -6,6 +6,7 @@ export interface FooterContext {
   isMessageAttachmentAvailable: boolean;
   inputMessage: string;
   attachments: ChatMessageAttachment[];
+  enterToSend: boolean;
 }
 
 export const footerContext = createContext<FooterContext>("footer");

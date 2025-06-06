@@ -72,6 +72,13 @@ export class ChatFooter extends LitElement {
     this._textareaValue = target.value;
   }
 
+  private _handleKeydown(event: KeyboardEvent) {
+    if (this.footerContext.enterToSend && event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      this._sendMessage();
+    }
+  }
+
   private _handleFileInput() {
     this._fileInput.click();
   }
@@ -225,6 +232,7 @@ export class ChatFooter extends LitElement {
                 .CHAT_FOOTER_TEXTAREA_PLACEHOLDER}"
               .value="${this._textareaValue}"
               @input="${this._handleTextareaInput}"
+              @keydown="${this._handleKeydown}"
             ></textarea>
             <div class="chat-footer__menu">
               ${this.footerContext.isMessageAttachmentAvailable
