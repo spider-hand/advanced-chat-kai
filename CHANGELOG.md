@@ -1,3 +1,8 @@
+## [0.3.0](https://github.com/spider-hand/advanced-chat-kai/compare/v0.2.0...v0.3.0) (2025-06-07)
+### Features
+- Keyboard navigation
+- Add flexibility to apply a custom style
+
 ## [0.2.0](https://github.com/spider-hand/advanced-chat-kai/compare/v0.1.0...v0.2.0) (2025-06-05)
 ### Features
 - Add a prop to align my messages left
