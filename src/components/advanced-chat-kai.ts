@@ -109,6 +109,21 @@ import { DEFAULT_I18N } from "../consts";
  * @cssprop --overlay - The color used for overlays
  * @cssprop --chat-notification-badge-background - The background color of the chat notification badge
  * @cssprop --chat-notification-badge-text - The text color of the chat notification badge
+ * @cssprop --send-button-bg - The background color of the send button
+ * @cssprop --send-button-bg-hover - The background color of the send button on hover
+ * @cssprop --my-message-bg - The background color of my messages
+ * @cssprop --my-message-bg-selected - The background color of my messages when selected
+ * @cssprop --my-reaction-list-bg - The background color of the reaction list on my messages
+ * @cssprop --my-reaction-button-bg - The background color of the reaction button on my messages
+ * @cssprop --my-reaction-button-bg-hover - The background color of the reaction button on my messages on hover
+ * @cssprop --suggestion-list-item-bg - The background color of the suggestion list item
+ * @cssprop --suggestion-list-item-bg-hover - The background color of the suggestion list item on hover
+ * @cssprop --my-message-menu-bg - The background color of the message menu on my messages
+ * @cssprop --my-message-button-bg-hover - The background color of the message button on my messages on hover
+ * @cssprop --my-attachment-bg - The background color of the attachment on my messages
+ * @cssprop --my-attachment-bg-hover - The background color of the attachment on my messages on hover
+ * @cssprop --text-on-brand - The text color on brand colors
+ * @cssprop --subtext-on-brand - The subtext color on brand colors
  */
 export class AdvancedChatKai extends LitElement {
   @property({ type: String })

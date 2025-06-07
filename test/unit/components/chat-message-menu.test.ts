@@ -54,7 +54,7 @@ describe("chat-message-menu", () => {
     expect(actionButton).toBeFalsy();
   });
 
-  it("renders with mine prop", async () => {
+  it("renders on my message", async () => {
     el = await fixture(
       html`<chat-message-menu
         .message=${message}
@@ -78,7 +78,30 @@ describe("chat-message-menu", () => {
       ".chat-message-menu__button[aria-label='Add emoji reaction']",
     );
     expect(reactionButton).toBeTruthy();
+    
+    const icon = reactionButton?.querySelector("svg");
+    expect(icon).toBeTruthy();
+    expect(icon?.getAttribute("fill")).toBe("var(--surface-700)");
   });
+
+  it("renders with emoji reaction button on my message", async () => {
+    el = await fixture(
+      html`<chat-message-menu
+        .message=${message}
+        .isEmojiReactionAvailable=${true}
+        .mine=${true}
+      ></chat-message-menu>`,
+    );
+
+    const reactionButton = el.shadowRoot?.querySelector(
+      ".chat-message-menu__button[aria-label='Add emoji reaction']",
+    );
+    expect(reactionButton).toBeTruthy();
+    
+    const icon = reactionButton?.querySelector("svg");
+    expect(icon).toBeTruthy();
+    expect(icon?.getAttribute("fill")).toBe("var(--text-on-brand, var(--surface-700))");
+  })
 
   it("dispatches click-emoji-button event when clicking emoji button", async () => {
     el = await fixture(
@@ -109,7 +132,30 @@ describe("chat-message-menu", () => {
       ".chat-message-menu__button[aria-label='Reply to message']",
     );
     expect(replyButton).toBeTruthy();
+
+    const icon = replyButton?.querySelector("svg");
+    expect(icon).toBeTruthy();
+    expect(icon?.getAttribute("fill")).toBe("var(--surface-700)");
   });
+
+  it("renders with reply button on my message", async () => {
+    el = await fixture(
+      html`<chat-message-menu
+        .message=${message}
+        .isReplyAvailable=${true}
+        .mine=${true}
+      ></chat-message-menu>`,
+    );
+
+    const replyButton = el.shadowRoot?.querySelector(
+      ".chat-message-menu__button[aria-label='Reply to message']",
+    );
+    expect(replyButton).toBeTruthy();
+
+    const icon = replyButton?.querySelector("svg");
+    expect(icon).toBeTruthy();
+    expect(icon?.getAttribute("fill")).toBe("var(--text-on-brand, var(--surface-700))");
+  })
 
   it("dispatches reply-to-message event when clicking reply button", async () => {
     el = await fixture(
@@ -143,6 +189,29 @@ describe("chat-message-menu", () => {
       ".chat-message-menu__button[aria-label='Message actions']",
     );
     expect(actionButton).toBeTruthy();
+
+    const icon = actionButton?.querySelector("svg");
+    expect(icon).toBeTruthy();
+    expect(icon?.getAttribute("fill")).toBe("var(--surface-700)");
+  });
+
+  it("renders with action button on my message", async () => {
+    el = await fixture(
+      html`<chat-message-menu
+        .message=${message}
+        .isMessageActionAvailable=${true}
+        .mine=${true}
+      ></chat-message-menu>`,
+    );
+
+    const actionButton = el.shadowRoot?.querySelector(
+      ".chat-message-menu__button[aria-label='Message actions']",
+    );
+    expect(actionButton).toBeTruthy();
+
+    const icon = actionButton?.querySelector("svg");
+    expect(icon).toBeTruthy();
+    expect(icon?.getAttribute("fill")).toBe("var(--text-on-brand, var(--surface-700))");
   });
 
   it("dispatches click-action-button event when clicking action button", async () => {

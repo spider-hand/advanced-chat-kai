@@ -197,7 +197,8 @@ export class ChatMessageItem extends LitElement {
       }
 
       .chat-message-item__body--mine {
-        background-color: var(--surface-200);
+        color: var(--text-on-brand, var(--text));
+        background-color: var(--my-message-bg, var(--surface-200));
       }
 
       .chat-message-item__body--deleted {
@@ -206,6 +207,10 @@ export class ChatMessageItem extends LitElement {
 
       .chat-message-item--selected .chat-message-item__body {
         background-color: var(--surface-300);
+      }
+
+      .chat-message-item--selected .chat-message-item__body--mine {
+        background-color: var(--my-message-bg-selected, var(--surface-300));
       }
     `,
   ];
@@ -252,6 +257,7 @@ export class ChatMessageItem extends LitElement {
           ${this.message.replyTo && !this.message.isDeleted
             ? html`<chat-message-reply-to
                 .replyTo="${this.message.replyTo}"
+                .mine="${this._mine}"
               ></chat-message-reply-to>`
             : nothing}
           ${this.message.isDeleted

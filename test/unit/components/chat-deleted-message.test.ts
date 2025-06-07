@@ -22,7 +22,10 @@ describe("chat-deleted-message", () => {
     const message = el.shadowRoot?.querySelector(".chat-deleted-message");
     expect(message).toBeTruthy();
     expect(message?.textContent?.trim()).toBe(DEFAULT_I18N.DELETED_MESSAGE);
-    expect(message?.getAttribute("style")).toContain("font-size: 1em");
+    expect(message?.getAttribute("style")).toContain("font-size:1em");
+    expect(message?.getAttribute("style")).toContain(
+      "color:var(--surface-700)",
+    );
   });
 
   it("renders with custom font size", async () => {
@@ -35,7 +38,22 @@ describe("chat-deleted-message", () => {
 
     const message = el.shadowRoot?.querySelector(".chat-deleted-message");
     expect(message).toBeTruthy();
-    expect(message?.getAttribute("style")).toContain("font-size: 2em");
+    expect(message?.getAttribute("style")).toContain("font-size:2em");
+  });
+
+  it("renders with reply on my message style", async () => {
+    el = await fixture(html`
+      <chat-deleted-message
+        .i18nContext=${{ i18n: { ...DEFAULT_I18N } }}
+        isReplyOnMyMessage
+      ></chat-deleted-message>
+    `);
+
+    const message = el.shadowRoot?.querySelector(".chat-deleted-message");
+    expect(message).toBeTruthy();
+    expect(message?.getAttribute("style")).toContain(
+      "color:var(--text-on-brand, var(--surface-700))",
+    );
   });
 
   it("renders with custom message", async () => {

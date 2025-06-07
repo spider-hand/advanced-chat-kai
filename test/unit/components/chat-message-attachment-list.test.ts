@@ -31,7 +31,7 @@ describe("chat-message-attachment-list", () => {
     expect(items).toHaveLength(0);
   });
 
-  it("renders with mine prop", async () => {
+  it("renders on my message", async () => {
     el = await fixture(
       html`<chat-message-attachment-list mine></chat-message-attachment-list>`,
     );
@@ -40,7 +40,7 @@ describe("chat-message-attachment-list", () => {
     expect(list?.classList.contains("chat-message-attachment-list--mine")).toBe(
       true,
     );
-  })
+  });
 
   it("renders attachments", async () => {
     const attachments: ChatMessageAttachment[] = [
@@ -63,8 +63,40 @@ describe("chat-message-attachment-list", () => {
     const meta = texts?.[1];
     expect(name?.textContent?.trim()).toBe("Document");
     expect(meta?.textContent?.trim()).toBe("456 KB");
+
+    const icons = el.shadowRoot?.querySelectorAll("svg");
+    const icon = icons?.[0];
+    expect(icon?.getAttribute("fill")).toBe("var(--surface-700)");
   });
-  
+
+  it("renders attachmensts on my message", async () => {
+    const attachments: ChatMessageAttachment[] = [
+      {
+        id: "1",
+        name: "Document",
+        meta: "456 KB",
+      },
+    ];
+    el = await fixture(
+      html`<chat-message-attachment-list
+        .attachments=${attachments}
+        mine
+      ></chat-message-attachment-list>`,
+    );
+
+    const texts = el.shadowRoot?.querySelectorAll(
+      ".chat-message-attachment-list__text",
+    );
+    const name = texts?.[0];
+    const meta = texts?.[1];
+    expect(name?.textContent?.trim()).toBe("Document");
+    expect(meta?.textContent?.trim()).toBe("456 KB");
+
+    const icons = el.shadowRoot?.querySelectorAll("svg");
+    const icon = icons?.[0];
+    expect(icon?.getAttribute("fill")).toBe("var(--text-on-brand, var(--surface-700))");
+  });
+
   it("dispatches download-attachment event", async () => {
     const attachments: ChatMessageAttachment[] = [
       {

@@ -2,6 +2,7 @@
 
 ![light](https://github.com/user-attachments/assets/bbdadeda-b26f-4af5-9bb6-2c40ace765c7)
 ![dark](https://github.com/user-attachments/assets/34a4ce47-b7ba-43a6-a87c-c914c65e6523)
+![custom](https://github.com/user-attachments/assets/7a9690b4-ce7c-4775-b937-82525e161f55)
 
 ![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai)
 
@@ -325,6 +326,26 @@ The `--surface-50` to `--surface-950` variables define the primary surface color
 | `--overlay`                            | The default background color for overlay            |
 | `--chat-notification-badge-background` | The default background color for notification badge |
 | `--chat-notification-badge-text`       | The default text color for notification badge       |
+
+Also, a minimal set of CSS variables is exposed specifically for applying brand colors to the key UI elements:
+
+| Variable                          | Description                                                         |
+| --------------------------------- | ------------------------------------------------------------------- |
+| `--send-button-bg`                | The background color of the send button                             |
+| `--send-button-bg-hover`          | The background color of the send button on hover                    |
+| `--my-message-bg`                 | The background color of my messages                                 |
+| `--my-message-bg-selected`        | The background color of my messages when selected                   |
+| `--my-reaction-list-bg`           | The background color of the reaction list on my messages            |
+| `--my-reaction-button-bg`         | The background color of the reaction button on my messages          |
+| `--my-reaction-button-bg-hover`   | The background color of the reaction button on my messages on hover |
+| `--suggestion-list-item-bg`       | The background color of the suggestion list item                    |
+| `--suggestion-list-item-bg-hover` | The background color of the suggestion list item on hover           |
+| `--my-message-menu-bg`            | The background color of the message menu on my messages             |
+| `--my-message-button-bg-hover`    | The background color of the message button on my messages on hover  |
+| `--my-attachment-bg`              | The background color of the attachment on my messages               |
+| `--my-attachment-bg-hover`        | The background color of the attachment on my messages on hover      |
+| `--text-on-brand`                 | The text color on brand colors                                      |
+| `--subtext-on-brand`              | The subtext color on brand colors                                   |
 
 You can override the component's style using CSS custom properties (variables). These are applied directly to `advanced-chat-kai` element:
 

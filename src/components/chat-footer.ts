@@ -73,7 +73,11 @@ export class ChatFooter extends LitElement {
   }
 
   private _handleKeydown(event: KeyboardEvent) {
-    if (this.footerContext.enterToSend && event.key === "Enter" && !event.shiftKey) {
+    if (
+      this.footerContext.enterToSend &&
+      event.key === "Enter" &&
+      !event.shiftKey
+    ) {
       event.preventDefault();
       this._sendMessage();
     }
@@ -198,11 +202,11 @@ export class ChatFooter extends LitElement {
 
       .chat-footer__button--send {
         margin-left: auto;
-        background-color: var(--surface-700);
+        background-color: var(--send-button-bg);
       }
 
       .chat-footer__button--send:hover {
-        background-color: var(--surface-800);
+        background-color: var(--send-button-bg-hover);
       }
 
       .chat-footer__button--disabled {

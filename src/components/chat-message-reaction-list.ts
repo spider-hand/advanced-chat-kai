@@ -51,7 +51,7 @@ export class ChatMessageReactionList extends LitElement {
       }
 
       .chat-message-reaction-list--mine {
-        background-color: var(--surface-200);
+        background-color: var(--my-reaction-list-bg, var(--surface-200));
       }
 
       .chat-message-reaction-list--right-aligned {
@@ -76,9 +76,13 @@ export class ChatMessageReactionList extends LitElement {
         background-color: var(--surface-200);
       }
 
+      .chat-message-reaction-list--mine .chat-message-reaction-list__button {
+        color: var(--text-on-brand, var(--text));
+      }
+
       .chat-message-reaction-list--mine
         .chat-message-reaction-list__button--reacted {
-        background-color: var(--surface-300);
+        background-color: var(--my-reaction-button-bg, var(--surface-300));
       }
 
       .chat-message-reaction-list__button:hover {
@@ -87,7 +91,10 @@ export class ChatMessageReactionList extends LitElement {
 
       .chat-message-reaction-list--mine
         .chat-message-reaction-list__button:hover {
-        background-color: var(--surface-300);
+        background-color: var(
+          --my-reaction-button-bg-hover,
+          var(--surface-300)
+        );
       }
     `,
   ];
