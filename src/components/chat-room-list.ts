@@ -1,10 +1,10 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import "./chat-room-item";
 import "./chat-loader";
-import { RoomContext, roomContext } from "../contexts/room-context";
+import { RoomContext, roomContext } from "../contexts";
 
 export class ChatRoomList extends LitElement {
   @consume({ context: roomContext, subscribe: true })
@@ -76,7 +76,7 @@ export class ChatRoomList extends LitElement {
                   .active="${this.roomContext.selectedRoomId === item.id}"
                   .room="${item}"
                   .showAvatar="${this.roomContext.showRoomAvatar}"
-                  .actions="${this.roomContext.actions}"
+                  .actions="${this.roomContext.roomActions}"
                   .containerTop="${this._rectTop}"
                   .containerBottom="${this._rectBottom}"
                 ></chat-room-item>`,

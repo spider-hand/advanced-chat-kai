@@ -29,7 +29,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-header>`,
     );
@@ -48,7 +48,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-header>`,
     );
@@ -67,7 +67,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-header>`,
     );
@@ -99,7 +99,7 @@ describe("chat-header", () => {
       isLoadingRoom: false,
       isLoadingMoreRooms: false,
       showRoomAvatar: false,
-      actions: [],
+      roomActions: [],
     };
 
     el = await fixture(
@@ -126,7 +126,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [
+          roomActions: [
             { label: "Actions", value: "actions" },
           ] as ChatAction<string>[],
         }}
@@ -149,7 +149,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [
+          roomActions: [
             { label: "Actions", value: "actions" },
           ] as ChatAction<string>[],
         }}
@@ -180,7 +180,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [
+          roomActions: [
             { label: "Actions", value: "actions" },
           ] as ChatAction<string>[],
         }}
@@ -215,7 +215,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [
+          roomActions: [
             { label: "Actions", value: "actions" },
           ] as ChatAction<string>[],
         }}
@@ -250,7 +250,7 @@ describe("chat-header", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-header>`,
     );

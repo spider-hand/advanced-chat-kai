@@ -1,16 +1,19 @@
 import { LitElement, PropertyValues, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import "./chat-message-item";
 import "./chat-loader";
 import "./chat-suggestion-list";
 import "./chat-message-typing";
 import "./chat-message-divider";
 import "./chat-notification-badge";
-import { MessageContext, messageContext } from "../contexts/message-context";
+import {
+  MessageContext,
+  messageContext,
+  currentUserIdContext,
+} from "../contexts";
 import { ChatItemType, ChatMessage } from "../types";
-import { currentUserIdContext } from "../contexts/current-user-id-context";
 
 export class ChatMessageList extends LitElement {
   @consume({ context: currentUserIdContext, subscribe: true })
@@ -232,7 +235,8 @@ export class ChatMessageList extends LitElement {
                       ? "flex-start"
                       : "flex-end"};"
                     .suggestions="${this.messageContext.suggestions}"
-                    .alignMyMessagesLeft="${this.messageContext.alignMyMessagesLeft}"
+                    .alignMyMessagesLeft="${this.messageContext
+                      .alignMyMessagesLeft}"
                   ></chat-suggestion-list>`
                 : nothing}
               <button

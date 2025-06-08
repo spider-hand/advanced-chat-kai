@@ -2,9 +2,9 @@ import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { consume } from "@lit/context";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import { ClickReactionDetail } from "../types";
-import { currentUserIdContext } from "../contexts/current-user-id-context";
+import { currentUserIdContext } from "../contexts";
 
 export class ChatMessageReactionList extends LitElement {
   @consume({ context: currentUserIdContext, subscribe: true })

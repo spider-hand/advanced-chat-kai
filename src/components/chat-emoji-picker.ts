@@ -1,9 +1,9 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import { SelecteEmojiDetail } from "../types";
-import { currentUserIdContext } from "../contexts/current-user-id-context";
+import { currentUserIdContext } from "../contexts";
 
 export class ChatEmojiPicker extends LitElement {
   @consume({ context: currentUserIdContext, subscribe: true })

@@ -1,6 +1,6 @@
 import { LitElement, css, html } from "lit";
 import { property, query } from "lit/decorators.js";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import {
   ChatAction,
   SelectRoomActionDetail,

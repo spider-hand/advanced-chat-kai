@@ -1,7 +1,8 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import { globalStyles } from "../styles/global";
+import { styleMap } from "lit/directives/style-map.js";
+import { globalStyles } from "../styles";
 import "./chat-avatar";
 import "./chat-action-list";
 import { ChatAction, ChatRoom, SelectRoomDetail } from "../types";
@@ -228,14 +229,7 @@ export class ChatRoomItem extends LitElement {
                     "chat-room-item__badge": true,
                     "chat-room-item__badge--rounded":
                       this.room.badge.label === "",
-                    "chat-room-item__badge--success":
-                      this.room.badge.type === "success",
-                    "chat-room-item__badge--danger":
-                      this.room.badge.type === "danger",
-                    "chat-room-item__badge--warning":
-                      this.room.badge.type === "warning",
-                    "chat-room-item__badge--info":
-                      this.room.badge.type === "info",
+                    [`chat-room-item__badge--${this.room.badge.type}`]: true,
                   })}"
                   >${this.room.badge.label}</span
                 >`
@@ -243,12 +237,16 @@ export class ChatRoomItem extends LitElement {
           </div>`}
       ${this._showActionList
         ? html`<chat-action-list
-            style="position: absolute; top: ${this._showActionListAbove
-              ? "1.2em"
-              : "auto"}; right: 1.2em; transform: translateY(-100%); bottom: ${this
-              ._showActionListAbove
-              ? "auto"
-              : "calc(-100% - 1.2em)"}; z-index: 1;"
+            style=${styleMap({
+              position: "absolute",
+              top: this._showActionListAbove ? "1.2em" : "auto",
+              right: "1.2em",
+              bottom: this._showActionListAbove
+                ? "auto"
+                : "calc(-100% - 1.2em)",
+              transform: "translateY(-100%)",
+              "z-index": "1",
+            })}
             .actionType="${"room"}"
             .roomId="${this.room.id}"
             .actions="${this.actions}"

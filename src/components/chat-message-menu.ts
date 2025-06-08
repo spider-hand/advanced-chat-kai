@@ -1,7 +1,7 @@
 import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import { ChatMessage, ChatMessageReply, ReplyToMessageDetail } from "../types";
 
 export class ChatMessageMenu extends LitElement {

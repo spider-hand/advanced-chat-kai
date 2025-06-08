@@ -34,7 +34,7 @@ describe("chat-footer", () => {
     isLoadingRoom: false,
     isLoadingMoreRooms: false,
     showRoomAvatar: false,
-    actions: [],
+    roomActions: [],
   };
 
   const messageContext = {

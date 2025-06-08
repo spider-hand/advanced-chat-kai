@@ -1,9 +1,9 @@
 import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
 import { consume } from "@lit/context";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import { SearchRoomDetail } from "../types";
-import { I18nContext, i18nContext } from "../contexts/i18n-context";
+import { I18nContext, i18nContext } from "../contexts";
 
 export class ChatSearch extends LitElement {
   @consume({ context: i18nContext, subscribe: true })

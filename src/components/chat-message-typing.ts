@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "lit";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 
 export class ChatMessageTyping extends LitElement {
   static styles = [

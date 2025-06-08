@@ -27,7 +27,7 @@ describe("chat-room-list", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-room-list>`,
     );
@@ -48,7 +48,7 @@ describe("chat-room-list", () => {
           isLoadingRoom: true,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-room-list>`,
     );
@@ -70,7 +70,7 @@ describe("chat-room-list", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: true,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-room-list>`,
     );
@@ -113,7 +113,7 @@ describe("chat-room-list", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-room-list>`,
     );
@@ -131,7 +131,7 @@ describe("chat-room-list", () => {
           isLoadingRoom: false,
           isLoadingMoreRooms: false,
           showRoomAvatar: false,
-          actions: [],
+          roomActions: [],
         }}
       ></chat-room-list>`,
     );

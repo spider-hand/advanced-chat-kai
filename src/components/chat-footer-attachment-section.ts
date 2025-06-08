@@ -1,6 +1,6 @@
 import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import { ChatMessageAttachment, RemoveAttachmentDetail } from "../types";
 
 export class ChatFooterAttachmentSection extends LitElement {

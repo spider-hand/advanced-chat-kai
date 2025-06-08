@@ -3,6 +3,7 @@ import { property, query, state } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
+import { styleMap } from "lit/directives/style-map.js";
 import { globalStyles } from "../styles/global";
 import "./chat-avatar";
 import "./chat-action-list";
@@ -282,12 +283,12 @@ export class ChatMessageItem extends LitElement {
           this._hover &&
           this._isMessageMenuAvailable
             ? html`<chat-message-menu
-                style="position: absolute; bottom: 0; left: ${!this
-                  ._isAlignedLeft
-                  ? "auto"
-                  : "calc(100% + 0.4em)"}; right: ${!this._isAlignedLeft
-                  ? "calc(100% + 0.4em)"
-                  : "auto"};"
+                style=${styleMap({
+                  position: "absolute",
+                  bottom: "0",
+                  left: !this._isAlignedLeft ? "auto" : "calc(100% + 0.4em)",
+                  right: !this._isAlignedLeft ? "calc(100% + 0.4em)" : "auto",
+                })}
                 .mine="${this._mine}"
                 .message="${this.message}"
                 .isEmojiReactionAvailable="${this.isEmojiReactionAvailable}"
@@ -300,13 +301,14 @@ export class ChatMessageItem extends LitElement {
             : nothing}
           ${!this.message.isDeleted && this._showActionList
             ? html`<chat-action-list
-                style="position: absolute; top: ${this._showPopupAbove
-                  ? "auto"
-                  : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
-                  ? "4em"
-                  : "auto"}; ${!this._isAlignedLeft
-                  ? "right: calc(100% + 0.4em);"
-                  : "left: calc(100% + 0.4em);"} z-index: 1;"
+                style=${styleMap({
+                  position: "absolute",
+                  top: this._showPopupAbove ? "auto" : "calc(100% + 0.4em)",
+                  bottom: this._showPopupAbove ? "4em" : "auto",
+                  right: !this._isAlignedLeft ? "calc(100% + 0.4em)" : "auto",
+                  left: !this._isAlignedLeft ? "auto" : "calc(100% + 0.4em)",
+                  "z-index": "1",
+                })}
                 .actionType="${"message"}"
                 .messageId="${this.message.id}"
                 .actions="${this._mine
@@ -320,13 +322,14 @@ export class ChatMessageItem extends LitElement {
           this.isEmojiReactionAvailable &&
           this._showEmojiPicker
             ? html`<chat-emoji-picker
-                style="position: absolute; top: ${this._showPopupAbove
-                  ? "auto"
-                  : "calc(100% + 0.4em)"}; bottom: ${this._showPopupAbove
-                  ? "4em"
-                  : "auto"}; ${!this._isAlignedLeft
-                  ? "right: 50%;"
-                  : "left: 50%;"} z-index: 1;"
+                style=${styleMap({
+                  position: "absolute",
+                  top: this._showPopupAbove ? "auto" : "calc(100% + 0.4em)",
+                  bottom: this._showPopupAbove ? "4em" : "auto",
+                  right: !this._isAlignedLeft ? "50%" : "auto",
+                  left: !this._isAlignedLeft ? "auto" : "50%",
+                  "z-index": "1",
+                })}
                 .width="${300}"
                 .height="${180}"
                 .messageId="${this.message.id}"

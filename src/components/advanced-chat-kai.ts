@@ -2,10 +2,9 @@ import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { provide } from "@lit/context";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import "./chat-container";
 import "./chat-sidebar";
-import { sidebarContext } from "../contexts/sidebar-context";
 import {
   AdvancedChatKaiProps,
   ChatAction,
@@ -18,12 +17,24 @@ import {
   PartialI18nType,
   ThemeType,
 } from "../types";
-import { currentUserIdContext } from "../contexts/current-user-id-context";
-import { RoomContext, roomContext } from "../contexts/room-context";
-import { messageContext, MessageContext } from "../contexts/message-context";
-import { FooterContext, footerContext } from "../contexts/footer-context";
-import { I18nContext, i18nContext } from "../contexts/i18n-context";
-import { DEFAULT_I18N } from "../consts";
+import {
+  currentUserIdContext,
+  sidebarContext,
+  RoomContext,
+  roomContext,
+  messageContext,
+  MessageContext,
+  FooterContext,
+  footerContext,
+  I18nContext,
+  i18nContext,
+} from "../contexts";
+import {
+  DEFAULT_I18N,
+  FOOTER_CONTEXT_KEYS,
+  MESSAGE_CONTEXT_KEYS,
+  ROOM_CONTEXT_KEYS,
+} from "../consts";
 
 /**
  * @tag advanded-chat-kai
@@ -176,7 +187,7 @@ export class AdvancedChatKai extends LitElement {
     isLoadingRoom: this.isLoadingRoom,
     isLoadingMoreRooms: this.isLoadingMoreRooms,
     showRoomAvatar: this.showRoomAvatar,
-    actions: this.roomActions,
+    roomActions: this.roomActions,
   };
 
   @provide({ context: messageContext })
@@ -221,15 +232,14 @@ export class AdvancedChatKai extends LitElement {
       AdvancedChatKaiProps[keyof AdvancedChatKaiProps]
     >,
   ): void {
-    if (changedProperties.has("currentUserId")) {
+    const keys = [...changedProperties.keys()];
+
+    if (keys.includes("currentUserId")) {
       this.currentUserIdContext = this.currentUserId;
     }
+
     if (
-      changedProperties.has("rooms") ||
-      changedProperties.has("selectedRoomId") ||
-      changedProperties.has("isLoadingRoom") ||
-      changedProperties.has("isLoadingMoreRooms") ||
-      changedProperties.has("roomActions")
+      keys.some((key) => ROOM_CONTEXT_KEYS.includes(key as keyof RoomContext))
     ) {
       this.roomsContext = {
         rooms: this.rooms,
@@ -237,23 +247,14 @@ export class AdvancedChatKai extends LitElement {
         isLoadingRoom: this.isLoadingRoom,
         isLoadingMoreRooms: this.isLoadingMoreRooms,
         showRoomAvatar: this.showRoomAvatar,
-        actions: this.roomActions,
+        roomActions: this.roomActions,
       };
     }
+
     if (
-      changedProperties.has("messages") ||
-      changedProperties.has("suggestions") ||
-      changedProperties.has("replyTo") ||
-      changedProperties.has("isLoadingMessage") ||
-      changedProperties.has("isLoadingMoreMessages") ||
-      changedProperties.has("isMarkdownAvailable") ||
-      changedProperties.has("myMessageActions") ||
-      changedProperties.has("theirMessageActions") ||
-      changedProperties.has("isEmojiReactionAvailable") ||
-      changedProperties.has("isReplyAvailable") ||
-      changedProperties.has("isTyping") ||
-      changedProperties.has("showTheirAvatar") ||
-      changedProperties.has("alignMyMessagesLeft")
+      keys.some((key) =>
+        MESSAGE_CONTEXT_KEYS.includes(key as keyof MessageContext),
+      )
     ) {
       this.messagesContext = {
         messages: this.messages,
@@ -273,11 +274,9 @@ export class AdvancedChatKai extends LitElement {
     }
 
     if (
-      changedProperties.has("isEmojiPickerAvailable") ||
-      changedProperties.has("isMessageAttachmentAvailable") ||
-      changedProperties.has("inputMessage") ||
-      changedProperties.has("attachments") ||
-      changedProperties.has("enterToSend")
+      keys.some((key) =>
+        FOOTER_CONTEXT_KEYS.includes(key as keyof FooterContext),
+      )
     ) {
       this.footerContext = {
         isEmojiPickerAvailable: this.isEmojiPickerAvailable,
@@ -288,7 +287,7 @@ export class AdvancedChatKai extends LitElement {
       };
     }
 
-    if (changedProperties.has("i18n")) {
+    if (keys.includes("i18n")) {
       this.i18nContext = {
         i18n: { ...DEFAULT_I18N, ...this.i18n },
       };

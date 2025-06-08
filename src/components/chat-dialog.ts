@@ -1,7 +1,7 @@
 import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import { ClickDialogButtonDetail, Dialog } from "../types";
 
 export class ChatDialog extends LitElement {
@@ -101,14 +101,8 @@ export class ChatDialog extends LitElement {
           <button
             class="${classMap({
               "chat-dialog__button": true,
-              "chat-dialog__button--success":
-                this.dialog.leftButton.variant === "success",
-              "chat-dialog__button--danger":
-                this.dialog.leftButton.variant === "danger",
-              "chat-dialog__button--warning":
-                this.dialog.leftButton.variant === "warning",
-              "chat-dialog__button--info":
-                this.dialog.leftButton.variant === "info",
+              [`chat-dialog__button--${this.dialog.leftButton.variant}`]:
+                this.dialog.leftButton.variant !== undefined,
             })}"
             @click="${this.onClickLeftButton}"
           >
@@ -117,14 +111,8 @@ export class ChatDialog extends LitElement {
           <button
             class="${classMap({
               "chat-dialog__button": true,
-              "chat-dialog__button--success":
-                this.dialog.rightButton.variant === "success",
-              "chat-dialog__button--danger":
-                this.dialog.rightButton.variant === "danger",
-              "chat-dialog__button--warning":
-                this.dialog.rightButton.variant === "warning",
-              "chat-dialog__button--info":
-                this.dialog.rightButton.variant === "info",
+              [`chat-dialog__button--${this.dialog.rightButton.variant}`]:
+                this.dialog.rightButton.variant !== undefined,
             })}"
             @click="${this.onClickRightButton}"
           >

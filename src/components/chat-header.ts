@@ -1,12 +1,10 @@
 import { LitElement, css, html, nothing } from "lit";
 import { consume } from "@lit/context";
 import { property, state } from "lit/decorators.js";
-import { globalStyles } from "../styles/global";
-import { sidebarContext } from "../contexts/sidebar-context";
+import { globalStyles } from "../styles";
 import "./chat-action-list";
-import { RoomContext, roomContext } from "../contexts/room-context";
+import { sidebarContext, RoomContext, roomContext } from "../contexts";
 import { ChatRoom } from "../types";
-
 
 export class ChatHeader extends LitElement {
   @consume({ context: sidebarContext, subscribe: true })
@@ -125,7 +123,7 @@ export class ChatHeader extends LitElement {
           >${this._selectedRoom?.headerSubtitle ?? ""}</span
         >
       </div>
-      ${this.roomContext.actions.length > 0
+      ${this.roomContext.roomActions.length > 0
         ? html`<button
             class="chat-header__button"
             style="margin-left: auto;"
@@ -150,7 +148,7 @@ export class ChatHeader extends LitElement {
             style="position: absolute; top: 4em; right: 1.2em;"
             .actionType="${"room"}"
             .roomId="${this.roomContext.selectedRoomId}"
-            .actions="${this.roomContext.actions}"
+            .actions="${this.roomContext.roomActions}"
             @select-action="${this._closeActionList}"
             @close="${this._closeActionList}"
           ></chat-action-list>`

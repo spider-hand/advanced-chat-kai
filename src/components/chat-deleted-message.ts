@@ -2,8 +2,8 @@ import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { consume } from "@lit/context";
-import { globalStyles } from "../styles/global";
-import { I18nContext, i18nContext } from "../contexts/i18n-context";
+import { globalStyles } from "../styles";
+import { I18nContext, i18nContext } from "../contexts";
 
 export class ChatDeletedMessage extends LitElement {
   @consume({ context: i18nContext, subscribe: true })

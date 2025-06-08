@@ -7,7 +7,9 @@ export interface RoomContext {
   isLoadingRoom: boolean;
   isLoadingMoreRooms: boolean;
   showRoomAvatar: boolean;
-  actions: ChatAction<string | number | boolean>[];
+  roomActions: ChatAction<string | number | boolean>[];
 }
 
 export const roomContext = createContext<RoomContext>("room");
+
+export type RoomContextKeys = keyof RoomContext;

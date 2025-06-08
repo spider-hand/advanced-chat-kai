@@ -19,6 +19,15 @@ A highly customizable Web Component for building chat interfaces
 - Theming support - Built-in light and dark themes
 - Customizable style - Easily style components with CSS variables
 
+## Table of contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Props](#props)
+- [Events](#events)
+- [Styling](#styling)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Installation
 
 ```

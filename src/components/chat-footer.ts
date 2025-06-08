@@ -2,20 +2,26 @@ import { LitElement, PropertyValues, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { consume } from "@lit/context";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import {
   ChatRoom,
   SelecteEmojiDetail,
   SelectFileDetail,
   SendMessageDetail,
 } from "../types";
-import { RoomContext, roomContext } from "../contexts/room-context";
-import { currentUserIdContext } from "../contexts/current-user-id-context";
 import "./chat-footer-reply-to-section";
 import "./chat-footer-attachment-section";
-import { FooterContext, footerContext } from "../contexts/footer-context";
-import { I18nContext, i18nContext } from "../contexts/i18n-context";
-import { MessageContext, messageContext } from "../contexts/message-context";
+import {
+  currentUserIdContext,
+  RoomContext,
+  roomContext,
+  FooterContext,
+  footerContext,
+  I18nContext,
+  i18nContext,
+  MessageContext,
+  messageContext,
+} from "../contexts";
 
 export class ChatFooter extends LitElement {
   @consume({ context: currentUserIdContext, subscribe: true })

@@ -2,12 +2,12 @@ import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { classMap } from "lit/directives/class-map.js";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 import "./chat-header";
 import "./chat-message-list";
 import "./chat-footer";
 import "./chat-dialog";
-import { sidebarContext } from "../contexts/sidebar-context";
+import { sidebarContext } from "../contexts";
 import { Dialog } from "../types";
 
 export class ChatContainer extends LitElement {

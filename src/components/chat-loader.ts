@@ -1,6 +1,6 @@
 import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
-import { globalStyles } from "../styles/global";
+import { globalStyles } from "../styles";
 
 
 export class ChatLoader extends LitElement {
