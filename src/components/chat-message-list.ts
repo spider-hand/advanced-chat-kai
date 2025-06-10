@@ -174,14 +174,14 @@ export class ChatMessageList extends LitElement {
         align-self: flex-end;
         justify-content: center;
         padding: 0.8em;
-        background-color: var(--surface-50);
-        border: var(--floating-item-border);
+        background-color: var(--chat-surface-50);
+        border: var(--chat-floating-item-border);
         border-radius: 100%;
-        box-shadow: var(--floating-item-box-shadow);
+        box-shadow: var(--chat-floating-item-box-shadow);
       }
 
       .chat-message-list__button:hover {
-        background-color: var(--surface-100);
+        background-color: var(--chat-surface-100);
       }
     `,
   ];
@@ -251,7 +251,7 @@ export class ChatMessageList extends LitElement {
                   height="2.4em"
                   viewBox="0 -960 960 960"
                   width="2.4em"
-                  fill="var(--surface-700)"
+                  fill="var(--chat-surface-700)"
                 >
                   <path
                     d="M440-313v-447q0-17 11.5-28.5T480-800q17 0 28.5 11.5T520-760v447l196-196q12-12 28-11.5t28 12.5q11 12 11.5 28T772-452L508-188q-6 6-13 8.5t-15 2.5q-8 0-15-2.5t-13-8.5L188-452q-11-11-11-27.5t11-28.5q12-12 28.5-12t28.5 12l195 195Z"

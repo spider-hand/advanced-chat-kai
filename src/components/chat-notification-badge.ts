@@ -25,11 +25,11 @@ export class ChatNotificationBadge extends LitElement {
 
       .chat-notification-badge {
         padding: 0.8em;
-        color: var(--chat-notification-badge-text);
-        background-color: var(--chat-notification-badge-background);
+        color: var(--chat-chat-notification-badge-text);
+        background-color: var(--chat-chat-notification-badge-background);
         border: none;
         border-radius: 10em;
-        box-shadow: var(--floating-item-box-shadow);
+        box-shadow: var(--chat-floating-item-box-shadow);
       }
     `,
   ];

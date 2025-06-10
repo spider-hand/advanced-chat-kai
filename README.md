@@ -303,36 +303,36 @@ this.messages.push(newMessage);
 
 ## Styling
 
-The `--surface-50` to `--surface-950` variables define the primary surface color scale, used across light and dark themes for backgrounds and component surfaces.
+The `--chat-surface-50` to `--chat-surface-950` variables define the primary surface color scale, used across light and dark themes for backgrounds and component surfaces.
 
 | Variable                               | Description                                         |
 | -------------------------------------- | --------------------------------------------------- |
-| `--base-font-size`                     | The base font size of the chat component            |
-| `--white`                              |                                                     |
-| `--black`                              |                                                     |
-| `--success`                            |                                                     |
-| `--danger`                             |                                                     |
-| `--warning`                            |                                                     |
-| `--info`                               |                                                     |
-| `--surface-50`                         |                                                     |
-| `--surface-100`                        |                                                     |
-| `--surface-200`                        |                                                     |
-| `--surface-300`                        |                                                     |
-| `--surface-400`                        |                                                     |
-| `--surface-500`                        |                                                     |
-| `--surface-600`                        |                                                     |
-| `--surface-700`                        |                                                     |
-| `--surface-800`                        |                                                     |
-| `--surface-900`                        |                                                     |
-| `--surface-950`                        |                                                     |
-| `--text`                               | The default text color                              |
-| `--subtext`                            | The default subtext color                           |
-| `--border`                             | The default border color                            |
-| `--floating-item-border`               | The default border color for floating items         |
-| `--floating-item-box-shadow`           | The default box shadow for floating items           |
-| `--placeholder`                        | The default placeholder color                       |
-| `--deleted`                            | The default background color for deleted messages   |
-| `--overlay`                            | The default background color for overlay            |
+| `--chat-base-font-size`                     | The base font size of the chat component            |
+| `--chat-white`                              |                                                     |
+| `--chat-black`                              |                                                     |
+| `--chat-success`                            |                                                     |
+| `--chat-danger`                             |                                                     |
+| `--chat-warning`                            |                                                     |
+| `--chat-info`                               |                                                     |
+| `--chat-surface-50`                         |                                                     |
+| `--chat-surface-100`                        |                                                     |
+| `--chat-surface-200`                        |                                                     |
+| `--chat-surface-300`                        |                                                     |
+| `--chat-surface-400`                        |                                                     |
+| `--chat-surface-500`                        |                                                     |
+| `--chat-surface-600`                        |                                                     |
+| `--chat-surface-700`                        |                                                     |
+| `--chat-surface-800`                        |                                                     |
+| `--chat-surface-900`                        |                                                     |
+| `--chat-surface-950`                        |                                                     |
+| `--chat-text`                               | The default text color                              |
+| `--chat-subtext`                            | The default subtext color                           |
+| `--chat-border`                             | The default border color                            |
+| `--chat-floating-item-border`               | The default border color for floating items         |
+| `--chat-floating-item-box-shadow`           | The default box shadow for floating items           |
+| `--chat-placeholder`                        | The default placeholder color                       |
+| `--chat-deleted`                            | The default background color for deleted messages   |
+| `--chat-overlay`                            | The default background color for overlay            |
 | `--chat-notification-badge-background` | The default background color for notification badge |
 | `--chat-notification-badge-text`       | The default text color for notification badge       |
 
@@ -340,30 +340,30 @@ Also, a minimal set of CSS variables is exposed specifically for applying brand 
 
 | Variable                          | Description                                                         |
 | --------------------------------- | ------------------------------------------------------------------- |
-| `--send-button-bg`                | The background color of the send button                             |
-| `--send-button-bg-hover`          | The background color of the send button on hover                    |
-| `--my-message-bg`                 | The background color of my messages                                 |
-| `--my-message-bg-selected`        | The background color of my messages when selected                   |
-| `--my-reaction-list-bg`           | The background color of the reaction list on my messages            |
-| `--my-reaction-button-bg`         | The background color of the reaction button on my messages          |
-| `--my-reaction-button-bg-hover`   | The background color of the reaction button on my messages on hover |
-| `--suggestion-list-item-bg`       | The background color of the suggestion list item                    |
-| `--suggestion-list-item-bg-hover` | The background color of the suggestion list item on hover           |
-| `--my-message-menu-bg`            | The background color of the message menu on my messages             |
-| `--my-message-button-bg-hover`    | The background color of the message button on my messages on hover  |
-| `--my-attachment-bg`              | The background color of the attachment on my messages               |
-| `--my-attachment-bg-hover`        | The background color of the attachment on my messages on hover      |
-| `--text-on-brand`                 | The text color on brand colors                                      |
-| `--subtext-on-brand`              | The subtext color on brand colors                                   |
+| `--chat-send-button-bg`                | The background color of the send button                             |
+| `--chat-send-button-bg-hover`          | The background color of the send button on hover                    |
+| `--chat-my-message-bg`                 | The background color of my messages                                 |
+| `--chat-my-message-bg-selected`        | The background color of my messages when selected                   |
+| `--chat-my-reaction-list-bg`           | The background color of the reaction list on my messages            |
+| `--chat-my-reaction-button-bg`         | The background color of the reaction button on my messages          |
+| `--chat-my-reaction-button-bg-hover`   | The background color of the reaction button on my messages on hover |
+| `--chat-suggestion-list-item-bg`       | The background color of the suggestion list item                    |
+| `--chat-suggestion-list-item-bg-hover` | The background color of the suggestion list item on hover           |
+| `--chat-my-message-menu-bg`            | The background color of the message menu on my messages             |
+| `--chat-my-message-button-bg-hover`    | The background color of the message button on my messages on hover  |
+| `--chat-my-attachment-bg`              | The background color of the attachment on my messages               |
+| `--chat-my-attachment-bg-hover`        | The background color of the attachment on my messages on hover      |
+| `--chat-text-on-brand`                 | The text color on brand colors                                      |
+| `--chat-subtext-on-brand`              | The subtext color on brand colors                                   |
 
 You can override the component's style using CSS custom properties (variables). These are applied directly to `advanced-chat-kai` element:
 
 ```css
 advanced-chat-kai {
-  --success: green;
-  --danger: red;
-  --warning: yellow;
-  --info: blue;
+  --chat-success: green;
+  --chat-danger: red;
+  --chat-warning: yellow;
+  --chat-info: blue;
 }
 ```
 

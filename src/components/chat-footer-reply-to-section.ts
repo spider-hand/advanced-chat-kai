@@ -23,7 +23,7 @@ export class ChatFooterReplyToSection extends LitElement {
         gap: 0.2em;
         align-items: center;
         font-size: 1em;
-        color: var(--subtext);
+        color: var(--chat-subtext);
       }
 
       .chat-footer-reply-to-section__name {
@@ -32,7 +32,7 @@ export class ChatFooterReplyToSection extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-weight: 600;
-        color: var(--text);
+        color: var(--chat-text);
         white-space: nowrap;
       }
 
@@ -48,7 +48,7 @@ export class ChatFooterReplyToSection extends LitElement {
       }
 
       .chat-footer-reply-to-section__button:hover {
-        background-color: var(--surface-200);
+        background-color: var(--chat-surface-200);
       }
     `,
   ];
@@ -65,7 +65,7 @@ export class ChatFooterReplyToSection extends LitElement {
           height="1.6em"
           viewBox="0 -960 960 960"
           width="1.6em"
-          fill="var(--surface-700)"
+          fill="var(--chat-surface-700)"
         >
           <path
             d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"

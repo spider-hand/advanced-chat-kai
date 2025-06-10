@@ -26,7 +26,7 @@ export class ChatMessageDivider extends LitElement {
         flex: 1;
         margin: 0 0.8em;
         content: "";
-        border-top: 1px solid var(--border);
+        border-top: 1px solid var(--chat-border);
       }
 
       .chat-message-divider__text {
@@ -36,7 +36,7 @@ export class ChatMessageDivider extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.2em;
         font-weight: 600;
-        color: var(--subtext);
+        color: var(--chat-subtext);
         white-space: nowrap;
       }
     `,

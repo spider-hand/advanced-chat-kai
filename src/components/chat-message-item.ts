@@ -175,14 +175,14 @@ export class ChatMessageItem extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.2em;
         font-weight: 600;
-        color: var(--text);
+        color: var(--chat-text);
         white-space: nowrap;
       }
 
       .chat-message-item__date {
         font-size: 0.8em;
         font-weight: 600;
-        color: var(--subtext);
+        color: var(--chat-subtext);
       }
 
       .chat-message-item__body {
@@ -192,26 +192,26 @@ export class ChatMessageItem extends LitElement {
         gap: 0.8em;
         padding: 0.8em 1.2em;
         font-size: 1.4em;
-        color: var(--text);
-        background-color: var(--surface-100);
+        color: var(--chat-text);
+        background-color: var(--chat-surface-100);
         border-radius: 0.8em;
       }
 
       .chat-message-item__body--mine {
-        color: var(--text-on-brand, var(--text));
-        background-color: var(--my-message-bg, var(--surface-200));
+        color: var(--chat-text-on-brand, var(--chat-text));
+        background-color: var(--chat-my-message-bg, var(--chat-surface-200));
       }
 
-      .chat-message-item__body--deleted {
-        background-color: var(--deleted);
+      .chat-message-item__body--chat-deleted {
+        background-color: var(--chat-deleted);
       }
 
       .chat-message-item--selected .chat-message-item__body {
-        background-color: var(--surface-300);
+        background-color: var(--chat-surface-300);
       }
 
       .chat-message-item--selected .chat-message-item__body--mine {
-        background-color: var(--my-message-bg-selected, var(--surface-300));
+        background-color: var(--chat-my-message-bg-selected, var(--chat-surface-300));
       }
     `,
   ];
@@ -248,7 +248,7 @@ export class ChatMessageItem extends LitElement {
           class="${classMap({
             "chat-message-item__body": true,
             "chat-message-item__body--mine": this._mine,
-            "chat-message-item__body--deleted": this.message.isDeleted,
+            "chat-message-item__body--chat-deleted": this.message.isDeleted,
           })}"
           @mouseenter="${this._onMouseEnter}"
           @mouseleave="${this._onMouseLeave}"

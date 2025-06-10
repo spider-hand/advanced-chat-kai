@@ -81,7 +81,7 @@ describe("chat-message-menu", () => {
     
     const icon = reactionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--surface-700)");
+    expect(icon?.getAttribute("fill")).toBe("var(--chat-surface-700)");
   });
 
   it("renders with emoji reaction button on my message", async () => {
@@ -100,7 +100,7 @@ describe("chat-message-menu", () => {
     
     const icon = reactionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--text-on-brand, var(--surface-700))");
+    expect(icon?.getAttribute("fill")).toBe("var(--chat-text-on-brand, var(--chat-surface-700))");
   })
 
   it("dispatches click-emoji-button event when clicking emoji button", async () => {
@@ -135,7 +135,7 @@ describe("chat-message-menu", () => {
 
     const icon = replyButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--surface-700)");
+    expect(icon?.getAttribute("fill")).toBe("var(--chat-surface-700)");
   });
 
   it("renders with reply button on my message", async () => {
@@ -154,7 +154,7 @@ describe("chat-message-menu", () => {
 
     const icon = replyButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--text-on-brand, var(--surface-700))");
+    expect(icon?.getAttribute("fill")).toBe("var(--chat-text-on-brand, var(--chat-surface-700))");
   })
 
   it("dispatches reply-to-message event when clicking reply button", async () => {
@@ -192,7 +192,7 @@ describe("chat-message-menu", () => {
 
     const icon = actionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--surface-700)");
+    expect(icon?.getAttribute("fill")).toBe("var(--chat-surface-700)");
   });
 
   it("renders with action button on my message", async () => {
@@ -211,7 +211,7 @@ describe("chat-message-menu", () => {
 
     const icon = actionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--text-on-brand, var(--surface-700))");
+    expect(icon?.getAttribute("fill")).toBe("var(--chat-text-on-brand, var(--chat-surface-700))");
   });
 
   it("dispatches click-action-button event when clicking action button", async () => {

@@ -52,10 +52,10 @@ export class ChatActionList extends LitElement {
         flex-direction: column;
         align-items: center;
         overflow: hidden;
-        background-color: var(--surface-50);
-        border: var(--floating-item-border);
+        background-color: var(--chat-surface-50);
+        border: var(--chat-floating-item-border);
         border-radius: 0.8em;
-        box-shadow: var(--floating-item-box-shadow);
+        box-shadow: var(--chat-floating-item-box-shadow);
       }
 
       .chat-action-list__item {
@@ -67,12 +67,12 @@ export class ChatActionList extends LitElement {
         height: 3.2em;
         padding: 0 0.8em;
         font-size: 1.4em;
-        color: var(--text);
+        color: var(--chat-text);
         cursor: pointer;
       }
 
       .chat-action-list__item:hover {
-        background-color: var(--surface-100);
+        background-color: var(--chat-surface-100);
       }
     `,
   ];

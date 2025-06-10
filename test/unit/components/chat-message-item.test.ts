@@ -88,7 +88,7 @@ describe("chat-message-item", () => {
     expect(body?.classList.contains("chat-message-item__body--mine")).toBe(
       false,
     );
-    expect(body?.classList.contains("chat-message-item__body--deleted")).toBe(
+    expect(body?.classList.contains("chat-message-item__body--chat-deleted")).toBe(
       false,
     );
 
@@ -294,7 +294,7 @@ describe("chat-message-item", () => {
     expect(deletedMessage).toBeTruthy();
 
     const body = el.shadowRoot?.querySelector(".chat-message-item__body");
-    expect(body?.classList.contains("chat-message-item__body--deleted")).toBe(
+    expect(body?.classList.contains("chat-message-item__body--chat-deleted")).toBe(
       true,
     );
   });

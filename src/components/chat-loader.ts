@@ -15,8 +15,8 @@ export class ChatLoader extends LitElement {
       }
 
       .chat-loader {
-        border: 0.4em solid var(--surface-300);
-        border-top: 0.4em solid var(--surface-500);
+        border: 0.4em solid var(--chat-surface-300);
+        border-top: 0.4em solid var(--chat-surface-500);
         border-radius: 50%;
         animation: spin 1s linear infinite;
       }

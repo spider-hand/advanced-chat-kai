@@ -66,28 +66,28 @@ export class ChatEmojiPicker extends LitElement {
         display: flex;
         overflow: hidden;
         border-radius: 0.8em;
-        box-shadow: var(--floating-item-box-shadow);
+        box-shadow: var(--chat-floating-item-box-shadow);
       }
 
       emoji-picker {
-        --background: var(--surface-50);
-        --border-color: var(--border);
-        --border-radius: 8px;
-        --button-active-background: var(--surface-100);
-        --button-hover-background: var(--surface-100);
-        --category-font-color: var(--surface-900);
+        --background: var(--chat-surface-50);
+        --chat-border-color: var(--chat-border);
+        --chat-border-radius: 8px;
+        --button-active-background: var(--chat-surface-100);
+        --button-hover-background: var(--chat-surface-100);
+        --category-font-color: var(--chat-surface-900);
         --category-font-size: 12px;
         --emoji-padding: 8px;
         --emoji-size: 16px;
-        --indicator-color: var(--surface-700);
+        --indicator-color: var(--chat-surface-700);
         --indicator-height: 4px;
-        --input-border-color: var(--border);
+        --input-border-color: var(--chat-border);
         --input-border-radius: 8px;
         --input-border-size: 1px;
-        --input-font-color: var(--surface-900);
+        --input-font-color: var(--chat-surface-900);
         --input-font-size: 14px;
         --input-padding: 8px;
-        --input-placeholder-color: var(--placeholder);
+        --input-placeholder-color: var(--chat-placeholder);
       }
     `,
   ];

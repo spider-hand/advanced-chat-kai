@@ -92,49 +92,49 @@ import {
  * @fires send-message - The event fired when a message is sent
  * @fires click-dialog-button - The event fired when a dialog button is clicked
  *
- * @cssprop --base-font-size - The base font size of the chat component
- * @cssprop --white
- * @cssprop --black
- * @cssprop --success
- * @cssprop --danger
- * @cssprop --warning
- * @cssprop --info
- * @cssprop --surface-50
- * @cssprop --surface-100
- * @cssprop --surface-200
- * @cssprop --surface-300
- * @cssprop --surface-400
- * @cssprop --surface-500
- * @cssprop --surface-600
- * @cssprop --surface-700
- * @cssprop --surface-800
- * @cssprop --surface-900
- * @cssprop --surface-950
- * @cssprop --text - The default text color
- * @cssprosp --subtext - The default subtext color
- * @cssprop --border - The default border color
- * @cssprop --floating-item-border - The default border color for floating items
- * @cssprop --floating-item-box-shadow - The default box shadow for floating items
- * @cssprop --placeholder - The default placeholder color
- * @cssprop --deleted - The color used for deleted messages
- * @cssprop --overlay - The color used for overlays
+ * @cssprop --chat-base-font-size - The base font size of the chat component
+ * @cssprop --chat-white
+ * @cssprop --chat-black
+ * @cssprop --chat-success
+ * @cssprop --chat-danger
+ * @cssprop --chat-warning
+ * @cssprop --chat-info
+ * @cssprop --chat-surface-50
+ * @cssprop --chat-surface-100
+ * @cssprop --chat-surface-200
+ * @cssprop --chat-surface-300
+ * @cssprop --chat-surface-400
+ * @cssprop --chat-surface-500
+ * @cssprop --chat-surface-600
+ * @cssprop --chat-surface-700
+ * @cssprop --chat-surface-800
+ * @cssprop --chat-surface-900
+ * @cssprop --chat-surface-950
+ * @cssprop --chat-text - The default text color
+ * @cssprop --chat-subtext - The default subtext color
+ * @cssprop --chat-border - The default border color
+ * @cssprop --chat-floating-item-border - The default border color for floating items
+ * @cssprop --chat-floating-item-box-shadow - The default box shadow for floating items
+ * @cssprop --chat-placeholder - The default placeholder color
+ * @cssprop --chat-deleted - The color used for deleted messages
+ * @cssprop --chat-overlay - The color used for overlays
  * @cssprop --chat-notification-badge-background - The background color of the chat notification badge
  * @cssprop --chat-notification-badge-text - The text color of the chat notification badge
- * @cssprop --send-button-bg - The background color of the send button
- * @cssprop --send-button-bg-hover - The background color of the send button on hover
- * @cssprop --my-message-bg - The background color of my messages
- * @cssprop --my-message-bg-selected - The background color of my messages when selected
- * @cssprop --my-reaction-list-bg - The background color of the reaction list on my messages
- * @cssprop --my-reaction-button-bg - The background color of the reaction button on my messages
- * @cssprop --my-reaction-button-bg-hover - The background color of the reaction button on my messages on hover
- * @cssprop --suggestion-list-item-bg - The background color of the suggestion list item
- * @cssprop --suggestion-list-item-bg-hover - The background color of the suggestion list item on hover
- * @cssprop --my-message-menu-bg - The background color of the message menu on my messages
- * @cssprop --my-message-button-bg-hover - The background color of the message button on my messages on hover
- * @cssprop --my-attachment-bg - The background color of the attachment on my messages
- * @cssprop --my-attachment-bg-hover - The background color of the attachment on my messages on hover
- * @cssprop --text-on-brand - The text color on brand colors
- * @cssprop --subtext-on-brand - The subtext color on brand colors
+ * @cssprop --chat-send-button-bg - The background color of the send button
+ * @cssprop --chat-send-button-bg-hover - The background color of the send button on hover
+ * @cssprop --chat-my-message-bg - The background color of my messages
+ * @cssprop --chat-my-message-bg-selected - The background color of my messages when selected
+ * @cssprop --chat-my-reaction-list-bg - The background color of the reaction list on my messages
+ * @cssprop --chat-my-reaction-button-bg - The background color of the reaction button on my messages
+ * @cssprop --chat-my-reaction-button-bg-hover - The background color of the reaction button on my messages on hover
+ * @cssprop --chat-suggestion-list-item-bg - The background color of the suggestion list item
+ * @cssprop --chat-suggestion-list-item-bg-hover - The background color of the suggestion list item on hover
+ * @cssprop --chat-my-message-menu-bg - The background color of the message menu on my messages
+ * @cssprop --chat-my-message-button-bg-hover - The background color of the message button on my messages on hover
+ * @cssprop --chat-my-attachment-bg - The background color of the attachment on my messages
+ * @cssprop --chat-my-attachment-bg-hover - The background color of the attachment on my messages on hover
+ * @cssprop --chat-text-on-brand - The text color on brand colors
+ * @cssprop --chat-subtext-on-brand - The subtext color on brand colors
  */
 export class AdvancedChatKai extends LitElement {
   @property({ type: String })
@@ -320,7 +320,7 @@ export class AdvancedChatKai extends LitElement {
         display: flex;
         flex-direction: row;
         overflow: hidden;
-        border: 0.1em solid var(--border);
+        border: 0.1em solid var(--chat-border);
         border-radius: 1.6em;
         box-shadow: rgb(0 0 0 / 15%) 0 0.3em 0.3em 0;
       }

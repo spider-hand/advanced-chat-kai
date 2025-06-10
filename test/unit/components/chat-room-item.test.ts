@@ -233,10 +233,9 @@ describe("chat-room-item", () => {
     });
   });
 
-  it("renders with a badge", async () => {
-    const variants: VariantType[] = ["success", "danger", "warning", "info"];
-
-    for (const variant of variants) {
+  it.each(["success", "danger", "warning", "info"] as VariantType[])(
+    "renders with a badge",
+    async (variant) => {
       const roomWithBadge: ChatRoom = {
         ...room,
         badge: { label: "New", type: variant },
@@ -252,8 +251,8 @@ describe("chat-room-item", () => {
       expect(
         badge?.classList.contains(`chat-room-item__badge--${variant}`),
       ).toBe(true);
-    }
-  });
+    },
+  );
 
   it("is accessible", async () => {
     el = await fixture(html`<chat-room-item .room=${room}></chat-room-item>`);

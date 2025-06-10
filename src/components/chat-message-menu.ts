@@ -13,8 +13,8 @@ export class ChatMessageMenu extends LitElement {
 
   private get _iconBg() {
     return this.mine
-      ? "var(--text-on-brand, var(--surface-700))"
-      : "var(--surface-700)";
+      ? "var(--chat-text-on-brand, var(--chat-surface-700))"
+      : "var(--chat-surface-700)";
   }
 
   private _clickEmojiButton() {
@@ -54,14 +54,14 @@ export class ChatMessageMenu extends LitElement {
         gap: 0.8em;
         align-items: center;
         padding: 0.4em;
-        background-color: var(--surface-100);
-        border: var(--floating-item-border);
+        background-color: var(--chat-surface-100);
+        border: var(--chat-floating-item-border);
         border-radius: 0.8em;
-        box-shadow: var(--floating-item-box-shadow);
+        box-shadow: var(--chat-floating-item-box-shadow);
       }
 
       .chat-message-menu--mine {
-        background-color: var(--my-message-menu-bg, var(--surface-200));
+        background-color: var(--chat-my-message-menu-bg, var(--chat-surface-200));
       }
 
       .chat-message-menu__button {
@@ -69,18 +69,18 @@ export class ChatMessageMenu extends LitElement {
         align-items: center;
         justify-content: center;
         padding: 0.4em;
-        font-size: var(--base-font-size);
+        font-size: var(--chat-base-font-size);
         background-color: transparent;
         border: none;
         border-radius: 100px;
       }
 
       .chat-message-menu .chat-message-menu__button:hover {
-        background-color: var(--surface-200);
+        background-color: var(--chat-surface-200);
       }
 
       .chat-message-menu--mine .chat-message-menu__button:hover {
-        background-color: var(--my-message-button-bg-hover, var(--surface-300));
+        background-color: var(--chat-my-message-button-bg-hover, var(--chat-surface-300));
       }
     `,
   ];

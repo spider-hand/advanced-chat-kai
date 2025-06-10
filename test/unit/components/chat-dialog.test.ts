@@ -34,10 +34,9 @@ describe("chat-dialog", () => {
     expect(rightButton.textContent?.trim()).toBe(dialog.rightButton.text);
   });
 
-  it("renders with correct button variants", async () => {
-    const variants: VariantType[] = ["success", "danger", "warning", "info"];
-
-    for (const variant of variants) {
+  it.each(["success", "warning", "danger", "info"] as VariantType[])(
+    "renders with correct button variants",
+    async (variant) => {
       const el = await fixture<ChatDialog>(
         html`<chat-dialog
           .dialog=${{
@@ -57,8 +56,8 @@ describe("chat-dialog", () => {
       expect(rightButton.classList).toContain(
         `chat-dialog__button--${variant}`,
       );
-    }
-  });
+    },
+  );
 
   it("dispatches events on left button click", async () => {
     const dialog: Dialog = {
