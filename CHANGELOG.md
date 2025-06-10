@@ -1,3 +1,7 @@
+## [0.4.0](https://github.com/spider-hand/advanced-chat-kai/compare/v0.3.0...v0.4.0) (2025-06-10)
+### Changes
+- Add prefix to CSS variables
+
 ## [0.3.0](https://github.com/spider-hand/advanced-chat-kai/compare/v0.2.0...v0.3.0) (2025-06-07)
 ### Features
 - Keyboard navigation
