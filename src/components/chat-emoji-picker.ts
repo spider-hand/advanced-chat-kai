@@ -71,8 +71,8 @@ export class ChatEmojiPicker extends LitElement {
 
       emoji-picker {
         --background: var(--chat-surface-50);
-        --chat-border-color: var(--chat-border);
-        --chat-border-radius: 8px;
+        --border-color: var(--chat-border);
+        --border-radius: 8px;
         --button-active-background: var(--chat-surface-100);
         --button-hover-background: var(--chat-surface-100);
         --category-font-color: var(--chat-surface-900);
