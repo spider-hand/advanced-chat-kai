@@ -11,5 +11,3 @@ export interface RoomContext {
 }
 
 export const roomContext = createContext<RoomContext>("room");
-
-export type RoomContextKeys = keyof RoomContext;
