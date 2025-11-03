@@ -14,7 +14,7 @@ import type {
   SelectMessageActionDetail,
   ChatMessage,
   SelectSuggestionDetail,
-  SelecteEmojiDetail,
+  SelectEmojiDetail,
   ClickReactionDetail,
   SelectFileDetail,
   RemoveAttachmentDetail,
@@ -227,7 +227,7 @@ const selectSuggestion = async ({
 
 const selectEmoji = ({
   detail: { messageId, emoji },
-}: CustomEvent<SelecteEmojiDetail>) => {
+}: CustomEvent<SelectEmojiDetail>) => {
   const targetIndex = messages.value.findIndex(
     (message) => message.id === messageId,
   );

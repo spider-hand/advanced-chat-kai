@@ -5,7 +5,7 @@ import { consume } from "@lit/context";
 import { globalStyles } from "../styles";
 import {
   ChatRoom,
-  SelecteEmojiDetail,
+  SelectEmojiDetail,
   SelectFileDetail,
   SendMessageDetail,
 } from "../types";
@@ -108,7 +108,7 @@ export class ChatFooter extends LitElement {
     }
   }
 
-  private _onSelectEmoji(event: CustomEvent<SelecteEmojiDetail>) {
+  private _onSelectEmoji(event: CustomEvent<SelectEmojiDetail>) {
     this._textarea.value += event.detail.emoji;
     this._showEmojiPicker = false;
   }

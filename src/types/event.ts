@@ -23,7 +23,7 @@ export interface SearchRoomDetail {
   value: string;
 }
 
-export interface SelecteEmojiDetail {
+export interface SelectEmojiDetail {
   messageId: string;
   currentUserId: string | null;
   emoji: string;

@@ -2,7 +2,7 @@ import { LitElement, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../styles";
-import { SelecteEmojiDetail } from "../types";
+import { SelectEmojiDetail } from "../types";
 import { currentUserIdContext } from "../contexts";
 
 export class ChatEmojiPicker extends LitElement {
@@ -31,7 +31,7 @@ export class ChatEmojiPicker extends LitElement {
 
   private _onClickEmoji = (event: CustomEvent) => {
     this.dispatchEvent(
-      new CustomEvent<SelecteEmojiDetail>("select-emoji", {
+      new CustomEvent<SelectEmojiDetail>("select-emoji", {
         detail: {
           messageId: this.messageId,
           currentUserId: this.currentUserId,
