@@ -19,6 +19,14 @@ A highly customizable Web Component for building chat interfaces
 - Theming support - Built-in light and dark themes
 - Customizable style - Easily style components with CSS variables
 
+### Comparison
+
+||Bundle size (minified)|Bundle size (minified + gzipped)|Download time (slow 3G)|Download time (4G)|
+| - | - | - | - | - |
+| `advanced-chat-kai` | 112.9kB | 23.2kB | 465ms | 27ms |
+| `vue-advanced-chat` | 493.4kB | 149.8kB | 3s | 171ms |
+| | 📦 **77% smaller** | 📦 **84% smaller** | ⚡️ **85% faster** | ⚡️ **84% faster** |
+
 ## Table of contents
 - [Installation](#installation)
 - [Usage](#usage)
@@ -263,7 +271,7 @@ const DEFAULT_I18N = {
 };
 ```
 
-### ⚠️　Note on updating arrays and objects
+### ⚠️ Note on updating arrays and objects
 
 Lit uses shallow comparison to detect changes to reactive properties. When working with arrays or objects, you must assign a new reference to trigger updates. Mutating the existing object or array in place (e.g. using `push()` or modifying a property directly) will not cause the component to update.
 
