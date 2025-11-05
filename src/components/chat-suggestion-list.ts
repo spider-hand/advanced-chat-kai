@@ -37,7 +37,10 @@ export class ChatSuggestionList extends LitElement {
         margin-right: 0;
         color: var(--chat-text-on-brand, var(--chat-text));
         text-align: left;
-        background-color: var(--chat-suggestion-list-item-bg, var(--chat-surface-200));
+        background-color: var(
+          --chat-suggestion-list-item-bg,
+          var(--chat-surface-200)
+        );
         border: none;
         border-radius: 0.8em;
       }

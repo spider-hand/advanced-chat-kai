@@ -216,7 +216,9 @@ describe("chat-message-list", () => {
       "chat-suggestion-list",
     );
     expect(chatSuggestionList).toBeTruthy();
-    expect(chatSuggestionList?.getAttribute("style")).toContain("align-self: flex-end");
+    expect(chatSuggestionList?.getAttribute("style")).toContain(
+      "align-self: flex-end",
+    );
   });
 
   it("renders left aligned suggestions", async () => {
@@ -236,7 +238,9 @@ describe("chat-message-list", () => {
       "chat-suggestion-list",
     );
     expect(chatSuggestionList).toBeTruthy();
-    expect(chatSuggestionList?.getAttribute("style")).toContain("align-self: flex-start");
+    expect(chatSuggestionList?.getAttribute("style")).toContain(
+      "align-self: flex-start",
+    );
   });
 
   it("toggles the floating button when scrolling around the bottom", async () => {
@@ -535,7 +539,7 @@ describe("chat-message-list", () => {
     expect(spyScrollToBottom).toHaveBeenCalledWith(null, "smooth");
 
     vi.useRealTimers();
-  })
+  });
 
   it("shows notification badge when there are new messages and the user is not around the bottom", async () => {
     vi.useFakeTimers();

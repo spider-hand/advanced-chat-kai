@@ -32,13 +32,19 @@ customElements.define("chat-container", ChatContainer);
 customElements.define("chat-deleted-message", ChatDeletedMessage);
 customElements.define("chat-dialog", ChatDialog);
 customElements.define("chat-emoji-picker", ChatEmojiPicker);
-customElements.define("chat-footer-attachment-section", ChatFooterAttachmentSection);
+customElements.define(
+  "chat-footer-attachment-section",
+  ChatFooterAttachmentSection,
+);
 customElements.define("chat-footer-reply-to-section", ChatFooterReplyToSection);
 customElements.define("chat-footer", ChatFooter);
 customElements.define("chat-header", ChatHeader);
 customElements.define("chat-loader", ChatLoader);
 customElements.define("chat-message-divider", ChatMessageDivider);
-customElements.define("chat-message-attachment-list", ChatMessageAttachmentList);
+customElements.define(
+  "chat-message-attachment-list",
+  ChatMessageAttachmentList,
+);
 customElements.define("chat-message-item", ChatMessageItem);
 customElements.define("chat-message-list", ChatMessageList);
 customElements.define("chat-message-menu", ChatMessageMenu);

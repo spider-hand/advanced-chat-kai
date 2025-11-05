@@ -77,7 +77,7 @@ describe("chat-sidebar", () => {
 
     expect(spyEvent.mock.calls.length).toBe(1);
     expect(spyEvent.mock.calls[0][0].type).toBe("close");
-  })
+  });
 
   it("does not close sidebar when a room is selected on other devices", async () => {
     el = await fixture(html`<chat-sidebar show></chat-sidebar>`);
@@ -89,7 +89,7 @@ describe("chat-sidebar", () => {
     roomList?.dispatchEvent(selectRoomEvent);
 
     expect(spyEvent.mock.calls.length).toBe(0);
-  })
+  });
 
   it("is accessible", async () => {
     el = await fixture(html`<chat-sidebar show></chat-sidebar>`);

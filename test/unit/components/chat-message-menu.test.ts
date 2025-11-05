@@ -78,7 +78,7 @@ describe("chat-message-menu", () => {
       ".chat-message-menu__button[aria-label='Add emoji reaction']",
     );
     expect(reactionButton).toBeTruthy();
-    
+
     const icon = reactionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
     expect(icon?.getAttribute("fill")).toBe("var(--chat-surface-700)");
@@ -97,11 +97,13 @@ describe("chat-message-menu", () => {
       ".chat-message-menu__button[aria-label='Add emoji reaction']",
     );
     expect(reactionButton).toBeTruthy();
-    
+
     const icon = reactionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--chat-text-on-brand, var(--chat-surface-700))");
-  })
+    expect(icon?.getAttribute("fill")).toBe(
+      "var(--chat-text-on-brand, var(--chat-surface-700))",
+    );
+  });
 
   it("dispatches click-emoji-button event when clicking emoji button", async () => {
     el = await fixture(
@@ -154,8 +156,10 @@ describe("chat-message-menu", () => {
 
     const icon = replyButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--chat-text-on-brand, var(--chat-surface-700))");
-  })
+    expect(icon?.getAttribute("fill")).toBe(
+      "var(--chat-text-on-brand, var(--chat-surface-700))",
+    );
+  });
 
   it("dispatches reply-to-message event when clicking reply button", async () => {
     el = await fixture(
@@ -211,7 +215,9 @@ describe("chat-message-menu", () => {
 
     const icon = actionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--chat-text-on-brand, var(--chat-surface-700))");
+    expect(icon?.getAttribute("fill")).toBe(
+      "var(--chat-text-on-brand, var(--chat-surface-700))",
+    );
   });
 
   it("dispatches click-action-button event when clicking action button", async () => {

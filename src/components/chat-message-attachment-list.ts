@@ -64,7 +64,10 @@ export class ChatMessageAttachmentList extends LitElement {
 
       .chat-message-attachment-list--mine
         .chat-message-attachment-list__item:hover {
-        background-color: var(--chat-my-attachment-bg-hover, var(--chat-surface-400));
+        background-color: var(
+          --chat-my-attachment-bg-hover,
+          var(--chat-surface-400)
+        );
       }
 
       .chat-message-attachment-list--mine .chat-message-attachment-list__text {

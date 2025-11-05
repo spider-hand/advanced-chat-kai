@@ -74,7 +74,7 @@ export const WithFullScreen: Story = {
     isMobile: true,
     theme: "dark",
   },
-}
+};
 
 export const WithSingleRoom: Story = {
   args: {

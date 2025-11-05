@@ -211,7 +211,10 @@ export class ChatMessageItem extends LitElement {
       }
 
       .chat-message-item--selected .chat-message-item__body--mine {
-        background-color: var(--chat-my-message-bg-selected, var(--chat-surface-300));
+        background-color: var(
+          --chat-my-message-bg-selected,
+          var(--chat-surface-300)
+        );
       }
     `,
   ];

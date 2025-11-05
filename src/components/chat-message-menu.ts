@@ -61,7 +61,10 @@ export class ChatMessageMenu extends LitElement {
       }
 
       .chat-message-menu--mine {
-        background-color: var(--chat-my-message-menu-bg, var(--chat-surface-200));
+        background-color: var(
+          --chat-my-message-menu-bg,
+          var(--chat-surface-200)
+        );
       }
 
       .chat-message-menu__button {
@@ -80,7 +83,10 @@ export class ChatMessageMenu extends LitElement {
       }
 
       .chat-message-menu--mine .chat-message-menu__button:hover {
-        background-color: var(--chat-my-message-button-bg-hover, var(--chat-surface-300));
+        background-color: var(
+          --chat-my-message-button-bg-hover,
+          var(--chat-surface-300)
+        );
       }
     `,
   ];

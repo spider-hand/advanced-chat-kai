@@ -45,7 +45,9 @@ describe("chat-search", () => {
     elLocator = getElementLocatorSelectors(el);
 
     const spyEvent = vi.spyOn(el, "dispatchEvent");
-    const input = elLocator.getByPlaceholder(DEFAULT_I18N.CHAT_SEARCH_PLACEHOLDER);
+    const input = elLocator.getByPlaceholder(
+      DEFAULT_I18N.CHAT_SEARCH_PLACEHOLDER,
+    );
     await input.fill("test");
 
     expect(spyEvent.mock.calls.length).toBe(1);
@@ -56,7 +58,9 @@ describe("chat-search", () => {
   });
 
   it("is accessible", async () => {
-    el = await fixture(html`<chat-search .i18nContext=${{ i18n: DEFAULT_I18N }}></chat-search>`);
+    el = await fixture(
+      html`<chat-search .i18nContext=${{ i18n: DEFAULT_I18N }}></chat-search>`,
+    );
     await a11y.isAccessible(el);
   });
 });

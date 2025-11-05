@@ -47,7 +47,7 @@ describe("chat-suggestion-list", () => {
     expect(items).toHaveLength(2);
     expect(items![0].textContent?.trim()).toBe("Suggestion 1");
     expect(items![1].textContent?.trim()).toBe("Suggestion 2");
-    expect(items![0].getAttribute('style')).toContain("margin-left: auto");
+    expect(items![0].getAttribute("style")).toContain("margin-left: auto");
   });
 
   it("renders left aligned suggestions", async () => {
@@ -69,7 +69,7 @@ describe("chat-suggestion-list", () => {
     );
     expect(items).toHaveLength(1);
     expect(items![0].textContent?.trim()).toBe("Suggestion 1");
-    expect(items![0].getAttribute('style')).toContain("margin-left: 4em");
+    expect(items![0].getAttribute("style")).toContain("margin-left: 4em");
   });
 
   it("dispatches select-suggestion event on item click", async () => {

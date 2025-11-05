@@ -21,13 +21,14 @@ A highly customizable Web Component for building chat interfaces
 
 ### Comparison
 
-||Bundle size (minified)|Bundle size (minified + gzipped)|Download time (slow 3G)|Download time (4G)|
-| - | - | - | - | - |
-| `advanced-chat-kai` | 112.9kB | 23.2kB | 465ms | 27ms |
-| `vue-advanced-chat` | 493.4kB | 149.8kB | 3s | 171ms |
-| | 📦 **77% smaller** | 📦 **84% smaller** | ⚡️ **85% faster** | ⚡️ **84% faster** |
+|                     | Bundle size (minified) | Bundle size (minified + gzipped) | Download time (slow 3G) | Download time (4G) |
+| ------------------- | ---------------------- | -------------------------------- | ----------------------- | ------------------ |
+| `advanced-chat-kai` | 112.9kB                | 23.2kB                           | 465ms                   | 27ms               |
+| `vue-advanced-chat` | 493.4kB                | 149.8kB                          | 3s                      | 171ms              |
+|                     | 📦 **77% smaller**     | 📦 **84% smaller**               | ⚡️ **85% faster**      | ⚡️ **84% faster** |
 
 ## Table of contents
+
 - [Installation](#installation)
 - [Usage](#usage)
 - [Props](#props)
@@ -315,39 +316,39 @@ The `--chat-surface-50` to `--chat-surface-950` variables define the primary sur
 
 | Variable                               | Description                                         |
 | -------------------------------------- | --------------------------------------------------- |
-| `--chat-base-font-size`                     | The base font size of the chat component            |
-| `--chat-white`                              |                                                     |
-| `--chat-black`                              |                                                     |
-| `--chat-success`                            |                                                     |
-| `--chat-danger`                             |                                                     |
-| `--chat-warning`                            |                                                     |
-| `--chat-info`                               |                                                     |
-| `--chat-surface-50`                         |                                                     |
-| `--chat-surface-100`                        |                                                     |
-| `--chat-surface-200`                        |                                                     |
-| `--chat-surface-300`                        |                                                     |
-| `--chat-surface-400`                        |                                                     |
-| `--chat-surface-500`                        |                                                     |
-| `--chat-surface-600`                        |                                                     |
-| `--chat-surface-700`                        |                                                     |
-| `--chat-surface-800`                        |                                                     |
-| `--chat-surface-900`                        |                                                     |
-| `--chat-surface-950`                        |                                                     |
-| `--chat-text`                               | The default text color                              |
-| `--chat-subtext`                            | The default subtext color                           |
-| `--chat-border`                             | The default border color                            |
-| `--chat-floating-item-border`               | The default border color for floating items         |
-| `--chat-floating-item-box-shadow`           | The default box shadow for floating items           |
-| `--chat-placeholder`                        | The default placeholder color                       |
-| `--chat-deleted`                            | The default background color for deleted messages   |
-| `--chat-overlay`                            | The default background color for overlay            |
+| `--chat-base-font-size`                | The base font size of the chat component            |
+| `--chat-white`                         |                                                     |
+| `--chat-black`                         |                                                     |
+| `--chat-success`                       |                                                     |
+| `--chat-danger`                        |                                                     |
+| `--chat-warning`                       |                                                     |
+| `--chat-info`                          |                                                     |
+| `--chat-surface-50`                    |                                                     |
+| `--chat-surface-100`                   |                                                     |
+| `--chat-surface-200`                   |                                                     |
+| `--chat-surface-300`                   |                                                     |
+| `--chat-surface-400`                   |                                                     |
+| `--chat-surface-500`                   |                                                     |
+| `--chat-surface-600`                   |                                                     |
+| `--chat-surface-700`                   |                                                     |
+| `--chat-surface-800`                   |                                                     |
+| `--chat-surface-900`                   |                                                     |
+| `--chat-surface-950`                   |                                                     |
+| `--chat-text`                          | The default text color                              |
+| `--chat-subtext`                       | The default subtext color                           |
+| `--chat-border`                        | The default border color                            |
+| `--chat-floating-item-border`          | The default border color for floating items         |
+| `--chat-floating-item-box-shadow`      | The default box shadow for floating items           |
+| `--chat-placeholder`                   | The default placeholder color                       |
+| `--chat-deleted`                       | The default background color for deleted messages   |
+| `--chat-overlay`                       | The default background color for overlay            |
 | `--chat-notification-badge-background` | The default background color for notification badge |
 | `--chat-notification-badge-text`       | The default text color for notification badge       |
 
 Also, a minimal set of CSS variables is exposed specifically for applying brand colors to the key UI elements:
 
-| Variable                          | Description                                                         |
-| --------------------------------- | ------------------------------------------------------------------- |
+| Variable                               | Description                                                         |
+| -------------------------------------- | ------------------------------------------------------------------- |
 | `--chat-send-button-bg`                | The background color of the send button                             |
 | `--chat-send-button-bg-hover`          | The background color of the send button on hover                    |
 | `--chat-my-message-bg`                 | The background color of my messages                                 |
