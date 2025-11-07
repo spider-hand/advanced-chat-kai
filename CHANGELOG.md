@@ -1,3 +1,9 @@
+### [0.4.2](https://github.com/spider-hand/advanced-chat-kai/compare/v0.4.1...v0.4.2) (2025-11-07)
+
+#### Fixes
+
+- Fix a reactivity issue on emoji picker
+
 ### [0.4.1](https://github.com/spider-hand/advanced-chat-kai/compare/v0.4.0...v0.4.1) (2025-06-13)
 
 #### Fixes
