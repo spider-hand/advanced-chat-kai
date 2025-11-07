@@ -27,6 +27,9 @@ A highly customizable Web Component for building chat interfaces
 | `vue-advanced-chat` | 493.4kB                | 149.8kB                          | 3s                      | 171ms              |
 |                     | 📦 **77% smaller**     | 📦 **84% smaller**               | ⚡️ **85% faster**      | ⚡️ **84% faster** |
 
+## Demo
+Try it out [here](https://advanced-chat-kai-demo.pages.dev/).
+
 ## Table of contents
 
 - [Installation](#installation)

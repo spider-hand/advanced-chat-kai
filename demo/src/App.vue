@@ -1,6 +1,11 @@
 <template>
   <div>
     <div>
+      <span>❌ File upload</span>
+      <span>❌ Room actions</span>
+      <span>❌ Message actions</span>
+    </div>
+    <div>
       <span>Current User: {{ currentUserId }}</span>
       <button @click="switchUser">
         Switch to User {{ currentUserId === "1" ? "2" : "1" }}
@@ -9,10 +14,14 @@
       <button @click="toggleTheme">
         Switch to {{ theme === "light" ? "dark" : "light" }}
       </button>
+      <span>Layout: {{ isMobile ? "Compact" : "Expanded" }}</span>
+      <button @click="toggleLayout">
+        Toggle layout
+      </button>
     </div>
     <advanced-chat-kai .currentUserId="currentUserId" .rooms="filteredRooms" .messages="messages" .theme="theme"
-      .replyTo="replyTo" .selectedRoomId="selectedRoomId" .isLoadingRoom="isLoadingRoom"
-      .isLoadingMoreRooms="isLoadingMoreRooms" .isLoadingMessage="isLoadingMessage"
+      .isMobile="isMobile" .width="width" .replyTo="replyTo" .selectedRoomId="selectedRoomId"
+      .isLoadingRoom="isLoadingRoom" .isLoadingMoreRooms="isLoadingMoreRooms" .isLoadingMessage="isLoadingMessage"
       .isLoadingMoreMessages="isLoadingMoreMessages" .inputMessage="inputMessage" .roomActions="ROOM_ACTIONS"
       .myMessageActions="MY_MESSAGE_ACTIONS" .theirMessageActions="THEIR_MESSAGE_ACTIONS" @add-room="addRoom"
       @search-room="searchRoom" @load-more-rooms="loadMoreRooms" @select-room="selectRoom"
@@ -139,9 +148,17 @@ const replyTo = ref<ChatMessageReply | null>(null);
 // Others
 const theme = ref<ThemeType>('light')
 
+const isMobile = ref(false)
+
+const width = computed(() => (isMobile.value ? "40em" : "80em"))
+
 const toggleTheme = () => {
   theme.value = theme.value === 'light' ? 'dark' : 'light';
 };
+
+const toggleLayout = () => {
+  isMobile.value = !isMobile.value;
+}
 
 const unsubscribeArr = ref<Unsubscribe[]>([]);
 
