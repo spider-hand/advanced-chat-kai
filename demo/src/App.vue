@@ -34,7 +34,7 @@ import type {
   ClickReactionDetail,
   ReplyToMessageDetail,
   SearchRoomDetail,
-  SelecteEmojiDetail,
+  SelectEmojiDetail,
   SelectMessageActionDetail,
   SelectRoomDetail,
   SendMessageDetail,
@@ -416,7 +416,7 @@ const selectMessageAction = async ({
 
 const selectEmoji = async ({
   detail: { messageId, emoji },
-}: CustomEvent<SelecteEmojiDetail>) => {
+}: CustomEvent<SelectEmojiDetail>) => {
   const targetIndex = messages.value.findIndex(
     (message) => message.id === messageId,
   );
