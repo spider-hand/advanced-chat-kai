@@ -109,7 +109,8 @@ export class ChatFooter extends LitElement {
   }
 
   private _onSelectEmoji(event: CustomEvent<SelectEmojiDetail>) {
-    this._textarea.value += event.detail.emoji;
+    this._textareaValue += event.detail.emoji;
+    this._textarea.value = this._textareaValue;
     this._showEmojiPicker = false;
   }
 
