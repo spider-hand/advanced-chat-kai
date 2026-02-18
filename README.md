@@ -1,8 +1,15 @@
 # advanced-chat-kai
 
-![light](https://github.com/user-attachments/assets/bbdadeda-b26f-4af5-9bb6-2c40ace765c7)
-![dark](https://github.com/user-attachments/assets/34a4ce47-b7ba-43a6-a87c-c914c65e6523)
-![custom](https://github.com/user-attachments/assets/7a9690b4-ce7c-4775-b937-82525e161f55)
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/fb55aa5f-5e36-474b-9238-a70824a157a5" alt="light" /></td>
+    <td><img src="https://github.com/user-attachments/assets/4d9e1c12-261f-462d-8614-f40e338628c5" alt="light_mobile" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/92fc8f25-7e88-4a9a-b8da-6bb46ce59bd7" alt="dark" /></td>
+    <td><img src="https://github.com/user-attachments/assets/7beb8c06-b533-455e-aeaf-665931b48804" alt="dark_mobile" /></td>
+  </tr>
+</table>
 
 ![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai)
 
@@ -25,9 +32,10 @@ A highly customizable Web Component for building chat interfaces
 | ------------------- | ---------------------- | -------------------------------- | ----------------------- | ------------------ |
 | `advanced-chat-kai` | 112.9kB                | 23.2kB                           | 465ms                   | 27ms               |
 | `vue-advanced-chat` | 493.4kB                | 149.8kB                          | 3s                      | 171ms              |
-|                     | 📦 **77% smaller**     | 📦 **84% smaller**               | ⚡️ **85% faster**      | ⚡️ **84% faster** |
+|                     | 📦 **77% smaller**     | 📦 **84% smaller**               | ⚡️ **85% faster**       | ⚡️ **84% faster**  |
 
 ## Demo
+
 Try it out [here](https://advanced-chat-kai-demo.pages.dev/).
 
 ## Table of contents
