@@ -20,6 +20,7 @@ export interface MessageContext {
   isTyping: boolean;
   showTheirAvatar: boolean;
   alignMyMessagesLeft: boolean;
+  timestampFormatter: ((date: Date) => string) | null;
 }
 
 export const messageContext = createContext<MessageContext>("message");

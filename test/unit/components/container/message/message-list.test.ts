@@ -48,6 +48,7 @@ describe("chat-message-list", () => {
     isTyping: false,
     showTheirAvatar: false,
     alignMyMessagesLeft: false,
+    timestampFormatter: null,
   };
 
   afterEach(() => {

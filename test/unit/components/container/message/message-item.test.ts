@@ -619,7 +619,7 @@ describe("chat-message-item", () => {
   it("renders reactions", async () => {
     el = await fixture(
       html`<chat-message-item
-        .message=${{ ...message, reactions: new Map([["👍", new Set(["2"])]]) }}
+        .message=${{ ...message, reactions: { "👍": ["2"] } }}
         .currentUserId=${currentUserId}
       ></chat-message-item>`,
     );
@@ -628,6 +628,97 @@ describe("chat-message-item", () => {
       "chat-message-reaction-list",
     );
     expect(reactionList).toBeTruthy();
+  });
+
+  it("formats string timestamp as-is", async () => {
+    el = await fixture(
+      html`<chat-message-item
+        .message=${{ ...message, timestamp: "Custom Time" }}
+        .currentUserId=${currentUserId}
+      ></chat-message-item>`,
+    );
+
+    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    expect(date?.textContent).toBe("Custom Time");
+  });
+
+  it("formats Date timestamp with default Intl format", async () => {
+    const testDate = new Date(2024, 0, 15, 14, 30); // Jan 15, 2024, 2:30 PM
+    el = await fixture(
+      html`<chat-message-item
+        .message=${{ ...message, timestamp: testDate }}
+        .currentUserId=${currentUserId}
+      ></chat-message-item>`,
+    );
+
+    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    // Default Intl format - compute expected value using same logic as component
+    const expected = new Intl.DateTimeFormat(undefined, {
+      hour: "numeric",
+      minute: "numeric",
+    }).format(testDate);
+    expect(date?.textContent).toBe(expected);
+  });
+
+  it("formats Date timestamp with custom formatter", async () => {
+    const testDate = new Date(2024, 0, 15, 14, 30);
+    const customFormatter = (d: Date) =>
+      `${d.getHours()}:${d.getMinutes().toString().padStart(2, "0")} Custom`;
+
+    el = await fixture(
+      html`<chat-message-item
+        .message=${{ ...message, timestamp: testDate }}
+        .timestampFormatter=${customFormatter}
+        .currentUserId=${currentUserId}
+      ></chat-message-item>`,
+    );
+
+    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    expect(date?.textContent).toBe("14:30 Custom");
+  });
+
+  it("falls back to default format when formatter throws", async () => {
+    const testDate = new Date(2024, 0, 15, 14, 30);
+    const brokenFormatter = () => {
+      throw new Error("Formatter error");
+    };
+
+    el = await fixture(
+      html`<chat-message-item
+        .message=${{ ...message, timestamp: testDate }}
+        .timestampFormatter=${brokenFormatter}
+        .currentUserId=${currentUserId}
+      ></chat-message-item>`,
+    );
+
+    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    // Should fall back to default Intl format
+    const expected = new Intl.DateTimeFormat(undefined, {
+      hour: "numeric",
+      minute: "numeric",
+    }).format(testDate);
+    expect(date?.textContent).toBe(expected);
+  });
+
+  it("falls back to default format when formatter returns non-string", async () => {
+    const testDate = new Date(2024, 0, 15, 14, 30);
+    const badFormatter = () => 12345 as unknown as string;
+
+    el = await fixture(
+      html`<chat-message-item
+        .message=${{ ...message, timestamp: testDate }}
+        .timestampFormatter=${badFormatter}
+        .currentUserId=${currentUserId}
+      ></chat-message-item>`,
+    );
+
+    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    // Should fall back to default Intl format
+    const expected = new Intl.DateTimeFormat(undefined, {
+      hour: "numeric",
+      minute: "numeric",
+    }).format(testDate);
+    expect(date?.textContent).toBe(expected);
   });
 
   it("is accessible", async () => {

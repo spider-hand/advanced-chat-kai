@@ -34,7 +34,7 @@ export interface ChatMessage {
   senderName: string;
   senderAvatar?: string;
   content: string;
-  timestamp: string;
+  timestamp: string | Date;
   reactions: Record<string, string[]>;
   attachments: ChatMessageAttachment[];
   isDeleted: boolean;

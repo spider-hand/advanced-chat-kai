@@ -217,6 +217,8 @@ export class ChatMessageList extends LitElement {
                       .showTheirAvatar="${this.messageContext.showTheirAvatar}"
                       .alignMyMessagesLeft="${this.messageContext
                         .alignMyMessagesLeft}"
+                      .timestampFormatter="${this.messageContext
+                        .timestampFormatter}"
                       .containerTop="${this._rectTop}"
                       .containerBottom="${this._rectBottom}"
                     ></chat-message-item>`

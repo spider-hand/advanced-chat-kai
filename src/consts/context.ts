@@ -23,6 +23,7 @@ export const MESSAGE_CONTEXT_KEYS: (keyof MessageContext)[] = [
   "isTyping",
   "showTheirAvatar",
   "alignMyMessagesLeft",
+  "timestampFormatter",
 ];
 
 export const FOOTER_CONTEXT_KEYS: (keyof FooterContext)[] = [

@@ -35,6 +35,9 @@ export class ChatMessageItem extends LitElement {
   @property({ type: Boolean }) isReplyAvailable = false;
   @property({ type: Boolean }) showTheirAvatar = false;
   @property({ type: Boolean }) alignMyMessagesLeft = false;
+  @property({ attribute: false }) timestampFormatter:
+    | ((date: Date) => string)
+    | null = null;
   @property({ type: Number }) containerTop = 0;
   @property({ type: Number }) containerBottom = 0;
 
@@ -82,6 +85,32 @@ export class ChatMessageItem extends LitElement {
       this.isReplyAvailable ||
       this._isMessageActionAvailable
     );
+  }
+
+  private _formatTimestamp(timestamp: string | Date): string {
+    // If string, return as-is
+    if (typeof timestamp === "string") {
+      return timestamp;
+    }
+
+    // If Date with custom formatter
+    if (this.timestampFormatter) {
+      try {
+        const result = this.timestampFormatter(timestamp);
+        if (typeof result === "string") {
+          return result;
+        }
+        // Non-string return - fall through to default
+      } catch {
+        // Formatter threw - fall through to default
+      }
+    }
+
+    // Default formatting using Intl (no external deps)
+    return new Intl.DateTimeFormat(undefined, {
+      hour: "numeric",
+      minute: "numeric",
+    }).format(timestamp);
   }
 
   private _onMouseEnter() {
@@ -244,7 +273,7 @@ export class ChatMessageItem extends LitElement {
                 >${this.message.senderName}</span
               >`
             : nothing}<span class="chat-message-item__date"
-            >${this.message.timestamp}</span
+            >${this._formatTimestamp(this.message.timestamp)}</span
           >
         </div>
         <div
@@ -341,7 +370,8 @@ export class ChatMessageItem extends LitElement {
               ></chat-emoji-picker>`
             : nothing}
         </div>
-        ${!this.message.isDeleted && this.message.reactions.size > 0
+        ${!this.message.isDeleted &&
+        Object.keys(this.message.reactions).length > 0
           ? html`<chat-message-reaction-list
               .messageId="${this.message.id}"
               .mine="${this._mine}"

@@ -91,6 +91,7 @@ npm install advanced-chat-kai
 | `showTheirAvatar`              | boolean                                           | false    | `true`                 | Whether the other user's avatar on the message should be rendered or not          |
 | `alignMyMessagesLeft`          | boolean                                           | false    | `false`                | Whether my messages should be aligned to the left or not                          |
 | `enterToSend`                  | boolean                                           | false    | `false`                | Whether the enter key should send the message or not                              |
+| `timestampFormatter`           | ((date: Date) => string) \| null                  | false    | `null`                 | Custom function to format Date timestamps. If null, uses default Intl format      |
 | `dialog`                       | [Dialog](#dialog) \| null                         | false    | `null`                 | The dialog to be rendered                                                         |
 | `height`                       | string                                            | false    | `"60em"`               | The height of the chat component                                                  |
 | `width`                        | string                                            | false    | `"80em"`               | The width of the chat component                                                   |
@@ -131,6 +132,7 @@ rooms = [
 Notes:
 
 - `type` must be either `divider` or `message`.
+- `timestamp` can be a string (displayed as-is) or a Date object (formatted using `timestampFormatter` or default Intl format).
 - `reactions` represents the emoji reactions and the list of user IDs who reacted with each emoji.
 - `isSelected` can be used to indicate that an action (such as editing) is currently active on the message.
 
@@ -152,7 +154,7 @@ messages = [
     senderName: "User 1",
     senderAvatar: "/avatar.png",
     content: "Hello, world",
-    timestamp: "12:34 PM",
+    timestamp: "12:34 PM", // or new Date()
     reactions: {
       "👍": ["2", "3"],
       "🎉": ["1", "4", "5"],

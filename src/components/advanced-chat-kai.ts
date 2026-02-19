@@ -68,6 +68,7 @@ import {
  * @prop {boolean} showTheirAvatar - Whether the other user's avatar on the message should be rendered or not
  * @prop {boolean} alignMyMessagesLeft - Whether my messages should be aligned to the left or not
  * @prop {boolean} enterToSend - Whether the enter key should send the message or not
+ * @prop {((date: Date) => string) | null} timestampFormatter - Custom function to format Date timestamps
  * @prop {Dialog} dialog - The dialog to be rendered
  * @prop {string} height - The height of the chat component
  * @prop {string} width - The width of the chat component
@@ -171,6 +172,9 @@ export class AdvancedChatKai extends LitElement {
   @property({ type: Boolean }) showTheirAvatar = true;
   @property({ type: Boolean }) alignMyMessagesLeft = false;
   @property({ type: Boolean }) enterToSend = false;
+  @property({ attribute: false }) timestampFormatter:
+    | ((date: Date) => string)
+    | null = null;
   @property({ type: Object }) dialog: Dialog = null;
   @property({ type: String }) height = "60em";
   @property({ type: String }) width = "80em";
@@ -205,6 +209,7 @@ export class AdvancedChatKai extends LitElement {
     isTyping: this.isTyping,
     showTheirAvatar: this.showTheirAvatar,
     alignMyMessagesLeft: this.alignMyMessagesLeft,
+    timestampFormatter: this.timestampFormatter,
   };
 
   @provide({ context: footerContext })
@@ -270,6 +275,7 @@ export class AdvancedChatKai extends LitElement {
         isTyping: this.isTyping,
         showTheirAvatar: this.showTheirAvatar,
         alignMyMessagesLeft: this.alignMyMessagesLeft,
+        timestampFormatter: this.timestampFormatter,
       };
     }
 
