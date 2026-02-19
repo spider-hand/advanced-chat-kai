@@ -55,7 +55,7 @@ export interface ClickReactionDetail {
   messageId: string;
   reaction: {
     emoji: string;
-    users: Set<string>;
+    users: string[];
   };
 }
 

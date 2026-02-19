@@ -153,10 +153,10 @@ messages = [
     senderAvatar: "/avatar.png",
     content: "Hello, world",
     timestamp: "12:34 PM",
-    reactions: new Map<string, Set<string>>([
-      ["👍", new Set(["2", "3"])],
-      ["🎉", new Set(["1", "4", "5"])],
-    ]),
+    reactions: {
+      "👍": ["2", "3"],
+      "🎉": ["1", "4", "5"],
+    },
     attachments: [
       {
         name: "file1.txt",
@@ -218,10 +218,10 @@ chatMessageReply = {
   senderAvatar: "/avatar.png",
   content: "Hello, world",
   timestamp: "12:34 PM",
-  reactions: new Map<string, Set<string>>([
-    ["👍", new Set(["2", "3"])],
-    ["🎉", new Set(["1", "4", "5"])],
-  ]),
+  reactions: {
+    "👍": ["2", "3"],
+    "🎉": ["1", "4", "5"],
+  },
   attachments: [
     {
       name: "file1.txt",

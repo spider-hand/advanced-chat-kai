@@ -13,9 +13,9 @@ export class ChatMessageReactionList extends LitElement {
   @property({ type: String }) messageId!: string;
   @property({ type: Boolean }) mine = false;
   @property({ type: Boolean }) alignMyMessagesLeft = false;
-  @property({ type: Object }) reactions!: Map<string, Set<string>>;
+  @property({ type: Object }) reactions: Record<string, string[]> = {};
 
-  private _clickReaction(emoji: string, users: Set<string>) {
+  private _clickReaction(emoji: string, users: string[]) {
     this.dispatchEvent(
       new CustomEvent<ClickReactionDetail>("click-reaction", {
         detail: {
@@ -114,17 +114,17 @@ export class ChatMessageReactionList extends LitElement {
           this.mine && !this.alignMyMessagesLeft,
       })}"
     >
-      ${Array.from(this.reactions.entries()).map(([emoji, users]) => {
+      ${Object.entries(this.reactions).map(([emoji, users]) => {
         return html`<button
           class="${classMap({
             "chat-message-reaction-list__button": true,
             "chat-message-reaction-list__button--reacted":
-              this.currentUserId !== null && users.has(this.currentUserId),
+              this.currentUserId !== null && users.includes(this.currentUserId),
           })}"
           @click="${() => this._clickReaction(emoji, users)}"
         >
           <span>${emoji}</span>
-          <span>${users.size}</span>
+          <span>${users.length}</span>
         </button>`;
       })}
     </div>`;

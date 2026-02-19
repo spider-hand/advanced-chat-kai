@@ -19,7 +19,7 @@ describe("chat-message-menu", () => {
     senderName: "User One",
     content: "Hello, world!",
     timestamp: "12:34 PM",
-    reactions: new Map(),
+    reactions: {},
     attachments: [],
     isDeleted: false,
     isSelected: false,

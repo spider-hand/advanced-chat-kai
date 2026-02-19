@@ -16,7 +16,7 @@ describe("chat-message-reaction-list", () => {
 
   it("renders with default props", async () => {
     const messageId = "test-message-id";
-    const reactions = new Map<string, Set<string>>();
+    const reactions: Record<string, string[]> = {};
     el = await fixture(
       html`<chat-message-reaction-list
         .messageId=${messageId}
@@ -43,7 +43,7 @@ describe("chat-message-reaction-list", () => {
 
   it("renders reaction list on my message", async () => {
     const messageId = "test-message-id";
-    const reactions = new Map<string, Set<string>>();
+    const reactions: Record<string, string[]> = {};
     el = await fixture(
       html`<chat-message-reaction-list
         .messageId=${messageId}
@@ -69,7 +69,7 @@ describe("chat-message-reaction-list", () => {
 
   it("alignes reaction list left on my message", async () => {
     const messageId = "test-message-id";
-    const reactions = new Map<string, Set<string>>();
+    const reactions: Record<string, string[]> = {};
     el = await fixture(
       html`<chat-message-reaction-list
         .messageId=${messageId}
@@ -95,10 +95,10 @@ describe("chat-message-reaction-list", () => {
 
   it("renders reactions", async () => {
     const messageId = "test-message-id";
-    const reactions = new Map<string, Set<string>>([
-      ["👍", new Set(["user1", "user2"])],
-      ["❤️", new Set(["user3"])],
-    ]);
+    const reactions: Record<string, string[]> = {
+      "👍": ["user1", "user2"],
+      "❤️": ["user3"],
+    };
     el = await fixture(
       html`<chat-message-reaction-list
         .messageId=${messageId}
@@ -124,10 +124,10 @@ describe("chat-message-reaction-list", () => {
   it("renders reactions as the one already reacted", async () => {
     const currentUserId = "user1";
     const messageId = "test-message-id";
-    const reactions = new Map<string, Set<string>>([
-      ["👍", new Set(["user1"])],
-      ["❤️", new Set(["user2"])],
-    ]);
+    const reactions: Record<string, string[]> = {
+      "👍": ["user1"],
+      "❤️": ["user2"],
+    };
     el = await fixture(
       html`<chat-message-reaction-list
         .currentUserId=${currentUserId}
@@ -154,9 +154,9 @@ describe("chat-message-reaction-list", () => {
 
   it("dispatches click-reaction event", async () => {
     const messageId = "test-message-id";
-    const reactions = new Map<string, Set<string>>([
-      ["👍", new Set(["user1"])],
-    ]);
+    const reactions: Record<string, string[]> = {
+      "👍": ["user1"],
+    };
     el = await fixture(
       html`<chat-message-reaction-list
         .messageId=${messageId}
@@ -175,14 +175,14 @@ describe("chat-message-reaction-list", () => {
       messageId: messageId,
       reaction: {
         emoji: "👍",
-        users: new Set(["user1"]),
+        users: ["user1"],
       },
     });
   });
 
   it("is accessible", async () => {
     const messageId = "test-message-id";
-    const reactions = new Map<string, Set<string>>();
+    const reactions: Record<string, string[]> = {};
     el = await fixture(
       html`<chat-message-reaction-list
         .messageId=${messageId}
