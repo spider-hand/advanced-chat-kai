@@ -3,8 +3,8 @@ import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { provide } from "@lit/context";
 import { globalStyles } from "../styles";
-import "./chat-container";
-import "./chat-sidebar";
+import "./container/container";
+import "./sidebar/sidebar";
 import {
   AdvancedChatKaiProps,
   ChatAction,
