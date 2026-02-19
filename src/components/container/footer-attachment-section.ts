@@ -28,7 +28,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         align-items: center;
         width: 0;
         overflow-x: scroll;
@@ -38,11 +38,11 @@ export class ChatFooterAttachmentSection extends LitElement {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        min-width: 12em;
-        min-height: 6.4em;
-        padding: 0.4em;
+        min-width: 7.5rem;
+        min-height: 4rem;
+        padding: var(--chat-spacing-1);
         background-color: var(--chat-muted);
-        border-radius: 0.8em;
+        border-radius: var(--chat-radius-lg);
       }
 
       .chat-footer-attachment-section__button {
@@ -50,10 +50,10 @@ export class ChatFooterAttachmentSection extends LitElement {
         align-items: center;
         align-self: flex-end;
         justify-content: center;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         background-color: transparent;
         border: none;
-        border-radius: 10em;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-footer-attachment-section__button:hover {
@@ -63,10 +63,10 @@ export class ChatFooterAttachmentSection extends LitElement {
       .chat-footer-attachment-section__text {
         display: inline-block;
         align-self: flex-start;
-        max-width: 10em;
+        max-width: 6.25rem;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1em;
+        font-size: var(--chat-text-xs);
         color: var(--chat-foreground);
         white-space: nowrap;
       }
@@ -77,22 +77,22 @@ export class ChatFooterAttachmentSection extends LitElement {
 
       .chat-footer-attachment-section__image-wrapper {
         position: relative;
-        height: 6.4em;
+        height: 4rem;
       }
 
       .chat-footer-attachment-section__image {
-        width: 12em;
+        width: 7.5rem;
         height: 100%;
         object-fit: cover;
-        border-radius: 0.8em;
+        border-radius: var(--chat-radius-lg);
       }
 
       .chat-footer-attachment-section__image-button {
         position: absolute;
-        top: 0.4em;
-        right: 0.4em;
+        top: var(--chat-spacing-1);
+        right: var(--chat-spacing-1);
         background-color: var(--chat-background);
-        border-radius: 10em;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-footer-attachment-section__image-button:hover {

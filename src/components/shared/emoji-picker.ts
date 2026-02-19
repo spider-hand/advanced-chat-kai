@@ -65,28 +65,28 @@ export class ChatEmojiPicker extends LitElement {
       :host {
         display: flex;
         overflow: hidden;
-        border-radius: 0.8em;
-        box-shadow: 0 0.4em 0.8em oklch(0% 0 0deg / 15%);
+        border-radius: var(--chat-radius-lg);
+        box-shadow: 0 0.25rem 0.5rem oklch(0% 0 0deg / 15%);
       }
 
       emoji-picker {
         --background: var(--chat-popover);
         --border-color: var(--chat-border);
-        --border-radius: 8px;
+        --border-radius: var(--chat-radius-lg);
         --button-active-background: var(--chat-accent);
         --button-hover-background: var(--chat-accent);
         --category-font-color: var(--chat-foreground);
-        --category-font-size: 12px;
-        --emoji-padding: 8px;
-        --emoji-size: 16px;
+        --category-font-size: var(--chat-text-xs);
+        --emoji-padding: var(--chat-spacing-2);
+        --emoji-size: var(--chat-spacing-4);
         --indicator-color: var(--chat-primary);
         --indicator-height: 4px;
         --input-border-color: var(--chat-input);
-        --input-border-radius: 8px;
+        --input-border-radius: var(--chat-radius-lg);
         --input-border-size: 1px;
         --input-font-color: var(--chat-foreground);
-        --input-font-size: 14px;
-        --input-padding: 8px;
+        --input-font-size: var(--chat-text-sm);
+        --input-padding: var(--chat-spacing-2);
         --input-placeholder-color: var(--chat-muted-foreground);
       }
     `,

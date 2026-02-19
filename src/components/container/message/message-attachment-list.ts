@@ -30,18 +30,18 @@ export class ChatMessageAttachmentList extends LitElement {
         display: flex;
         flex-grow: 1;
         flex-direction: column;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
       }
 
       .chat-message-attachment-list__item {
         display: flex;
         flex-direction: column;
-        gap: 0.4em;
-        padding: 0.4em 0.8em;
+        gap: var(--chat-spacing-1);
+        padding: var(--chat-spacing-1) var(--chat-spacing-2);
         text-align: start;
         background-color: var(--chat-accent);
         border: none;
-        border-radius: 0.4em;
+        border-radius: var(--chat-radius);
       }
 
       .chat-message-attachment-list__text {
@@ -49,7 +49,7 @@ export class ChatMessageAttachmentList extends LitElement {
         max-width: 120px;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.2em;
+        font-size: var(--chat-text-xs);
         color: var(--chat-foreground);
         white-space: nowrap;
       }
@@ -81,20 +81,20 @@ export class ChatMessageAttachmentList extends LitElement {
 
       .chat-message-attachment-list__image {
         object-fit: cover;
-        border-radius: 0.4em;
+        border-radius: var(--chat-radius);
       }
 
       .chat-message-attachment-list__image-button {
         position: absolute;
-        right: 0.8em;
-        bottom: 0.8em;
+        right: var(--chat-spacing-2);
+        bottom: var(--chat-spacing-2);
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         background-color: var(--chat-popover);
         border: none;
-        border-radius: 0.8em;
+        border-radius: var(--chat-radius-lg);
       }
 
       .chat-message-attachment-list__image-button:hover {

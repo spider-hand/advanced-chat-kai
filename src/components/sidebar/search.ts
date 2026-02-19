@@ -26,29 +26,29 @@ export class ChatSearch extends LitElement {
     css`
       :host {
         display: flex;
-        height: 4.8em;
-        min-height: 4.8em;
+        height: 3rem;
+        min-height: 3rem;
       }
 
       .chat-search {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
-        gap: 0.4em;
+        gap: var(--chat-spacing-1);
         align-items: center;
-        padding: 0.8em;
+        padding: var(--chat-spacing-2);
         color: var(--chat-sidebar-foreground);
         outline: none;
         background-color: var(--chat-background);
-        border: 0.1em solid var(--chat-sidebar-border);
-        border-radius: 0.8em;
+        border: 1px solid var(--chat-sidebar-border);
+        border-radius: var(--chat-radius-lg);
         box-shadow: none;
       }
 
       .chat-search__body {
         width: 100%;
         padding: 0;
-        font-size: 1.4em;
+        font-size: var(--chat-text-sm);
         color: var(--chat-sidebar-foreground);
         outline: none;
         background-color: transparent;

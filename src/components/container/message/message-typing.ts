@@ -12,17 +12,17 @@ export class ChatMessageTyping extends LitElement {
       .chat-message-typing {
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         margin-right: 40%;
-        margin-bottom: 1.6em;
+        margin-bottom: var(--chat-spacing-4);
       }
 
       .chat-message-typing__avatar {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 4em;
-        height: 4em;
+        width: 2.5rem;
+        height: 2.5rem;
         background-color: transparent;
         border-radius: 50%;
       }
@@ -31,19 +31,19 @@ export class ChatMessageTyping extends LitElement {
         position: relative;
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         align-items: center;
-        padding: 0.8em 1.2em;
+        padding: var(--chat-spacing-2) var(--chat-spacing-3);
         background-color: var(--chat-secondary);
-        border-radius: 0.8em;
+        border-radius: var(--chat-radius-lg);
       }
 
       .chat-message-typing__dot {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 0.8em;
-        height: 0.8em;
+        width: var(--chat-spacing-2);
+        height: var(--chat-spacing-2);
         background-color: var(--chat-muted-foreground);
         border-radius: 50%;
         opacity: 0.4;

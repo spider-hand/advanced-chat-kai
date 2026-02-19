@@ -26,20 +26,20 @@ export class ChatSuggestionList extends LitElement {
       .chat-suggestion-list {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        margin-bottom: 1.6em;
+        gap: var(--chat-spacing-2);
+        margin-bottom: var(--chat-spacing-4);
       }
 
       .chat-suggestion-list__item {
         min-width: 45%;
         max-width: 45%;
-        padding: 0.8em 1.2em;
+        padding: var(--chat-spacing-2) var(--chat-spacing-3);
         margin-right: 0;
         color: var(--chat-accent-foreground);
         text-align: left;
         background-color: var(--chat-accent);
         border: none;
-        border-radius: 0.8em;
+        border-radius: var(--chat-radius-lg);
       }
 
       .chat-suggestion-list__item:hover {
@@ -48,7 +48,7 @@ export class ChatSuggestionList extends LitElement {
       }
 
       .chat-suggestion-list__text {
-        font-size: 1.4em;
+        font-size: var(--chat-text-sm);
       }
     `,
   ];

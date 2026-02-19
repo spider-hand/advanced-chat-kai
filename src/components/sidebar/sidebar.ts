@@ -33,8 +33,8 @@ export class ChatSidebar extends LitElement {
       .chat-sidebar {
         display: flex;
         flex-direction: column;
-        min-width: 24em;
-        max-width: 24em;
+        min-width: 15rem;
+        max-width: 15rem;
         height: 100%;
         background-color: var(--chat-sidebar);
       }
@@ -52,26 +52,26 @@ export class ChatSidebar extends LitElement {
       .chat-sidebar__header {
         display: flex;
         flex-direction: column;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         width: 100%;
-        min-height: 11.2em;
-        padding: 1.6em 1.2em;
+        min-height: 7rem;
+        padding: var(--chat-spacing-4) var(--chat-spacing-3);
       }
 
       .chat-sidebar__button-group {
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
       }
 
       .chat-sidebar__button {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         background-color: transparent;
         border: none;
-        border-radius: 100px;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-sidebar__button:hover {

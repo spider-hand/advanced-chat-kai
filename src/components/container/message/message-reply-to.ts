@@ -20,13 +20,13 @@ export class ChatMessageReplyTo extends LitElement {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
       }
 
       .chat-message-reply-to__container {
         display: flex;
         flex-direction: column;
-        gap: 0.4em;
+        gap: var(--chat-spacing-1);
       }
 
       .chat-message-reply-to__text {
@@ -34,7 +34,7 @@ export class ChatMessageReplyTo extends LitElement {
         max-width: 100px;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.2em;
+        font-size: var(--chat-text-xs);
         color: var(--chat-foreground);
         white-space: nowrap;
       }

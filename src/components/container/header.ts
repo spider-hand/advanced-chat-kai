@@ -46,26 +46,26 @@ export class ChatHeader extends LitElement {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
-        gap: 1.6em;
+        gap: var(--chat-spacing-4);
         align-items: center;
-        min-height: 6.4em;
-        max-height: 6.4em;
-        padding: 0 1.2em;
-        border-bottom: 0.1em solid var(--chat-border);
+        min-height: 4rem;
+        max-height: 4rem;
+        padding: 0 var(--chat-spacing-3);
+        border-bottom: 1px solid var(--chat-border);
       }
 
       .chat-header__body {
         display: flex;
         flex-direction: column;
-        gap: 0.4em;
+        gap: var(--chat-spacing-1);
         justify-content: center;
-        width: 24em;
+        width: 15rem;
       }
 
       .chat-header__title {
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.6em;
+        font-size: var(--chat-text-base);
         font-weight: 600;
         color: var(--chat-foreground);
         white-space: nowrap;
@@ -74,7 +74,7 @@ export class ChatHeader extends LitElement {
       .chat-header__subtitle {
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.2em;
+        font-size: var(--chat-text-xs);
         color: var(--chat-muted-foreground);
         white-space: nowrap;
       }
@@ -83,10 +83,10 @@ export class ChatHeader extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         background-color: transparent;
         border: none;
-        border-radius: 100px;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-header__button:hover {

@@ -38,7 +38,7 @@ export class ChatContainer extends LitElement {
         flex-direction: column;
         height: 100%;
         background-color: var(--chat-background);
-        border-left: 0.1em solid var(--chat-border);
+        border-left: 1px solid var(--chat-border);
       }
 
       .chat-container--mobile {

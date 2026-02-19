@@ -55,13 +55,13 @@ export class ChatMessageMenu extends LitElement {
         z-index: 1;
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         align-items: center;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         background-color: var(--chat-secondary);
-        border: 0.1em solid var(--chat-border);
-        border-radius: 0.8em;
-        box-shadow: 0 0.2em 0.4em oklch(0% 0 0deg / 10%);
+        border: 1px solid var(--chat-border);
+        border-radius: var(--chat-radius-lg);
+        box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
       .chat-message-menu--mine {
@@ -72,11 +72,11 @@ export class ChatMessageMenu extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         font-size: var(--chat-base-font-size);
         background-color: transparent;
         border: none;
-        border-radius: 100px;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-message-menu .chat-message-menu__button:hover {

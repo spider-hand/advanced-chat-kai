@@ -14,7 +14,7 @@ export class ChatLoader extends LitElement {
       }
 
       .chat-loader {
-        border: 0.4em solid oklch(0% 0 0deg / 10%);
+        border: var(--chat-spacing-1) solid oklch(0% 0 0deg / 10%);
         border-top-color: var(--chat-muted-foreground);
         border-radius: 50%;
         animation: spin 1s linear infinite;

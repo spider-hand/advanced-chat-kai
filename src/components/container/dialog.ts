@@ -48,28 +48,28 @@ export class ChatDialog extends LitElement {
       .chat-dialog__window {
         display: flex;
         flex-direction: column;
-        gap: 1.2em;
-        width: 20em;
-        padding: 1.6em;
+        gap: var(--chat-spacing-3);
+        width: 12.5rem;
+        padding: var(--chat-spacing-4);
         background-color: var(--chat-popover);
-        border-radius: 0.8em;
+        border-radius: var(--chat-radius-lg);
       }
 
       .chat-dialog__body {
-        font-size: 1.4em;
+        font-size: var(--chat-text-sm);
         color: var(--chat-popover-foreground);
       }
 
       .chat-dialog__footer {
         display: flex;
         flex-direction: row;
-        gap: 1.2em;
+        gap: var(--chat-spacing-3);
         align-items: center;
         justify-content: flex-end;
       }
 
       .chat-dialog__button {
-        font-size: 1.4em;
+        font-size: var(--chat-text-sm);
         color: var(--chat-foreground);
         background-color: transparent;
         border: none;

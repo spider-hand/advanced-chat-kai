@@ -24,17 +24,17 @@ export class ChatMessageDivider extends LitElement {
       .chat-message-divider::before,
       .chat-message-divider::after {
         flex: 1;
-        margin: 0 0.8em;
+        margin: 0 var(--chat-spacing-2);
         content: "";
         border-top: 1px solid var(--chat-border);
       }
 
       .chat-message-divider__text {
         display: inline-block;
-        max-width: 24em;
+        max-width: 15rem;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.2em;
+        font-size: var(--chat-text-xs);
         font-weight: 600;
         color: var(--chat-muted-foreground);
         white-space: nowrap;

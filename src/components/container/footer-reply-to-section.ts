@@ -20,9 +20,9 @@ export class ChatFooterReplyToSection extends LitElement {
       .chat-footer-reply-to-section {
         display: flex;
         flex-direction: row;
-        gap: 0.2em;
+        gap: var(--chat-spacing-0-5);
         align-items: center;
-        font-size: 1em;
+        font-size: var(--chat-text-xs);
         color: var(--chat-muted-foreground);
       }
 
@@ -40,11 +40,11 @@ export class ChatFooterReplyToSection extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.2em;
-        margin-right: 0.4em;
+        padding: var(--chat-spacing-0-5);
+        margin-right: var(--chat-spacing-1);
         background-color: transparent;
         border: none;
-        border-radius: 100px;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-footer-reply-to-section__button:hover {

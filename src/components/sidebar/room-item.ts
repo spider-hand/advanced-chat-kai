@@ -64,20 +64,20 @@ export class ChatRoomItem extends LitElement {
         position: relative;
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         align-items: center;
         width: 100%;
-        height: 6.4em;
-        padding: 0 1.2em;
+        height: 4rem;
+        padding: 0 var(--chat-spacing-3);
         cursor: pointer;
       }
 
       .chat-room-item::after {
         position: absolute;
-        right: 1.2em;
+        right: var(--chat-spacing-3);
         bottom: 0;
-        left: 1.2em;
-        height: 0.1em;
+        left: var(--chat-spacing-3);
+        height: 1px;
         content: "";
         background-color: var(--chat-border);
       }
@@ -89,15 +89,15 @@ export class ChatRoomItem extends LitElement {
       .chat-room-item__text {
         display: flex;
         flex-direction: column;
-        gap: 0.4em;
-        width: calc(100% - 16em);
-        min-width: 10em;
+        gap: var(--chat-spacing-1);
+        width: calc(100% - 10rem);
+        min-width: 6.25rem;
       }
 
       .chat-room-item__title {
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.4em;
+        font-size: var(--chat-text-sm);
         font-weight: 600;
         color: var(--chat-sidebar-foreground);
         white-space: nowrap;
@@ -106,7 +106,7 @@ export class ChatRoomItem extends LitElement {
       .chat-room-item__subtitle {
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.2em;
+        font-size: var(--chat-text-xs);
         color: var(--chat-muted-foreground);
         white-space: nowrap;
       }
@@ -117,11 +117,11 @@ export class ChatRoomItem extends LitElement {
 
       .chat-room-item__menu {
         position: absolute;
-        top: 1.2em;
-        right: 1.2em;
+        top: var(--chat-spacing-3);
+        right: var(--chat-spacing-3);
         display: flex;
         flex-direction: column;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         align-items: flex-end;
         text-align: right;
       }
@@ -130,15 +130,15 @@ export class ChatRoomItem extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.2em 0.8em;
-        border-radius: 0.4em;
+        padding: var(--chat-spacing-0-5) var(--chat-spacing-2);
+        border-radius: var(--chat-radius);
       }
 
       .chat-room-item__badge--rounded {
-        width: 1em;
-        height: 1em;
+        width: 0.625rem;
+        height: 0.625rem;
         padding: 0;
-        border-radius: 100px;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-room-item__badge--success {
@@ -163,16 +163,16 @@ export class ChatRoomItem extends LitElement {
 
       .chat-room-item__button {
         position: absolute;
-        top: 1.2em;
-        right: 1.2em;
+        top: var(--chat-spacing-3);
+        right: var(--chat-spacing-3);
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.4em;
-        font-size: 1.2em;
+        padding: var(--chat-spacing-1);
+        font-size: var(--chat-text-xs);
         background-color: transparent;
         border: none;
-        border-radius: 100px;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-room-item__button:hover {

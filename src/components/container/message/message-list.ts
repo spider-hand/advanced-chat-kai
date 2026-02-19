@@ -142,7 +142,7 @@ export class ChatMessageList extends LitElement {
       :host {
         display: flex;
         flex-grow: 1;
-        padding: 1.6em 1.2em;
+        padding: var(--chat-spacing-4) var(--chat-spacing-3);
         overflow: hidden scroll;
       }
 
@@ -150,18 +150,18 @@ export class ChatMessageList extends LitElement {
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 1.6em;
+        gap: var(--chat-spacing-4);
         width: 100%;
       }
 
       .chat-message-list__top {
-        height: 0.1em;
-        margin-bottom: -1.7em;
+        height: 1px;
+        margin-bottom: calc(-1 * var(--chat-spacing-4) - 1px);
       }
 
       .chat-message-list__bottom {
-        height: 0.1em;
-        margin-top: -1.7em;
+        height: 1px;
+        margin-top: calc(-1 * var(--chat-spacing-4) - 1px);
       }
 
       .chat-message-list__button {
@@ -173,11 +173,11 @@ export class ChatMessageList extends LitElement {
         align-items: center;
         align-self: flex-end;
         justify-content: center;
-        padding: 0.8em;
+        padding: var(--chat-spacing-2);
         background-color: var(--chat-popover);
-        border: 0.1em solid var(--chat-border);
-        border-radius: 100%;
-        box-shadow: 0 0.2em 0.4em oklch(0% 0 0deg / 10%);
+        border: 1px solid var(--chat-border);
+        border-radius: var(--chat-radius-full);
+        box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
       .chat-message-list__button:hover {

@@ -40,14 +40,14 @@ export class ChatMessageReactionList extends LitElement {
       .chat-message-reaction-list {
         display: flex;
         flex-flow: row wrap;
-        gap: 0.4em;
+        gap: var(--chat-spacing-1);
         align-items: center;
         max-width: 80%;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         background-color: var(--chat-secondary);
-        border: 0.1em solid var(--chat-border);
-        border-radius: 0.4em;
-        box-shadow: 0 0.2em 0.4em oklch(0% 0 0deg / 10%);
+        border: 1px solid var(--chat-border);
+        border-radius: var(--chat-radius);
+        box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
       .chat-message-reaction-list--mine {
@@ -61,15 +61,15 @@ export class ChatMessageReactionList extends LitElement {
       .chat-message-reaction-list__button {
         display: flex;
         flex-direction: row;
-        gap: 0.4em;
+        gap: var(--chat-spacing-1);
         align-items: center;
-        padding: 0 0.4em;
+        padding: 0 var(--chat-spacing-1);
         margin: 0;
-        font-size: 1.4em;
+        font-size: var(--chat-text-sm);
         color: var(--chat-foreground);
         background-color: transparent;
         border: none;
-        border-radius: 0.4em;
+        border-radius: var(--chat-radius);
       }
 
       .chat-message-reaction-list__button--reacted {

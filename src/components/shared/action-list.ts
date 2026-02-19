@@ -53,9 +53,9 @@ export class ChatActionList extends LitElement {
         align-items: center;
         overflow: hidden;
         background-color: var(--chat-popover);
-        border: 0.1em solid var(--chat-border);
-        border-radius: 0.8em;
-        box-shadow: 0 0.2em 0.4em oklch(0% 0 0deg / 10%);
+        border: 1px solid var(--chat-border);
+        border-radius: var(--chat-radius-lg);
+        box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
       .chat-action-list__item {
@@ -63,10 +63,10 @@ export class ChatActionList extends LitElement {
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        min-width: 6.4em;
-        height: 3.2em;
-        padding: 0 0.8em;
-        font-size: 1.4em;
+        min-width: 4rem;
+        height: 2rem;
+        padding: 0 var(--chat-spacing-2);
+        font-size: var(--chat-text-sm);
         color: var(--chat-popover-foreground);
         cursor: pointer;
       }

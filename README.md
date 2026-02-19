@@ -325,9 +325,9 @@ this.messages.push(newMessage);
 
 ## Styling
 
-CSS variable names are based on the [shadcn](https://ui.shadcn.com/docs/theming) design system, prefixed with `--chat-`. You can override these variables to customize the appearance of the chat component.
+CSS variable names are based on the [shadcn](https://ui.shadcn.com/docs/theming) design system and [Tailwind CSS](https://tailwindcss.com/docs/customizing-spacing) spacing/typography scale, prefixed with `--chat-`. You can override these variables to customize the appearance of the chat component.
 
-### Base Variables
+### Color Variables
 
 | Variable                        |
 | ------------------------------- |
@@ -350,6 +350,45 @@ CSS variable names are based on the [shadcn](https://ui.shadcn.com/docs/theming)
 | `--chat-border`                 |
 | `--chat-input`                  |
 | `--chat-ring`                   |
+
+### Font Size Variables
+
+| Variable           | Default     |
+| ------------------ | ----------- |
+| `--chat-text-xs`   | `0.75rem`   |
+| `--chat-text-sm`   | `0.875rem`  |
+| `--chat-text-base` | `1rem`      |
+| `--chat-text-lg`   | `1.125rem`  |
+| `--chat-text-xl`   | `1.25rem`   |
+
+### Border Radius Variables
+
+| Variable             | Default   |
+| -------------------- | --------- |
+| `--chat-radius-sm`   | `0.125rem` |
+| `--chat-radius`      | `0.25rem`  |
+| `--chat-radius-md`   | `0.375rem` |
+| `--chat-radius-lg`   | `0.5rem`   |
+| `--chat-radius-xl`   | `0.75rem`  |
+| `--chat-radius-2xl`  | `1rem`     |
+| `--chat-radius-3xl`  | `1.5rem`   |
+| `--chat-radius-full` | `9999px`   |
+
+### Spacing Variables
+
+| Variable             | Default    |
+| -------------------- | ---------- |
+| `--chat-spacing-0`   | `0`        |
+| `--chat-spacing-0-5` | `0.125rem` |
+| `--chat-spacing-1`   | `0.25rem`  |
+| `--chat-spacing-1-5` | `0.375rem` |
+| `--chat-spacing-2`   | `0.5rem`   |
+| `--chat-spacing-2-5` | `0.625rem` |
+| `--chat-spacing-3`   | `0.75rem`  |
+| `--chat-spacing-4`   | `1rem`     |
+| `--chat-spacing-5`   | `1.25rem`  |
+| `--chat-spacing-6`   | `1.5rem`   |
+| `--chat-spacing-8`   | `2rem`     |
 
 ### Custom Variables
 

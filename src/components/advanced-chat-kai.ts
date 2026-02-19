@@ -94,6 +94,30 @@ import {
  * @fires click-dialog-button - The event fired when a dialog button is clicked
  *
  * @cssprop --chat-base-font-size - The base font size of the chat component
+ * @cssprop --chat-text-xs - Extra small text size (0.75rem)
+ * @cssprop --chat-text-sm - Small text size (0.875rem)
+ * @cssprop --chat-text-base - Base text size (1rem)
+ * @cssprop --chat-text-lg - Large text size (1.125rem)
+ * @cssprop --chat-text-xl - Extra large text size (1.25rem)
+ * @cssprop --chat-radius-sm - Small border radius (0.125rem)
+ * @cssprop --chat-radius - Default border radius (0.25rem)
+ * @cssprop --chat-radius-md - Medium border radius (0.375rem)
+ * @cssprop --chat-radius-lg - Large border radius (0.5rem)
+ * @cssprop --chat-radius-xl - Extra large border radius (0.75rem)
+ * @cssprop --chat-radius-2xl - 2XL border radius (1rem)
+ * @cssprop --chat-radius-3xl - 3XL border radius (1.5rem)
+ * @cssprop --chat-radius-full - Full/pill border radius (9999px)
+ * @cssprop --chat-spacing-0 - No spacing (0)
+ * @cssprop --chat-spacing-0-5 - Spacing 0.5 (0.125rem)
+ * @cssprop --chat-spacing-1 - Spacing 1 (0.25rem)
+ * @cssprop --chat-spacing-1-5 - Spacing 1.5 (0.375rem)
+ * @cssprop --chat-spacing-2 - Spacing 2 (0.5rem)
+ * @cssprop --chat-spacing-2-5 - Spacing 2.5 (0.625rem)
+ * @cssprop --chat-spacing-3 - Spacing 3 (0.75rem)
+ * @cssprop --chat-spacing-4 - Spacing 4 (1rem)
+ * @cssprop --chat-spacing-5 - Spacing 5 (1.25rem)
+ * @cssprop --chat-spacing-6 - Spacing 6 (1.5rem)
+ * @cssprop --chat-spacing-8 - Spacing 8 (2rem)
  * @cssprop --chat-background - Background color for main areas
  * @cssprop --chat-foreground - Main text color
  * @cssprop --chat-card - Card background color
@@ -322,9 +346,9 @@ export class AdvancedChatKai extends LitElement {
         display: flex;
         flex-direction: row;
         overflow: hidden;
-        border: 0.1em solid var(--chat-border);
-        border-radius: 1.6em;
-        box-shadow: rgb(0 0 0 / 15%) 0 0.3em 0.3em 0;
+        border: 1px solid var(--chat-border);
+        border-radius: var(--chat-radius-2xl);
+        box-shadow: rgb(0 0 0 / 15%) 0 0.1875rem 0.1875rem 0;
       }
 
       .main--fullscreen {

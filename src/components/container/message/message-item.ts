@@ -167,12 +167,12 @@ export class ChatMessageItem extends LitElement {
       .chat-message-item {
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         margin-right: 40%;
       }
 
       .chat-message-item--last {
-        margin-bottom: 1.6em;
+        margin-bottom: var(--chat-spacing-4);
       }
 
       .chat-message-item--right-aligned {
@@ -185,13 +185,13 @@ export class ChatMessageItem extends LitElement {
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
       }
 
       .chat-message-item__meta {
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         align-items: baseline;
       }
 
@@ -204,14 +204,14 @@ export class ChatMessageItem extends LitElement {
         max-width: 100px;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.2em;
+        font-size: var(--chat-text-xs);
         font-weight: 600;
         color: var(--chat-foreground);
         white-space: nowrap;
       }
 
       .chat-message-item__date {
-        font-size: 0.8em;
+        font-size: 0.625rem;
         font-weight: 600;
         color: var(--chat-muted-foreground);
       }
@@ -220,12 +220,12 @@ export class ChatMessageItem extends LitElement {
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 0.8em;
-        padding: 0.8em 1.2em;
-        font-size: 1.4em;
+        gap: var(--chat-spacing-2);
+        padding: var(--chat-spacing-2) var(--chat-spacing-3);
+        font-size: var(--chat-text-sm);
         color: var(--chat-foreground);
         background-color: var(--chat-secondary);
-        border-radius: 0.8em;
+        border-radius: var(--chat-radius-lg);
       }
 
       .chat-message-item__body--mine {

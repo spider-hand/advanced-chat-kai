@@ -153,26 +153,26 @@ export class ChatFooter extends LitElement {
         display: flex;
         flex-grow: 1;
         flex-direction: column;
-        gap: 0.8em;
-        padding: 0.8em 1.2em;
-        border-top: 0.1em solid var(--chat-border);
+        gap: var(--chat-spacing-2);
+        padding: var(--chat-spacing-2) var(--chat-spacing-3);
+        border-top: 1px solid var(--chat-border);
       }
 
       .chat-footer__message {
-        font-size: 1.2em;
+        font-size: var(--chat-text-xs);
         color: var(--chat-foreground);
       }
 
       .chat-footer__textarea {
         display: flex;
         flex-grow: 1;
-        padding: 0.8em;
-        font-size: 1.4em;
+        padding: var(--chat-spacing-2);
+        font-size: var(--chat-text-sm);
         color: var(--chat-foreground);
         outline: none;
         background-color: var(--chat-background);
-        border: 0.1em solid var(--chat-input);
-        border-radius: 0.8em;
+        border: 1px solid var(--chat-input);
+        border-radius: var(--chat-radius-lg);
         box-shadow: none;
       }
 
@@ -184,20 +184,20 @@ export class ChatFooter extends LitElement {
         position: relative;
         display: flex;
         flex-direction: row;
-        gap: 0.8em;
+        gap: var(--chat-spacing-2);
         align-items: center;
         justify-content: space-between;
-        height: 3.2em;
+        height: 2rem;
       }
 
       .chat-footer__button {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0.4em;
+        padding: var(--chat-spacing-1);
         background-color: transparent;
         border: none;
-        border-radius: 100px;
+        border-radius: var(--chat-radius-full);
       }
 
       .chat-footer__file {

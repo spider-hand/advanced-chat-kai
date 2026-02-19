@@ -18,18 +18,18 @@ export class ChatNotificationBadge extends LitElement {
     css`
       :host {
         position: sticky;
-        bottom: 1.6em;
+        bottom: var(--chat-spacing-4);
         display: flex;
         align-self: center;
       }
 
       .chat-notification-badge {
-        padding: 0.8em;
+        padding: var(--chat-spacing-2);
         color: var(--chat-primary-foreground);
         background-color: var(--chat-primary);
         border: none;
-        border-radius: 10em;
-        box-shadow: 0 0.2em 0.4em oklch(0% 0 0deg / 10%);
+        border-radius: var(--chat-radius-full);
+        box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
     `,
   ];
