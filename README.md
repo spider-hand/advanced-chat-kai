@@ -1,15 +1,7 @@
 # advanced-chat-kai
 
-<table>
-  <tr>
-    <td><img src="https://github.com/user-attachments/assets/fb55aa5f-5e36-474b-9238-a70824a157a5" alt="light" /></td>
-    <td><img src="https://github.com/user-attachments/assets/4d9e1c12-261f-462d-8614-f40e338628c5" alt="light_mobile" /></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/user-attachments/assets/92fc8f25-7e88-4a9a-b8da-6bb46ce59bd7" alt="dark" /></td>
-    <td><img src="https://github.com/user-attachments/assets/7beb8c06-b533-455e-aeaf-665931b48804" alt="dark_mobile" /></td>
-  </tr>
-</table>
+<img alt="light" src="https://github.com/user-attachments/assets/2683a3ae-0419-4a35-ba3c-b5344750d5b6" />
+<img alt="dark" src="https://github.com/user-attachments/assets/36d2fc3e-6f93-44ea-a3d2-f6137b9d0bd6" />
 
 ![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai)
 
