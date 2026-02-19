@@ -1,3 +1,7 @@
+## [1.0.0](https://github.com/spider-hand/advanced-chat-kai/compare/v0.4.2...v1.0.0)(2026-02-20)
+
+First stable release.
+
 ### [0.4.2](https://github.com/spider-hand/advanced-chat-kai/compare/v0.4.1...v0.4.2) (2025-11-07)
 
 #### Fixes
