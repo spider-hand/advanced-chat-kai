@@ -1,7 +1,6 @@
 import type { ChatRoom } from "advanced-chat-kai";
 
-export const formatTimestamp = (isoString: string): string => {
-  const date = new Date(isoString);
+export const formatTimestamp = (date: Date): string => {
   const month = date.toLocaleString("en-US", { month: "short" });
   const day = date.getDate();
   let hours = date.getHours();
@@ -9,18 +8,6 @@ export const formatTimestamp = (isoString: string): string => {
   const ampm = hours >= 12 ? "PM" : "AM";
   hours = hours % 12 || 12;
   return `${month} ${day}, ${hours}:${minutes} ${ampm}`;
-};
-
-export const convertReactionsFromFirebase = (
-  reactions: Record<string, string[]> | null
-): Map<string, Set<string>> => {
-  const map = new Map<string, Set<string>>();
-  if (reactions) {
-    for (const [emoji, users] of Object.entries(reactions)) {
-      map.set(emoji, new Set(users));
-    }
-  }
-  return map;
 };
 
 export const buildRoom = (roomData: { id: string; latestMessage?: string }): ChatRoom => ({

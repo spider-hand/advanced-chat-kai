@@ -100,7 +100,7 @@ export class ChatMessageList extends LitElement {
       // Scroll to the bottom if the selected room has changed
       if (previousFirstMessageRoomId !== currentFirstMessageRoomId) {
         setTimeout(() => {
-          this._scrollToBottom(null, "instant");
+          this._scrollToBottom(undefined, "instant");
         });
         return;
       }
@@ -126,7 +126,7 @@ export class ChatMessageList extends LitElement {
           // Scroll to the bottom if the scroll position is within the client height
           // or the user just sent a message
           setTimeout(() => {
-            this._scrollToBottom(null, "smooth");
+            this._scrollToBottom(undefined, "smooth");
           });
         } else {
           // Show notification badge if there is a new message and the user is not at the bottom

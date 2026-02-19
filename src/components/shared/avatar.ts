@@ -4,7 +4,7 @@ import { globalStyles } from "../../styles";
 
 export class ChatAvatar extends LitElement {
   @property({ type: Number }) size = 3.2;
-  @property({ type: String }) src = "";
+  @property({ type: String }) src: string | null = null;
 
   static styles = [
     globalStyles,
@@ -26,7 +26,7 @@ export class ChatAvatar extends LitElement {
     return html`<img
       class="chat-avatar"
       style="width: ${this.size}em; height: ${this.size}em;"
-      src="${this.src}"
+      src="${this.src ?? ""}"
       alt="Avatar"
     ></img>`;
   }

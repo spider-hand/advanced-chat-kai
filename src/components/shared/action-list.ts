@@ -92,7 +92,7 @@ export class ChatActionList extends LitElement {
                       detail: {
                         label: action.label,
                         value: action.value,
-                        roomId: this.roomId,
+                        roomId: this.roomId as string,
                       },
                       composed: true,
                     }),
@@ -104,7 +104,7 @@ export class ChatActionList extends LitElement {
                       detail: {
                         label: action.label,
                         value: action.value,
-                        messageId: this.messageId,
+                        messageId: this.messageId as string,
                       },
                       composed: true,
                     }),

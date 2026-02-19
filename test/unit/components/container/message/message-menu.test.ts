@@ -177,7 +177,7 @@ describe("chat-message-menu", () => {
     expect(spyEvent.mock.calls.length).toBe(1);
     expect(spyEvent.mock.calls[0][0].type).toBe("reply-to-message");
     expect((spyEvent.mock.calls[0][0] as CustomEvent).detail).toEqual({
-      replyTo: { ...message, replyTo: undefined },
+      replyTo: { ...message, replyTo: null },
     });
   });
 

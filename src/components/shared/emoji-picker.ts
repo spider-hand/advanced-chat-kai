@@ -33,7 +33,7 @@ export class ChatEmojiPicker extends LitElement {
     this.dispatchEvent(
       new CustomEvent<SelectEmojiDetail>("select-emoji", {
         detail: {
-          messageId: this.messageId,
+          messageId: this.messageId as string,
           currentUserId: this.currentUserId,
           emoji: event.detail.unicode,
         },

@@ -2,7 +2,11 @@ import { LitElement, css, html, nothing } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../../../styles";
-import { ChatMessage, ChatMessageReply, ReplyToMessageDetail } from "../../../types";
+import {
+  ChatMessage,
+  ChatMessageReply,
+  ReplyToMessageDetail,
+} from "../../../types";
 
 export class ChatMessageMenu extends LitElement {
   @property({ type: Boolean }) mine = false;
@@ -23,7 +27,7 @@ export class ChatMessageMenu extends LitElement {
 
   private _replyToMesssage() {
     const message = { ...this.message };
-    delete message.replyTo;
+    message.replyTo = null;
     const replyTo: ChatMessageReply = message;
 
     this.dispatchEvent(

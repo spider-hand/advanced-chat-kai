@@ -27,7 +27,7 @@
     <advanced-chat-kai :currentUserId="currentUserId" :theme="theme" :isMobile="isMobile" :isSingleRoom="isSingleRoom"
       :rooms="filteredRooms" :messages="messages" :selectedRoomId="selectedRoomId" :isLoadingRoom="isLoadingRoom"
       :isLoadingMessage="isLoadingMessage" :replyTo="replyTo" :height="isMobile ? '667px' : '600px'" :width="isMobile ? '375px' : '900px'"
-      :isMessageAttachmentAvailable="false" @add-room="handleAddRoom" @select-room="handleSelectRoom"
+      :isMessageAttachmentAvailable="false" :timestampFormatter="formatTimestamp" @add-room="handleAddRoom" @select-room="handleSelectRoom"
       @send-message="handleSendMessage" @select-emoji="handleSelectEmoji" @click-reaction="handleClickReaction"
       @reply-to-message="handleReplyToMessage" @cancel-reply="handleCancelReply" @search-room="handleSearchRoom" />
   </div>
@@ -40,7 +40,7 @@ import { database } from "./lib/firebase";
 import { ref as dbRef, push, set, update, get, onValue, off } from "firebase/database";
 import type { ChatRoom, ChatItemType, ChatMessageReply, SelectEmojiDetail, ClickReactionDetail, ReplyToMessageDetail, SearchRoomDetail } from "advanced-chat-kai";
 import { USERS } from "./constants";
-import { formatTimestamp, convertReactionsFromFirebase, buildRoom } from "./utils";
+import { formatTimestamp, buildRoom } from "./utils";
 
 const currentUserId = ref("user1");
 const theme = ref<"light" | "dark">("light");
@@ -79,22 +79,13 @@ const handleSelectRoom = (e: CustomEvent<{ room: ChatRoom }>) => {
   selectedRoomId.value = e.detail.room.id;
 };
 
-const handleSendMessage = async (e: CustomEvent<{ roomId: string; content: string }>) => {
-  const { roomId, content } = e.detail;
+const handleSendMessage = async (e: CustomEvent<{ roomId: string; content: string; replyTo: ChatMessageReply | null }>) => {
+  const { roomId, content, replyTo: eventReplyTo } = e.detail;
   const user = USERS[currentUserId.value];
 
   const messagesRef = dbRef(database, `/messages/${roomId}`);
   const newMessageRef = push(messagesRef);
   const messageId = newMessageRef.key!;
-
-  const replyToData = replyTo.value
-    ? {
-        ...replyTo.value,
-        reactions: Object.fromEntries(
-          Array.from(replyTo.value.reactions.entries()).map(([k, v]) => [k, Array.from(v)])
-        ),
-      }
-    : null;
 
   const newMessage = {
     id: messageId,
@@ -109,14 +100,12 @@ const handleSendMessage = async (e: CustomEvent<{ roomId: string; content: strin
     attachments: [],
     isDeleted: false,
     isSelected: false,
-    replyTo: replyToData,
+    replyTo: eventReplyTo,
   };
 
   await set(newMessageRef, newMessage);
 
   await update(dbRef(database, `/rooms/${roomId}`), { latestMessage: content });
-
-  replyTo.value = null;
 };
 
 const handleReplyToMessage = (e: CustomEvent<ReplyToMessageDetail>) => {
@@ -179,14 +168,14 @@ const subscribeToMessages = (roomId: string) => {
     if (data) {
       messages.value = Object.values(data).map((msg: any) => ({
         ...msg,
-        timestamp: formatTimestamp(msg.timestamp),
-        reactions: convertReactionsFromFirebase(msg.reactions),
+        timestamp: new Date(msg.timestamp),
+        reactions: msg.reactions ?? {},
         attachments: msg.attachments ?? [],
         replyTo: msg.replyTo
           ? {
             ...msg.replyTo,
-            timestamp: formatTimestamp(msg.replyTo.timestamp),
-            reactions: convertReactionsFromFirebase(msg.replyTo.reactions),
+            timestamp: new Date(msg.replyTo.timestamp),
+            reactions: msg.replyTo.reactions ?? {},
             attachments: msg.replyTo.attachments ?? [],
           }
           : null,

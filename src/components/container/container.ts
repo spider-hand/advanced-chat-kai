@@ -17,7 +17,7 @@ export class ChatContainer extends LitElement {
 
   @property({ type: Boolean }) isMobile = false;
   @property({ type: Boolean }) isSingleRoom = false;
-  @property({ type: Object }) dialog: Dialog = null;
+  @property({ type: Object }) dialog: Dialog | null = null;
 
   private get _show() {
     return this.isSingleRoom || !(this.isMobile && this.showSidebar);

@@ -175,7 +175,7 @@ export class AdvancedChatKai extends LitElement {
   @property({ attribute: false }) timestampFormatter:
     | ((date: Date) => string)
     | null = null;
-  @property({ type: Object }) dialog: Dialog = null;
+  @property({ type: Object }) dialog: Dialog | null = null;
   @property({ type: String }) height = "60em";
   @property({ type: String }) width = "80em";
   @property({ type: Object }) i18n: PartialI18nType = DEFAULT_I18N;

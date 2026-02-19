@@ -128,7 +128,7 @@ export class ChatFooter extends LitElement {
     this.dispatchEvent(
       new CustomEvent<SendMessageDetail>("send-message", {
         detail: {
-          roomId: this.roomContext.selectedRoomId,
+          roomId: this.roomContext.selectedRoomId as string,
           senderId: this.currentUserId,
           content: this._textareaValue.trim(),
           replyTo: this.messageContext.replyTo,

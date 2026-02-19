@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
@@ -14,4 +15,12 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias:
+      process.env.NODE_ENV !== "production"
+        ? {
+            "advanced-chat-kai": resolve(__dirname, "../src/define/index.ts"),
+          }
+        : {},
+  },
 });

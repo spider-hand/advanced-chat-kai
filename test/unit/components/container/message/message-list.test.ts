@@ -372,7 +372,7 @@ describe("chat-message-list", () => {
 
     vi.runAllTimers();
 
-    expect(spyScrollToBottom).toHaveBeenCalledWith(null, "instant");
+    expect(spyScrollToBottom).toHaveBeenCalledWith(undefined, "instant");
 
     vi.useRealTimers();
   });
@@ -453,7 +453,7 @@ describe("chat-message-list", () => {
 
     vi.runAllTimers();
 
-    expect(spyScrollToBottom).toHaveBeenCalledWith(null, "smooth");
+    expect(spyScrollToBottom).toHaveBeenCalledWith(undefined, "smooth");
 
     vi.useRealTimers();
   });
@@ -537,7 +537,7 @@ describe("chat-message-list", () => {
 
     vi.runAllTimers();
 
-    expect(spyScrollToBottom).toHaveBeenCalledWith(null, "smooth");
+    expect(spyScrollToBottom).toHaveBeenCalledWith(undefined, "smooth");
 
     vi.useRealTimers();
   });

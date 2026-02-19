@@ -43,7 +43,7 @@ export class ChatMessageItem extends LitElement {
 
   @query("chat-message-menu") chatMessageMenu!: HTMLDivElement;
 
-  @state() private _timer: NodeJS.Timeout | null = null;
+  @state() private _timer: ReturnType<typeof setTimeout> | null = null;
   @state() private _hover = false;
   @state() private _showActionList = false;
   @state() private _showEmojiPicker = false;
@@ -114,7 +114,9 @@ export class ChatMessageItem extends LitElement {
   }
 
   private _onMouseEnter() {
-    clearTimeout(this._timer);
+    if (this._timer) {
+      clearTimeout(this._timer);
+    }
     this._hover = true;
   }
 
@@ -259,7 +261,7 @@ export class ChatMessageItem extends LitElement {
       })}"
     >
       ${this._isAlignedLeft && this.showTheirAvatar
-        ? html`<chat-avatar .src="${this.message.senderAvatar}"></chat-avatar>`
+        ? html`<chat-avatar .src="${this.message.senderAvatar ?? null}"></chat-avatar>`
         : nothing}
       <div class="chat-message-item__container">
         <div
