@@ -33,6 +33,7 @@ export interface SendMessageDetail {
   roomId: string;
   senderId: string | null;
   content: string;
+  replyTo: ChatMessageReply | null;
 }
 
 export interface SelectFileDetail {

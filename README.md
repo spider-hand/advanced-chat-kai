@@ -316,9 +316,9 @@ this.messages.push(newMessage);
 | `click-reaction`        | `{ messageId, reaction }`             | Clicked an existing emoji reaction on a message    |
 | `download-attachment`   | `{ attachment }`                      | Clicked the download button on an attachment       |
 | `remove-attachment`     | `{ attachment }`                      | Clicked the close button on an attachment          |
-| `cancel-reply`          | -                                     | Clicked the close button on the reply message      |
-| `select-file`           | `{ file }`                            | Selected a file                                    |
-| `send-message`          | `{ roomId, senderId, content }`       | Clicked the send button on the footer              |
+| `cancel-reply`          | -                                             | Clicked the close button on the reply message, or sent a message with a reply |
+| `select-file`           | `{ file }`                                    | Selected a file                                    |
+| `send-message`          | `{ roomId, senderId, content, replyTo }`      | Clicked the send button on the footer              |
 | `click-dialog-button`   | `{ event, side }`                     | Clicked a button on a dialog                       |
 
 ## Styling

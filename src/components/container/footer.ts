@@ -131,11 +131,15 @@ export class ChatFooter extends LitElement {
           roomId: this.roomContext.selectedRoomId,
           senderId: this.currentUserId,
           content: this._textareaValue.trim(),
+          replyTo: this.messageContext.replyTo,
         },
         composed: true,
       }),
     );
     this._textareaValue = "";
+    if (this.messageContext.replyTo) {
+      this.dispatchEvent(new CustomEvent("cancel-reply", { composed: true }));
+    }
   }
 
   static styles = [

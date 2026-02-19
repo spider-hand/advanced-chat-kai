@@ -629,10 +629,57 @@ describe("chat-footer", () => {
       roomId: selectedRoomId,
       senderId: currentUserId,
       content: textareaValue,
+      replyTo: null,
     });
 
     const textareaAfterSend = el.shadowRoot?.querySelector("textarea");
     expect(textareaAfterSend?.value).toBe("");
+  });
+
+  it("dispatches send-message event with replyTo and cancel-reply event", async () => {
+    const currentUserId = "test-user-id";
+    const selectedRoomId = "test-room-id";
+    const textareaValue = "Hello, world!";
+    const replyTo = {
+      id: "reply-message-id",
+      type: "message" as const,
+      roomId: selectedRoomId,
+      senderId: "other-user-id",
+      senderName: "Other User",
+      senderAvatar: null,
+      content: "Original message",
+      timestamp: "12:00 PM",
+      reactions: {},
+      attachments: [],
+      isDeleted: false,
+      isSelected: false,
+      replyTo: null,
+    };
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: selectedRoomId }}"
+        .messageContext="${{ ...messageContext, replyTo }}"
+        .footerContext="${{ ...footerContext, inputMessage: textareaValue }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    elLocator = getElementLocatorSelectors(el);
+    const sendButton = elLocator.getByLabelText("Send message");
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+
+    await sendButton.click();
+
+    expect(spyEvent.mock.calls.length).toBe(2);
+    expect(spyEvent.mock.calls[0][0].type).toBe("send-message");
+    expect((spyEvent.mock.calls[0][0] as CustomEvent).detail).toEqual({
+      roomId: selectedRoomId,
+      senderId: currentUserId,
+      content: textareaValue,
+      replyTo,
+    });
+    expect(spyEvent.mock.calls[1][0].type).toBe("cancel-reply");
   });
 
   it("dispatches send-message event on enter key press if enterToSend is true", async () => {
@@ -669,6 +716,7 @@ describe("chat-footer", () => {
       roomId: selectedRoomId,
       senderId: currentUserId,
       content: textareaValue,
+      replyTo: null,
     });
 
     const textareaAfterSend = el.shadowRoot?.querySelector("textarea");
