@@ -35,12 +35,12 @@ export class ChatMessageReplyTo extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.2em;
-        color: var(--chat-text);
+        color: var(--chat-foreground);
         white-space: nowrap;
       }
 
       .chat-message-reply-to__text--mine {
-        color: var(--chat-text-on-brand, var(--chat-text));
+        color: var(--chat-message-mine-foreground);
       }
 
       .chat-message-reply-to__text--highlight {

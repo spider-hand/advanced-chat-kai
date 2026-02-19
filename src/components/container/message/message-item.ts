@@ -206,14 +206,14 @@ export class ChatMessageItem extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.2em;
         font-weight: 600;
-        color: var(--chat-text);
+        color: var(--chat-foreground);
         white-space: nowrap;
       }
 
       .chat-message-item__date {
         font-size: 0.8em;
         font-weight: 600;
-        color: var(--chat-subtext);
+        color: var(--chat-muted-foreground);
       }
 
       .chat-message-item__body {
@@ -223,29 +223,27 @@ export class ChatMessageItem extends LitElement {
         gap: 0.8em;
         padding: 0.8em 1.2em;
         font-size: 1.4em;
-        color: var(--chat-text);
-        background-color: var(--chat-surface-100);
+        color: var(--chat-foreground);
+        background-color: var(--chat-secondary);
         border-radius: 0.8em;
       }
 
       .chat-message-item__body--mine {
-        color: var(--chat-text-on-brand, var(--chat-text));
-        background-color: var(--chat-my-message-bg, var(--chat-surface-200));
+        color: var(--chat-message-mine-foreground);
+        background-color: var(--chat-message-mine);
       }
 
       .chat-message-item__body--chat-deleted {
-        background-color: var(--chat-deleted);
+        background-color: var(--chat-muted);
       }
 
       .chat-message-item--selected .chat-message-item__body {
-        background-color: var(--chat-surface-300);
+        background-color: var(--chat-accent);
       }
 
       .chat-message-item--selected .chat-message-item__body--mine {
-        background-color: var(
-          --chat-my-message-bg-selected,
-          var(--chat-surface-300)
-        );
+        background-color: var(--chat-message-mine);
+        opacity: 0.8;
       }
     `,
   ];

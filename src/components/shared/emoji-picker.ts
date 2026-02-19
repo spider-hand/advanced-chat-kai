@@ -66,28 +66,28 @@ export class ChatEmojiPicker extends LitElement {
         display: flex;
         overflow: hidden;
         border-radius: 0.8em;
-        box-shadow: var(--chat-floating-item-box-shadow);
+        box-shadow: 0 0.4em 0.8em oklch(0% 0 0deg / 15%);
       }
 
       emoji-picker {
-        --background: var(--chat-surface-50);
+        --background: var(--chat-popover);
         --border-color: var(--chat-border);
         --border-radius: 8px;
-        --button-active-background: var(--chat-surface-100);
-        --button-hover-background: var(--chat-surface-100);
-        --category-font-color: var(--chat-surface-900);
+        --button-active-background: var(--chat-accent);
+        --button-hover-background: var(--chat-accent);
+        --category-font-color: var(--chat-foreground);
         --category-font-size: 12px;
         --emoji-padding: 8px;
         --emoji-size: 16px;
-        --indicator-color: var(--chat-surface-700);
+        --indicator-color: var(--chat-primary);
         --indicator-height: 4px;
-        --input-border-color: var(--chat-border);
+        --input-border-color: var(--chat-input);
         --input-border-radius: 8px;
         --input-border-size: 1px;
-        --input-font-color: var(--chat-surface-900);
+        --input-font-color: var(--chat-foreground);
         --input-font-size: 14px;
         --input-padding: 8px;
-        --input-placeholder-color: var(--chat-placeholder);
+        --input-placeholder-color: var(--chat-muted-foreground);
       }
     `,
   ];

@@ -48,7 +48,7 @@ export class ChatRoomList extends LitElement {
         flex-grow: 1;
         flex-direction: column;
         overflow-y: scroll;
-        border-top: 0.1em solid var(--chat-border);
+        border-top: 0.1em solid var(--chat-sidebar-border);
       }
 
       .chat-room-list {

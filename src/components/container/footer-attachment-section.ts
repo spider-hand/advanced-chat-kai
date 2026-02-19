@@ -41,7 +41,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         min-width: 12em;
         min-height: 6.4em;
         padding: 0.4em;
-        background-color: var(--chat-surface-200);
+        background-color: var(--chat-muted);
         border-radius: 0.8em;
       }
 
@@ -57,7 +57,7 @@ export class ChatFooterAttachmentSection extends LitElement {
       }
 
       .chat-footer-attachment-section__button:hover {
-        background-color: var(--chat-surface-300);
+        background-color: var(--chat-accent);
       }
 
       .chat-footer-attachment-section__text {
@@ -67,7 +67,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1em;
-        color: var(--chat-text);
+        color: var(--chat-foreground);
         white-space: nowrap;
       }
 
@@ -91,12 +91,12 @@ export class ChatFooterAttachmentSection extends LitElement {
         position: absolute;
         top: 0.4em;
         right: 0.4em;
-        background-color: var(--chat-surface-50);
+        background-color: var(--chat-background);
         border-radius: 10em;
       }
 
       .chat-footer-attachment-section__image-button:hover {
-        background-color: var(--chat-surface-100);
+        background-color: var(--chat-accent);
       }
     `,
   ];
@@ -115,7 +115,7 @@ export class ChatFooterAttachmentSection extends LitElement {
                   height="1.6em"
                   viewBox="0 -960 960 960"
                   width="1.6em"
-                  fill="var(--chat-surface-700)"
+                  fill="var(--chat-muted-foreground)"
                 >
                   <path
                     d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
@@ -145,7 +145,7 @@ export class ChatFooterAttachmentSection extends LitElement {
                   height="1.6em"
                   viewBox="0 -960 960 960"
                   width="1.6em"
-                  fill="var(--chat-surface-700)"
+                  fill="var(--chat-muted-foreground)"
                 >
                   <path
                     d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"

@@ -67,7 +67,7 @@ export class ChatHeader extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.6em;
         font-weight: 600;
-        color: var(--chat-text);
+        color: var(--chat-foreground);
         white-space: nowrap;
       }
 
@@ -75,7 +75,7 @@ export class ChatHeader extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.2em;
-        color: var(--chat-subtext);
+        color: var(--chat-muted-foreground);
         white-space: nowrap;
       }
 
@@ -90,7 +90,7 @@ export class ChatHeader extends LitElement {
       }
 
       .chat-header__button:hover {
-        background-color: var(--chat-surface-100);
+        background-color: var(--chat-accent);
       }
     `,
   ];
@@ -108,7 +108,7 @@ export class ChatHeader extends LitElement {
           height="2.4em"
           viewBox="0 -960 960 960"
           width="2.4em"
-          fill="var(--chat-surface-700)"
+          fill="var(--chat-muted-foreground)"
         >
           <path
             d="M160-240q-17 0-28.5-11.5T120-280q0-17 11.5-28.5T160-320h640q17 0 28.5 11.5T840-280q0 17-11.5 28.5T800-240H160Zm0-200q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h640q17 0 28.5 11.5T840-480q0 17-11.5 28.5T800-440H160Zm0-200q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h640q17 0 28.5 11.5T840-680q0 17-11.5 28.5T800-640H160Z"
@@ -135,7 +135,7 @@ export class ChatHeader extends LitElement {
               height="2.4em"
               viewBox="0 -960 960 960"
               width="2.4em"
-              fill="var(--chat-surface-700)"
+              fill="var(--chat-muted-foreground)"
             >
               <path
                 d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"

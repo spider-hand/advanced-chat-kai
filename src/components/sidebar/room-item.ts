@@ -83,7 +83,7 @@ export class ChatRoomItem extends LitElement {
       }
 
       .chat-room-item--active {
-        background-color: var(--chat-surface-200);
+        background-color: var(--chat-sidebar-accent);
       }
 
       .chat-room-item__text {
@@ -99,7 +99,7 @@ export class ChatRoomItem extends LitElement {
         text-overflow: ellipsis;
         font-size: 1.4em;
         font-weight: 600;
-        color: var(--chat-text);
+        color: var(--chat-sidebar-foreground);
         white-space: nowrap;
       }
 
@@ -107,12 +107,12 @@ export class ChatRoomItem extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 1.2em;
-        color: var(--chat-subtext);
+        color: var(--chat-muted-foreground);
         white-space: nowrap;
       }
 
       .chat-room-item__meta {
-        color: var(--chat-subtext);
+        color: var(--chat-muted-foreground);
       }
 
       .chat-room-item__menu {
@@ -142,22 +142,22 @@ export class ChatRoomItem extends LitElement {
       }
 
       .chat-room-item__badge--success {
-        color: var(--chat-surface-50);
+        color: var(--chat-success-foreground);
         background-color: var(--chat-success);
       }
 
       .chat-room-item__badge--danger {
-        color: var(--chat-white);
+        color: var(--chat-danger-foreground);
         background-color: var(--chat-danger);
       }
 
       .chat-room-item__badge--warning {
-        color: var(--chat-black);
+        color: var(--chat-warning-foreground);
         background-color: var(--chat-warning);
       }
 
       .chat-room-item__badge--info {
-        color: var(--chat-white);
+        color: var(--chat-info-foreground);
         background-color: var(--chat-info);
       }
 
@@ -176,7 +176,7 @@ export class ChatRoomItem extends LitElement {
       }
 
       .chat-room-item__button:hover {
-        background-color: var(--chat-surface-200);
+        background-color: var(--chat-sidebar-accent);
       }
     `,
   ];
@@ -214,7 +214,7 @@ export class ChatRoomItem extends LitElement {
               height="2em"
               viewBox="0 -960 960 960"
               width="2em"
-              fill="var(--chat-surface-700)"
+              fill="var(--chat-sidebar-foreground)"
             >
               <path
                 d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"

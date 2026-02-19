@@ -42,7 +42,7 @@ export class ChatDialog extends LitElement {
         justify-content: center;
         width: 100%;
         height: 100%;
-        background-color: var(--chat-overlay);
+        background-color: oklch(0% 0 0deg / 50%);
       }
 
       .chat-dialog__window {
@@ -51,13 +51,13 @@ export class ChatDialog extends LitElement {
         gap: 1.2em;
         width: 20em;
         padding: 1.6em;
-        background-color: var(--chat-surface-50);
+        background-color: var(--chat-popover);
         border-radius: 0.8em;
       }
 
       .chat-dialog__body {
         font-size: 1.4em;
-        color: var(--chat-surface-600);
+        color: var(--chat-popover-foreground);
       }
 
       .chat-dialog__footer {
@@ -70,25 +70,25 @@ export class ChatDialog extends LitElement {
 
       .chat-dialog__button {
         font-size: 1.4em;
-        color: var(--chat-text);
+        color: var(--chat-foreground);
         background-color: transparent;
         border: none;
       }
 
       .chat-dialog__button--success {
-        color: var(--chat-success);
+        color: var(--chat-primary);
       }
 
       .chat-dialog__button--danger {
-        color: var(--chat-danger);
+        color: var(--chat-destructive);
       }
 
       .chat-dialog__button--warning {
-        color: var(--chat-warning);
+        color: var(--chat-primary);
       }
 
       .chat-dialog__button--info {
-        color: var(--chat-info);
+        color: var(--chat-primary);
       }
     `,
   ];

@@ -34,7 +34,7 @@ export class ChatMessageTyping extends LitElement {
         gap: 0.8em;
         align-items: center;
         padding: 0.8em 1.2em;
-        background-color: var(--chat-surface-100);
+        background-color: var(--chat-secondary);
         border-radius: 0.8em;
       }
 
@@ -44,8 +44,9 @@ export class ChatMessageTyping extends LitElement {
         justify-content: center;
         width: 0.8em;
         height: 0.8em;
-        background-color: var(--chat-surface-300);
+        background-color: var(--chat-muted-foreground);
         border-radius: 50%;
+        opacity: 0.4;
         animation: typing 0.8s infinite alternate;
       }
 
@@ -59,16 +60,16 @@ export class ChatMessageTyping extends LitElement {
 
       @keyframes typing {
         0% {
-          background-color: var(--chat-surface-300);
+          opacity: 0.4;
           transform: scale(1);
         }
 
         50% {
-          background-color: var(--chat-surface-400);
+          opacity: 0.6;
         }
 
         100% {
-          background-color: var(--chat-surface-500);
+          opacity: 1;
           transform: scale(1.25);
         }
       }

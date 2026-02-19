@@ -229,11 +229,11 @@ chatMessageReply = {
       name: "file1.txt",
       meta: "20 KB",
       id: "0",
-    }
+    },
   ],
   isDeleted: false,
   isSelected: false,
-}
+};
 ```
 
 ##### ChatAction
@@ -303,89 +303,80 @@ this.messages.push(newMessage);
 
 ## Events
 
-| Name                    | Detail / Payload                      | Fires when a user                                  |
-| ----------------------- | ------------------------------------- | -------------------------------------------------- |
-| `add-room`              | -                                     | Clicked the add button on the sidebar              |
-| `search-room`           | `{ value }`                           | Changed the input on the searchbox                 |
-| `select-room-action`    | `{ label, value, roomId }`            | Selected an action on the room                     |
-| `load-more-rooms`       | -                                     | Reached the bottom of the room list                |
-| `select-room`           | `{ room }`                            | Selected a room in the list                        |
-| `load-more-messages`    | -                                     | Reached the top of the message list                |
-| `select-message-action` | `{ label, value, messageId }`         | Selected an action on the message                  |
-| `select-suggestion`     | `{ suggestion }`                      | Selected a suggestion in the list                  |
-| `select-emoji`          | `{ messageId, currentUserId, emoji }` | Selected an emoji reaction in picker for a message |
-| `reply-to-message`      | `{ replyTo }`                         | Clicked the reply button on a message              |
-| `click-reaction`        | `{ messageId, reaction }`             | Clicked an existing emoji reaction on a message    |
-| `download-attachment`   | `{ attachment }`                      | Clicked the download button on an attachment       |
-| `remove-attachment`     | `{ attachment }`                      | Clicked the close button on an attachment          |
-| `cancel-reply`          | -                                             | Clicked the close button on the reply message, or sent a message with a reply |
-| `select-file`           | `{ file }`                                    | Selected a file                                    |
-| `send-message`          | `{ roomId, senderId, content, replyTo }`      | Clicked the send button on the footer              |
-| `click-dialog-button`   | `{ event, side }`                     | Clicked a button on a dialog                       |
+| Name                    | Detail / Payload                         | Fires when a user                                                             |
+| ----------------------- | ---------------------------------------- | ----------------------------------------------------------------------------- |
+| `add-room`              | -                                        | Clicked the add button on the sidebar                                         |
+| `search-room`           | `{ value }`                              | Changed the input on the searchbox                                            |
+| `select-room-action`    | `{ label, value, roomId }`               | Selected an action on the room                                                |
+| `load-more-rooms`       | -                                        | Reached the bottom of the room list                                           |
+| `select-room`           | `{ room }`                               | Selected a room in the list                                                   |
+| `load-more-messages`    | -                                        | Reached the top of the message list                                           |
+| `select-message-action` | `{ label, value, messageId }`            | Selected an action on the message                                             |
+| `select-suggestion`     | `{ suggestion }`                         | Selected a suggestion in the list                                             |
+| `select-emoji`          | `{ messageId, currentUserId, emoji }`    | Selected an emoji reaction in picker for a message                            |
+| `reply-to-message`      | `{ replyTo }`                            | Clicked the reply button on a message                                         |
+| `click-reaction`        | `{ messageId, reaction }`                | Clicked an existing emoji reaction on a message                               |
+| `download-attachment`   | `{ attachment }`                         | Clicked the download button on an attachment                                  |
+| `remove-attachment`     | `{ attachment }`                         | Clicked the close button on an attachment                                     |
+| `cancel-reply`          | -                                        | Clicked the close button on the reply message, or sent a message with a reply |
+| `select-file`           | `{ file }`                               | Selected a file                                                               |
+| `send-message`          | `{ roomId, senderId, content, replyTo }` | Clicked the send button on the footer                                         |
+| `click-dialog-button`   | `{ event, side }`                        | Clicked a button on a dialog                                                  |
 
 ## Styling
 
-The `--chat-surface-50` to `--chat-surface-950` variables define the primary surface color scale, used across light and dark themes for backgrounds and component surfaces.
+CSS variable names are based on the [shadcn](https://ui.shadcn.com/docs/theming) design system, prefixed with `--chat-`. You can override these variables to customize the appearance of the chat component.
 
-| Variable                               | Description                                         |
-| -------------------------------------- | --------------------------------------------------- |
-| `--chat-base-font-size`                | The base font size of the chat component            |
-| `--chat-white`                         |                                                     |
-| `--chat-black`                         |                                                     |
-| `--chat-success`                       |                                                     |
-| `--chat-danger`                        |                                                     |
-| `--chat-warning`                       |                                                     |
-| `--chat-info`                          |                                                     |
-| `--chat-surface-50`                    |                                                     |
-| `--chat-surface-100`                   |                                                     |
-| `--chat-surface-200`                   |                                                     |
-| `--chat-surface-300`                   |                                                     |
-| `--chat-surface-400`                   |                                                     |
-| `--chat-surface-500`                   |                                                     |
-| `--chat-surface-600`                   |                                                     |
-| `--chat-surface-700`                   |                                                     |
-| `--chat-surface-800`                   |                                                     |
-| `--chat-surface-900`                   |                                                     |
-| `--chat-surface-950`                   |                                                     |
-| `--chat-text`                          | The default text color                              |
-| `--chat-subtext`                       | The default subtext color                           |
-| `--chat-border`                        | The default border color                            |
-| `--chat-floating-item-border`          | The default border color for floating items         |
-| `--chat-floating-item-box-shadow`      | The default box shadow for floating items           |
-| `--chat-placeholder`                   | The default placeholder color                       |
-| `--chat-deleted`                       | The default background color for deleted messages   |
-| `--chat-overlay`                       | The default background color for overlay            |
-| `--chat-notification-badge-background` | The default background color for notification badge |
-| `--chat-notification-badge-text`       | The default text color for notification badge       |
+### Base Variables
 
-Also, a minimal set of CSS variables is exposed specifically for applying brand colors to the key UI elements:
+| Variable                        |
+| ------------------------------- |
+| `--chat-background`             |
+| `--chat-foreground`             |
+| `--chat-card`                   |
+| `--chat-card-foreground`        |
+| `--chat-popover`                |
+| `--chat-popover-foreground`     |
+| `--chat-primary`                |
+| `--chat-primary-foreground`     |
+| `--chat-secondary`              |
+| `--chat-secondary-foreground`   |
+| `--chat-muted`                  |
+| `--chat-muted-foreground`       |
+| `--chat-accent`                 |
+| `--chat-accent-foreground`      |
+| `--chat-destructive`            |
+| `--chat-destructive-foreground` |
+| `--chat-border`                 |
+| `--chat-input`                  |
+| `--chat-ring`                   |
 
-| Variable                               | Description                                                         |
-| -------------------------------------- | ------------------------------------------------------------------- |
-| `--chat-send-button-bg`                | The background color of the send button                             |
-| `--chat-send-button-bg-hover`          | The background color of the send button on hover                    |
-| `--chat-my-message-bg`                 | The background color of my messages                                 |
-| `--chat-my-message-bg-selected`        | The background color of my messages when selected                   |
-| `--chat-my-reaction-list-bg`           | The background color of the reaction list on my messages            |
-| `--chat-my-reaction-button-bg`         | The background color of the reaction button on my messages          |
-| `--chat-my-reaction-button-bg-hover`   | The background color of the reaction button on my messages on hover |
-| `--chat-suggestion-list-item-bg`       | The background color of the suggestion list item                    |
-| `--chat-suggestion-list-item-bg-hover` | The background color of the suggestion list item on hover           |
-| `--chat-my-message-menu-bg`            | The background color of the message menu on my messages             |
-| `--chat-my-message-button-bg-hover`    | The background color of the message button on my messages on hover  |
-| `--chat-my-attachment-bg`              | The background color of the attachment on my messages               |
-| `--chat-my-attachment-bg-hover`        | The background color of the attachment on my messages on hover      |
-| `--chat-text-on-brand`                 | The text color on brand colors                                      |
-| `--chat-subtext-on-brand`              | The subtext color on brand colors                                   |
+### Custom Variables
+
+| Variable                         | Description                              |
+| -------------------------------- | ---------------------------------------- |
+| `--chat-base-font-size`          | The base font size of the chat component |
+| `--chat-message-mine`            | The background color of my messages      |
+| `--chat-message-mine-foreground` | The text/icon color on my messages       |
+| `--chat-success`                 | The background color of success badge    |
+| `--chat-success-foreground`      | The text color on success badge          |
+| `--chat-danger`                  | The background color of danger badge     |
+| `--chat-danger-foreground`       | The text color on danger badge           |
+| `--chat-warning`                 | The background color of warning badge    |
+| `--chat-warning-foreground`      | The text color on warning badge          |
+| `--chat-info`                    | The background color of info badge       |
+| `--chat-info-foreground`         | The text color on info badge             |
+
+### Usage
 
 You can override the component's style using CSS custom properties (variables). These are applied directly to `advanced-chat-kai` element:
 
 ```css
 advanced-chat-kai {
-  --chat-success: green;
-  --chat-danger: red;
-  --chat-warning: yellow;
-  --chat-info: blue;
+  --chat-primary: oklch(0.65 0.24 15);
+  --chat-primary-foreground: oklch(1 0 0);
+  --chat-message-mine: oklch(0.65 0.24 15);
+  --chat-message-mine-foreground: oklch(1 0 0);
 }
 ```
 

@@ -44,17 +44,14 @@ export class ChatMessageReactionList extends LitElement {
         align-items: center;
         max-width: 80%;
         padding: 0.4em;
-        background-color: var(--chat-surface-100);
-        border: var(--chat-floating-item-border);
+        background-color: var(--chat-secondary);
+        border: 0.1em solid var(--chat-border);
         border-radius: 0.4em;
-        box-shadow: var(--chat-floating-item-box-shadow);
+        box-shadow: 0 0.2em 0.4em oklch(0% 0 0deg / 10%);
       }
 
       .chat-message-reaction-list--mine {
-        background-color: var(
-          --chat-my-reaction-list-bg,
-          var(--chat-surface-200)
-        );
+        background-color: var(--chat-message-mine);
       }
 
       .chat-message-reaction-list--right-aligned {
@@ -69,38 +66,32 @@ export class ChatMessageReactionList extends LitElement {
         padding: 0 0.4em;
         margin: 0;
         font-size: 1.4em;
-        color: var(--chat-text);
+        color: var(--chat-foreground);
         background-color: transparent;
         border: none;
         border-radius: 0.4em;
       }
 
       .chat-message-reaction-list__button--reacted {
-        background-color: var(--chat-surface-200);
+        background-color: var(--chat-accent);
       }
 
       .chat-message-reaction-list--mine .chat-message-reaction-list__button {
-        color: var(--chat-text-on-brand, var(--chat-text));
+        color: var(--chat-message-mine-foreground);
       }
 
       .chat-message-reaction-list--mine
         .chat-message-reaction-list__button--reacted {
-        background-color: var(
-          --chat-my-reaction-button-bg,
-          var(--chat-surface-300)
-        );
+        background-color: oklch(0% 0 0deg / 10%);
       }
 
       .chat-message-reaction-list__button:hover {
-        background-color: var(--chat-surface-200);
+        background-color: var(--chat-accent);
       }
 
       .chat-message-reaction-list--mine
         .chat-message-reaction-list__button:hover {
-        background-color: var(
-          --chat-my-reaction-button-bg-hover,
-          var(--chat-surface-300)
-        );
+        background-color: oklch(0% 0 0deg / 10%);
       }
     `,
   ];
