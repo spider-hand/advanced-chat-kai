@@ -144,6 +144,25 @@ export class ChatMessageList extends LitElement {
         flex-grow: 1;
         padding: var(--chat-spacing-4) var(--chat-spacing-3);
         overflow: hidden scroll;
+        scrollbar-color: var(--chat-border) transparent;
+        scrollbar-width: thin;
+      }
+
+      :host::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      :host::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      :host::-webkit-scrollbar-thumb {
+        background-color: var(--chat-border);
+        border-radius: var(--chat-radius);
+      }
+
+      :host::-webkit-scrollbar-thumb:hover {
+        background-color: var(--chat-muted-foreground);
       }
 
       .chat-message-list {

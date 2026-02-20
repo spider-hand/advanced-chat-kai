@@ -48,7 +48,26 @@ export class ChatRoomList extends LitElement {
         flex-grow: 1;
         flex-direction: column;
         overflow-y: scroll;
+        scrollbar-color: var(--chat-sidebar-border) transparent;
+        scrollbar-width: thin;
         border-top: 1px solid var(--chat-sidebar-border);
+      }
+
+      :host::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      :host::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      :host::-webkit-scrollbar-thumb {
+        background-color: var(--chat-sidebar-border);
+        border-radius: var(--chat-radius);
+      }
+
+      :host::-webkit-scrollbar-thumb:hover {
+        background-color: var(--chat-muted-foreground);
       }
 
       .chat-room-list {
