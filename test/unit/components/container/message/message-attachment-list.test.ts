@@ -66,7 +66,7 @@ describe("chat-message-attachment-list", () => {
 
     const icons = el.shadowRoot?.querySelectorAll("svg");
     const icon = icons?.[0];
-    expect(icon?.getAttribute("fill")).toBe("var(--chat-muted-foreground)");
+    expect(icon?.getAttribute("stroke")).toBe("var(--chat-muted-foreground)");
   });
 
   it("renders attachmensts on my message", async () => {
@@ -94,7 +94,7 @@ describe("chat-message-attachment-list", () => {
 
     const icons = el.shadowRoot?.querySelectorAll("svg");
     const icon = icons?.[0];
-    expect(icon?.getAttribute("fill")).toBe(
+    expect(icon?.getAttribute("stroke")).toBe(
       "var(--chat-message-mine-foreground)",
     );
   });

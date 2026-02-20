@@ -105,14 +105,18 @@ export class ChatHeader extends LitElement {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          height="2.4em"
-          viewBox="0 -960 960 960"
-          width="2.4em"
-          fill="var(--chat-muted-foreground)"
+          width="2em"
+          height="2em"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="var(--chat-muted-foreground)"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <path
-            d="M160-240q-17 0-28.5-11.5T120-280q0-17 11.5-28.5T160-320h640q17 0 28.5 11.5T840-280q0 17-11.5 28.5T800-240H160Zm0-200q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h640q17 0 28.5 11.5T840-480q0 17-11.5 28.5T800-440H160Zm0-200q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h640q17 0 28.5 11.5T840-680q0 17-11.5 28.5T800-640H160Z"
-          />
+          <path d="M4 5h16" />
+          <path d="M4 12h16" />
+          <path d="M4 19h16" />
         </svg>
       </button>
       <div class="chat-header__body">
@@ -132,14 +136,18 @@ export class ChatHeader extends LitElement {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="2.4em"
-              viewBox="0 -960 960 960"
-              width="2.4em"
-              fill="var(--chat-muted-foreground)"
+              width="2em"
+              height="2em"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--chat-muted-foreground)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             >
-              <path
-                d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"
-              />
+              <circle cx="12" cy="12" r="1" />
+              <circle cx="12" cy="5" r="1" />
+              <circle cx="12" cy="19" r="1" />
             </svg>
           </button>`
         : nothing}

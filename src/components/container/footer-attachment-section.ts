@@ -112,14 +112,17 @@ export class ChatFooterAttachmentSection extends LitElement {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  height="1.6em"
-                  viewBox="0 -960 960 960"
-                  width="1.6em"
-                  fill="var(--chat-muted-foreground)"
+                  width="1.2em"
+                  height="1.2em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--chat-muted-foreground)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <path
-                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-                  />
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
                 </svg>
               </button>
               <span
@@ -142,14 +145,17 @@ export class ChatFooterAttachmentSection extends LitElement {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  height="1.6em"
-                  viewBox="0 -960 960 960"
-                  width="1.6em"
-                  fill="var(--chat-muted-foreground)"
+                  width="1.2em"
+                  height="1.2em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--chat-muted-foreground)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <path
-                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-                  />
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
                 </svg>
               </button>
             </div>`,

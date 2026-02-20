@@ -104,14 +104,21 @@ export class ChatMessageMenu extends LitElement {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="2em"
-              viewBox="0 -960 960 960"
-              width="2em"
-              fill="${this._iconBg}"
+              width="1.6em"
+              height="1.6em"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="${this._iconBg}"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             >
-              <path
-                d="M480-480Zm0 400q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q33 0 65 5t62 15q23 8 29 23.5t1 30.5q-5 15-18.5 23.5T588-781q-26-9-52.5-14t-55.5-5q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-18-2-36t-6-35q-5-19 5-31t25-15q15-3 29.5 4.5T871-564q5 20 7 41t2 43q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm320-680h-40q-17 0-28.5-11.5T720-800q0-17 11.5-28.5T760-840h40v-40q0-17 11.5-28.5T840-920q17 0 28.5 11.5T880-880v40h40q17 0 28.5 11.5T960-800q0 17-11.5 28.5T920-760h-40v40q0 17-11.5 28.5T840-680q-17 0-28.5-11.5T800-720v-40ZM620-520q25 0 42.5-17.5T680-580q0-25-17.5-42.5T620-640q-25 0-42.5 17.5T560-580q0 25 17.5 42.5T620-520Zm-280 0q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm140 260q58 0 107-28t79-76q6-12-1-24t-21-12H316q-14 0-21 12t-1 24q30 48 79.5 76T480-260Z"
-              />
+              <path d="M22 11v1a10 10 0 1 1-9-10" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <line x1="9" x2="9.01" y1="9" y2="9" />
+              <line x1="15" x2="15.01" y1="9" y2="9" />
+              <path d="M16 5h6" />
+              <path d="M19 2v6" />
             </svg>
           </button>`
         : nothing}
@@ -123,14 +130,17 @@ export class ChatMessageMenu extends LitElement {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="2em"
-              viewBox="0 -960 960 960"
-              width="2em"
-              fill="${this._iconBg}"
+              width="1.6em"
+              height="1.6em"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="${this._iconBg}"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             >
-              <path
-                d="m273-480 116 116q12 12 11.5 28T388-308q-12 11-28 11.5T332-308L148-492q-12-12-12-28t12-28l184-184q11-11 27.5-11t28.5 11q12 12 12 28.5T388-675L273-560h367q83 0 141.5 58.5T840-360v120q0 17-11.5 28.5T800-200q-17 0-28.5-11.5T760-240v-120q0-50-35-85t-85-35H273Z"
-              />
+              <path d="M20 18v-2a4 4 0 0 0-4-4H4" />
+              <path d="m9 17-5-5 5-5" />
             </svg>
           </button>`
         : nothing}
@@ -142,14 +152,18 @@ export class ChatMessageMenu extends LitElement {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="2em"
-              viewBox="0 -960 960 960"
-              width="2em"
-              fill="${this._iconBg}"
+              width="1.6em"
+              height="1.6em"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="${this._iconBg}"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             >
-              <path
-                d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"
-              />
+              <circle cx="12" cy="12" r="1" />
+              <circle cx="19" cy="12" r="1" />
+              <circle cx="5" cy="12" r="1" />
             </svg>
           </button>`
         : nothing}

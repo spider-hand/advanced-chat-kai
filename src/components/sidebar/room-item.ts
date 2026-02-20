@@ -211,14 +211,18 @@ export class ChatRoomItem extends LitElement {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="2em"
-              viewBox="0 -960 960 960"
-              width="2em"
-              fill="var(--chat-sidebar-foreground)"
+              width="1.4em"
+              height="1.4em"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--chat-sidebar-foreground)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             >
-              <path
-                d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"
-              />
+              <circle cx="12" cy="12" r="1" />
+              <circle cx="19" cy="12" r="1" />
+              <circle cx="5" cy="12" r="1" />
             </svg>
           </button>`
         : html`<div class="chat-room-item__menu">

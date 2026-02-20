@@ -42,20 +42,28 @@ export class ChatDeletedMessage extends LitElement {
           ? "var(--chat-message-mine-foreground)"
           : "var(--chat-muted-foreground)",
       })}
-      ><svg
-        class="chat-deleted-message__icon"
+    >
+      <svg
         xmlns="http://www.w3.org/2000/svg"
-        height="1em"
-        viewBox="0 -960 960 960"
         width="1em"
-        fill=${this.isReplyOnMyMessage
+        height="1em"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="${this.isReplyOnMyMessage
           ? "var(--chat-message-mine-foreground)"
-          : "var(--chat-muted-foreground)"}
+          : "var(--chat-muted-foreground)"}"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="chat-deleted-message__icon"
       >
-        <path
-          d="M280-120q-33 0-56.5-23.5T200-200v-520q-17 0-28.5-11.5T160-760q0-17 11.5-28.5T200-800h160q0-17 11.5-28.5T400-840h160q17 0 28.5 11.5T600-800h160q17 0 28.5 11.5T800-760q0 17-11.5 28.5T760-720v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM400-280q17 0 28.5-11.5T440-320v-280q0-17-11.5-28.5T400-640q-17 0-28.5 11.5T360-600v280q0 17 11.5 28.5T400-280Zm160 0q17 0 28.5-11.5T600-320v-280q0-17-11.5-28.5T560-640q-17 0-28.5 11.5T520-600v280q0 17 11.5 28.5T560-280ZM280-720v520-520Z"
-        /></svg
-      >${this.i18nContext.i18n.DELETED_MESSAGE}</span
+        <path d="M10 11v6" />
+        <path d="M14 11v6" />
+        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+        <path d="M3 6h18" />
+        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+      </svg>
+      ${this.i18nContext.i18n.DELETED_MESSAGE}</span
     >`;
   }
 }

@@ -2,7 +2,10 @@ import { LitElement, css, html } from "lit";
 import { property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../../../styles";
-import { ChatMessageAttachment, DownloadAttachmentDetail } from "../../../types";
+import {
+  ChatMessageAttachment,
+  DownloadAttachmentDetail,
+} from "../../../types";
 
 export class ChatMessageAttachmentList extends LitElement {
   @property({ type: Array }) attachments: Array<ChatMessageAttachment> = [];
@@ -122,18 +125,26 @@ export class ChatMessageAttachmentList extends LitElement {
                 >${attachment.meta}</span
               >
               <svg
-                class="chat-message-attachment-list__icon"
                 xmlns="http://www.w3.org/2000/svg"
-                height="2em"
-                viewBox="0 -960 960 960"
-                width="2em"
-                fill=${this.mine
+                width="1.6em"
+                height="1.6em"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="${this.mine
                   ? "var(--chat-message-mine-foreground)"
-                  : "var(--chat-muted-foreground)"}
+                  : "var(--chat-muted-foreground)"}"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="chat-message-attachment-list__icon"
               >
                 <path
-                  d="M360-240h240q17 0 28.5-11.5T640-280q0-17-11.5-28.5T600-320H360q-17 0-28.5 11.5T320-280q0 17 11.5 28.5T360-240Zm0-160h240q17 0 28.5-11.5T640-440q0-17-11.5-28.5T600-480H360q-17 0-28.5 11.5T320-440q0 17 11.5 28.5T360-400ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h287q16 0 30.5 6t25.5 17l194 194q11 11 17 25.5t6 30.5v447q0 33-23.5 56.5T720-80H240Zm280-560v-160H240v640h480v-440H560q-17 0-28.5-11.5T520-640ZM240-800v200-200 640-640Z"
+                  d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
                 />
+                <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+                <path d="M10 9H8" />
+                <path d="M16 13H8" />
+                <path d="M16 17H8" />
               </svg>
             </button>`
           : html`<div class="chat-message-attachment-list__image-wrapper">
@@ -148,14 +159,18 @@ export class ChatMessageAttachmentList extends LitElement {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  height="2.4em"
-                  viewBox="0 -960 960 960"
-                  width="2.4em"
-                  fill="var(--chat-foreground)"
+                  width="1.6em"
+                  height="1.6em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--chat-foreground)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <path
-                    d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"
-                  />
+                  <path d="M12 15V3" />
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <path d="m7 10 5 5 5-5" />
                 </svg>
               </button>
             </div>`,

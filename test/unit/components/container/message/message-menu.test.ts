@@ -81,7 +81,7 @@ describe("chat-message-menu", () => {
 
     const icon = reactionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--chat-muted-foreground)");
+    expect(icon?.getAttribute("stroke")).toBe("var(--chat-muted-foreground)");
   });
 
   it("renders with emoji reaction button on my message", async () => {
@@ -100,7 +100,7 @@ describe("chat-message-menu", () => {
 
     const icon = reactionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe(
+    expect(icon?.getAttribute("stroke")).toBe(
       "var(--chat-message-mine-foreground)",
     );
   });
@@ -137,7 +137,7 @@ describe("chat-message-menu", () => {
 
     const icon = replyButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--chat-muted-foreground)");
+    expect(icon?.getAttribute("stroke")).toBe("var(--chat-muted-foreground)");
   });
 
   it("renders with reply button on my message", async () => {
@@ -156,7 +156,7 @@ describe("chat-message-menu", () => {
 
     const icon = replyButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe(
+    expect(icon?.getAttribute("stroke")).toBe(
       "var(--chat-message-mine-foreground)",
     );
   });
@@ -196,7 +196,7 @@ describe("chat-message-menu", () => {
 
     const icon = actionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe("var(--chat-muted-foreground)");
+    expect(icon?.getAttribute("stroke")).toBe("var(--chat-muted-foreground)");
   });
 
   it("renders with action button on my message", async () => {
@@ -215,7 +215,7 @@ describe("chat-message-menu", () => {
 
     const icon = actionButton?.querySelector("svg");
     expect(icon).toBeTruthy();
-    expect(icon?.getAttribute("fill")).toBe(
+    expect(icon?.getAttribute("stroke")).toBe(
       "var(--chat-message-mine-foreground)",
     );
   });
