@@ -1,4 +1,15 @@
-## [1.0.0](https://github.com/spider-hand/advanced-chat-kai/compare/v0.4.2...v1.0.0)(2026-02-20)
+### [1.1.0](https://github.com/spider-hand/advanced-chat-kai/compare/v1.0.0...v1.1.0) (2026-02-20)
+
+#### Changes
+- Replace material symbols with lucide icons
+
+#### Fixes
+- Fix some style issues
+
+#### Chores
+- Update stories
+
+## [1.0.0](https://github.com/spider-hand/advanced-chat-kai/compare/v0.4.2...v1.0.0) (2026-02-20)
 
 First stable release.
 
