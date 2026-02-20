@@ -44,7 +44,9 @@ export class ChatRoomItem extends LitElement {
     const spaceBelow = this.containerBottom - rect.bottom;
     const spaceAbove = rect.top - this.containerTop;
 
-    this._showActionListAbove = spaceAbove >= spaceBelow;
+    // Require minimum 100px above to show popup above (accounts for sidebar header)
+    const minSpaceAbove = 100;
+    this._showActionListAbove = spaceAbove >= minSpaceAbove && spaceAbove >= spaceBelow;
     this._showActionList = !this._showActionList;
   }
 
@@ -243,12 +245,9 @@ export class ChatRoomItem extends LitElement {
         ? html`<chat-action-list
             style=${styleMap({
               position: "absolute",
-              top: this._showActionListAbove ? "1.2em" : "auto",
+              top: this._showActionListAbove ? "auto" : "50%",
               right: "1.2em",
-              bottom: this._showActionListAbove
-                ? "auto"
-                : "calc(-100% - 1.2em)",
-              transform: "translateY(-100%)",
+              bottom: this._showActionListAbove ? "50%" : "auto",
               "z-index": "1",
             })}
             .actionType="${"room"}"
