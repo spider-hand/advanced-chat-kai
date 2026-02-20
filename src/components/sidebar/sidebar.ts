@@ -30,7 +30,7 @@ export class ChatSidebar extends LitElement {
         display: flex;
       }
 
-      .chat-sidebar {
+      .sidebar {
         display: flex;
         flex-direction: column;
         min-width: 15rem;
@@ -39,17 +39,17 @@ export class ChatSidebar extends LitElement {
         background-color: var(--chat-sidebar);
       }
 
-      .chat-sidebar--hidden {
+      .sidebar--hidden {
         display: none;
       }
 
-      .chat-sidebar--mobile {
+      .sidebar--mobile {
         position: absolute;
         min-width: 100%;
         max-width: 100%;
       }
 
-      .chat-sidebar__header {
+      .sidebar__header {
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-2);
@@ -58,13 +58,13 @@ export class ChatSidebar extends LitElement {
         padding: var(--chat-spacing-4) var(--chat-spacing-3);
       }
 
-      .chat-sidebar__button-group {
+      .sidebar__button-group {
         display: flex;
         flex-direction: row;
         gap: var(--chat-spacing-2);
       }
 
-      .chat-sidebar__button {
+      .sidebar__button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -74,7 +74,7 @@ export class ChatSidebar extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-sidebar__button:hover {
+      .sidebar__button:hover {
         background-color: var(--chat-sidebar-accent);
       }
     `,
@@ -83,15 +83,15 @@ export class ChatSidebar extends LitElement {
   render() {
     return html`<div
       class="${classMap({
-        "chat-sidebar": true,
-        "chat-sidebar--hidden": !this.show,
-        "chat-sidebar--mobile": this.isMobile,
+        "sidebar": true,
+        "sidebar--hidden": !this.show,
+        "sidebar--mobile": this.isMobile,
       })}"
     >
-      <div class="chat-sidebar__header">
-        <div class="chat-sidebar__button-group">
+      <div class="sidebar__header">
+        <div class="sidebar__button-group">
           <button
-            class="chat-sidebar__button"
+            class="sidebar__button"
             @click="${this._closeSidebar}"
             aria-label="Close Sidebar"
           >
@@ -112,7 +112,7 @@ export class ChatSidebar extends LitElement {
             </svg>
           </button>
           <button
-            class="chat-sidebar__button"
+            class="sidebar__button"
             @click="${this._addRoom}"
             aria-label="Add Room"
           >

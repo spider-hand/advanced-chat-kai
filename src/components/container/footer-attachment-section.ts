@@ -24,7 +24,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         display: flex;
       }
 
-      .chat-footer-attachment-section {
+      .footer-attachment-section {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -34,7 +34,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         overflow-x: scroll;
       }
 
-      .chat-footer-attachment-section__item {
+      .footer-attachment-section__item {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -45,7 +45,7 @@ export class ChatFooterAttachmentSection extends LitElement {
         border-radius: var(--chat-radius-lg);
       }
 
-      .chat-footer-attachment-section__button {
+      .footer-attachment-section__button {
         display: flex;
         align-items: center;
         align-self: flex-end;
@@ -56,11 +56,11 @@ export class ChatFooterAttachmentSection extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-footer-attachment-section__button:hover {
+      .footer-attachment-section__button:hover {
         background-color: var(--chat-accent);
       }
 
-      .chat-footer-attachment-section__text {
+      .footer-attachment-section__text {
         display: inline-block;
         align-self: flex-start;
         max-width: 6.25rem;
@@ -71,23 +71,23 @@ export class ChatFooterAttachmentSection extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-footer-attachment-section__text--highlight {
+      .footer-attachment-section__text--highlight {
         font-weight: 600;
       }
 
-      .chat-footer-attachment-section__image-wrapper {
+      .footer-attachment-section__image-wrapper {
         position: relative;
         height: 4rem;
       }
 
-      .chat-footer-attachment-section__image {
+      .footer-attachment-section__image {
         width: 7.5rem;
         height: 100%;
         object-fit: cover;
         border-radius: var(--chat-radius-lg);
       }
 
-      .chat-footer-attachment-section__image-button {
+      .footer-attachment-section__image-button {
         position: absolute;
         top: var(--chat-spacing-1);
         right: var(--chat-spacing-1);
@@ -95,19 +95,19 @@ export class ChatFooterAttachmentSection extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-footer-attachment-section__image-button:hover {
+      .footer-attachment-section__image-button:hover {
         background-color: var(--chat-accent);
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-footer-attachment-section">
+    return html`<div class="footer-attachment-section">
       ${this.attachments.map((attachment) =>
         !attachment.imageUrl
-          ? html`<div class="chat-footer-attachment-section__item">
+          ? html`<div class="footer-attachment-section__item">
               <button
-                class="chat-footer-attachment-section__button"
+                class="footer-attachment-section__button"
                 @click="${() => this._removeAttachment(attachment)}"
               >
                 <svg
@@ -126,21 +126,21 @@ export class ChatFooterAttachmentSection extends LitElement {
                 </svg>
               </button>
               <span
-                class="chat-footer-attachment-section__text chat-footer-attachment-section__text--highlight"
+                class="footer-attachment-section__text footer-attachment-section__text--highlight"
                 >${attachment.name}</span
               >
-              <span class="chat-footer-attachment-section__text"
+              <span class="footer-attachment-section__text"
                 >${attachment.meta}</span
               >
             </div>`
-          : html`<div class="chat-footer-attachment-section__image-wrapper">
+          : html`<div class="footer-attachment-section__image-wrapper">
               <img
-                class="chat-footer-attachment-section__image"
+                class="footer-attachment-section__image"
                 src="${attachment.imageUrl}"
                 height="100%"
                 width="120"
               /><button
-                class="chat-footer-attachment-section__button chat-footer-attachment-section__image-button"
+                class="footer-attachment-section__button footer-attachment-section__image-button"
                 @click="${() => this._removeAttachment(attachment)}"
               >
                 <svg

@@ -31,7 +31,7 @@ export class ChatContainer extends LitElement {
         flex-grow: 1;
       }
 
-      .chat-container {
+      .container {
         position: relative;
         display: flex;
         flex-grow: 1;
@@ -41,14 +41,14 @@ export class ChatContainer extends LitElement {
         border-left: 1px solid var(--chat-border);
       }
 
-      .chat-container--mobile {
+      .container--mobile {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
       }
 
-      .chat-container--hidden {
+      .container--hidden {
         display: none;
       }
     `,
@@ -57,9 +57,9 @@ export class ChatContainer extends LitElement {
   render() {
     return html`<div
       class="${classMap({
-        "chat-container": true,
-        "chat-container--mobile": this.isMobile,
-        "chat-container--hidden": !this._show,
+        "container": true,
+        "container--mobile": this.isMobile,
+        "container--hidden": !this._show,
       })}"
     >
       <chat-header></chat-header><chat-message-list></chat-message-list

@@ -23,23 +23,23 @@ describe("chat-sidebar", () => {
   it("renders with default props", async () => {
     el = await fixture(html`<chat-sidebar></chat-sidebar>`);
 
-    const sidebar = el.shadowRoot?.querySelector(".chat-sidebar");
-    expect(sidebar?.classList.contains("chat-sidebar--hidden")).toBe(true);
-    expect(sidebar?.classList.contains("chat-sidebar--mobile")).toBe(false);
+    const sidebar = el.shadowRoot?.querySelector(".sidebar");
+    expect(sidebar?.classList.contains("sidebar--hidden")).toBe(true);
+    expect(sidebar?.classList.contains("sidebar--mobile")).toBe(false);
   });
 
   it("shows sidebar", async () => {
     el = await fixture(html`<chat-sidebar show></chat-sidebar>`);
 
-    const sidebar = el.shadowRoot?.querySelector(".chat-sidebar");
-    expect(sidebar?.classList.contains("chat-sidebar--hidden")).toBe(false);
+    const sidebar = el.shadowRoot?.querySelector(".sidebar");
+    expect(sidebar?.classList.contains("sidebar--hidden")).toBe(false);
   });
 
   it("renders on mobile", async () => {
     el = await fixture(html`<chat-sidebar isMobile></chat-sidebar>`);
 
-    const sidebar = el.shadowRoot?.querySelector(".chat-sidebar");
-    expect(sidebar?.classList.contains("chat-sidebar--mobile")).toBe(true);
+    const sidebar = el.shadowRoot?.querySelector(".sidebar");
+    expect(sidebar?.classList.contains("sidebar--mobile")).toBe(true);
   });
 
   it("dispatches close event", async () => {

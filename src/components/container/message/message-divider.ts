@@ -15,21 +15,21 @@ export class ChatMessageDivider extends LitElement {
         width: 100%;
       }
 
-      .chat-message-divider {
+      .message-divider {
         display: flex;
         flex-grow: 1;
         align-items: center;
       }
 
-      .chat-message-divider::before,
-      .chat-message-divider::after {
+      .message-divider::before,
+      .message-divider::after {
         flex: 1;
         margin: 0 var(--chat-spacing-2);
         content: "";
         border-top: 1px solid var(--chat-border);
       }
 
-      .chat-message-divider__text {
+      .message-divider__text {
         display: inline-block;
         max-width: 15rem;
         overflow: hidden;
@@ -43,8 +43,8 @@ export class ChatMessageDivider extends LitElement {
   ];
 
   render() {
-    return html`<div class="chat-message-divider">
-      <span class="chat-message-divider__text">${this.message.content} </span>
+    return html`<div class="message-divider">
+      <span class="message-divider__text">${this.message.content} </span>
     </div>`;
   }
 }

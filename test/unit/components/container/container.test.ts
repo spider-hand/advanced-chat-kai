@@ -28,9 +28,9 @@ describe("chat-container", () => {
 
     const container = el.shadowRoot?.querySelector("div");
     expect(container).toBeTruthy();
-    expect(container?.classList.contains("chat-container")).toBe(true);
-    expect(container?.classList.contains("chat-container--mobile")).toBe(false);
-    expect(container?.classList.contains("chat-container--hidden")).toBe(false);
+    expect(container?.classList.contains("container")).toBe(true);
+    expect(container?.classList.contains("container--mobile")).toBe(false);
+    expect(container?.classList.contains("container--hidden")).toBe(false);
 
     const dialog = el.shadowRoot?.querySelector("chat-dialog");
     expect(dialog).toBeFalsy();
@@ -40,7 +40,7 @@ describe("chat-container", () => {
     el = await fixture(html`<chat-container isMobile></chat-container>`);
 
     const container = el.shadowRoot?.querySelector("div");
-    expect(container?.classList.contains("chat-container--mobile")).toBe(true);
+    expect(container?.classList.contains("container--mobile")).toBe(true);
   });
 
   it("will be hidden when showing room list and sidebar on mobile", async () => {
@@ -53,7 +53,7 @@ describe("chat-container", () => {
     );
 
     const container = el.shadowRoot?.querySelector("div");
-    expect(container?.classList.contains("chat-container--hidden")).toBe(true);
+    expect(container?.classList.contains("container--hidden")).toBe(true);
   });
 
   it("renders chat-dialog when dialog prop is set", async () => {

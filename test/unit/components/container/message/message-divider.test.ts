@@ -23,7 +23,7 @@ describe("chat-message-divider", () => {
       html`<chat-message-divider .message=${message}></chat-message-divider>`,
     );
 
-    const divider = el.shadowRoot?.querySelector(".chat-message-divider");
+    const divider = el.shadowRoot?.querySelector(".message-divider");
     expect(divider?.textContent?.trim()).toBe(message.content);
   });
 

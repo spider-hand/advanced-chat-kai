@@ -20,13 +20,13 @@ describe("chat-message-attachment-list", () => {
       html`<chat-message-attachment-list></chat-message-attachment-list>`,
     );
 
-    const list = el.shadowRoot?.querySelector(".chat-message-attachment-list");
-    expect(list?.classList.contains("chat-message-attachment-list--mine")).toBe(
+    const list = el.shadowRoot?.querySelector(".message-attachment-list");
+    expect(list?.classList.contains("message-attachment-list--mine")).toBe(
       false,
     );
 
     const items = el.shadowRoot?.querySelectorAll(
-      ".chat-message-attachment-list__item",
+      ".message-attachment-list__item",
     );
     expect(items).toHaveLength(0);
   });
@@ -36,8 +36,8 @@ describe("chat-message-attachment-list", () => {
       html`<chat-message-attachment-list mine></chat-message-attachment-list>`,
     );
 
-    const list = el.shadowRoot?.querySelector(".chat-message-attachment-list");
-    expect(list?.classList.contains("chat-message-attachment-list--mine")).toBe(
+    const list = el.shadowRoot?.querySelector(".message-attachment-list");
+    expect(list?.classList.contains("message-attachment-list--mine")).toBe(
       true,
     );
   });
@@ -57,7 +57,7 @@ describe("chat-message-attachment-list", () => {
     );
 
     const texts = el.shadowRoot?.querySelectorAll(
-      ".chat-message-attachment-list__text",
+      ".message-attachment-list__text",
     );
     const name = texts?.[0];
     const meta = texts?.[1];
@@ -85,7 +85,7 @@ describe("chat-message-attachment-list", () => {
     );
 
     const texts = el.shadowRoot?.querySelectorAll(
-      ".chat-message-attachment-list__text",
+      ".message-attachment-list__text",
     );
     const name = texts?.[0];
     const meta = texts?.[1];
@@ -141,7 +141,7 @@ describe("chat-message-attachment-list", () => {
     );
 
     const images = el.shadowRoot?.querySelectorAll(
-      ".chat-message-attachment-list__image",
+      ".message-attachment-list__image",
     );
     expect(images).toHaveLength(1);
     expect(images![0].getAttribute("src")).toBe("image.png");

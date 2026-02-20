@@ -51,7 +51,7 @@ export class ChatMessageMenu extends LitElement {
         display: flex;
       }
 
-      .chat-message-menu {
+      .message-menu {
         z-index: 1;
         display: flex;
         flex-direction: row;
@@ -64,11 +64,11 @@ export class ChatMessageMenu extends LitElement {
         box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
-      .chat-message-menu--mine {
+      .message-menu--mine {
         background-color: var(--chat-message-mine);
       }
 
-      .chat-message-menu__button {
+      .message-menu__button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -79,11 +79,11 @@ export class ChatMessageMenu extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-message-menu .chat-message-menu__button:hover {
+      .message-menu .message-menu__button:hover {
         background-color: var(--chat-accent);
       }
 
-      .chat-message-menu--mine .chat-message-menu__button:hover {
+      .message-menu--mine .message-menu__button:hover {
         background-color: oklch(0% 0 0deg / 10%);
       }
     `,
@@ -92,13 +92,13 @@ export class ChatMessageMenu extends LitElement {
   render() {
     return html`<div
       class="${classMap({
-        "chat-message-menu": true,
-        "chat-message-menu--mine": this.mine,
+        "message-menu": true,
+        "message-menu--mine": this.mine,
       })}"
     >
       ${this.isEmojiReactionAvailable
         ? html`<button
-            class="chat-message-menu__button"
+            class="message-menu__button"
             @click="${this._clickEmojiButton}"
             aria-label="Add emoji reaction"
           >
@@ -124,7 +124,7 @@ export class ChatMessageMenu extends LitElement {
         : nothing}
       ${this.isReplyAvailable
         ? html`<button
-            class="chat-message-menu__button"
+            class="message-menu__button"
             @click="${this._replyToMesssage}"
             aria-label="Reply to message"
           >
@@ -146,7 +146,7 @@ export class ChatMessageMenu extends LitElement {
         : nothing}
       ${this.isMessageActionAvailable
         ? html`<button
-            class="chat-message-menu__button"
+            class="message-menu__button"
             @click="${this._clickActionButton}"
             aria-label="Message actions"
           >

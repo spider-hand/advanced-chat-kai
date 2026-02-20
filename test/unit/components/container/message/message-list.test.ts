@@ -84,7 +84,7 @@ describe("chat-message-list", () => {
     expect(chatSuggestionList).toBeFalsy();
 
     const flaotingButton = el.shadowRoot?.querySelector(
-      ".chat-message-list__button",
+      ".message-list__button",
     );
     expect(flaotingButton?.getAttribute("style")).toContain("display: none");
 
@@ -252,7 +252,7 @@ describe("chat-message-list", () => {
     );
 
     const flaotingButton = el.shadowRoot?.querySelector(
-      ".chat-message-list__button",
+      ".message-list__button",
     );
     expect(flaotingButton?.getAttribute("style")).toContain("display: none");
 
@@ -260,7 +260,7 @@ describe("chat-message-list", () => {
     const mockEntry1 = {
       target: {
         classList: {
-          contains: (cls: string) => cls === "chat-message-list__bottom",
+          contains: (cls: string) => cls === "message-list__bottom",
         },
       },
       isIntersecting: false,
@@ -273,7 +273,7 @@ describe("chat-message-list", () => {
     await el.updateComplete;
 
     const flaotingButtonAfter = el.shadowRoot?.querySelector(
-      ".chat-message-list__button",
+      ".message-list__button",
     );
     expect(flaotingButtonAfter?.getAttribute("style")).toContain(
       "display: flex",
@@ -283,7 +283,7 @@ describe("chat-message-list", () => {
     const mockEntry2 = {
       target: {
         classList: {
-          contains: (cls: string) => cls === "chat-message-list__bottom",
+          contains: (cls: string) => cls === "message-list__bottom",
         },
       },
       isIntersecting: true,
@@ -296,7 +296,7 @@ describe("chat-message-list", () => {
     await el.updateComplete;
 
     const flaotingButtonAfterScrollDown = el.shadowRoot?.querySelector(
-      ".chat-message-list__button",
+      ".message-list__button",
     );
     expect(flaotingButtonAfterScrollDown?.getAttribute("style")).toContain(
       "display: none",
@@ -315,7 +315,7 @@ describe("chat-message-list", () => {
     const mockEntry = {
       target: {
         classList: {
-          contains: (cls: string) => cls === "chat-message-list__top",
+          contains: (cls: string) => cls === "message-list__top",
         },
       },
       isIntersecting: true,

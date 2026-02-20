@@ -23,14 +23,14 @@ export class ChatSuggestionList extends LitElement {
         display: flex;
       }
 
-      .chat-suggestion-list {
+      .suggestion-list {
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-2);
         margin-bottom: var(--chat-spacing-4);
       }
 
-      .chat-suggestion-list__item {
+      .suggestion-list__item {
         max-width: 80%;
         padding: var(--chat-spacing-2) var(--chat-spacing-3);
         margin-right: 0;
@@ -41,26 +41,26 @@ export class ChatSuggestionList extends LitElement {
         border-radius: var(--chat-radius-lg);
       }
 
-      .chat-suggestion-list__item:hover {
+      .suggestion-list__item:hover {
         background-color: oklch(from var(--chat-secondary) calc(l - 0.05) c h);
       }
 
-      .chat-suggestion-list__text {
+      .suggestion-list__text {
         font-size: var(--chat-text-sm);
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-suggestion-list">
+    return html`<div class="suggestion-list">
       ${this.suggestions.map(
         (suggestion) =>
           html`<button
-            class="chat-suggestion-list__item"
+            class="suggestion-list__item"
             style="margin-left: ${this.alignMyMessagesLeft ? "4em" : "auto"};"
             @click="${() => this._selectSuggestion(suggestion)}"
           >
-            <span class="chat-suggestion-list__text">${suggestion.text}</span>
+            <span class="suggestion-list__text">${suggestion.text}</span>
           </button>`,
       )}
     </div>`;

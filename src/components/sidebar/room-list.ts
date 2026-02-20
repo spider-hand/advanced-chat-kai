@@ -11,7 +11,7 @@ export class ChatRoomList extends LitElement {
   @property({ type: Object })
   roomContext!: RoomContext;
 
-  @query(".chat-room-list__bottom") chatRoomListBottom!: HTMLDivElement;
+  @query(".room-list__bottom") chatRoomListBottom!: HTMLDivElement;
 
   @state() private _rectTop = 0;
   @state() private _rectBottom = 0;
@@ -28,7 +28,7 @@ export class ChatRoomList extends LitElement {
 
       for (const entry of entries) {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains("chat-room-list__bottom")) {
+          if (entry.target.classList.contains("room-list__bottom")) {
             this.dispatchEvent(
               new CustomEvent("load-more-rooms", { composed: true }),
             );
@@ -70,21 +70,21 @@ export class ChatRoomList extends LitElement {
         background-color: var(--chat-muted-foreground);
       }
 
-      .chat-room-list {
+      .room-list {
         position: relative;
         display: flex;
         flex-grow: 1;
         flex-direction: column;
       }
 
-      .chat-room-list__bottom {
+      .room-list__bottom {
         height: 0.1em;
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-room-list">
+    return html`<div class="room-list">
         ${this.roomContext.isLoadingRoom
           ? html`<chat-loader
               style="position: absolute; top: 50%; transform: translateY(-50%);"
@@ -101,7 +101,7 @@ export class ChatRoomList extends LitElement {
                 ></chat-room-item>`,
             )}
       </div>
-      <div class="chat-room-list__bottom"></div>
+      <div class="room-list__bottom"></div>
       ${!this.roomContext.isLoadingRoom && this.roomContext.isLoadingMoreRooms
         ? html`<chat-loader
             style="padding: 1.6em 0;"

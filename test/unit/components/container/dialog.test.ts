@@ -24,9 +24,9 @@ describe("chat-dialog", () => {
     };
     el = await fixture(html`<chat-dialog .dialog=${dialog}></chat-dialog>`);
 
-    const body = el.shadowRoot?.querySelector(".chat-dialog__body");
+    const body = el.shadowRoot?.querySelector(".dialog__body");
     expect(body?.textContent?.trim()).toBe(dialog.body);
-    const buttons = el.shadowRoot?.querySelectorAll(".chat-dialog__button");
+    const buttons = el.shadowRoot?.querySelectorAll(".dialog__button");
     const leftButton = buttons![0];
     const rightButton = buttons![1];
 
@@ -48,13 +48,13 @@ describe("chat-dialog", () => {
         ></chat-dialog>`,
       );
 
-      const buttons = el.shadowRoot?.querySelectorAll(".chat-dialog__button");
+      const buttons = el.shadowRoot?.querySelectorAll(".dialog__button");
       const leftButton = buttons![0];
       const rightButton = buttons![1];
 
-      expect(leftButton.classList).toContain(`chat-dialog__button--${variant}`);
+      expect(leftButton.classList).toContain(`dialog__button--${variant}`);
       expect(rightButton.classList).toContain(
-        `chat-dialog__button--${variant}`,
+        `dialog__button--${variant}`,
       );
     },
   );

@@ -17,7 +17,7 @@ export class ChatFooterReplyToSection extends LitElement {
         display: flex;
       }
 
-      .chat-footer-reply-to-section {
+      .footer-reply-to-section {
         display: flex;
         flex-direction: row;
         gap: var(--chat-spacing-0-5);
@@ -26,7 +26,7 @@ export class ChatFooterReplyToSection extends LitElement {
         color: var(--chat-muted-foreground);
       }
 
-      .chat-footer-reply-to-section__name {
+      .footer-reply-to-section__name {
         display: inline-block;
         max-width: 100px;
         overflow: hidden;
@@ -36,7 +36,7 @@ export class ChatFooterReplyToSection extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-footer-reply-to-section__button {
+      .footer-reply-to-section__button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -47,16 +47,16 @@ export class ChatFooterReplyToSection extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-footer-reply-to-section__button:hover {
+      .footer-reply-to-section__button:hover {
         background-color: var(--chat-accent);
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-footer-reply-to-section">
+    return html`<div class="footer-reply-to-section">
       <button
-        class="chat-footer-reply-to-section__button"
+        class="footer-reply-to-section__button"
         @click="${this._cancelReply}"
         aria-label="Cancel reply"
       >
@@ -76,7 +76,7 @@ export class ChatFooterReplyToSection extends LitElement {
         </svg>
       </button>
       Reply to
-      <span class="chat-footer-reply-to-section__name"
+      <span class="footer-reply-to-section__name"
         >${this.replyTo.senderName}</span
       >
     </div>`;

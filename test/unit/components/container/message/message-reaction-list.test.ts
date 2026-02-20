@@ -25,15 +25,15 @@ describe("chat-message-reaction-list", () => {
     );
 
     const reactionList = el.shadowRoot?.querySelector(
-      ".chat-message-reaction-list",
+      ".message-reaction-list",
     );
 
     expect(
-      reactionList?.classList.contains("chat-message-reaction-list--mine"),
+      reactionList?.classList.contains("message-reaction-list--mine"),
     ).toBe(false);
     expect(
       reactionList?.classList.contains(
-        "chat-message-reaction-list--right-aligned",
+        "message-reaction-list--right-aligned",
       ),
     ).toBe(false);
 
@@ -54,15 +54,15 @@ describe("chat-message-reaction-list", () => {
     );
 
     const reactionList = el.shadowRoot?.querySelector(
-      ".chat-message-reaction-list",
+      ".message-reaction-list",
     );
 
     expect(
-      reactionList?.classList.contains("chat-message-reaction-list--mine"),
+      reactionList?.classList.contains("message-reaction-list--mine"),
     ).toBe(true);
     expect(
       reactionList?.classList.contains(
-        "chat-message-reaction-list--right-aligned",
+        "message-reaction-list--right-aligned",
       ),
     ).toBe(true);
   });
@@ -80,15 +80,15 @@ describe("chat-message-reaction-list", () => {
     );
 
     const reactionList = el.shadowRoot?.querySelector(
-      ".chat-message-reaction-list",
+      ".message-reaction-list",
     );
 
     expect(
-      reactionList?.classList.contains("chat-message-reaction-list--mine"),
+      reactionList?.classList.contains("message-reaction-list--mine"),
     ).toBe(true);
     expect(
       reactionList?.classList.contains(
-        "chat-message-reaction-list--right-aligned",
+        "message-reaction-list--right-aligned",
       ),
     ).toBe(false);
   });
@@ -142,12 +142,12 @@ describe("chat-message-reaction-list", () => {
     const button2 = buttons?.[1];
     expect(
       button1?.classList.contains(
-        "chat-message-reaction-list__button--reacted",
+        "message-reaction-list__button--reacted",
       ),
     ).toBe(true);
     expect(
       button2?.classList.contains(
-        "chat-message-reaction-list__button--reacted",
+        "message-reaction-list__button--reacted",
       ),
     ).toBe(false);
   });

@@ -65,7 +65,7 @@ export class ChatRoomItem extends LitElement {
         width: 100%;
       }
 
-      .chat-room-item {
+      .room-item {
         position: relative;
         display: flex;
         flex-direction: row;
@@ -77,7 +77,7 @@ export class ChatRoomItem extends LitElement {
         cursor: pointer;
       }
 
-      .chat-room-item::after {
+      .room-item::after {
         position: absolute;
         right: var(--chat-spacing-3);
         bottom: 0;
@@ -87,11 +87,11 @@ export class ChatRoomItem extends LitElement {
         background-color: var(--chat-border);
       }
 
-      .chat-room-item--active {
+      .room-item--active {
         background-color: var(--chat-sidebar-accent);
       }
 
-      .chat-room-item__text {
+      .room-item__text {
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-1);
@@ -99,7 +99,7 @@ export class ChatRoomItem extends LitElement {
         min-width: 6.25rem;
       }
 
-      .chat-room-item__title {
+      .room-item__title {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: var(--chat-text-sm);
@@ -108,7 +108,7 @@ export class ChatRoomItem extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-room-item__subtitle {
+      .room-item__subtitle {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: var(--chat-text-xs);
@@ -116,11 +116,11 @@ export class ChatRoomItem extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-room-item__meta {
+      .room-item__meta {
         color: var(--chat-muted-foreground);
       }
 
-      .chat-room-item__menu {
+      .room-item__menu {
         position: absolute;
         top: var(--chat-spacing-3);
         right: var(--chat-spacing-3);
@@ -131,7 +131,7 @@ export class ChatRoomItem extends LitElement {
         text-align: right;
       }
 
-      .chat-room-item__badge {
+      .room-item__badge {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -139,34 +139,34 @@ export class ChatRoomItem extends LitElement {
         border-radius: var(--chat-radius);
       }
 
-      .chat-room-item__badge--rounded {
+      .room-item__badge--rounded {
         width: 0.625rem;
         height: 0.625rem;
         padding: 0;
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-room-item__badge--success {
+      .room-item__badge--success {
         color: var(--chat-success-foreground);
         background-color: var(--chat-success);
       }
 
-      .chat-room-item__badge--danger {
+      .room-item__badge--danger {
         color: var(--chat-danger-foreground);
         background-color: var(--chat-danger);
       }
 
-      .chat-room-item__badge--warning {
+      .room-item__badge--warning {
         color: var(--chat-warning-foreground);
         background-color: var(--chat-warning);
       }
 
-      .chat-room-item__badge--info {
+      .room-item__badge--info {
         color: var(--chat-info-foreground);
         background-color: var(--chat-info);
       }
 
-      .chat-room-item__button {
+      .room-item__button {
         position: absolute;
         top: var(--chat-spacing-3);
         right: var(--chat-spacing-3);
@@ -180,7 +180,7 @@ export class ChatRoomItem extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-room-item__button:hover {
+      .room-item__button:hover {
         background-color: var(--chat-sidebar-accent);
       }
     `,
@@ -189,8 +189,8 @@ export class ChatRoomItem extends LitElement {
   render() {
     return html`<div
       class="${classMap({
-        "chat-room-item": true,
-        "chat-room-item--active": this.active || this._hover,
+        "room-item": true,
+        "room-item--active": this.active || this._hover,
       })}"
       @mouseenter="${this._onMouseEnter}"
       @mouseleave="${this._onMouseLeave}"
@@ -202,15 +202,15 @@ export class ChatRoomItem extends LitElement {
       ${this.showAvatar
         ? html`<chat-avatar .src="${this.room.avatar ?? null}"></chat-avatar>`
         : nothing}
-      <div class="chat-room-item__text">
-        <span class="chat-room-item__title">${this.room.sidebarTitle}</span>
-        <span class="chat-room-item__subtitle">
+      <div class="room-item__text">
+        <span class="room-item__title">${this.room.sidebarTitle}</span>
+        <span class="room-item__subtitle">
           ${this.room.sidebarSubtitle}</span
         >
       </div>
       ${this._hover && this.actions.length > 0
         ? html`<button
-            class="chat-room-item__button"
+            class="room-item__button"
             @click="${this._toggleActionList}"
             aria-label="Open room actions"
           >
@@ -230,15 +230,15 @@ export class ChatRoomItem extends LitElement {
               <circle cx="5" cy="12" r="1" />
             </svg>
           </button>`
-        : html`<div class="chat-room-item__menu">
-            <span class="chat-room-item__meta">${this.room.meta}</span>
+        : html`<div class="room-item__menu">
+            <span class="room-item__meta">${this.room.meta}</span>
             ${this.room.badge
               ? html`<span
                   class="${classMap({
-                    "chat-room-item__badge": true,
-                    "chat-room-item__badge--rounded":
+                    "room-item__badge": true,
+                    "room-item__badge--rounded":
                       this.room.badge.label === "",
-                    [`chat-room-item__badge--${this.room.badge.type}`]: true,
+                    [`room-item__badge--${this.room.badge.type}`]: true,
                   })}"
                   >${this.room.badge.label}</span
                 >`

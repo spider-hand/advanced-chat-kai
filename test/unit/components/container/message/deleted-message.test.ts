@@ -19,7 +19,7 @@ describe("chat-deleted-message", () => {
       ></chat-deleted-message>`,
     );
 
-    const message = el.shadowRoot?.querySelector(".chat-deleted-message");
+    const message = el.shadowRoot?.querySelector(".deleted-message");
     expect(message).toBeTruthy();
     expect(message?.textContent?.trim()).toBe(DEFAULT_I18N.DELETED_MESSAGE);
     expect(message?.getAttribute("style")).toContain("font-size:1em");
@@ -36,7 +36,7 @@ describe("chat-deleted-message", () => {
       ></chat-deleted-message>
     `);
 
-    const message = el.shadowRoot?.querySelector(".chat-deleted-message");
+    const message = el.shadowRoot?.querySelector(".deleted-message");
     expect(message).toBeTruthy();
     expect(message?.getAttribute("style")).toContain("font-size:2em");
   });
@@ -49,7 +49,7 @@ describe("chat-deleted-message", () => {
       ></chat-deleted-message>
     `);
 
-    const message = el.shadowRoot?.querySelector(".chat-deleted-message");
+    const message = el.shadowRoot?.querySelector(".deleted-message");
     expect(message).toBeTruthy();
     expect(message?.getAttribute("style")).toContain(
       "color:var(--chat-message-mine-foreground)",
@@ -66,7 +66,7 @@ describe("chat-deleted-message", () => {
       ></chat-deleted-message>
     `);
 
-    const message = el.shadowRoot?.querySelector(".chat-deleted-message");
+    const message = el.shadowRoot?.querySelector(".deleted-message");
     expect(message).toBeTruthy();
     expect(message?.textContent?.trim()).toBe(customMessage);
   });

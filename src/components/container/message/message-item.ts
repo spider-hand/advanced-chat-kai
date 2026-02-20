@@ -164,42 +164,42 @@ export class ChatMessageItem extends LitElement {
         display: flex;
       }
 
-      .chat-message-item {
+      .message-item {
         display: flex;
         flex-direction: row;
         gap: var(--chat-spacing-2);
         margin-right: 40%;
       }
 
-      .chat-message-item--last {
+      .message-item--last {
         margin-bottom: var(--chat-spacing-4);
       }
 
-      .chat-message-item--right-aligned {
+      .message-item--right-aligned {
         max-width: 60%;
         margin-right: 0;
         margin-left: auto;
       }
 
-      .chat-message-item__container {
+      .message-item__container {
         position: relative;
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-2);
       }
 
-      .chat-message-item__meta {
+      .message-item__meta {
         display: flex;
         flex-direction: row;
         gap: var(--chat-spacing-2);
         align-items: baseline;
       }
 
-      .chat-message-item__meta--right-aligned {
+      .message-item__meta--right-aligned {
         justify-content: flex-end;
       }
 
-      .chat-message-item__name {
+      .message-item__name {
         display: inline-block;
         max-width: 100px;
         overflow: hidden;
@@ -210,13 +210,13 @@ export class ChatMessageItem extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-message-item__date {
+      .message-item__date {
         font-size: 0.625rem;
         font-weight: 600;
         color: var(--chat-muted-foreground);
       }
 
-      .chat-message-item__body {
+      .message-item__body {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -228,21 +228,21 @@ export class ChatMessageItem extends LitElement {
         border-radius: var(--chat-radius-lg);
       }
 
-      .chat-message-item__body--mine {
+      .message-item__body--mine {
         color: var(--chat-message-mine-foreground);
         background-color: var(--chat-message-mine);
       }
 
-      .chat-message-item__body--chat-deleted {
+      .message-item__body--deleted {
         background-color: var(--chat-muted);
       }
 
-      .chat-message-item--selected .chat-message-item__body {
+      .message-item--selected .message-item__body {
         background-color: var(--chat-accent);
         box-shadow: 0 0 0 2px var(--chat-ring);
       }
 
-      .chat-message-item--selected .chat-message-item__body--mine {
+      .message-item--selected .message-item__body--mine {
         background-color: var(--chat-message-mine);
         box-shadow: 0 0 0 2px var(--chat-ring);
       }
@@ -252,36 +252,36 @@ export class ChatMessageItem extends LitElement {
   render() {
     return html`<div
       class="${classMap({
-        "chat-message-item": true,
-        "chat-message-item--right-aligned": !this._isAlignedLeft,
-        "chat-message-item--last": this.last,
-        "chat-message-item--selected":
+        "message-item": true,
+        "message-item--right-aligned": !this._isAlignedLeft,
+        "message-item--last": this.last,
+        "message-item--selected":
           this.isReplying || this.message.isSelected,
       })}"
     >
       ${this._isAlignedLeft && this.showTheirAvatar
         ? html`<chat-avatar .src="${this.message.senderAvatar ?? null}"></chat-avatar>`
         : nothing}
-      <div class="chat-message-item__container">
+      <div class="message-item__container">
         <div
           class=${classMap({
-            "chat-message-item__meta": true,
-            "chat-message-item__meta--right-aligned": !this._isAlignedLeft,
+            "message-item__meta": true,
+            "message-item__meta--right-aligned": !this._isAlignedLeft,
           })}
         >
           ${this._isAlignedLeft
-            ? html`<span class="chat-message-item__name"
+            ? html`<span class="message-item__name"
                 >${this.message.senderName}</span
               >`
-            : nothing}<span class="chat-message-item__date"
+            : nothing}<span class="message-item__date"
             >${this._formatTimestamp(this.message.timestamp)}</span
           >
         </div>
         <div
           class="${classMap({
-            "chat-message-item__body": true,
-            "chat-message-item__body--mine": this._mine,
-            "chat-message-item__body--chat-deleted": this.message.isDeleted,
+            "message-item__body": true,
+            "message-item__body--mine": this._mine,
+            "message-item__body--deleted": this.message.isDeleted,
           })}"
           @mouseenter="${this._onMouseEnter}"
           @mouseleave="${this._onMouseLeave}"

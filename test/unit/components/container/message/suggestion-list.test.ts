@@ -19,7 +19,7 @@ describe("chat-suggestion-list", () => {
     el = await fixture(html`<chat-suggestion-list></chat-suggestion-list>`);
 
     const items = el.shadowRoot?.querySelectorAll(
-      ".chat-suggestion-list__item",
+      ".suggestion-list__item",
     );
     expect(items?.length).toBe(0);
   });
@@ -42,7 +42,7 @@ describe("chat-suggestion-list", () => {
     );
 
     const items = el.shadowRoot?.querySelectorAll(
-      ".chat-suggestion-list__item",
+      ".suggestion-list__item",
     );
     expect(items).toHaveLength(2);
     expect(items![0].textContent?.trim()).toBe("Suggestion 1");
@@ -65,7 +65,7 @@ describe("chat-suggestion-list", () => {
     );
 
     const items = el.shadowRoot?.querySelectorAll(
-      ".chat-suggestion-list__item",
+      ".suggestion-list__item",
     );
     expect(items).toHaveLength(1);
     expect(items![0].textContent?.trim()).toBe("Suggestion 1");

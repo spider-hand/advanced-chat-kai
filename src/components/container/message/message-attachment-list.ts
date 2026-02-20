@@ -29,14 +29,14 @@ export class ChatMessageAttachmentList extends LitElement {
         display: flex;
       }
 
-      .chat-message-attachment-list {
+      .message-attachment-list {
         display: flex;
         flex-grow: 1;
         flex-direction: column;
         gap: var(--chat-spacing-2);
       }
 
-      .chat-message-attachment-list__item {
+      .message-attachment-list__item {
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-1);
@@ -47,7 +47,7 @@ export class ChatMessageAttachmentList extends LitElement {
         border-radius: var(--chat-radius);
       }
 
-      .chat-message-attachment-list__text {
+      .message-attachment-list__text {
         display: inline-block;
         max-width: 120px;
         overflow: hidden;
@@ -57,37 +57,37 @@ export class ChatMessageAttachmentList extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-message-attachment-list__item:hover {
+      .message-attachment-list__item:hover {
         background-color: var(--chat-muted);
       }
 
-      .chat-message-attachment-list--mine .chat-message-attachment-list__item {
+      .message-attachment-list--mine .message-attachment-list__item {
         background-color: oklch(0% 0 0deg / 10%);
       }
 
-      .chat-message-attachment-list--mine
-        .chat-message-attachment-list__item:hover {
+      .message-attachment-list--mine
+        .message-attachment-list__item:hover {
         background-color: oklch(0% 0 0deg / 15%);
       }
 
-      .chat-message-attachment-list--mine .chat-message-attachment-list__text {
+      .message-attachment-list--mine .message-attachment-list__text {
         color: var(--chat-message-mine-foreground);
       }
 
-      .chat-message-attachment-list__icon {
+      .message-attachment-list__icon {
         margin-left: auto;
       }
 
-      .chat-message-attachment-list__image-wrapper {
+      .message-attachment-list__image-wrapper {
         position: relative;
       }
 
-      .chat-message-attachment-list__image {
+      .message-attachment-list__image {
         object-fit: cover;
         border-radius: var(--chat-radius);
       }
 
-      .chat-message-attachment-list__image-button {
+      .message-attachment-list__image-button {
         position: absolute;
         right: var(--chat-spacing-2);
         bottom: var(--chat-spacing-2);
@@ -100,7 +100,7 @@ export class ChatMessageAttachmentList extends LitElement {
         border-radius: var(--chat-radius-lg);
       }
 
-      .chat-message-attachment-list__image-button:hover {
+      .message-attachment-list__image-button:hover {
         background-color: var(--chat-accent);
       }
     `,
@@ -109,19 +109,19 @@ export class ChatMessageAttachmentList extends LitElement {
   render() {
     return html`<div
       class=${classMap({
-        "chat-message-attachment-list": true,
-        "chat-message-attachment-list--mine": this.mine,
+        "message-attachment-list": true,
+        "message-attachment-list--mine": this.mine,
       })}
     >
       ${this.attachments.map((attachment) =>
         !attachment.imageUrl
           ? html`<button
-              class="chat-message-attachment-list__item"
+              class="message-attachment-list__item"
               @click="${() => this._downloadAttachment(attachment)}"
             >
-              <span class="chat-message-attachment-list__text"
+              <span class="message-attachment-list__text"
                 >${attachment.name}</span
-              ><span class="chat-message-attachment-list__text"
+              ><span class="message-attachment-list__text"
                 >${attachment.meta}</span
               >
               <svg
@@ -136,7 +136,7 @@ export class ChatMessageAttachmentList extends LitElement {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="chat-message-attachment-list__icon"
+                class="message-attachment-list__icon"
               >
                 <path
                   d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
@@ -147,14 +147,14 @@ export class ChatMessageAttachmentList extends LitElement {
                 <path d="M16 17H8" />
               </svg>
             </button>`
-          : html`<div class="chat-message-attachment-list__image-wrapper">
+          : html`<div class="message-attachment-list__image-wrapper">
               <img
-                class="chat-message-attachment-list__image"
+                class="message-attachment-list__image"
                 src="${attachment.imageUrl}"
                 width="100%"
               />
               <button
-                class="chat-message-attachment-list__image-button"
+                class="message-attachment-list__image-button"
                 @click="${() => this._downloadAttachment(attachment)}"
               >
                 <svg

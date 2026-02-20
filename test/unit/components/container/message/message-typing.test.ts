@@ -14,7 +14,7 @@ describe("chat-message-typing", () => {
   it("renders with default props", async () => {
     el = await fixture(html`<chat-message-typing></chat-message-typing>`);
 
-    expect(el.shadowRoot?.querySelector(".chat-message-typing")).toBeTruthy();
+    expect(el.shadowRoot?.querySelector(".message-typing")).toBeTruthy();
   });
 
   it("is accessible", async () => {

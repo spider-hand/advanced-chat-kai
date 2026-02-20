@@ -22,7 +22,7 @@ describe("chat-notification-badge", () => {
       ></chat-notification-badge>`,
     );
 
-    const badge = el.shadowRoot?.querySelector(".chat-notification-badge");
+    const badge = el.shadowRoot?.querySelector(".notification-badge");
     expect(badge?.textContent?.trim()).toBe(
       DEFAULT_I18N.NEW_MESSAGE_NOTIFICATION,
     );
@@ -37,7 +37,7 @@ describe("chat-notification-badge", () => {
       ></chat-notification-badge>`,
     );
 
-    const badge = el.shadowRoot?.querySelector(".chat-notification-badge");
+    const badge = el.shadowRoot?.querySelector(".notification-badge");
     expect(badge?.textContent?.trim()).toBe("custom message");
   });
 

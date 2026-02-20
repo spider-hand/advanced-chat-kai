@@ -37,10 +37,10 @@ describe("chat-footer-reply-to-section", () => {
     );
 
     const section = el.shadowRoot?.querySelector(
-      ".chat-footer-reply-to-section",
+      ".footer-reply-to-section",
     );
     const name = el.shadowRoot?.querySelector(
-      ".chat-footer-reply-to-section__name",
+      ".footer-reply-to-section__name",
     );
     expect(section?.textContent?.trim()).toContain("Reply to");
     expect(name?.textContent?.trim()).toBe("User One");

@@ -13,7 +13,7 @@ export class ChatLoader extends LitElement {
         align-self: center;
       }
 
-      .chat-loader {
+      .loader {
         border: var(--chat-spacing-1) solid oklch(0% 0 0deg / 10%);
         border-top-color: var(--chat-muted-foreground);
         border-radius: 50%;
@@ -33,7 +33,7 @@ export class ChatLoader extends LitElement {
 
   render() {
     return html`<div
-      class="chat-loader"
+      class="loader"
       style="width: ${this.size}em; height: ${this.size}em;"
     ></div>`;
   }

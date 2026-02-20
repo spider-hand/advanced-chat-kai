@@ -34,24 +34,24 @@ describe("chat-room-item", () => {
   it("renders with the default props", async () => {
     el = await fixture(html`<chat-room-item .room=${room}></chat-room-item>`);
 
-    const item = el.shadowRoot?.querySelector(".chat-room-item");
-    expect(item?.classList.contains("chat-room-item--active")).toBe(false);
+    const item = el.shadowRoot?.querySelector(".room-item");
+    expect(item?.classList.contains("room-item--active")).toBe(false);
 
     const chatAvatar = el.shadowRoot?.querySelector("chat-avatar");
     expect(chatAvatar).toBeFalsy();
 
-    const title = el.shadowRoot?.querySelector(".chat-room-item__title");
+    const title = el.shadowRoot?.querySelector(".room-item__title");
     expect(title?.textContent?.trim()).toBe("Room 1");
 
-    const subtitle = el.shadowRoot?.querySelector(".chat-room-item__subtitle");
+    const subtitle = el.shadowRoot?.querySelector(".room-item__subtitle");
     expect(subtitle?.textContent?.trim()).toBe("This is Room 1");
 
     const toggleActionListButton = el.shadowRoot?.querySelector(
-      ".chat-room-item__buton[aria-label='Open room actions']",
+      ".room-item__buton[aria-label='Open room actions']",
     );
     expect(toggleActionListButton).toBeFalsy();
 
-    const menu = el.shadowRoot?.querySelector(".chat-room-item__menu");
+    const menu = el.shadowRoot?.querySelector(".room-item__menu");
     expect(menu).toBeTruthy();
 
     const meta = menu?.querySelector("span");
@@ -66,8 +66,8 @@ describe("chat-room-item", () => {
       <chat-room-item .room=${room} active></chat-room-item>
     `);
 
-    const item = el.shadowRoot?.querySelector(".chat-room-item");
-    expect(item?.classList.contains("chat-room-item--active")).toBe(true);
+    const item = el.shadowRoot?.querySelector(".room-item");
+    expect(item?.classList.contains("room-item--active")).toBe(true);
   });
 
   it("renders with showAvatar prop", async () => {
@@ -91,13 +91,13 @@ describe("chat-room-item", () => {
       </chat-room-item>
     `);
 
-    const item = el.shadowRoot?.querySelector(".chat-room-item");
+    const item = el.shadowRoot?.querySelector(".room-item");
     item?.dispatchEvent(new MouseEvent("mouseenter"));
 
     await el.updateComplete;
 
     const toggleButton = el.shadowRoot?.querySelector(
-      ".chat-room-item__button[aria-label='Open room actions']",
+      ".room-item__button[aria-label='Open room actions']",
     );
     expect(toggleButton).toBeTruthy();
 
@@ -106,7 +106,7 @@ describe("chat-room-item", () => {
     await el.updateComplete;
 
     const toggleButtonAfterLeave = el.shadowRoot?.querySelector(
-      ".chat-room-item__button[aria-label='Open room actions']",
+      ".room-item__button[aria-label='Open room actions']",
     );
     expect(toggleButtonAfterLeave).toBeFalsy();
   });
@@ -120,13 +120,13 @@ describe("chat-room-item", () => {
       </chat-room-item>
     `);
 
-    const item = el.shadowRoot?.querySelector(".chat-room-item");
+    const item = el.shadowRoot?.querySelector(".room-item");
     item?.dispatchEvent(new MouseEvent("mouseenter"));
 
     await el.updateComplete;
 
     const toggleButton = el.shadowRoot?.querySelector(
-      ".chat-room-item__button[aria-label='Open room actions']",
+      ".room-item__button[aria-label='Open room actions']",
     );
     expect(toggleButton).toBeTruthy();
 
@@ -155,13 +155,13 @@ describe("chat-room-item", () => {
       </chat-room-item>
     `);
 
-    const item = el.shadowRoot?.querySelector(".chat-room-item");
+    const item = el.shadowRoot?.querySelector(".room-item");
     item?.dispatchEvent(new MouseEvent("mouseenter"));
 
     await el.updateComplete;
 
     const toggleButton = el.shadowRoot?.querySelector(
-      ".chat-room-item__button[aria-label='Open room actions']",
+      ".room-item__button[aria-label='Open room actions']",
     );
     expect(toggleButton).toBeTruthy();
 
@@ -191,13 +191,13 @@ describe("chat-room-item", () => {
       </chat-room-item>
     `);
 
-    const item = el.shadowRoot?.querySelector(".chat-room-item");
+    const item = el.shadowRoot?.querySelector(".room-item");
     item?.dispatchEvent(new MouseEvent("mouseenter"));
 
     await el.updateComplete;
 
     const toggleButton = el.shadowRoot?.querySelector(
-      ".chat-room-item__button[aria-label='Open room actions']",
+      ".room-item__button[aria-label='Open room actions']",
     );
     expect(toggleButton).toBeTruthy();
 
@@ -245,11 +245,11 @@ describe("chat-room-item", () => {
         <chat-room-item .room=${roomWithBadge}></chat-room-item>
       `);
 
-      const badge = el.shadowRoot?.querySelector(".chat-room-item__badge");
+      const badge = el.shadowRoot?.querySelector(".room-item__badge");
       expect(badge).toBeTruthy();
       expect(badge?.textContent?.trim()).toBe("New");
       expect(
-        badge?.classList.contains(`chat-room-item__badge--${variant}`),
+        badge?.classList.contains(`room-item__badge--${variant}`),
       ).toBe(true);
     },
   );

@@ -79,7 +79,7 @@ describe("chat-footer", () => {
     );
 
     const CLOSED_ROOM_MESSAGE = el.shadowRoot?.querySelector(
-      "chat-footer__message",
+      "footer__message",
     );
     expect(CLOSED_ROOM_MESSAGE).toBeFalsy();
 
@@ -101,7 +101,7 @@ describe("chat-footer", () => {
     expect(textarea?.value).toBe("");
 
     const selectFileButton = el.shadowRoot?.querySelector(
-      ".chat-footer__button[aria-label='Select file']",
+      ".footer__button[aria-label='Select file']",
     );
     expect(selectFileButton).toBeFalsy();
 
@@ -109,17 +109,17 @@ describe("chat-footer", () => {
     expect(fileInput).toBeFalsy();
 
     const toggleEmojiPickerButton = el.shadowRoot?.querySelector(
-      ".chat-footer__button[aria-label='Toggle emoji picker']",
+      ".footer__button[aria-label='Toggle emoji picker']",
     );
     expect(toggleEmojiPickerButton).toBeFalsy();
 
     const sendButton = el.shadowRoot?.querySelector(
-      ".chat-footer__button[aria-label='Send message']",
+      ".footer__button[aria-label='Send message']",
     );
     expect(sendButton).toBeTruthy();
     expect(sendButton?.getAttribute("disabled")).toBeDefined();
     expect(
-      sendButton?.classList.contains("chat-footer__button--disabled"),
+      sendButton?.classList.contains("footer__button--disabled"),
     ).toBeTruthy();
 
     const emojiPicker = el.shadowRoot?.querySelector("chat-emoji-picker");
@@ -151,7 +151,7 @@ describe("chat-footer", () => {
     );
 
     const CLOSED_ROOM_MESSAGE = el.shadowRoot?.querySelector(
-      ".chat-footer__message",
+      ".footer__message",
     );
     expect(CLOSED_ROOM_MESSAGE).toBeTruthy();
     expect(CLOSED_ROOM_MESSAGE?.textContent?.trim()).toBe(
@@ -190,7 +190,7 @@ describe("chat-footer", () => {
     );
 
     const CLOSED_ROOM_MESSAGE = el.shadowRoot?.querySelector(
-      ".chat-footer__message",
+      ".footer__message",
     );
     expect(CLOSED_ROOM_MESSAGE).toBeTruthy();
     expect(CLOSED_ROOM_MESSAGE?.textContent?.trim()).toBe(
@@ -345,7 +345,7 @@ describe("chat-footer", () => {
     );
 
     const selectFileButton = el.shadowRoot?.querySelector(
-      ".chat-footer__button[aria-label='Select file']",
+      ".footer__button[aria-label='Select file']",
     );
     expect(selectFileButton).toBeTruthy();
 
@@ -424,7 +424,7 @@ describe("chat-footer", () => {
     );
 
     const toggleEmojiPickerButton = el.shadowRoot?.querySelector(
-      ".chat-footer__button[aria-label='Toggle emoji picker']",
+      ".footer__button[aria-label='Toggle emoji picker']",
     );
     expect(toggleEmojiPickerButton).toBeTruthy();
 
@@ -552,11 +552,11 @@ describe("chat-footer", () => {
     );
 
     const sendButton = el.shadowRoot?.querySelector(
-      ".chat-footer__button[aria-label='Send message']",
+      ".footer__button[aria-label='Send message']",
     );
     expect(sendButton?.getAttribute("disabled")).toBeDefined();
     expect(
-      sendButton?.classList.contains("chat-footer__button--disabled"),
+      sendButton?.classList.contains("footer__button--disabled"),
     ).toBeTruthy();
 
     const elLocator = getElementLocatorSelectors(el);
@@ -567,7 +567,7 @@ describe("chat-footer", () => {
 
     expect(sendButton?.getAttribute("disabled")).toBeNull();
     expect(
-      sendButton?.classList.contains("chat-footer__button--disabled"),
+      sendButton?.classList.contains("footer__button--disabled"),
     ).toBeFalsy();
   });
 
@@ -592,11 +592,11 @@ describe("chat-footer", () => {
     );
 
     const sendButton = el.shadowRoot?.querySelector(
-      ".chat-footer__button[aria-label='Send message']",
+      ".footer__button[aria-label='Send message']",
     );
     expect(sendButton?.getAttribute("disabled")).toBeNull();
     expect(
-      sendButton?.classList.contains("chat-footer__button--disabled"),
+      sendButton?.classList.contains("footer__button--disabled"),
     ).toBeFalsy();
   });
 

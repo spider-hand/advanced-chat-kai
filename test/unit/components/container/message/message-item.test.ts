@@ -67,29 +67,29 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const item = el.shadowRoot?.querySelector(".chat-message-item");
-    expect(item?.classList.contains("chat-message-item--mine")).toBe(false);
-    expect(item?.classList.contains("chat-message-item--last")).toBe(false);
-    expect(item?.classList.contains("chat-message-item--selected")).toBe(false);
+    const item = el.shadowRoot?.querySelector(".message-item");
+    expect(item?.classList.contains("message-item--mine")).toBe(false);
+    expect(item?.classList.contains("message-item--last")).toBe(false);
+    expect(item?.classList.contains("message-item--selected")).toBe(false);
 
     const avatar = el.shadowRoot?.querySelector("chat-avatar");
     expect(avatar).toBeFalsy();
 
-    const meta = el.shadowRoot?.querySelector(".chat-message-item__meta");
+    const meta = el.shadowRoot?.querySelector(".message-item__meta");
     expect(meta).toBeTruthy();
 
-    const sender = meta?.querySelector(".chat-message-item__name");
+    const sender = meta?.querySelector(".message-item__name");
     expect(sender?.textContent).toContain("User One");
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     expect(date?.textContent).toContain("12:34 PM");
 
-    const body = el.shadowRoot?.querySelector(".chat-message-item__body");
-    expect(body?.classList.contains("chat-message-item__body--mine")).toBe(
+    const body = el.shadowRoot?.querySelector(".message-item__body");
+    expect(body?.classList.contains("message-item__body--mine")).toBe(
       false,
     );
     expect(
-      body?.classList.contains("chat-message-item__body--chat-deleted"),
+      body?.classList.contains("message-item__body--deleted"),
     ).toBe(false);
 
     const replyTo = el.shadowRoot?.querySelector("chat-message-reply-to");
@@ -131,27 +131,27 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const item = el.shadowRoot?.querySelector(".chat-message-item");
-    expect(item?.classList.contains("chat-message-item--right-aligned")).toBe(
+    const item = el.shadowRoot?.querySelector(".message-item");
+    expect(item?.classList.contains("message-item--right-aligned")).toBe(
       true,
     );
 
     const avatar = el.shadowRoot?.querySelector("chat-avatar");
     expect(avatar).toBeFalsy();
 
-    const meta = el.shadowRoot?.querySelector(".chat-message-item__meta");
+    const meta = el.shadowRoot?.querySelector(".message-item__meta");
     expect(
-      meta?.classList.contains("chat-message-item__meta--right-aligned"),
+      meta?.classList.contains("message-item__meta--right-aligned"),
     ).toBe(true);
 
-    const sender = meta?.querySelector(".chat-message-item__name");
+    const sender = meta?.querySelector(".message-item__name");
     expect(sender).toBeFalsy();
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     expect(date?.textContent).toContain("12:34 PM");
 
-    const body = el.shadowRoot?.querySelector(".chat-message-item__body");
-    expect(body?.classList.contains("chat-message-item__body--mine")).toBe(
+    const body = el.shadowRoot?.querySelector(".message-item__body");
+    expect(body?.classList.contains("message-item__body--mine")).toBe(
       true,
     );
   });
@@ -165,28 +165,28 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const item = el.shadowRoot?.querySelector(".chat-message-item");
-    expect(item?.classList.contains("chat-message-item--right-aligned")).toBe(
+    const item = el.shadowRoot?.querySelector(".message-item");
+    expect(item?.classList.contains("message-item--right-aligned")).toBe(
       false,
     );
 
     const avatar = el.shadowRoot?.querySelector("chat-avatar");
     expect(avatar).toBeFalsy();
 
-    const meta = el.shadowRoot?.querySelector(".chat-message-item__meta");
+    const meta = el.shadowRoot?.querySelector(".message-item__meta");
     expect(
-      meta?.classList.contains("chat-message-item__meta--right-aligned"),
+      meta?.classList.contains("message-item__meta--right-aligned"),
     ).toBe(false);
 
     // Show sender name for my messages on the left side
-    const sender = meta?.querySelector(".chat-message-item__name");
+    const sender = meta?.querySelector(".message-item__name");
     expect(sender).toBeTruthy();
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     expect(date?.textContent).toContain("12:34 PM");
 
-    const body = el.shadowRoot?.querySelector(".chat-message-item__body");
-    expect(body?.classList.contains("chat-message-item__body--mine")).toBe(
+    const body = el.shadowRoot?.querySelector(".message-item__body");
+    expect(body?.classList.contains("message-item__body--mine")).toBe(
       true,
     );
   });
@@ -200,8 +200,8 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const item = el.shadowRoot?.querySelector(".chat-message-item");
-    expect(item?.classList.contains("chat-message-item--last")).toBe(true);
+    const item = el.shadowRoot?.querySelector(".message-item");
+    expect(item?.classList.contains("message-item--last")).toBe(true);
   });
 
   it("renders selected message", async () => {
@@ -212,8 +212,8 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const item = el.shadowRoot?.querySelector(".chat-message-item");
-    expect(item?.classList.contains("chat-message-item--selected")).toBe(true);
+    const item = el.shadowRoot?.querySelector(".message-item");
+    expect(item?.classList.contains("message-item--selected")).toBe(true);
   });
 
   it("renders selected message while replying to the message", async () => {
@@ -225,8 +225,8 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const item = el.shadowRoot?.querySelector(".chat-message-item");
-    expect(item?.classList.contains("chat-message-item--selected")).toBe(true);
+    const item = el.shadowRoot?.querySelector(".message-item");
+    expect(item?.classList.contains("message-item--selected")).toBe(true);
   });
 
   it.each([
@@ -293,9 +293,9 @@ describe("chat-message-item", () => {
     const deletedMessage = el.shadowRoot?.querySelector("chat-deleted-message");
     expect(deletedMessage).toBeTruthy();
 
-    const body = el.shadowRoot?.querySelector(".chat-message-item__body");
+    const body = el.shadowRoot?.querySelector(".message-item__body");
     expect(
-      body?.classList.contains("chat-message-item__body--chat-deleted"),
+      body?.classList.contains("message-item__body--deleted"),
     ).toBe(true);
   });
 
@@ -307,7 +307,7 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const body = el.shadowRoot?.querySelector(".chat-message-item__body");
+    const body = el.shadowRoot?.querySelector(".message-item__body");
     const span = body?.querySelector("span");
     expect(span?.textContent).toBe("Hello, World!");
   });
@@ -321,7 +321,7 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const body = el.shadowRoot?.querySelector(".chat-message-item__body");
+    const body = el.shadowRoot?.querySelector(".message-item__body");
     const span = body?.querySelector("span");
     expect(span?.textContent).toBe("Mocked markdown content");
   });
@@ -415,7 +415,7 @@ describe("chat-message-item", () => {
       const chatMessageMenu = el.shadowRoot?.querySelector("chat-message-menu");
       expect(chatMessageMenu).toBeFalsy();
 
-      const body = el.shadowRoot?.querySelector(".chat-message-item__body");
+      const body = el.shadowRoot?.querySelector(".message-item__body");
       body?.dispatchEvent(new MouseEvent("mouseenter"));
 
       await el.updateComplete;
@@ -588,7 +588,7 @@ describe("chat-message-item", () => {
       const chatMessageMenu = el.shadowRoot?.querySelector("chat-message-menu");
       expect(chatMessageMenu).toBeFalsy();
 
-      const body = el.shadowRoot?.querySelector(".chat-message-item__body");
+      const body = el.shadowRoot?.querySelector(".message-item__body");
       body?.dispatchEvent(new Event("focus"));
 
       await el.updateComplete;
@@ -638,7 +638,7 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     expect(date?.textContent).toBe("Custom Time");
   });
 
@@ -651,7 +651,7 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     // Default Intl format - compute expected value using same logic as component
     const expected = new Intl.DateTimeFormat(undefined, {
       hour: "numeric",
@@ -673,7 +673,7 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     expect(date?.textContent).toBe("14:30 Custom");
   });
 
@@ -691,7 +691,7 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     // Should fall back to default Intl format
     const expected = new Intl.DateTimeFormat(undefined, {
       hour: "numeric",
@@ -712,7 +712,7 @@ describe("chat-message-item", () => {
       ></chat-message-item>`,
     );
 
-    const date = el.shadowRoot?.querySelector(".chat-message-item__date");
+    const date = el.shadowRoot?.querySelector(".message-item__date");
     // Should fall back to default Intl format
     const expected = new Intl.DateTimeFormat(undefined, {
       hour: "numeric",

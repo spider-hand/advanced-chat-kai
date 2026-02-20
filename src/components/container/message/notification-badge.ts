@@ -23,7 +23,7 @@ export class ChatNotificationBadge extends LitElement {
         align-self: center;
       }
 
-      .chat-notification-badge {
+      .notification-badge {
         padding: var(--chat-spacing-2);
         color: var(--chat-primary-foreground);
         background-color: var(--chat-primary);
@@ -36,7 +36,7 @@ export class ChatNotificationBadge extends LitElement {
 
   render() {
     return html`<button
-      class="chat-notification-badge"
+      class="notification-badge"
       @click="${this._onClickNotificationBadge}"
     >
       ${this.i18nContext.i18n.NEW_MESSAGE_NOTIFICATION}

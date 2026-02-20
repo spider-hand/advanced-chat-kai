@@ -21,7 +21,7 @@ describe("chat-footer-attachment-section", () => {
     );
 
     const items = el.shadowRoot?.querySelectorAll(
-      ".chat-footer-attachment-section__item",
+      ".footer-attachment-section__item",
     );
     expect(items).toHaveLength(0);
   });
@@ -41,7 +41,7 @@ describe("chat-footer-attachment-section", () => {
     );
 
     const texts = el.shadowRoot?.querySelectorAll(
-      ".chat-footer-attachment-section__text",
+      ".footer-attachment-section__text",
     );
     const name = texts?.[0];
     const meta = texts?.[1];

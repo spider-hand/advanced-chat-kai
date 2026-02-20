@@ -34,7 +34,7 @@ describe("chat-header", () => {
       ></chat-header>`,
     );
 
-    const button = el.shadowRoot?.querySelector(".chat-header__button");
+    const button = el.shadowRoot?.querySelector(".header__button");
     expect(button?.getAttribute("style")).toContain("display: block");
   });
 
@@ -53,7 +53,7 @@ describe("chat-header", () => {
       ></chat-header>`,
     );
 
-    const button = el.shadowRoot?.querySelector(".chat-header__button");
+    const button = el.shadowRoot?.querySelector(".header__button");
     expect(button?.getAttribute("style")).toContain("display: none");
   });
 
@@ -109,8 +109,8 @@ describe("chat-header", () => {
       ></chat-header>`,
     );
 
-    const title = el.shadowRoot?.querySelector(".chat-header__title");
-    const subtitle = el.shadowRoot?.querySelector(".chat-header__subtitle");
+    const title = el.shadowRoot?.querySelector(".header__title");
+    const subtitle = el.shadowRoot?.querySelector(".header__subtitle");
 
     expect(title?.textContent?.trim()).toBe("Room 1");
     expect(subtitle?.textContent?.trim()).toBe("This is Room 1");
@@ -134,7 +134,7 @@ describe("chat-header", () => {
     );
 
     const button = el.shadowRoot?.querySelector(
-      ".chat-header__button[aria-label='Show actions']",
+      ".header__button[aria-label='Show actions']",
     );
     expect(button).toBeTruthy();
   });

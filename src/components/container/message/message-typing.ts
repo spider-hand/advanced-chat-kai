@@ -9,7 +9,7 @@ export class ChatMessageTyping extends LitElement {
         display: flex;
       }
 
-      .chat-message-typing {
+      .message-typing {
         display: flex;
         flex-direction: row;
         gap: var(--chat-spacing-2);
@@ -17,7 +17,7 @@ export class ChatMessageTyping extends LitElement {
         margin-bottom: var(--chat-spacing-4);
       }
 
-      .chat-message-typing__avatar {
+      .message-typing__avatar {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -27,7 +27,7 @@ export class ChatMessageTyping extends LitElement {
         border-radius: 50%;
       }
 
-      .chat-message-typing__body {
+      .message-typing__body {
         position: relative;
         display: flex;
         flex-direction: row;
@@ -38,7 +38,7 @@ export class ChatMessageTyping extends LitElement {
         border-radius: var(--chat-radius-lg);
       }
 
-      .chat-message-typing__dot {
+      .message-typing__dot {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -50,11 +50,11 @@ export class ChatMessageTyping extends LitElement {
         animation: typing 0.8s infinite alternate;
       }
 
-      .chat-message-typing__dot:nth-child(2) {
+      .message-typing__dot:nth-child(2) {
         animation-delay: 0.2s;
       }
 
-      .chat-message-typing__dot:nth-child(3) {
+      .message-typing__dot:nth-child(3) {
         animation-delay: 0.4s;
       }
 
@@ -77,12 +77,12 @@ export class ChatMessageTyping extends LitElement {
   ];
 
   render() {
-    return html`<div class="chat-message-typing">
-      <div class="chat-message-typing__avatar"></div>
-      <div class="chat-message-typing__body">
-        <div class="chat-message-typing__dot"></div>
-        <div class="chat-message-typing__dot"></div>
-        <div class="chat-message-typing__dot"></div>
+    return html`<div class="message-typing">
+      <div class="message-typing__avatar"></div>
+      <div class="message-typing__body">
+        <div class="message-typing__dot"></div>
+        <div class="message-typing__dot"></div>
+        <div class="message-typing__dot"></div>
       </div>
     </div>`;
   }

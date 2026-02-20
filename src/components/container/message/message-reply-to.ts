@@ -16,7 +16,7 @@ export class ChatMessageReplyTo extends LitElement {
         display: flex;
       }
 
-      .chat-message-reply-to {
+      .message-reply-to {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -26,17 +26,17 @@ export class ChatMessageReplyTo extends LitElement {
         border-radius: var(--chat-radius-md);
       }
 
-      .chat-message-reply-to--mine {
+      .message-reply-to--mine {
         background-color: oklch(0% 0 0deg / 8%);
       }
 
-      .chat-message-reply-to__container {
+      .message-reply-to__container {
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-1);
       }
 
-      .chat-message-reply-to__text {
+      .message-reply-to__text {
         display: inline-block;
         max-width: 100px;
         overflow: hidden;
@@ -46,11 +46,11 @@ export class ChatMessageReplyTo extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-message-reply-to__text--mine {
+      .message-reply-to__text--mine {
         color: var(--chat-message-mine-foreground);
       }
 
-      .chat-message-reply-to__text--highlight {
+      .message-reply-to__text--highlight {
         font-weight: 600;
       }
     `,
@@ -59,8 +59,8 @@ export class ChatMessageReplyTo extends LitElement {
   render() {
     return html`<div
       class=${classMap({
-        "chat-message-reply-to": true,
-        "chat-message-reply-to--mine": this.mine,
+        "message-reply-to": true,
+        "message-reply-to--mine": this.mine,
       })}
     >
       ${this.replyTo.senderAvatar
@@ -69,12 +69,12 @@ export class ChatMessageReplyTo extends LitElement {
             .src="${this.replyTo.senderAvatar}"
           ></chat-avatar>`
         : nothing}
-      <div class="chat-message-reply-to__container">
+      <div class="message-reply-to__container">
         <span
           class=${classMap({
-            "chat-message-reply-to__text": true,
-            "chat-message-reply-to__text--highlight": true,
-            "chat-message-reply-to__text--mine": this.mine,
+            "message-reply-to__text": true,
+            "message-reply-to__text--highlight": true,
+            "message-reply-to__text--mine": this.mine,
           })}
           >${this.replyTo.senderName}</span
         >
@@ -82,8 +82,8 @@ export class ChatMessageReplyTo extends LitElement {
         ${!this.replyTo.isDeleted
           ? html`<span
               class=${classMap({
-                "chat-message-reply-to__text": true,
-                "chat-message-reply-to__text--mine": this.mine,
+                "message-reply-to__text": true,
+                "message-reply-to__text--mine": this.mine,
               })}
             >
               ${this.replyTo.content}</span

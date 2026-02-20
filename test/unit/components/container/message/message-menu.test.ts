@@ -35,21 +35,21 @@ describe("chat-message-menu", () => {
       html`<chat-message-menu .message=${message}></chat-message-menu>`,
     );
 
-    const menu = el.shadowRoot?.querySelector(".chat-message-menu");
-    expect(menu?.classList.contains("chat-message-menu--mine")).toBe(false);
+    const menu = el.shadowRoot?.querySelector(".message-menu");
+    expect(menu?.classList.contains("message-menu--mine")).toBe(false);
 
     const reactionButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Add emoji reaction']",
+      ".message-menu__button[aria-label='Add emoji reaction']",
     );
     expect(reactionButton).toBeFalsy();
 
     const replyButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Reply to message']",
+      ".message-menu__button[aria-label='Reply to message']",
     );
     expect(replyButton).toBeFalsy();
 
     const actionButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Message actions']",
+      ".message-menu__button[aria-label='Message actions']",
     );
     expect(actionButton).toBeFalsy();
   });
@@ -62,8 +62,8 @@ describe("chat-message-menu", () => {
       ></chat-message-menu>`,
     );
 
-    const menu = el.shadowRoot?.querySelector(".chat-message-menu");
-    expect(menu?.classList.contains("chat-message-menu--mine")).toBe(true);
+    const menu = el.shadowRoot?.querySelector(".message-menu");
+    expect(menu?.classList.contains("message-menu--mine")).toBe(true);
   });
 
   it("renders with emoji reaction button", async () => {
@@ -75,7 +75,7 @@ describe("chat-message-menu", () => {
     );
 
     const reactionButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Add emoji reaction']",
+      ".message-menu__button[aria-label='Add emoji reaction']",
     );
     expect(reactionButton).toBeTruthy();
 
@@ -94,7 +94,7 @@ describe("chat-message-menu", () => {
     );
 
     const reactionButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Add emoji reaction']",
+      ".message-menu__button[aria-label='Add emoji reaction']",
     );
     expect(reactionButton).toBeTruthy();
 
@@ -131,7 +131,7 @@ describe("chat-message-menu", () => {
     );
 
     const replyButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Reply to message']",
+      ".message-menu__button[aria-label='Reply to message']",
     );
     expect(replyButton).toBeTruthy();
 
@@ -150,7 +150,7 @@ describe("chat-message-menu", () => {
     );
 
     const replyButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Reply to message']",
+      ".message-menu__button[aria-label='Reply to message']",
     );
     expect(replyButton).toBeTruthy();
 
@@ -190,7 +190,7 @@ describe("chat-message-menu", () => {
     );
 
     const actionButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Message actions']",
+      ".message-menu__button[aria-label='Message actions']",
     );
     expect(actionButton).toBeTruthy();
 
@@ -209,7 +209,7 @@ describe("chat-message-menu", () => {
     );
 
     const actionButton = el.shadowRoot?.querySelector(
-      ".chat-message-menu__button[aria-label='Message actions']",
+      ".message-menu__button[aria-label='Message actions']",
     );
     expect(actionButton).toBeTruthy();
 

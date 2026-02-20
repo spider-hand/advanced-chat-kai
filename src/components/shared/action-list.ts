@@ -14,7 +14,7 @@ export class ChatActionList extends LitElement {
   @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
     [];
 
-  @query(".chat-action-list") chatActionList!: HTMLDivElement;
+  @query(".action-list") chatActionList!: HTMLDivElement;
 
   constructor() {
     super();
@@ -46,7 +46,7 @@ export class ChatActionList extends LitElement {
         display: flex;
       }
 
-      .chat-action-list {
+      .action-list {
         z-index: 1;
         display: flex;
         flex-direction: column;
@@ -58,7 +58,7 @@ export class ChatActionList extends LitElement {
         box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
-      .chat-action-list__item {
+      .action-list__item {
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -70,18 +70,18 @@ export class ChatActionList extends LitElement {
         cursor: pointer;
       }
 
-      .chat-action-list__item:hover {
+      .action-list__item:hover {
         background-color: var(--chat-accent);
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-action-list">
+    return html`<div class="action-list">
       ${this.actions.map(
         (action) => html`
           <div
-            class="chat-action-list__item"
+            class="action-list__item"
             @click="${() =>
               this.actionType === "room"
                 ? this.dispatchEvent(

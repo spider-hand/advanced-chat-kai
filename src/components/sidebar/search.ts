@@ -30,7 +30,7 @@ export class ChatSearch extends LitElement {
         min-height: 3rem;
       }
 
-      .chat-search {
+      .search {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -45,7 +45,7 @@ export class ChatSearch extends LitElement {
         box-shadow: none;
       }
 
-      .chat-search__body {
+      .search__body {
         width: 100%;
         padding: 0;
         font-size: var(--chat-text-sm);
@@ -55,14 +55,14 @@ export class ChatSearch extends LitElement {
         border: none;
       }
 
-      .chat-search__body::placeholder {
+      .search__body::placeholder {
         color: var(--chat-muted-foreground);
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-search">
+    return html`<div class="search">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="1.6em"
@@ -78,7 +78,7 @@ export class ChatSearch extends LitElement {
         <circle cx="11" cy="11" r="8" />
       </svg>
       <input
-        class="chat-search__body"
+        class="search__body"
         .placeholder="${this.i18nContext.i18n.CHAT_SEARCH_PLACEHOLDER}"
         @input="${this._onChangeInput}"
       />

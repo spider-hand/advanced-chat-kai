@@ -18,7 +18,7 @@ describe("chat-action-list", () => {
   it("renders with default props", async () => {
     el = await fixture(html`<chat-action-list></chat-action-list>`);
 
-    const items = el.shadowRoot?.querySelectorAll(".chat-action-list__item");
+    const items = el.shadowRoot?.querySelectorAll(".action-list__item");
     expect(items).toHaveLength(0);
   });
 
@@ -31,7 +31,7 @@ describe("chat-action-list", () => {
       <chat-action-list .actions="${actions}"></chat-action-list>
     `);
 
-    const items = el.shadowRoot?.querySelectorAll(".chat-action-list__item");
+    const items = el.shadowRoot?.querySelectorAll(".action-list__item");
     expect(items).toHaveLength(2);
     expect(items![0].textContent?.trim()).toBe("Action 1");
     expect(items![1].textContent?.trim()).toBe("Action 2");
@@ -125,7 +125,7 @@ describe("chat-action-list", () => {
     const spyCloseEvent = vi.spyOn(el, "dispatchEvent");
     const insideClickEvent = new MouseEvent("mousedown", {});
     insideClickEvent.composedPath = () => [
-      el.shadowRoot!.querySelector(".chat-action-list")!,
+      el.shadowRoot!.querySelector(".action-list")!,
     ];
     window.dispatchEvent(insideClickEvent);
 

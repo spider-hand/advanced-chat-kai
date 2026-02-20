@@ -21,11 +21,11 @@ export class ChatDeletedMessage extends LitElement {
         display: flex;
       }
 
-      .chat-deleted-message {
+      .deleted-message {
         color: var(--chat-muted-foreground);
       }
 
-      .chat-deleted-message__icon {
+      .deleted-message__icon {
         margin-right: 0.2em;
         margin-bottom: 0.2em;
         vertical-align: middle;
@@ -35,7 +35,7 @@ export class ChatDeletedMessage extends LitElement {
 
   render() {
     return html`<span
-      class="chat-deleted-message"
+      class="deleted-message"
       style=${styleMap({
         fontSize: `${this.fontSize}em`,
         color: this.isReplyOnMyMessage
@@ -55,7 +55,7 @@ export class ChatDeletedMessage extends LitElement {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="chat-deleted-message__icon"
+        class="deleted-message__icon"
       >
         <path d="M10 11v6" />
         <path d="M14 11v6" />

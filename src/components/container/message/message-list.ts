@@ -24,8 +24,8 @@ export class ChatMessageList extends LitElement {
   @property({ type: Object })
   messageContext!: MessageContext;
 
-  @query(".chat-message-list__top") chatMessageListTop!: HTMLDivElement;
-  @query(".chat-message-list__bottom") chatMessageListBottom!: HTMLDivElement;
+  @query(".message-list__top") chatMessageListTop!: HTMLDivElement;
+  @query(".message-list__bottom") chatMessageListBottom!: HTMLDivElement;
 
   @state() private _showScrollToBottomButton = false;
   @state() private _showNotificationBadge = false;
@@ -59,7 +59,7 @@ export class ChatMessageList extends LitElement {
       if (this.messageContext.isLoadingMessage) return;
 
       for (const entry of entries) {
-        if (entry.target.classList.contains("chat-message-list__bottom")) {
+        if (entry.target.classList.contains("message-list__bottom")) {
           if (entry.isIntersecting) {
             this._showScrollToBottomButton = false;
             this._showNotificationBadge = false;
@@ -69,7 +69,7 @@ export class ChatMessageList extends LitElement {
         }
 
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains("chat-message-list__top")) {
+          if (entry.target.classList.contains("message-list__top")) {
             this.dispatchEvent(
               new CustomEvent("load-more-messages", { composed: true }),
             );
@@ -165,7 +165,7 @@ export class ChatMessageList extends LitElement {
         background-color: var(--chat-muted-foreground);
       }
 
-      .chat-message-list {
+      .message-list {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -173,17 +173,17 @@ export class ChatMessageList extends LitElement {
         width: 100%;
       }
 
-      .chat-message-list__top {
+      .message-list__top {
         height: 1px;
         margin-bottom: calc(-1 * var(--chat-spacing-4) - 1px);
       }
 
-      .chat-message-list__bottom {
+      .message-list__bottom {
         height: 1px;
         margin-top: calc(-1 * var(--chat-spacing-4) - 1px);
       }
 
-      .chat-message-list__button {
+      .message-list__button {
         position: sticky;
         bottom: 0;
         left: 100%;
@@ -199,7 +199,7 @@ export class ChatMessageList extends LitElement {
         box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
-      .chat-message-list__button:hover {
+      .message-list__button:hover {
         background-color: var(--chat-accent);
       }
     `,
@@ -207,8 +207,8 @@ export class ChatMessageList extends LitElement {
 
   render() {
     return html`
-      <div class="chat-message-list">
-        <div class="chat-message-list__top"></div>
+      <div class="message-list">
+        <div class="message-list__top"></div>
         ${this.messageContext.isLoadingMessage
           ? html`<chat-loader
               style="position: absolute; top: 50%; transform: translateY(-50%);"
@@ -261,7 +261,7 @@ export class ChatMessageList extends LitElement {
                   ></chat-suggestion-list>`
                 : nothing}
               <button
-                class="chat-message-list__button"
+                class="message-list__button"
                 style="display: ${this._showScrollToBottomButton
                   ? "flex"
                   : "none"}"
@@ -269,7 +269,7 @@ export class ChatMessageList extends LitElement {
               >
                <svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" viewBox="0 0 24 24" fill="none" stroke="var(--chat-muted-foreground)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
               </button>`}
-        <div class="chat-message-list__bottom"></div>
+        <div class="message-list__bottom"></div>
         ${this._showNotificationBadge
           ? html`<chat-notification-badge
               @click-notification-badge="${this._scrollToBottom}"

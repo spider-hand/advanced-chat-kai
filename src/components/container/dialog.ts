@@ -32,7 +32,7 @@ export class ChatDialog extends LitElement {
         display: flex;
       }
 
-      .chat-dialog {
+      .dialog {
         position: absolute;
         top: 0;
         left: 0;
@@ -45,7 +45,7 @@ export class ChatDialog extends LitElement {
         background-color: oklch(0% 0 0deg / 50%);
       }
 
-      .chat-dialog__window {
+      .dialog__window {
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-3);
@@ -55,12 +55,12 @@ export class ChatDialog extends LitElement {
         border-radius: var(--chat-radius-lg);
       }
 
-      .chat-dialog__body {
+      .dialog__body {
         font-size: var(--chat-text-sm);
         color: var(--chat-popover-foreground);
       }
 
-      .chat-dialog__footer {
+      .dialog__footer {
         display: flex;
         flex-direction: row;
         gap: var(--chat-spacing-3);
@@ -68,40 +68,40 @@ export class ChatDialog extends LitElement {
         justify-content: flex-end;
       }
 
-      .chat-dialog__button {
+      .dialog__button {
         font-size: var(--chat-text-sm);
         color: var(--chat-foreground);
         background-color: transparent;
         border: none;
       }
 
-      .chat-dialog__button--success {
+      .dialog__button--success {
         color: var(--chat-primary);
       }
 
-      .chat-dialog__button--danger {
+      .dialog__button--danger {
         color: var(--chat-destructive);
       }
 
-      .chat-dialog__button--warning {
+      .dialog__button--warning {
         color: var(--chat-primary);
       }
 
-      .chat-dialog__button--info {
+      .dialog__button--info {
         color: var(--chat-primary);
       }
     `,
   ];
 
   render() {
-    return html`<div class="chat-dialog">
-      <div class="chat-dialog__window">
-        <div class="chat-dialog__body">${this.dialog.body}</div>
-        <div class="chat-dialog__footer">
+    return html`<div class="dialog">
+      <div class="dialog__window">
+        <div class="dialog__body">${this.dialog.body}</div>
+        <div class="dialog__footer">
           <button
             class="${classMap({
-              "chat-dialog__button": true,
-              [`chat-dialog__button--${this.dialog.leftButton.variant}`]:
+              "dialog__button": true,
+              [`dialog__button--${this.dialog.leftButton.variant}`]:
                 this.dialog.leftButton.variant !== undefined,
             })}"
             @click="${this.onClickLeftButton}"
@@ -110,8 +110,8 @@ export class ChatDialog extends LitElement {
           </button>
           <button
             class="${classMap({
-              "chat-dialog__button": true,
-              [`chat-dialog__button--${this.dialog.rightButton.variant}`]:
+              "dialog__button": true,
+              [`dialog__button--${this.dialog.rightButton.variant}`]:
                 this.dialog.rightButton.variant !== undefined,
             })}"
             @click="${this.onClickRightButton}"

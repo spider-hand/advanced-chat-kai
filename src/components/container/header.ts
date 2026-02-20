@@ -42,7 +42,7 @@ export class ChatHeader extends LitElement {
         display: flex;
       }
 
-      .chat-header {
+      .header {
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -54,7 +54,7 @@ export class ChatHeader extends LitElement {
         border-bottom: 1px solid var(--chat-border);
       }
 
-      .chat-header__body {
+      .header__body {
         display: flex;
         flex-direction: column;
         gap: var(--chat-spacing-1);
@@ -62,7 +62,7 @@ export class ChatHeader extends LitElement {
         width: 15rem;
       }
 
-      .chat-header__title {
+      .header__title {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: var(--chat-text-base);
@@ -71,7 +71,7 @@ export class ChatHeader extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-header__subtitle {
+      .header__subtitle {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: var(--chat-text-xs);
@@ -79,7 +79,7 @@ export class ChatHeader extends LitElement {
         white-space: nowrap;
       }
 
-      .chat-header__button {
+      .header__button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -89,16 +89,16 @@ export class ChatHeader extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-header__button:hover {
+      .header__button:hover {
         background-color: var(--chat-accent);
       }
     `,
   ];
 
   render() {
-    return html`<header class="chat-header">
+    return html`<header class="header">
       <button
-        class="chat-header__button"
+        class="header__button"
         style="display: ${!this.showSidebar ? "block" : "none"}"
         @click="${this._openSidebar}"
         aria-label="Open sidebar"
@@ -119,17 +119,17 @@ export class ChatHeader extends LitElement {
           <path d="M4 19h16" />
         </svg>
       </button>
-      <div class="chat-header__body">
-        <span class="chat-header__title"
+      <div class="header__body">
+        <span class="header__title"
           >${this._selectedRoom?.headerTitle ?? ""}</span
         >
-        <span class="chat-header__subtitle"
+        <span class="header__subtitle"
           >${this._selectedRoom?.headerSubtitle ?? ""}</span
         >
       </div>
       ${this.roomContext.roomActions.length > 0
         ? html`<button
-            class="chat-header__button"
+            class="header__button"
             style="margin-left: auto;"
             @click="${this._toggleActionList}"
             aria-label="Show actions"

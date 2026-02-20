@@ -149,7 +149,7 @@ export class ChatFooter extends LitElement {
         display: flex;
       }
 
-      .chat-footer {
+      .footer {
         display: flex;
         flex-grow: 1;
         flex-direction: column;
@@ -158,12 +158,12 @@ export class ChatFooter extends LitElement {
         border-top: 1px solid var(--chat-border);
       }
 
-      .chat-footer__message {
+      .footer__message {
         font-size: var(--chat-text-xs);
         color: var(--chat-foreground);
       }
 
-      .chat-footer__textarea {
+      .footer__textarea {
         display: flex;
         flex-grow: 1;
         padding: var(--chat-spacing-2);
@@ -176,11 +176,11 @@ export class ChatFooter extends LitElement {
         box-shadow: none;
       }
 
-      .chat-footer__textarea::placeholder {
+      .footer__textarea::placeholder {
         color: var(--chat-muted-foreground);
       }
 
-      .chat-footer__menu {
+      .footer__menu {
         position: relative;
         display: flex;
         flex-direction: row;
@@ -190,7 +190,7 @@ export class ChatFooter extends LitElement {
         height: 2rem;
       }
 
-      .chat-footer__button {
+      .footer__button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -200,29 +200,29 @@ export class ChatFooter extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
-      .chat-footer__file {
+      .footer__file {
         display: none;
       }
 
-      .chat-footer__button:hover {
+      .footer__button:hover {
         background-color: var(--chat-accent);
       }
 
-      .chat-footer__button--emoji {
+      .footer__button--emoji {
         margin-right: auto;
       }
 
-      .chat-footer__button--send {
+      .footer__button--send {
         margin-left: auto;
         background-color: var(--chat-primary);
       }
 
-      .chat-footer__button--send:hover {
+      .footer__button--send:hover {
         background-color: var(--chat-primary);
         opacity: 0.9;
       }
 
-      .chat-footer__button--disabled {
+      .footer__button--disabled {
         pointer-events: none;
         opacity: 0.5;
       }
@@ -230,9 +230,9 @@ export class ChatFooter extends LitElement {
   ];
 
   render() {
-    return html`<footer class="chat-footer">
+    return html`<footer class="footer">
       ${this._selectedRoom?.hasEnded
-        ? html`<span class="chat-footer__message"
+        ? html`<span class="footer__message"
             >${this.i18nContext.i18n.CLOSED_ROOM_MESSAGE}</span
           >`
         : html` ${this.footerContext.attachments.length > 0
@@ -246,17 +246,17 @@ export class ChatFooter extends LitElement {
                 ></chat-footer-reply-to-section>`
               : nothing}
             <textarea
-              class="chat-footer__textarea"
+              class="footer__textarea"
               .placeholder="${this.i18nContext.i18n
                 .CHAT_FOOTER_TEXTAREA_PLACEHOLDER}"
               .value="${this._textareaValue}"
               @input="${this._handleTextareaInput}"
               @keydown="${this._handleKeydown}"
             ></textarea>
-            <div class="chat-footer__menu">
+            <div class="footer__menu">
               ${this.footerContext.isMessageAttachmentAvailable
                 ? html`<button
-                      class="chat-footer__button"
+                      class="footer__button"
                       @click="${this._handleFileInput}"
                       aria-label="Select file"
                     >
@@ -278,13 +278,13 @@ export class ChatFooter extends LitElement {
                     </button>
                     <input
                       type="file"
-                      class="chat-footer__file"
+                      class="footer__file"
                       @change="${this._handleFileChange}"
                     />`
                 : nothing}
               ${this.footerContext.isEmojiPickerAvailable
                 ? html`<button
-                    class="chat-footer__button chat-footer__button--emoji"
+                    class="footer__button footer__button--emoji"
                     @click="${this._toggleEmojiPicker}"
                     aria-label="Toggle emoji picker"
                   >
@@ -310,9 +310,9 @@ export class ChatFooter extends LitElement {
                 : nothing}
               <button
                 class="${classMap({
-                  "chat-footer__button": true,
-                  "chat-footer__button--send": true,
-                  "chat-footer__button--disabled": !this._isSendButtonEnabled,
+                  "footer__button": true,
+                  "footer__button--send": true,
+                  "footer__button--disabled": !this._isSendButtonEnabled,
                 })}"
                 .disabled="${!this._isSendButtonEnabled}"
                 @click="${this._sendMessage}"

@@ -37,7 +37,7 @@ export class ChatMessageReactionList extends LitElement {
         display: flex;
       }
 
-      .chat-message-reaction-list {
+      .message-reaction-list {
         display: flex;
         flex-flow: row wrap;
         gap: var(--chat-spacing-1);
@@ -50,15 +50,15 @@ export class ChatMessageReactionList extends LitElement {
         box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
       }
 
-      .chat-message-reaction-list--mine {
+      .message-reaction-list--mine {
         background-color: var(--chat-message-mine);
       }
 
-      .chat-message-reaction-list--right-aligned {
+      .message-reaction-list--right-aligned {
         margin-left: auto;
       }
 
-      .chat-message-reaction-list__button {
+      .message-reaction-list__button {
         display: flex;
         flex-direction: row;
         gap: var(--chat-spacing-1);
@@ -72,25 +72,25 @@ export class ChatMessageReactionList extends LitElement {
         border-radius: var(--chat-radius);
       }
 
-      .chat-message-reaction-list__button--reacted {
+      .message-reaction-list__button--reacted {
         background-color: var(--chat-accent);
       }
 
-      .chat-message-reaction-list--mine .chat-message-reaction-list__button {
+      .message-reaction-list--mine .message-reaction-list__button {
         color: var(--chat-message-mine-foreground);
       }
 
-      .chat-message-reaction-list--mine
-        .chat-message-reaction-list__button--reacted {
+      .message-reaction-list--mine
+        .message-reaction-list__button--reacted {
         background-color: oklch(0% 0 0deg / 10%);
       }
 
-      .chat-message-reaction-list__button:hover {
+      .message-reaction-list__button:hover {
         background-color: oklch(0% 0 0deg / 8%);
       }
 
-      .chat-message-reaction-list--mine
-        .chat-message-reaction-list__button:hover {
+      .message-reaction-list--mine
+        .message-reaction-list__button:hover {
         background-color: oklch(0% 0 0deg / 10%);
       }
     `,
@@ -99,17 +99,17 @@ export class ChatMessageReactionList extends LitElement {
   render() {
     return html`<div
       class="${classMap({
-        "chat-message-reaction-list": true,
-        "chat-message-reaction-list--mine": this.mine,
-        "chat-message-reaction-list--right-aligned":
+        "message-reaction-list": true,
+        "message-reaction-list--mine": this.mine,
+        "message-reaction-list--right-aligned":
           this.mine && !this.alignMyMessagesLeft,
       })}"
     >
       ${Object.entries(this.reactions).map(([emoji, users]) => {
         return html`<button
           class="${classMap({
-            "chat-message-reaction-list__button": true,
-            "chat-message-reaction-list__button--reacted":
+            "message-reaction-list__button": true,
+            "message-reaction-list__button--reacted":
               this.currentUserId !== null && users.includes(this.currentUserId),
           })}"
           @click="${() => this._clickReaction(emoji, users)}"

@@ -43,12 +43,12 @@ describe("chat-message-reply-to", () => {
     const content = texts?.[1];
     expect(avatar).toBeFalsy();
     expect(name?.textContent?.trim()).toBe("User One");
-    expect(name?.classList.contains("chat-message-reply-to__text--mine")).toBe(
+    expect(name?.classList.contains("message-reply-to__text--mine")).toBe(
       false,
     );
     expect(content?.textContent?.trim()).toBe("This is a reply");
     expect(
-      content?.classList.contains("chat-message-reply-to__text--mine"),
+      content?.classList.contains("message-reply-to__text--mine"),
     ).toBe(false);
   });
 
@@ -78,11 +78,11 @@ describe("chat-message-reply-to", () => {
     const texts = el.shadowRoot?.querySelectorAll("span");
     const name = texts?.[0];
     const content = texts?.[1];
-    expect(name?.classList.contains("chat-message-reply-to__text--mine")).toBe(
+    expect(name?.classList.contains("message-reply-to__text--mine")).toBe(
       true,
     );
     expect(
-      content?.classList.contains("chat-message-reply-to__text--mine"),
+      content?.classList.contains("message-reply-to__text--mine"),
     ).toBe(true);
   });
 

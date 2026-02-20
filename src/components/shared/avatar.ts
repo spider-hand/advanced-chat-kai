@@ -13,7 +13,7 @@ export class ChatAvatar extends LitElement {
         display: flex;
       }
 
-      .chat-avatar {
+      .avatar {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -24,7 +24,7 @@ export class ChatAvatar extends LitElement {
 
   render() {
     return html`<img
-      class="chat-avatar"
+      class="avatar"
       style="width: ${this.size}em; height: ${this.size}em;"
       src="${this.src ?? ""}"
       alt="Avatar"
