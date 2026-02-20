@@ -1,7 +1,7 @@
 # advanced-chat-kai
 
-<img alt="light" src="https://github.com/user-attachments/assets/2683a3ae-0419-4a35-ba3c-b5344750d5b6" />
-<img alt="dark" src="https://github.com/user-attachments/assets/36d2fc3e-6f93-44ea-a3d2-f6137b9d0bd6" />
+<img alt="light" src="https://github.com/user-attachments/assets/c7efa2e4-c7f5-4a83-968c-cbc0b0fea91f" />
+<img alt="dark" src="https://github.com/user-attachments/assets/b547b8b6-2154-4334-8f5d-16fb2c8e264c"" />
 
 ![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai)
 
