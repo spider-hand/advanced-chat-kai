@@ -39,7 +39,10 @@ export class ChatRoomItem extends LitElement {
     this._hover = false;
   }
 
-  private _toggleActionList() {
+  private _toggleActionList(event: Event) {
+    // Prevent the event from bubbling up to the room item which would trigger a room select
+    event.stopPropagation();
+
     const rect = this.getBoundingClientRect();
     const spaceBelow = this.containerBottom - rect.bottom;
     const spaceAbove = rect.top - this.containerTop;
