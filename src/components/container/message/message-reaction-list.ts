@@ -86,7 +86,7 @@ export class ChatMessageReactionList extends LitElement {
       }
 
       .chat-message-reaction-list__button:hover {
-        background-color: var(--chat-accent);
+        background-color: oklch(0% 0 0deg / 8%);
       }
 
       .chat-message-reaction-list--mine

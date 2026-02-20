@@ -239,11 +239,12 @@ export class ChatMessageItem extends LitElement {
 
       .chat-message-item--selected .chat-message-item__body {
         background-color: var(--chat-accent);
+        box-shadow: 0 0 0 2px var(--chat-ring);
       }
 
       .chat-message-item--selected .chat-message-item__body--mine {
         background-color: var(--chat-message-mine);
-        opacity: 0.8;
+        box-shadow: 0 0 0 2px var(--chat-ring);
       }
     `,
   ];

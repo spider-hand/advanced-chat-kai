@@ -63,10 +63,9 @@ export class ChatActionList extends LitElement {
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        min-width: 4rem;
-        height: 2rem;
-        padding: 0 var(--chat-spacing-2);
-        font-size: var(--chat-text-sm);
+        min-width: 8rem;
+        padding: var(--chat-spacing-2);
+        font-size: var(--chat-text-xs);
         color: var(--chat-popover-foreground);
         cursor: pointer;
       }

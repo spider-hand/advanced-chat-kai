@@ -21,6 +21,13 @@ export class ChatMessageReplyTo extends LitElement {
         flex-grow: 1;
         flex-direction: row;
         gap: var(--chat-spacing-2);
+        padding: var(--chat-spacing-2);
+        background-color: oklch(0% 0 0deg / 5%);
+        border-radius: var(--chat-radius-md);
+      }
+
+      .chat-message-reply-to--mine {
+        background-color: oklch(0% 0 0deg / 8%);
       }
 
       .chat-message-reply-to__container {
@@ -50,7 +57,12 @@ export class ChatMessageReplyTo extends LitElement {
   ];
 
   render() {
-    return html`<div class="chat-message-reply-to">
+    return html`<div
+      class=${classMap({
+        "chat-message-reply-to": true,
+        "chat-message-reply-to--mine": this.mine,
+      })}
+    >
       ${this.replyTo.senderAvatar
         ? html`<chat-avatar
             .size="${2.4}"
