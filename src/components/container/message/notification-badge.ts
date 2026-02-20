@@ -29,7 +29,7 @@ export class ChatNotificationBadge extends LitElement {
         background-color: var(--chat-primary);
         border: none;
         border-radius: var(--chat-radius-full);
-        box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
+        box-shadow: 0 0.125rem 0.25rem var(--chat-overlay);
       }
     `,
   ];

@@ -42,7 +42,7 @@ export class ChatDialog extends LitElement {
         justify-content: center;
         width: 100%;
         height: 100%;
-        background-color: oklch(0% 0 0deg / 50%);
+        background-color: var(--chat-overlay-heavy);
       }
 
       .dialog__window {

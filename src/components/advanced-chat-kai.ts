@@ -138,6 +138,11 @@ import {
  * @cssprop --chat-input - Input border color
  * @cssprop --chat-ring - Focus ring color
  * @cssprop --chat-radius - Default border radius
+ * @cssprop --chat-overlay-subtle - Subtle overlay (5% opacity)
+ * @cssprop --chat-overlay-light - Light overlay (8% opacity)
+ * @cssprop --chat-overlay - Default overlay (10% opacity)
+ * @cssprop --chat-overlay-medium - Medium overlay (15% opacity)
+ * @cssprop --chat-overlay-heavy - Heavy overlay (50% opacity)
  * @cssprop --chat-sidebar - Sidebar background color
  * @cssprop --chat-sidebar-foreground - Sidebar text color
  * @cssprop --chat-sidebar-primary - Sidebar primary color

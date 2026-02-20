@@ -22,12 +22,12 @@ export class ChatMessageReplyTo extends LitElement {
         flex-direction: row;
         gap: var(--chat-spacing-2);
         padding: var(--chat-spacing-2);
-        background-color: oklch(0% 0 0deg / 5%);
+        background-color: var(--chat-overlay-subtle);
         border-radius: var(--chat-radius-md);
       }
 
       .message-reply-to--mine {
-        background-color: oklch(0% 0 0deg / 8%);
+        background-color: var(--chat-overlay-light);
       }
 
       .message-reply-to__container {

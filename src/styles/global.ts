@@ -46,6 +46,13 @@ export const globalStyles = css`
     --chat-spacing-5: 1.25rem;
     --chat-spacing-6: 1.5rem;
     --chat-spacing-8: 2rem;
+
+    /** Overlays & Shadows */
+    --chat-overlay-subtle: oklch(0% 0 0deg / 5%);
+    --chat-overlay-light: oklch(0% 0 0deg / 8%);
+    --chat-overlay: oklch(0% 0 0deg / 10%);
+    --chat-overlay-medium: oklch(0% 0 0deg / 15%);
+    --chat-overlay-heavy: oklch(0% 0 0deg / 50%);
   }
 
   :host([theme="light"]) {

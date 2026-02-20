@@ -55,7 +55,7 @@ export class ChatActionList extends LitElement {
         background-color: var(--chat-popover);
         border: 1px solid var(--chat-border);
         border-radius: var(--chat-radius-lg);
-        box-shadow: 0 0.125rem 0.25rem oklch(0% 0 0deg / 10%);
+        box-shadow: 0 0.125rem 0.25rem var(--chat-overlay);
       }
 
       .action-list__item {

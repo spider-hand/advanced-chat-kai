@@ -62,12 +62,12 @@ export class ChatMessageAttachmentList extends LitElement {
       }
 
       .message-attachment-list--mine .message-attachment-list__item {
-        background-color: oklch(0% 0 0deg / 10%);
+        background-color: var(--chat-overlay);
       }
 
       .message-attachment-list--mine
         .message-attachment-list__item:hover {
-        background-color: oklch(0% 0 0deg / 15%);
+        background-color: var(--chat-overlay-medium);
       }
 
       .message-attachment-list--mine .message-attachment-list__text {

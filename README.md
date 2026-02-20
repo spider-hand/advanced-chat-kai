@@ -345,18 +345,18 @@ CSS variable names are based on the [shadcn](https://ui.shadcn.com/docs/theming)
 
 ### Font Size Variables
 
-| Variable           | Default     |
-| ------------------ | ----------- |
-| `--chat-text-xs`   | `0.75rem`   |
-| `--chat-text-sm`   | `0.875rem`  |
-| `--chat-text-base` | `1rem`      |
-| `--chat-text-lg`   | `1.125rem`  |
-| `--chat-text-xl`   | `1.25rem`   |
+| Variable           | Default    |
+| ------------------ | ---------- |
+| `--chat-text-xs`   | `0.75rem`  |
+| `--chat-text-sm`   | `0.875rem` |
+| `--chat-text-base` | `1rem`     |
+| `--chat-text-lg`   | `1.125rem` |
+| `--chat-text-xl`   | `1.25rem`  |
 
 ### Border Radius Variables
 
-| Variable             | Default   |
-| -------------------- | --------- |
+| Variable             | Default    |
+| -------------------- | ---------- |
 | `--chat-radius-sm`   | `0.125rem` |
 | `--chat-radius`      | `0.25rem`  |
 | `--chat-radius-md`   | `0.375rem` |
@@ -397,6 +397,11 @@ CSS variable names are based on the [shadcn](https://ui.shadcn.com/docs/theming)
 | `--chat-warning-foreground`      | The text color on warning badge          |
 | `--chat-info`                    | The background color of info badge       |
 | `--chat-info-foreground`         | The text color on info badge             |
+| `--chat-overlay-subtle`          | Subtle overlay (5% opacity)              |
+| `--chat-overlay-light`           | Light overlay (8% opacity)               |
+| `--chat-overlay`                 | Default overlay (10% opacity)            |
+| `--chat-overlay-medium`          | Medium overlay (15% opacity)             |
+| `--chat-overlay-heavy`           | Heavy overlay (50% opacity)              |
 
 ### Usage
 
