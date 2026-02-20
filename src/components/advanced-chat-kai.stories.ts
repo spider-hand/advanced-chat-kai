@@ -7,6 +7,7 @@ import {
   loadingState,
   mobileLayout,
   singleRoomMode,
+  edgeCasesChat,
   rooms,
   messages,
   messageWithReply,
@@ -238,4 +239,8 @@ export const Localized: Story = {
     ...activeChat,
     i18n: localizedText,
   },
+};
+
+export const EdgeCases: Story = {
+  args: edgeCasesChat,
 };
