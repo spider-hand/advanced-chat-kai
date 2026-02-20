@@ -1,5 +1,6 @@
 import { LitElement, PropertyValues, css, html, nothing } from "lit";
 import { property, query, state } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../../../styles";
 import "./message-item";
@@ -202,6 +203,10 @@ export class ChatMessageList extends LitElement {
       .message-list__button:hover {
         background-color: var(--chat-accent);
       }
+
+      .message-list__button--hidden {
+        display: none;
+      }
     `,
   ];
 
@@ -261,10 +266,10 @@ export class ChatMessageList extends LitElement {
                   ></chat-suggestion-list>`
                 : nothing}
               <button
-                class="message-list__button"
-                style="display: ${this._showScrollToBottomButton
-                  ? "flex"
-                  : "none"}"
+                class="${classMap({
+                  "message-list__button": true,
+                  "message-list__button--hidden": !this._showScrollToBottomButton,
+                })}"
                 @click="${this._scrollToBottom}"
               >
                <svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" viewBox="0 0 24 24" fill="none" stroke="var(--chat-muted-foreground)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>

@@ -35,7 +35,7 @@ describe("chat-header", () => {
     );
 
     const button = el.shadowRoot?.querySelector(".header__button");
-    expect(button?.getAttribute("style")).toContain("display: block");
+    expect(button?.classList.contains("header__button--hidden")).toBe(false);
   });
 
   it("hides the button to toggle sidebar", async () => {
@@ -54,7 +54,7 @@ describe("chat-header", () => {
     );
 
     const button = el.shadowRoot?.querySelector(".header__button");
-    expect(button?.getAttribute("style")).toContain("display: none");
+    expect(button?.classList.contains("header__button--hidden")).toBe(true);
   });
 
   it("dispatches open-sidebar", async () => {

@@ -1,6 +1,7 @@
 import { LitElement, css, html, nothing } from "lit";
 import { consume } from "@lit/context";
 import { property, state } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 import { globalStyles } from "../../styles";
 import "../shared/action-list";
 import { sidebarContext, RoomContext, roomContext } from "../../contexts";
@@ -92,14 +93,20 @@ export class ChatHeader extends LitElement {
       .header__button:hover {
         background-color: var(--chat-accent);
       }
+
+      .header__button--hidden {
+        display: none;
+      }
     `,
   ];
 
   render() {
     return html`<header class="header">
       <button
-        class="header__button"
-        style="display: ${!this.showSidebar ? "block" : "none"}"
+        class="${classMap({
+          header__button: true,
+          "header__button--hidden": this.showSidebar,
+        })}"
         @click="${this._openSidebar}"
         aria-label="Open sidebar"
       >

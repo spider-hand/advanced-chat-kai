@@ -86,7 +86,7 @@ describe("chat-message-list", () => {
     const flaotingButton = el.shadowRoot?.querySelector(
       ".message-list__button",
     );
-    expect(flaotingButton?.getAttribute("style")).toContain("display: none");
+    expect(flaotingButton?.classList.contains("message-list__button--hidden")).toBe(true);
 
     const chatNotificationBadge = el.shadowRoot?.querySelector(
       "chat-notification-badge",
@@ -254,7 +254,7 @@ describe("chat-message-list", () => {
     const flaotingButton = el.shadowRoot?.querySelector(
       ".message-list__button",
     );
-    expect(flaotingButton?.getAttribute("style")).toContain("display: none");
+    expect(flaotingButton?.classList.contains("message-list__button--hidden")).toBe(true);
 
     // Scroll up
     const mockEntry1 = {
@@ -275,9 +275,9 @@ describe("chat-message-list", () => {
     const flaotingButtonAfter = el.shadowRoot?.querySelector(
       ".message-list__button",
     );
-    expect(flaotingButtonAfter?.getAttribute("style")).toContain(
-      "display: flex",
-    );
+    expect(
+      flaotingButtonAfter?.classList.contains("message-list__button--hidden"),
+    ).toBe(false);
 
     // Scroll down to the bottom
     const mockEntry2 = {
@@ -298,9 +298,9 @@ describe("chat-message-list", () => {
     const flaotingButtonAfterScrollDown = el.shadowRoot?.querySelector(
       ".message-list__button",
     );
-    expect(flaotingButtonAfterScrollDown?.getAttribute("style")).toContain(
-      "display: none",
-    );
+    expect(
+      flaotingButtonAfterScrollDown?.classList.contains("message-list__button--hidden"),
+    ).toBe(true);
   });
 
   it("dispatches load-more-messages event when scrolling to the top", async () => {
