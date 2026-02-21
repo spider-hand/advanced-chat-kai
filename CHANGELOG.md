@@ -1,3 +1,8 @@
+### [1.1.3](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.2...v1.1.3) (2026-02-22)
+
+#### Fixes
+- Prevent select-emoji event from bubbling up when selecting an emoji on footer
+
 ### [1.1.2](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.1...v1.1.2) (2026-02-22)
 
 #### Fixes
