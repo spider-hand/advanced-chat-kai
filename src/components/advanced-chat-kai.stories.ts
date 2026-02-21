@@ -5,7 +5,6 @@ import {
   activeChat,
   emptyState,
   loadingState,
-  mobileLayout,
   singleRoomMode,
   edgeCasesChat,
   rooms,
@@ -122,10 +121,6 @@ export const Loading: Story = {
 
 export const Empty: Story = {
   args: emptyState,
-};
-
-export const Mobile: Story = {
-  args: mobileLayout,
 };
 
 export const Fullscreen: Story = {

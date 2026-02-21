@@ -30,19 +30,34 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    isMobile: {
+      toolbar: {
+        title: "Mobile",
+        icon: "mobile",
+        items: [
+          { value: false, title: "Desktop", icon: "browser" },
+          { value: true, title: "Mobile", icon: "mobile" },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
   initialGlobals: {
     theme: "light",
+    isMobile: false,
   },
   decorators: [
     (story, context) => {
       const theme = context.globals.theme || "light";
+      const isMobile = context.globals.isMobile ?? false;
+      const width = isMobile ? "375px" : "900px";
+      const height = isMobile ? "667px" : "600px";
       // Set background color based on theme
       document.body.style.backgroundColor = theme === "dark" ? "#1a1a1a" : "#ffffff";
-      // Wrap story and pass theme as attribute via render
+      // Wrap story and pass theme, isMobile, width, and height via render
       return html`
         <div data-theme="${theme}" style="display: contents;">
-          ${story({ args: { ...context.args, theme } })}
+          ${story({ args: { ...context.args, theme, isMobile, width, height } })}
         </div>
       `;
     },
