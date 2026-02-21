@@ -1,3 +1,11 @@
+### [1.1.1](https://github.com/spider-hand/advanced-chat-kai/compare/v1.0.0...v1.1.0) (2026-02-21)
+
+#### Fixes
+- Fix a bug which made the floating button remain when switching rooms
+
+#### Chores
+- Refactor
+
 ### [1.1.0](https://github.com/spider-hand/advanced-chat-kai/compare/v1.0.0...v1.1.0) (2026-02-20)
 
 #### Changes
