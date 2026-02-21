@@ -1,35 +1,36 @@
 <template>
-  <div style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 24px;">
-    <div style="display: flex; flex-direction: row; gap: 24px;">
-      <label style="display: flex; flex-direction: row; align-items: center; gap: 4px;">
+  <div class="demo">
+    <div class="demo__controls">
+      <label class="demo__control">
         <span>User:</span>
         <select v-model="currentUserId">
           <option value="user1">Alice Johnson</option>
           <option value="user2">Bob Smith</option>
         </select>
       </label>
-      <label style="display: flex; flex-direction: row; align-items: center; gap: 4px;">
+      <label class="demo__control">
         <span>Theme:</span>
         <select v-model="theme">
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
       </label>
-      <label style="display: flex; flex-direction: row; align-items: center; gap: 4px;">
+      <label class="demo__control">
         <span>Mobile:</span>
         <input type="checkbox" v-model="isMobile" />
       </label>
-      <label style="display: flex; flex-direction: row; align-items: center; gap: 4px;">
+      <label class="demo__control">
         <span>Single Room:</span>
         <input type="checkbox" v-model="isSingleRoom" />
       </label>
     </div>
     <advanced-chat-kai :currentUserId="currentUserId" :theme="theme" :isMobile="isMobile" :isSingleRoom="isSingleRoom"
       :rooms="filteredRooms" :messages="messages" :selectedRoomId="selectedRoomId" :isLoadingRoom="isLoadingRoom"
-      :isLoadingMessage="isLoadingMessage" :replyTo="replyTo" :height="isMobile ? '667px' : '600px'" :width="isMobile ? '375px' : '900px'"
-      :isMessageAttachmentAvailable="false" :timestampFormatter="formatTimestamp" @add-room="handleAddRoom" @select-room="handleSelectRoom"
-      @send-message="handleSendMessage" @select-emoji="handleSelectEmoji" @click-reaction="handleClickReaction"
-      @reply-to-message="handleReplyToMessage" @cancel-reply="handleCancelReply" @search-room="handleSearchRoom" />
+      :isLoadingMessage="isLoadingMessage" :replyTo="replyTo" :height="isMobile ? '667px' : '600px'"
+      :width="isMobile ? '375px' : '900px'" :isMessageAttachmentAvailable="false" :timestampFormatter="formatTimestamp"
+      @add-room="handleAddRoom" @select-room="handleSelectRoom" @send-message="handleSendMessage"
+      @select-emoji="handleSelectEmoji" @click-reaction="handleClickReaction" @reply-to-message="handleReplyToMessage"
+      @cancel-reply="handleCancelReply" @search-room="handleSearchRoom" />
   </div>
 </template>
 
@@ -38,12 +39,12 @@ import { ref, computed, onMounted, onUnmounted, watch } from "vue";
 import "advanced-chat-kai";
 import { database } from "./lib/firebase";
 import { ref as dbRef, push, set, update, get, onValue, off } from "firebase/database";
-import type { ChatRoom, ChatItemType, ChatMessageReply, SelectEmojiDetail, ClickReactionDetail, ReplyToMessageDetail, SearchRoomDetail } from "advanced-chat-kai";
+import type { ChatRoom, ChatItemType, ChatMessageReply, SelectEmojiDetail, ClickReactionDetail, ReplyToMessageDetail, SearchRoomDetail, ThemeType } from "advanced-chat-kai";
 import { USERS } from "./constants";
 import { formatTimestamp, buildRoom } from "./utils";
 
 const currentUserId = ref("user1");
-const theme = ref<"light" | "dark">("light");
+const theme = ref<ThemeType>("light");
 const isMobile = ref(false);
 const isSingleRoom = ref(false);
 
@@ -60,6 +61,8 @@ const filteredRooms = computed(() => {
   const query = searchQuery.value.toLowerCase();
   return rooms.value.filter((room) => room.id.toLowerCase().includes(query));
 });
+
+const currentUser = computed(() => USERS[currentUserId.value]);
 
 let messagesUnsubscribe: (() => void) | null = null;
 
@@ -81,7 +84,6 @@ const handleSelectRoom = (e: CustomEvent<{ room: ChatRoom }>) => {
 
 const handleSendMessage = async (e: CustomEvent<{ roomId: string; content: string; replyTo: ChatMessageReply | null }>) => {
   const { roomId, content, replyTo: eventReplyTo } = e.detail;
-  const user = USERS[currentUserId.value];
 
   const messagesRef = dbRef(database, `/messages/${roomId}`);
   const newMessageRef = push(messagesRef);
@@ -91,9 +93,9 @@ const handleSendMessage = async (e: CustomEvent<{ roomId: string; content: strin
     id: messageId,
     type: "message",
     roomId,
-    senderId: user.id,
-    senderName: user.name,
-    senderAvatar: user.avatar,
+    senderId: currentUser.value.id,
+    senderName: currentUser.value.name,
+    senderAvatar: currentUser.value.avatar,
     content,
     timestamp: new Date().toISOString(),
     reactions: {},
@@ -127,7 +129,7 @@ const handleSelectEmoji = async (e: CustomEvent<SelectEmojiDetail>) => {
 
   const reactionsRef = dbRef(database, `/messages/${roomId}/${messageId}/reactions/${emoji}`);
   const snapshot = await get(reactionsRef);
-  const currentUsers: string[] = snapshot.val() || [];
+  const currentUsers: string[] = snapshot.val() ?? [];
 
   if (!currentUsers.includes(currentUserId.value)) {
     await set(reactionsRef, [...currentUsers, currentUserId.value]);
@@ -141,7 +143,7 @@ const handleClickReaction = async (e: CustomEvent<ClickReactionDetail>) => {
 
   const reactionsRef = dbRef(database, `/messages/${roomId}/${messageId}/reactions/${reaction.emoji}`);
   const snapshot = await get(reactionsRef);
-  const currentUsers: string[] = snapshot.val() || [];
+  const currentUsers: string[] = snapshot.val() ?? [];
 
   if (currentUsers.includes(currentUserId.value)) {
     const updatedUsers = currentUsers.filter((u) => u !== currentUserId.value);
@@ -166,20 +168,22 @@ const subscribeToMessages = (roomId: string) => {
   onValue(messagesRef, (snapshot) => {
     const data = snapshot.val();
     if (data) {
-      messages.value = Object.values(data).map((msg: any) => ({
-        ...msg,
-        timestamp: new Date(msg.timestamp),
-        reactions: msg.reactions ?? {},
-        attachments: msg.attachments ?? [],
-        replyTo: msg.replyTo
-          ? {
-            ...msg.replyTo,
-            timestamp: new Date(msg.replyTo.timestamp),
-            reactions: msg.replyTo.reactions ?? {},
-            attachments: msg.replyTo.attachments ?? [],
-          }
-          : null,
-      }));
+      messages.value = Object.values(data)
+        .map((msg: any) => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp),
+          reactions: msg.reactions ?? {},
+          attachments: msg.attachments ?? [],
+          replyTo: msg.replyTo
+            ? {
+              ...msg.replyTo,
+              timestamp: new Date(msg.replyTo.timestamp),
+              reactions: msg.replyTo.reactions ?? {},
+              attachments: msg.replyTo.attachments ?? [],
+            }
+            : null,
+        }))
+        .sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
     } else {
       messages.value = [];
     }
@@ -225,3 +229,26 @@ onUnmounted(() => {
   }
 });
 </script>
+
+<style scoped>
+.demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 24px;
+}
+
+.demo__controls {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.demo__control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+</style>
