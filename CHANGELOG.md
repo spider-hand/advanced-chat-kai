@@ -1,4 +1,13 @@
-### [1.1.1](https://github.com/spider-hand/advanced-chat-kai/compare/v1.0.0...v1.1.0) (2026-02-21)
+### [1.1.2](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.1...v1.1.2) (2026-02-22)
+
+#### Fixes
+- Fix a layout issue with long text
+
+#### Chores
+- Toggle mobile / desktop layout on Storybook
+- Update stories
+
+### [1.1.1](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.0...v1.1.1) (2026-02-21)
 
 #### Fixes
 - Fix a bug which made the floating button remain when switching rooms

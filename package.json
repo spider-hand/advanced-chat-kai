@@ -1,6 +1,6 @@
 {
   "name": "advanced-chat-kai",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A highly customizable chat web component",
   "main": "dist/advanced-chat-kai.es.js",
   "module": "dist/advanced-chat-kai.es.js",
