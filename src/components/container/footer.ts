@@ -110,6 +110,9 @@ export class ChatFooter extends LitElement {
   }
 
   private _onSelectEmoji(event: CustomEvent<SelectEmojiDetail>) {
+    // Stop the event from bubbling up since the event is supposed to be exposed when selecting an emoji reaction on a message, 
+    // not when selecting an emoji from the picker in the footer
+    event.stopPropagation();
     this._textareaValue += event.detail.emoji;
     this._textarea.value = this._textareaValue;
     this._showEmojiPicker = false;

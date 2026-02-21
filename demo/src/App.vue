@@ -125,7 +125,7 @@ const handleSearchRoom = (e: CustomEvent<SearchRoomDetail>) => {
 const handleSelectEmoji = async (e: CustomEvent<SelectEmojiDetail>) => {
   const { messageId, emoji } = e.detail;
   const roomId = selectedRoomId.value;
-  if (!roomId) return;
+  if (!roomId || !messageId) return;
 
   const reactionsRef = dbRef(database, `/messages/${roomId}/${messageId}/reactions/${emoji}`);
   const snapshot = await get(reactionsRef);
