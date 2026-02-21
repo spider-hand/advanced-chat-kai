@@ -100,6 +100,8 @@ export class ChatMessageList extends LitElement {
 
       // Scroll to the bottom if the selected room has changed
       if (previousFirstMessageRoomId !== currentFirstMessageRoomId) {
+        this._showScrollToBottomButton = false;
+        this._showNotificationBadge = false;
         setTimeout(() => {
           this._scrollToBottom(undefined, "instant");
         });
