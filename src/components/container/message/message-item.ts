@@ -224,6 +224,7 @@ export class ChatMessageItem extends LitElement {
         padding: var(--chat-spacing-2) var(--chat-spacing-3);
         font-size: var(--chat-text-sm);
         color: var(--chat-foreground);
+        overflow-wrap: anywhere;
         background-color: var(--chat-secondary);
         border-radius: var(--chat-radius-lg);
       }

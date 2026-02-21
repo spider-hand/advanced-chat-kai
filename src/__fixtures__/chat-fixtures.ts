@@ -869,6 +869,38 @@ export const edgeCaseMessages: ChatItemType[] = [
       isSelected: false,
     },
   },
+
+  // === Long unbreakable text/URL (both sides) ===
+  {
+    id: "edge-msg-long-url-theirs",
+    type: "message",
+    roomId: "edge-case-room",
+    senderId: "customer-edge",
+    senderName: "Jane",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
+    content: "Check this link: https://example.com/very-long-url-path/that-should-wrap-properly/without-overflowing/the-message-container/parameters?query=superlongquerystringwithoutanyspaces&token=abc123xyz789",
+    timestamp: "10:30 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+  {
+    id: "edge-msg-long-url-mine",
+    type: "message",
+    roomId: "edge-case-room",
+    senderId: "current-user-id",
+    senderName: "Agent",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Agent",
+    content: "Here's the documentation: https://documentation.example.com/api/v2/reference/endpoints/users/authentication/oauth2/callback?redirect_uri=https://app.example.com/auth&client_id=1234567890abcdef",
+    timestamp: "10:31 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
 ];
 
 /** Edge cases layout testing */
