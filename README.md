@@ -27,7 +27,9 @@ A highly customizable chat Web Component that integrates easily with shadcn - wo
 
 ## Demo
 
-Try it out [here](https://advanced-chat-kai-demo.pages.dev/).
+👉 [Storybook](https://main--6810a95e2c6e78e3e3be0658.chromatic.com)
+
+👉 [Live Chat Example](https://advanced-chat-kai-demo.pages.dev)
 
 ## Table of contents
 
