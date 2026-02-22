@@ -3,27 +3,26 @@
 <img alt="light" src="https://github.com/user-attachments/assets/c7efa2e4-c7f5-4a83-968c-cbc0b0fea91f" />
 <img alt="dark" src="https://github.com/user-attachments/assets/b547b8b6-2154-4334-8f5d-16fb2c8e264c"" />
 
-![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai)
+![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai) ![Lit](https://img.shields.io/badge/lit-%23324FFF.svg?&logo=lit&logoColor=white)
 
-A highly customizable Web Component for building chat interfaces
+A highly customizable chat Web Component that integrates easily with shadcn - works with any framework (React, Vue, Angular, Svelte, etc.)
 
-> "Kai" (改) means "improved" in Japanese - this is a modern, lightweight, and framework-agnostic chat component built for flexibility and ease of integration.
+> "Kai" (改) means "improved" in Japanese - inspired by vue-advanced-chat, this project started with the goal of building an improved alternative.
 
 ## Features
 
-- Framework-agnostic - Can be used with any frontend framework or none at all
-- Backend-agnostic - No assumptions about your backend; integrate freely
-- Lightweight - Built with Lit for minimal bundle size and high performance
-- Logic-free - You own the data, state and behavior; components only handle UI
-- Theming support - Built-in light and dark themes
-- Customizable style - Easily style components with CSS variables
+- **Framework-agnostic** - Can be used with any frontend framework
+- **Backend-agnostic** - No assumptions about your backend
+- **Lightweight** - Built with Lit for minimal bundle size and high performance
+- **Logic-free** - Component handles only UI
+- **Theming** - Light and dark themes with CSS variables, which is designed to be easily used with shadcn based UI
 
 ### Comparison
 
 |                     | Bundle size (minified) | Bundle size (minified + gzipped) | Download time (slow 3G) | Download time (4G) |
 | ------------------- | ---------------------- | -------------------------------- | ----------------------- | ------------------ |
-| `advanced-chat-kai` | 112.9kB                | 23.2kB                           | 465ms                   | 27ms               |
-| `vue-advanced-chat` | 493.4kB                | 149.8kB                          | 3s                      | 171ms              |
+| advanced-chat-kai | 112.9kB                | 23.1kB                           | 465ms                   | 27ms               |
+| vue-advanced-chat | 493.4kB                | 149.8kB                          | 3s                      | 171ms              |
 |                     | 📦 **77% smaller**     | 📦 **84% smaller**               | ⚡️ **85% faster**       | ⚡️ **84% faster**  |
 
 ## Demo
