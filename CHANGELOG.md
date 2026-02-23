@@ -1,3 +1,9 @@
+### [1.1.4](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.3...v1.1.4) (2026-02-23)
+
+#### Chores
+- Adjust box shadow (Use the same ones as Tailwiind CSS)
+- Publish Storybook
+
 ### [1.1.3](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.2...v1.1.3) (2026-02-22)
 
 #### Fixes
