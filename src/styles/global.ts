@@ -47,7 +47,7 @@ export const globalStyles = css`
     --chat-spacing-6: 1.5rem;
     --chat-spacing-8: 2rem;
 
-    /** Overlays & Shadows */
+    /** Overlays */
     --chat-overlay-subtle: oklch(0% 0 0deg / 5%);
     --chat-overlay-light: oklch(0% 0 0deg / 8%);
     --chat-overlay: oklch(0% 0 0deg / 10%);
@@ -56,6 +56,7 @@ export const globalStyles = css`
   }
 
   :host([theme="light"]) {
+    /** Colors */
     --chat-background: oklch(100% 0 0deg);
     --chat-foreground: oklch(14.5% 0 0deg);
     --chat-card: oklch(100% 0 0deg);
@@ -93,9 +94,23 @@ export const globalStyles = css`
     --chat-warning-foreground: oklch(100% 0 0deg);
     --chat-info: oklch(54.6% 0.245 262.881deg);
     --chat-info-foreground: oklch(100% 0 0deg);
+
+    /** Shadows */
+    --chat-shadow-2xs: 0 1px rgb(0 0 0 / 5%);
+    --chat-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    --chat-shadow-sm:
+      0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+    --chat-shadow-md:
+      0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    --chat-shadow-lg:
+      0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+    --chat-shadow-xl:
+      0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+    --chat-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
   }
 
   :host([theme="dark"]) {
+    /** Colors */
     --chat-background: oklch(14.5% 0 0deg);
     --chat-foreground: oklch(98.5% 0 0deg);
     --chat-card: oklch(20.5% 0 0deg);
@@ -133,5 +148,14 @@ export const globalStyles = css`
     --chat-warning-foreground: oklch(14.5% 0 0deg);
     --chat-info: oklch(70.7% 0.165 254.624deg);
     --chat-info-foreground: oklch(14.5% 0 0deg);
+
+    /** Shadows */
+    --chat-shadow-2xs: none;
+    --chat-shadow-xs: none;
+    --chat-shadow-sm: none;
+    --chat-shadow-md: none;
+    --chat-shadow-lg: none;
+    --chat-shadow-xl: none;
+    --chat-shadow-2xl: none;
   }
 `;

@@ -19,11 +19,11 @@ A highly customizable chat Web Component that integrates easily with shadcn - wo
 
 ### Comparison
 
-|                     | Bundle size (minified) | Bundle size (minified + gzipped) | Download time (slow 3G) | Download time (4G) |
-| ------------------- | ---------------------- | -------------------------------- | ----------------------- | ------------------ |
+|                   | Bundle size (minified) | Bundle size (minified + gzipped) | Download time (slow 3G) | Download time (4G) |
+| ----------------- | ---------------------- | -------------------------------- | ----------------------- | ------------------ |
 | advanced-chat-kai | 112.9kB                | 23.1kB                           | 465ms                   | 27ms               |
 | vue-advanced-chat | 493.4kB                | 149.8kB                          | 3s                      | 171ms              |
-|                     | 📦 **77% smaller**     | 📦 **84% smaller**               | ⚡️ **85% faster**       | ⚡️ **84% faster**  |
+|                   | 📦 **77% smaller**     | 📦 **84% smaller**               | ⚡️ **85% faster**       | ⚡️ **84% faster**  |
 
 ## Demo
 
@@ -382,6 +382,18 @@ CSS variable names are based on the [shadcn](https://ui.shadcn.com/docs/theming)
 | `--chat-spacing-5`   | `1.25rem`  |
 | `--chat-spacing-6`   | `1.5rem`   |
 | `--chat-spacing-8`   | `2rem`     |
+
+### Shadow Variables
+
+| Variable            | Default                                                               |
+| ------------------- | --------------------------------------------------------------------- |
+| `--chat-shadow-2xs` | `0 1px rgb(0 0 0 / 0.05)`                                             |
+| `--chat-shadow-xs`  | `0 1px 2px 0 rgb(0 0 0 / 0.05)`                                       |
+| `--chat-shadow-sm`  | `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)`       |
+| `--chat-shadow-md`  | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)`    |
+| `--chat-shadow-lg`  | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)`  |
+| `--chat-shadow-xl`  | `0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)` |
+| `--chat-shadow-2xl` | `0 25px 50px -12px rgb(0 0 0 / 0.25)`                                 |
 
 ### Custom Variables
 

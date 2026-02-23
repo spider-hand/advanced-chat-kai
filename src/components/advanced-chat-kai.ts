@@ -353,7 +353,7 @@ export class AdvancedChatKai extends LitElement {
         overflow: hidden;
         border: 1px solid var(--chat-border);
         border-radius: var(--chat-radius-2xl);
-        box-shadow: rgb(0 0 0 / 15%) 0 0.1875rem 0.1875rem 0;
+        box-shadow: var(--chat-shadow-sm);
       }
 
       .main--fullscreen {

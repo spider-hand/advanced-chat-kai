@@ -199,7 +199,7 @@ export class ChatMessageList extends LitElement {
         background-color: var(--chat-popover);
         border: 1px solid var(--chat-border);
         border-radius: var(--chat-radius-full);
-        box-shadow: 0 0.125rem 0.25rem var(--chat-overlay);
+        box-shadow: var(--chat-shadow-sm);
       }
 
       .message-list__button:hover {
