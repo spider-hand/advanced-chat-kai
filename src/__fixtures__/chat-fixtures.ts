@@ -160,6 +160,242 @@ export const messages: ChatItemType[] = [
   },
 ];
 
+export const markdownMessages: ChatItemType[] = [
+  {
+    id: "divider-markdown",
+    type: "divider",
+    roomId: "support-ticket-1234",
+    content: "Markdown Demo",
+  },
+
+  // === Bold & Italic (both sides) ===
+  {
+    id: "msg-md-bold-theirs",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "customer-jane",
+    senderName: "Jane Smith",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
+    content: "I need help with the **API**. The *authentication* part is confusing.",
+    timestamp: "11:00 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+  {
+    id: "msg-md-bold-mine",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "current-user-id",
+    senderName: "Support Agent",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Agent",
+    content: "Sure! The **API key** is found in your *dashboard settings*.",
+    timestamp: "11:01 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+
+  // === Inline code (both sides) ===
+  {
+    id: "msg-md-inline-theirs",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "customer-jane",
+    senderName: "Jane Smith",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
+    content: "When I run `npm install` it shows an error with `node_modules`.",
+    timestamp: "11:02 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+  {
+    id: "msg-md-inline-mine",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "current-user-id",
+    senderName: "Support Agent",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Agent",
+    content: "Try deleting `node_modules` and `package-lock.json`, then run `npm install` again.",
+    timestamp: "11:03 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+
+  // === Code blocks (both sides) ===
+  {
+    id: "msg-md-codeblock-theirs",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "customer-jane",
+    senderName: "Jane Smith",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
+    content: `Here's my current code:
+
+\`\`\`javascript
+const data = await fetch('/api/users');
+console.log(data);
+\`\`\`
+
+But it returns undefined.`,
+    timestamp: "11:04 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+  {
+    id: "msg-md-codeblock-mine",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "current-user-id",
+    senderName: "Support Agent",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Agent",
+    content: `You need to parse the JSON response:
+
+\`\`\`javascript
+const response = await fetch('/api/users');
+const data = await response.json();
+console.log(data);
+\`\`\`
+
+This should fix it!`,
+    timestamp: "11:05 AM",
+    reactions: { "👍": ["customer-jane"] },
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+
+  // === Lists (both sides) ===
+  {
+    id: "msg-md-list-theirs",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "customer-jane",
+    senderName: "Jane Smith",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
+    content: `I've tried the following:
+
+- Clearing browser cache
+- Restarting the server
+- Updating dependencies
+
+None of them worked.`,
+    timestamp: "11:06 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+  {
+    id: "msg-md-list-mine",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "current-user-id",
+    senderName: "Support Agent",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Agent",
+    content: `Please try these additional steps:
+
+- Check your \`.env\` file
+- Verify the API endpoint URL
+- Ensure your token hasn't expired
+
+Let me know if any of these help!`,
+    timestamp: "11:07 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+
+  // === Blockquote (both sides) ===
+  {
+    id: "msg-md-quote-theirs",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "customer-jane",
+    senderName: "Jane Smith",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
+    content: `The error message says:
+
+> Error: Authentication failed. Invalid token provided.
+
+What does this mean?`,
+    timestamp: "11:08 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+  {
+    id: "msg-md-quote-mine",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "current-user-id",
+    senderName: "Support Agent",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Agent",
+    content: `That error means your API token is incorrect.
+
+> **Tip:** Generate a new token from Dashboard > Settings > API Keys
+
+Then update your configuration.`,
+    timestamp: "11:09 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+
+  // === Links (both sides) ===
+  {
+    id: "msg-md-link-theirs",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "customer-jane",
+    senderName: "Jane Smith",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
+    content: "I found this article: [Getting Started Guide](https://example.com/guide). Is it up to date?",
+    timestamp: "11:10 AM",
+    reactions: {},
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+  {
+    id: "msg-md-link-mine",
+    type: "message",
+    roomId: "support-ticket-1234",
+    senderId: "current-user-id",
+    senderName: "Support Agent",
+    senderAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Agent",
+    content: "Yes! Also check our [API Reference](https://example.com/api) and [FAQ](https://example.com/faq).",
+    timestamp: "11:11 AM",
+    reactions: { "❤️": ["customer-jane"], "🎉": ["customer-jane"] },
+    attachments: [],
+    isDeleted: false,
+    isSelected: false,
+    replyTo: null,
+  },
+];
+
 export const messageWithReply: ChatItemType = {
   id: "reply-msg",
   type: "message",

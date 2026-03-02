@@ -9,6 +9,7 @@ import {
   edgeCasesChat,
   rooms,
   messages,
+  markdownMessages,
   messageWithReply,
   messageWithImages,
   attachments,
@@ -201,6 +202,7 @@ export const ClosedConversation: Story = {
 export const MarkdownEnabled: Story = {
   args: {
     ...activeChat,
+    messages: markdownMessages,
     isMarkdownAvailable: true,
   },
 };
