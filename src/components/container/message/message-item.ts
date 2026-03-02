@@ -247,6 +247,15 @@ export class ChatMessageItem extends LitElement {
         background-color: var(--chat-message-mine);
         box-shadow: 0 0 0 2px var(--chat-ring);
       }
+
+      .message-item__body a {
+        color: var(--chat-info);
+        text-decoration: underline;
+      }
+
+      .message-item__body a:hover {
+        text-decoration: none;
+      }
     `,
   ];
 
