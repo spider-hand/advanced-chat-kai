@@ -1,6 +1,6 @@
 <template>
-  <div class="demo">
-    <div class="demo__controls">
+  <div :class="['demo', { 'demo--fullscreen': isFullscreen }]">
+    <div v-if="!isFullscreen" class="demo__controls">
       <label class="demo__control">
         <span>User:</span>
         <select v-model="currentUserId">
@@ -23,14 +23,22 @@
         <span>Single Room:</span>
         <input type="checkbox" v-model="isSingleRoom" />
       </label>
+      <label class="demo__control">
+        <span>Fullscreen:</span>
+        <input type="checkbox" v-model="isFullscreen" />
+      </label>
     </div>
+    <button v-if="isFullscreen" class="demo__exit-button" @click="isFullscreen = false">
+      Exit Fullscreen
+    </button>
     <advanced-chat-kai :currentUserId="currentUserId" :theme="theme" :isMobile="isMobile" :isSingleRoom="isSingleRoom"
       :rooms="filteredRooms" :messages="messages" :selectedRoomId="selectedRoomId" :isLoadingRoom="isLoadingRoom"
-      :isLoadingMessage="isLoadingMessage" :replyTo="replyTo" :height="isMobile ? '667px' : '600px'"
-      :width="isMobile ? '375px' : '900px'" :isMessageAttachmentAvailable="false" :timestampFormatter="formatTimestamp"
-      @add-room="handleAddRoom" @select-room="handleSelectRoom" @send-message="handleSendMessage"
-      @select-emoji="handleSelectEmoji" @click-reaction="handleClickReaction" @reply-to-message="handleReplyToMessage"
-      @cancel-reply="handleCancelReply" @search-room="handleSearchRoom" />
+      :isLoadingMessage="isLoadingMessage" :replyTo="replyTo"
+      :height="isFullscreen ? '100vh' : (isMobile ? '667px' : '600px')"
+      :width="isFullscreen ? '100vw' : (isMobile ? '375px' : '900px')" :isMessageAttachmentAvailable="false"
+      :timestampFormatter="formatTimestamp" @add-room="handleAddRoom" @select-room="handleSelectRoom"
+      @send-message="handleSendMessage" @select-emoji="handleSelectEmoji" @click-reaction="handleClickReaction"
+      @reply-to-message="handleReplyToMessage" @cancel-reply="handleCancelReply" @search-room="handleSearchRoom" />
   </div>
 </template>
 
@@ -47,6 +55,7 @@ const currentUserId = ref("user1");
 const theme = ref<ThemeType>("light");
 const isMobile = ref(false);
 const isSingleRoom = ref(false);
+const isFullscreen = ref(false);
 
 const rooms = ref<ChatRoom[]>([]);
 const messages = ref<ChatItemType[]>([]);
@@ -239,16 +248,25 @@ onUnmounted(() => {
   padding: 24px;
 }
 
+.demo--fullscreen {
+  padding: 0;
+}
+
 .demo__controls {
   display: flex;
-  flex-direction: row;
   gap: 24px;
 }
 
 .demo__control {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 4px;
+}
+
+.demo__exit-button {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
 }
 </style>
