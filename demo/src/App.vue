@@ -56,6 +56,18 @@ const theme = ref<ThemeType>("light");
 const isMobile = ref(false);
 const isSingleRoom = ref(false);
 const isFullscreen = ref(false);
+const isSmallDevice = ref(false);
+
+// Show the demo in full screen mode on small devices by default
+const mediaQuery = window.matchMedia("(max-width: 639px)");
+const handleMediaChange = (e: MediaQueryListEvent | MediaQueryList) => {
+  isSmallDevice.value = e.matches;
+  if (e.matches) {
+    isMobile.value = true;
+    isFullscreen.value = true;
+  }
+};
+handleMediaChange(mediaQuery);
 
 const rooms = ref<ChatRoom[]>([]);
 const messages = ref<ChatItemType[]>([]);
@@ -230,12 +242,14 @@ watch(selectedRoomId, (newRoomId) => {
 
 onMounted(() => {
   subscribeToRooms();
+  mediaQuery.addEventListener("change", handleMediaChange);
 });
 
 onUnmounted(() => {
   if (messagesUnsubscribe) {
     messagesUnsubscribe();
   }
+  mediaQuery.removeEventListener("change", handleMediaChange);
 });
 </script>
 
