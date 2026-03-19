@@ -309,10 +309,10 @@ export class ChatMessageItem extends LitElement {
                 .fontSize="${1.4}"
               ></chat-deleted-message>`
             : this.message.content !== ""
-              ? html`<span
+              ? html`<div
                   >${this.isMarkdownAvailable
                     ? unsafeHTML(this._content)
-                    : this._content}</span
+                    : this._content}</div
                 >`
               : nothing}
           ${!this.message.isDeleted && this.message.attachments.length > 0

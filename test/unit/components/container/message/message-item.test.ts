@@ -308,8 +308,8 @@ describe("chat-message-item", () => {
     );
 
     const body = el.shadowRoot?.querySelector(".message-item__body");
-    const span = body?.querySelector("span");
-    expect(span?.textContent).toBe("Hello, World!");
+    const div = body?.querySelector("div");
+    expect(div?.textContent).toBe("Hello, World!");
   });
 
   it("renders markdown content", async () => {
@@ -322,8 +322,8 @@ describe("chat-message-item", () => {
     );
 
     const body = el.shadowRoot?.querySelector(".message-item__body");
-    const span = body?.querySelector("span");
-    expect(span?.textContent).toBe("Mocked markdown content");
+    const div = body?.querySelector("div");
+    expect(div?.textContent).toBe("Mocked markdown content");
   });
 
   it("renders attachments", async () => {
