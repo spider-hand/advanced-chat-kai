@@ -1,3 +1,16 @@
+### [1.1.5](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.4...v1.1.5) (2026-04-02)
+
+#### Changes
+- Add an option to have selectbox on footer
+- Apply styles into link text on markdown
+
+#### Fixes
+- Fix markdown renderer based on the HTMP specification 
+
+#### Chores
+- Improve demo
+- Improve Storybook
+
 ### [1.1.4](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.3...v1.1.4) (2026-02-23)
 
 #### Chores

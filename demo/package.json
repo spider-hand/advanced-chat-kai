@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "advanced-chat-kai": "^1.1.4",
+    "advanced-chat-kai": "^1.1.5",
     "firebase": "^12.5.0",
     "vue": "^3.5.13"
   },
