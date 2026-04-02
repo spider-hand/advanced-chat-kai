@@ -89,6 +89,32 @@ describe("chat-action-list", () => {
     });
   });
 
+  it("dispatches select-footer-option", async () => {
+    const actions: ChatAction<string>[] = [
+      { label: "Action 1", value: "action1" },
+    ];
+    el = await fixture(html`
+      <chat-action-list
+        .actions="${actions}"
+        actionType="footer"
+        roomId="123"
+      ></chat-action-list>
+    `);
+    elLocator = getElementLocatorSelectors(el);
+
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+    const item = elLocator.getByText("Action 1");
+    await item.click();
+
+    expect(spyEvent.mock.calls.length).toBe(1);
+    expect(spyEvent.mock.calls[0][0].type).toBe("select-footer-option");
+    expect((spyEvent.mock.calls[0][0] as CustomEvent).detail).toEqual({
+      label: "Action 1",
+      value: "action1",
+      roomId: "123",
+    });
+  });
+
   it("closes on outside click", async () => {
     const actions: ChatAction<string>[] = [
       { label: "Action 1", value: "action1" },

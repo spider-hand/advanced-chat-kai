@@ -14,6 +14,7 @@ import {
   ChatMessageSuggestion,
   ChatRoom,
   Dialog,
+  FooterOption,
   PartialI18nType,
   ThemeType,
 } from "../types";
@@ -53,6 +54,7 @@ import {
  * @prop {boolean} isLoadingMoreRooms - Whether more rooms are loading or not
  * @prop {boolean} isLoadingMoreMessages - Whether more messages are loading or not
  * @prop {string} inputMessage - The current message input used for two-way data binding
+ * @prop {FooterOption<ChatActionType>[]} footerOptions - The list of options available for the footer selectbox
  * @prop {ChatAction<ChatActionType>[]} roomActions - The list of actions available for the room
  * @prop {ChatAction<ChatActionType>[]} myMessageActions - The list of actions available for the user's messages
  * @prop {ChatAction<ChatActionType>[]} theirMessageActions - The list of actions available for the other user's messages
@@ -82,6 +84,7 @@ import {
  * @fires select-room-action - The event fired when an action on the room is clicked
  * @fires load-more-messages - The event fired when reaching the top of the message list
  * @fires select-message-action - The event fired when an action on the message is clicked
+ * @fires select-footer-option - The event fired when an option in the footer selectbox is selected
  * @fires select-suggestion - The event fired when a suggestion is selected
  * @fires select-emoji - The event fired when an emoji is selected
  * @fires reply-to-message - The event fired when the reply button on the message is clicked
@@ -176,6 +179,9 @@ export class AdvancedChatKai extends LitElement {
   @property({ type: Boolean }) isLoadingMoreRooms = false;
   @property({ type: Boolean }) isLoadingMoreMessages = false;
   @property({ type: String }) inputMessage = "";
+  @property({ type: Array }) footerOptions: FooterOption<
+    string | number | boolean
+  >[] = [];
   @property({ type: Array }) roomActions: ChatAction<
     string | number | boolean
   >[] = [];
@@ -244,6 +250,7 @@ export class AdvancedChatKai extends LitElement {
     inputMessage: this.inputMessage,
     attachments: this.attachments,
     enterToSend: this.enterToSend,
+    footerOptions: this.footerOptions,
   };
 
   @provide({ context: sidebarContext })
@@ -315,6 +322,7 @@ export class AdvancedChatKai extends LitElement {
         inputMessage: this.inputMessage,
         attachments: this.attachments,
         enterToSend: this.enterToSend,
+        footerOptions: this.footerOptions,
       };
     }
 

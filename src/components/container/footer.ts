@@ -4,13 +4,16 @@ import { classMap } from "lit/directives/class-map.js";
 import { consume } from "@lit/context";
 import { globalStyles } from "../../styles";
 import {
+  FooterOption,
   ChatRoom,
+  SelectFooterOptionDetail,
   SelectEmojiDetail,
   SelectFileDetail,
   SendMessageDetail,
 } from "../../types";
 import "./footer-reply-to-section";
 import "./footer-attachment-section";
+import "../shared/action-list";
 import "../shared/emoji-picker";
 import {
   currentUserIdContext,
@@ -47,6 +50,9 @@ export class ChatFooter extends LitElement {
 
   @state() private _textareaValue = "";
   @state() private _showEmojiPicker = false;
+  @state() private _showActionList = false;
+  @state()
+  private _selectedFooterOptionValue: string | number | boolean | null = null;
 
   @query("textarea") private _textarea!: HTMLTextAreaElement;
   @query("input[type='file']") private _fileInput!: HTMLInputElement;
@@ -59,6 +65,7 @@ export class ChatFooter extends LitElement {
     ) {
       this._textareaValue = this.footerContext.inputMessage;
     }
+
   }
 
   private get _selectedRoom(): ChatRoom | undefined {
@@ -71,6 +78,24 @@ export class ChatFooter extends LitElement {
     return (
       this._textareaValue.trim() !== "" ||
       this.footerContext.attachments.length > 0
+    );
+  }
+
+  private get _defaultFooterOption() {
+    return (
+      this.footerContext.footerOptions.find((option) => option.default) ??
+      this.footerContext.footerOptions[0] ??
+      null
+    );
+  }
+
+  private get _selectedFooterOption(): FooterOption<
+    string | number | boolean
+  > | null {
+    return (
+      this.footerContext.footerOptions.find(
+        (option) => option.value === this._selectedFooterOptionValue,
+      ) ?? this._defaultFooterOption
     );
   }
 
@@ -110,7 +135,7 @@ export class ChatFooter extends LitElement {
   }
 
   private _onSelectEmoji(event: CustomEvent<SelectEmojiDetail>) {
-    // Stop the event from bubbling up since the event is supposed to be exposed when selecting an emoji reaction on a message, 
+    // Stop the event from bubbling up since the event is supposed to be exposed when selecting an emoji reaction on a message,
     // not when selecting an emoji from the picker in the footer
     event.stopPropagation();
     this._textareaValue += event.detail.emoji;
@@ -124,6 +149,33 @@ export class ChatFooter extends LitElement {
 
   private _closeEmojiPicker() {
     this._showEmojiPicker = false;
+  }
+
+  private _toggleActionList() {
+    this._showActionList = !this._showActionList;
+  }
+
+  private _closeActionList() {
+    this._showActionList = false;
+  }
+
+  private _handleSelectFooterOption(
+    event: CustomEvent<SelectFooterOptionDetail<string | number | boolean>>,
+  ) {
+    event.stopPropagation();
+    this._selectedFooterOptionValue = event.detail.value;
+
+    this.dispatchEvent(
+      new CustomEvent<SelectFooterOptionDetail<string | number | boolean>>(
+        "select-footer-option",
+        {
+          detail: event.detail,
+          composed: true,
+        },
+      ),
+    );
+
+    this._closeActionList();
   }
 
   private _sendMessage() {
@@ -189,7 +241,7 @@ export class ChatFooter extends LitElement {
         flex-direction: row;
         gap: var(--chat-spacing-2);
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         height: 2rem;
       }
 
@@ -203,16 +255,37 @@ export class ChatFooter extends LitElement {
         border-radius: var(--chat-radius-full);
       }
 
+      .footer__selectbox {
+        position: relative;
+        display: flex;
+      }
+
+      .footer__selectbox-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 12rem;
+        max-width: 12rem;
+        padding: var(--chat-spacing-2) var(--chat-spacing-3);
+        border: 1px solid var(--chat-border);
+        border-radius: var(--chat-radius-lg);
+      }
+
+      .footer__selectbox-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: var(--chat-text-xs);
+        color: var(--chat-foreground);
+        white-space: nowrap;
+      }
+
       .footer__file {
         display: none;
       }
 
       .footer__button:hover {
         background-color: var(--chat-accent);
-      }
-
-      .footer__button--emoji {
-        margin-right: auto;
       }
 
       .footer__button--send {
@@ -311,9 +384,46 @@ export class ChatFooter extends LitElement {
                     </svg>
                   </button>`
                 : nothing}
+              ${this.footerContext.footerOptions.length > 0
+                ? html`<div class="footer__selectbox">
+                    <button
+                      class="footer__button footer__selectbox-button"
+                      @click="${this._toggleActionList}"
+                      aria-label="Select footer option"
+                    >
+                      <span class="footer__selectbox-label"
+                        >${this._selectedFooterOption?.label ?? ""}</span
+                      >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.25em"
+                        height="1.25em"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="var(--chat-muted-foreground)"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </button>
+                    ${this._showActionList
+                      ? html`<chat-action-list
+                          style="position: absolute; right: 0; bottom: calc(100% + 0.5rem);"
+                          .actionType="${"footer"}"
+                          .roomId="${this.roomContext.selectedRoomId}"
+                          .actions="${this.footerContext.footerOptions}"
+                          @select-footer-option="${this
+                            ._handleSelectFooterOption}"
+                          @close="${this._closeActionList}"
+                        ></chat-action-list>`
+                      : nothing}
+                  </div>`
+                : nothing}
               <button
                 class="${classMap({
-                  "footer__button": true,
+                  footer__button: true,
                   "footer__button--send": true,
                   "footer__button--disabled": !this._isSendButtonEnabled,
                 })}"

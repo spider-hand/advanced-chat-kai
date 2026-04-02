@@ -5,6 +5,11 @@ export interface ChatAction<T extends string | number | boolean> {
   value: T;
 }
 
+export interface FooterOption<T extends string | number | boolean>
+  extends ChatAction<T> {
+  default?: boolean;
+}
+
 export type VariantType = "success" | "danger" | "warning" | "info";
 
 export interface ChatRoom {
@@ -92,6 +97,7 @@ export interface AdvancedChatKaiProps {
   isLoadingMoreRooms?: boolean;
   isLoadingMoreMessages?: boolean;
   inputMessage?: string;
+  footerOptions?: FooterOption<string | number | boolean>[];
   roomActions?: ChatAction<string | number | boolean>[];
   myMessageActions?: ChatAction<string | number | boolean>[];
   theirMessageActions?: ChatAction<string | number | boolean>[];

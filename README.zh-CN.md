@@ -71,6 +71,7 @@ npm install advanced-chat-kai
 | `isLoadingMoreRooms`           | boolean                                           | 否   | `false`                | 是否正在加载更多聊天室                |
 | `isLoadingMoreMessages`        | boolean                                           | 否   | `false`                | 是否正在加载更多消息                  |
 | `inputMessage`                 | string                                            | 否   | `""`                   | 当前消息输入框的值，用于双向绑定      |
+| `footerOptions`                | [FooterOption<ChatActionType>](#footeroption)[]   | 否   | `[]`                   | 页脚选择框可用的选项列表              |
 | `roomActions`                  | [ChatAction<ChatActionType>](#chataction)[]       | 否   | `[]`                   | 聊天室可用的操作列表                  |
 | `myMessageActions`             | [ChatAction<ChatActionType>](#chataction)[]       | 否   | `[]`                   | 当前用户消息可用的操作列表            |
 | `theirMessageActions`          | [ChatAction<ChatActionType>](#chataction)[]       | 否   | `[]`                   | 其他用户消息可用的操作列表            |
@@ -248,6 +249,24 @@ myMessageActions = [
 ];
 ```
 
+##### FooterOption
+
+示例：
+
+```js
+footerOptions = [
+  {
+    label: "Insert template",
+    value: "insert-template",
+    default: true,
+  },
+  {
+    label: "Assign conversation",
+    value: "assign-conversation",
+  },
+];
+```
+
 ##### Dialog
 
 示例：
@@ -307,6 +326,7 @@ this.messages.push(newMessage);
 | `select-room`           | `{ room }`                               | 在列表中选择某个房间                         |
 | `load-more-messages`    | -                                        | 滚动到消息列表顶部                           |
 | `select-message-action` | `{ label, value, messageId }`            | 选择消息上的某个操作                         |
+| `select-footer-option`  | `{ label, value, roomId }`               | 选择页脚选择框中的某个选项                   |
 | `select-suggestion`     | `{ suggestion }`                         | 选择建议列表中的某项                         |
 | `select-emoji`          | `{ messageId, currentUserId, emoji }`    | 在消息的选择器中选择一个 emoji reaction      |
 | `reply-to-message`      | `{ replyTo }`                            | 点击消息上的回复按钮                         |

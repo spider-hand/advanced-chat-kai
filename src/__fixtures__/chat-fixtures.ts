@@ -501,6 +501,11 @@ export const roomActions = [
   { label: "Delete", value: "delete" },
 ];
 
+export const footerOptions = [
+  { label: "Insert template", value: "insert-template", default: true },
+  { label: "Assign conversation", value: "assign-conversation" },
+];
+
 export const myMessageActions = [
   { label: "Edit", value: "edit" },
   { label: "Copy", value: "copy" },
@@ -524,6 +529,7 @@ const baseProps: Partial<AdvancedChatKaiProps> = {
   isEmojiReactionAvailable: true,
   isReplyAvailable: true,
   isMessageAttachmentAvailable: true,
+  footerOptions,
   roomActions,
   myMessageActions,
   theirMessageActions,
@@ -1146,4 +1152,3 @@ export const edgeCasesChat: AdvancedChatKaiProps = {
   messages: edgeCaseMessages,
   selectedRoomId: "edge-case-room",
 };
-

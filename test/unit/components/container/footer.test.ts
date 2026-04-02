@@ -10,6 +10,7 @@ import { DEFAULT_I18N } from "../../../../src/consts";
 class MockChatFooterAttachmentSection extends HTMLElement {}
 class MockChatFooterReplyToSection extends HTMLElement {}
 class MockChatEmojiPicker extends HTMLElement {}
+class MockChatActionList extends HTMLElement {}
 
 customElements.define("chat-footer", ChatFooter);
 customElements.define(
@@ -21,6 +22,7 @@ customElements.define(
   MockChatFooterReplyToSection,
 );
 customElements.define("chat-emoji-picker", MockChatEmojiPicker);
+customElements.define("chat-action-list", MockChatActionList);
 
 describe("chat-footer", () => {
   let el: ChatFooter;
@@ -59,6 +61,7 @@ describe("chat-footer", () => {
     inputMessage: "",
     attachments: [],
     enterToSend: false,
+    footerOptions: [],
   };
 
   const i18nContext = { ...DEFAULT_I18N };
@@ -113,6 +116,11 @@ describe("chat-footer", () => {
     );
     expect(toggleEmojiPickerButton).toBeFalsy();
 
+    const footerOptionsButton = el.shadowRoot?.querySelector(
+      ".footer__button[aria-label='Select footer option']",
+    );
+    expect(footerOptionsButton).toBeFalsy();
+
     const sendButton = el.shadowRoot?.querySelector(
       ".footer__button[aria-label='Send message']",
     );
@@ -124,6 +132,9 @@ describe("chat-footer", () => {
 
     const emojiPicker = el.shadowRoot?.querySelector("chat-emoji-picker");
     expect(emojiPicker).toBeFalsy();
+
+    const actionList = el.shadowRoot?.querySelector("chat-action-list");
+    expect(actionList).toBeFalsy();
   });
 
   it("renders with closed room message if the selected room has been ended", async () => {
@@ -430,6 +441,166 @@ describe("chat-footer", () => {
 
     const emojiPicker = el.shadowRoot?.querySelector("chat-emoji-picker");
     expect(emojiPicker).toBeTruthy();
+  });
+
+  it("renders footer selectbox when footer options are available", async () => {
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: "room-1" }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          footerOptions: [{ label: "Option 1", value: "option1" }],
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    const footerOptionsButton = el.shadowRoot?.querySelector(
+      ".footer__button[aria-label='Select footer option']",
+    );
+    expect(footerOptionsButton).toBeTruthy();
+    expect(footerOptionsButton?.textContent).toContain("Option 1");
+  });
+
+  it("uses the first default footer option and toggles the option list", async () => {
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: "room-1" }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          footerOptions: [
+            { label: "Option 1", value: "option1" },
+            { label: "Option 2", value: "option2", default: true },
+            { label: "Option 3", value: "option3", default: true },
+          ],
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    const footerOptionsButtonBeforeClick = el.shadowRoot?.querySelector(
+      ".footer__button[aria-label='Select footer option']",
+    );
+    expect(footerOptionsButtonBeforeClick?.textContent).toContain("Option 2");
+
+    expect(el.shadowRoot?.querySelector("chat-action-list")).toBeFalsy();
+
+    elLocator = getElementLocatorSelectors(el);
+    const footerOptionsButton = elLocator.getByLabelText(
+      "Select footer option",
+    );
+    await footerOptionsButton.click();
+
+    expect(el.shadowRoot?.querySelector("chat-action-list")).toBeTruthy();
+  });
+
+  it("updates the selected footer option and dispatches select-footer-option", async () => {
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: "room-1" }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          footerOptions: [
+            { label: "Option 1", value: "option1", default: true },
+            { label: "Option 2", value: "option2" },
+          ],
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    elLocator = getElementLocatorSelectors(el);
+    const footerOptionsButton = elLocator.getByLabelText(
+      "Select footer option",
+    );
+    await footerOptionsButton.click();
+
+    const actionList = el.shadowRoot?.querySelector("chat-action-list");
+    expect(actionList).toBeTruthy();
+
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+    actionList?.dispatchEvent(
+      new CustomEvent("select-footer-option", {
+        detail: {
+          label: "Option 2",
+          value: "option2",
+          roomId: "room-1",
+        },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+    await el.updateComplete;
+
+    const footerOptionsButtonAfterSelection = el.shadowRoot?.querySelector(
+      ".footer__button[aria-label='Select footer option']",
+    );
+    expect(footerOptionsButtonAfterSelection?.textContent).toContain("Option 2");
+    expect(el.shadowRoot?.querySelector("chat-action-list")).toBeFalsy();
+    expect(spyEvent.mock.calls.at(-1)?.[0].type).toBe("select-footer-option");
+    expect((spyEvent.mock.calls.at(-1)?.[0] as CustomEvent).detail).toEqual({
+      label: "Option 2",
+      value: "option2",
+      roomId: "room-1",
+    });
+  });
+
+  it("falls back to the first footer option when none is marked as default", async () => {
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: "room-1" }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          footerOptions: [
+            { label: "Option 1", value: "option1" },
+            { label: "Option 2", value: "option2" },
+          ],
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    const footerOptionsButton = el.shadowRoot?.querySelector(
+      ".footer__button[aria-label='Select footer option']",
+    );
+    expect(footerOptionsButton?.textContent).toContain("Option 1");
+  });
+
+  it("closes footer option list on close event", async () => {
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: "room-1" }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          footerOptions: [{ label: "Option 1", value: "option1" }],
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    elLocator = getElementLocatorSelectors(el);
+    const footerOptionsButton = elLocator.getByLabelText(
+      "Select footer option",
+    );
+    await footerOptionsButton.click();
+
+    const actionList = el.shadowRoot?.querySelector("chat-action-list");
+    expect(actionList).toBeTruthy();
+
+    actionList?.dispatchEvent(new CustomEvent("close"));
+    await el.updateComplete;
+
+    expect(el.shadowRoot?.querySelector("chat-action-list")).toBeFalsy();
   });
 
   it("toggles emoji picker visibility on button click", async () => {

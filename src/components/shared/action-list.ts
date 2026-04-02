@@ -3,12 +3,14 @@ import { property, query } from "lit/decorators.js";
 import { globalStyles } from "../../styles";
 import {
   ChatAction,
+  SelectFooterOptionDetail,
   SelectRoomActionDetail,
   SelectMessageActionDetail,
 } from "../../types";
 
 export class ChatActionList extends LitElement {
-  @property({ type: String }) actionType: "room" | "message" = "room";
+  @property({ type: String }) actionType: "room" | "message" | "footer" =
+    "room";
   @property({ type: String }) roomId: string | null = null;
   @property({ type: String }) messageId: string | null = null;
   @property({ type: Array }) actions: ChatAction<string | number | boolean>[] =
@@ -76,38 +78,65 @@ export class ChatActionList extends LitElement {
     `,
   ];
 
+  private _dispatchAction(action: ChatAction<string | number | boolean>) {
+    if (this.actionType === "room") {
+      this.dispatchEvent(
+        new CustomEvent<SelectRoomActionDetail<string | number | boolean>>(
+          "select-room-action",
+          {
+            detail: {
+              label: action.label,
+              value: action.value,
+              roomId: this.roomId as string,
+            },
+            composed: true,
+          },
+        ),
+      );
+      return;
+    }
+
+    if (this.actionType === "message") {
+      this.dispatchEvent(
+        new CustomEvent<SelectMessageActionDetail<string | number | boolean>>(
+          "select-message-action",
+          {
+            detail: {
+              label: action.label,
+              value: action.value,
+              messageId: this.messageId as string,
+            },
+            composed: true,
+          },
+        ),
+      );
+      return;
+    }
+
+    if (this.actionType === "footer") {
+      this.dispatchEvent(
+        new CustomEvent<SelectFooterOptionDetail<string | number | boolean>>(
+          "select-footer-option",
+          {
+            detail: {
+              label: action.label,
+              value: action.value,
+              roomId: this.roomId as string,
+            },
+            composed: true,
+          },
+        ),
+      );
+    }
+  }
+
   render() {
     return html`<div class="action-list">
       ${this.actions.map(
         (action) => html`
           <div
             class="action-list__item"
-            @click="${() =>
-              this.actionType === "room"
-                ? this.dispatchEvent(
-                    new CustomEvent<
-                      SelectRoomActionDetail<string | number | boolean>
-                    >("select-room-action", {
-                      detail: {
-                        label: action.label,
-                        value: action.value,
-                        roomId: this.roomId as string,
-                      },
-                      composed: true,
-                    }),
-                  )
-                : this.dispatchEvent(
-                    new CustomEvent<
-                      SelectMessageActionDetail<string | number | boolean>
-                    >("select-message-action", {
-                      detail: {
-                        label: action.label,
-                        value: action.value,
-                        messageId: this.messageId as string,
-                      },
-                      composed: true,
-                    }),
-                  )}"
+            @click="${() => this._dispatchAction(action)}"
           >
             ${action.label}
           </div>
