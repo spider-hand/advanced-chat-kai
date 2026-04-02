@@ -5,6 +5,8 @@
 
 ![npm version](https://img.shields.io/npm/v/advanced-chat-kai) ![npm downloads](https://img.shields.io/npm/dm/advanced-chat-kai) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/advanced-chat-kai) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/spider-hand/advanced-chat-kai/graph/badge.svg?token=ETHZJ2CTPF)](https://codecov.io/gh/spider-hand/advanced-chat-kai) ![Lit](https://img.shields.io/badge/lit-%23324FFF.svg?&logo=lit&logoColor=white)
 
+[English](./README.md) | [简体中文](./README.zh-CN.md)
+
 A highly customizable chat Web Component that integrates easily with shadcn - works with any framework (React, Vue, Angular, Svelte, etc.)
 
 > "Kai" (改) means "improved" in Japanese - inspired by vue-advanced-chat, this project started with the goal of building an improved alternative.
