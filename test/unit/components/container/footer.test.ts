@@ -420,6 +420,31 @@ describe("chat-footer", () => {
     });
   });
 
+  it("does not dispatch select-file event when no file is selected", async () => {
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${roomContext}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          isMessageAttachmentAvailable: true,
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    const fileInput = el.shadowRoot?.querySelector("input[type='file']");
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+
+    const dataTransfer = new DataTransfer();
+    (fileInput as HTMLInputElement)!.files = dataTransfer.files;
+
+    fileInput?.dispatchEvent(new Event("change"));
+
+    expect(spyEvent).not.toHaveBeenCalled();
+  });
+
   it("renders with emoji picker", async () => {
     el = await fixture(
       html`<chat-footer
@@ -496,6 +521,32 @@ describe("chat-footer", () => {
     await footerOptionsButton.click();
 
     expect(el.shadowRoot?.querySelector("chat-action-list")).toBeTruthy();
+  });
+
+  it("closes the footer option list when clicking the trigger again", async () => {
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: "room-1" }}"
+        .messageContext="${messageContext}"
+        .footerContext="${{
+          ...footerContext,
+          footerOptions: [{ label: "Option 1", value: "option1" }],
+        }}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    elLocator = getElementLocatorSelectors(el);
+    const footerOptionsButton = elLocator.getByLabelText(
+      "Select footer option",
+    );
+
+    await footerOptionsButton.click();
+    expect(el.shadowRoot?.querySelector("chat-action-list")).toBeTruthy();
+
+    await footerOptionsButton.click();
+    expect(el.shadowRoot?.querySelector("chat-action-list")).toBeFalsy();
   });
 
   it("updates the selected footer option and dispatches select-footer-option", async () => {
@@ -769,6 +820,32 @@ describe("chat-footer", () => {
     expect(
       sendButton?.classList.contains("footer__button--disabled"),
     ).toBeFalsy();
+  });
+
+  it("does not dispatch send-message event when send button is disabled", async () => {
+    const currentUserId = "test-user-id";
+    const selectedRoomId = "test-room-id";
+    el = await fixture(
+      html`<chat-footer
+        .roomContext="${{ ...roomContext, selectedRoomId: selectedRoomId }}"
+        .messageContext="${messageContext}"
+        .footerContext="${footerContext}"
+        .currentUserId="${currentUserId}"
+        .i18nContext="${{ i18n: i18nContext }}"
+      ></chat-footer>`,
+    );
+
+    const sendButton = el.shadowRoot?.querySelector(
+      ".footer__button[aria-label='Send message']",
+    ) as HTMLButtonElement | null;
+    expect(sendButton).toBeTruthy();
+    expect(sendButton?.disabled).toBe(true);
+
+    const spyEvent = vi.spyOn(el, "dispatchEvent");
+
+    sendButton?.click();
+
+    expect(spyEvent).not.toHaveBeenCalled();
   });
 
   it("dispatches send-message event on send button click", async () => {

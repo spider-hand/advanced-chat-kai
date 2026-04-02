@@ -65,7 +65,6 @@ export class ChatFooter extends LitElement {
     ) {
       this._textareaValue = this.footerContext.inputMessage;
     }
-
   }
 
   private get _selectedRoom(): ChatRoom | undefined {
@@ -81,17 +80,14 @@ export class ChatFooter extends LitElement {
     );
   }
 
-  private get _defaultFooterOption() {
+  private get _defaultFooterOption(): FooterOption<string | number | boolean> {
     return (
       this.footerContext.footerOptions.find((option) => option.default) ??
-      this.footerContext.footerOptions[0] ??
-      null
+      this.footerContext.footerOptions[0]
     );
   }
 
-  private get _selectedFooterOption(): FooterOption<
-    string | number | boolean
-  > | null {
+  private get _selectedFooterOption(): FooterOption<string | number | boolean> {
     return (
       this.footerContext.footerOptions.find(
         (option) => option.value === this._selectedFooterOptionValue,
@@ -162,6 +158,8 @@ export class ChatFooter extends LitElement {
   private _handleSelectFooterOption(
     event: CustomEvent<SelectFooterOptionDetail<string | number | boolean>>,
   ) {
+    // Prevent the child list event from bubbling through unchanged since the
+    // footer updates its selected value first and then emits the public event.
     event.stopPropagation();
     this._selectedFooterOptionValue = event.detail.value;
 
@@ -392,7 +390,7 @@ export class ChatFooter extends LitElement {
                       aria-label="Select footer option"
                     >
                       <span class="footer__selectbox-label"
-                        >${this._selectedFooterOption?.label ?? ""}</span
+                        >${this._selectedFooterOption.label}</span
                       >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
