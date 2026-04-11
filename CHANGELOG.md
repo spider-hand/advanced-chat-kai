@@ -1,3 +1,8 @@
+### [1.1.6](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.5...v1.1.6) (2026-04-11)
+
+#### Changes
+- Deprecate footer options
+
 ### [1.1.5](https://github.com/spider-hand/advanced-chat-kai/compare/v1.1.4...v1.1.5) (2026-04-02)
 
 #### Changes
