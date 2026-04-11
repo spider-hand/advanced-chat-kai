@@ -32,5 +32,4 @@ export const FOOTER_CONTEXT_KEYS: (keyof FooterContext)[] = [
   "inputMessage",
   "attachments",
   "enterToSend",
-  "footerOptions",
 ];

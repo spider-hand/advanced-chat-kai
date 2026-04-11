@@ -97,7 +97,6 @@ const meta: Meta<AdvancedChatKaiProps> = {
     replyTo: { table: { disable: true } },
     selectedRoomId: { table: { disable: true } },
     inputMessage: { table: { disable: true } },
-    footerOptions: { table: { disable: true } },
     roomActions: { table: { disable: true } },
     myMessageActions: { table: { disable: true } },
     theirMessageActions: { table: { disable: true } },

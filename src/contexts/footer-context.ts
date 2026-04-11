@@ -1,5 +1,5 @@
 import { createContext } from "@lit/context";
-import { ChatMessageAttachment, FooterOption } from "../types";
+import { ChatMessageAttachment } from "../types";
 
 export interface FooterContext {
   isEmojiPickerAvailable: boolean;
@@ -7,7 +7,6 @@ export interface FooterContext {
   inputMessage: string;
   attachments: ChatMessageAttachment[];
   enterToSend: boolean;
-  footerOptions: FooterOption<string | number | boolean>[];
 }
 
 export const footerContext = createContext<FooterContext>("footer");

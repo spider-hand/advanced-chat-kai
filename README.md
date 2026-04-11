@@ -71,7 +71,6 @@ npm install advanced-chat-kai
 | `isLoadingMoreRooms`           | boolean                                           | false    | `false`                | Whether more rooms are loading or not                                             |
 | `isLoadingMoreMessages`        | boolean                                           | false    | `false`                | Whether more messages are loading or not                                          |
 | `inputMessage`                 | string                                            | false    | `""`                   | The current message input used for two-way binding                                |
-| `footerOptions`                | [FooterOption<ChatActionType>](#footeroption)[]   | false    | `[]`                   | The list of options available for the footer selectbox                            |
 | `roomActions`                  | [ChatAction<ChatActionType>](#chataction)[]       | false    | `[]`                   | The list of actions available for the rooms                                       |
 | `myMessageActions`             | [ChatAction<ChatActionType>](#chataction)[]       | false    | `[]`                   | The list of actions available for the user's messages                             |
 | `theirMessageActions`          | [ChatAction<ChatActionType>](#chataction)[]       | false    | `[]`                   | The list of actions available for other user's messages                           |
@@ -249,24 +248,6 @@ myMessageActions = [
 ];
 ```
 
-##### FooterOption
-
-Example:
-
-```js
-footerOptions = [
-  {
-    label: "Insert template",
-    value: "insert-template",
-    default: true,
-  },
-  {
-    label: "Assign conversation",
-    value: "assign-conversation",
-  },
-];
-```
-
 ##### Dialog
 
 Example:
@@ -326,7 +307,6 @@ this.messages.push(newMessage);
 | `select-room`           | `{ room }`                               | Selected a room in the list                                                   |
 | `load-more-messages`    | -                                        | Reached the top of the message list                                           |
 | `select-message-action` | `{ label, value, messageId }`            | Selected an action on the message                                             |
-| `select-footer-option`  | `{ label, value, roomId }`               | Selected an option in the footer selectbox                                    |
 | `select-suggestion`     | `{ suggestion }`                         | Selected a suggestion in the list                                             |
 | `select-emoji`          | `{ messageId, currentUserId, emoji }`    | Selected an emoji reaction in picker for a message                            |
 | `reply-to-message`      | `{ replyTo }`                            | Clicked the reply button on a message                                         |

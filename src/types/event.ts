@@ -11,12 +11,6 @@ export interface SelectRoomActionDetail<T extends string | number | boolean> {
   roomId: string;
 }
 
-export interface SelectFooterOptionDetail<T extends string | number | boolean> {
-  label: string;
-  value: T;
-  roomId: string;
-}
-
 export interface SelectMessageActionDetail<
   T extends string | number | boolean,
 > {
